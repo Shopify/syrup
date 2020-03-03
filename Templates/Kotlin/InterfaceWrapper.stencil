@@ -1,0 +1,63 @@
+{% if asFile %}
+package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.{{ package }}
+
+{{ header }}
+{% if importEnums %}import {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.enums.*{% endif %}
+{% if containsFragment and not fragmentDefinition %}import {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.fragments.*{% endif %}
+import java.math.BigDecimal
+import org.joda.time.DateTime;
+import com.google.gson.JsonObject
+import javax.annotation.Generated
+
+@Generated("{% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}")
+{% endif %}
+data class {{ name }}(
+    val realized: Realized{% if baseFields or fragmentSpreads %},{% endif %}
+    {% for field in baseFields %}
+    val {{ field|renderPropertyDeclaration }} {% if fragmentSpreads or not forloop.last %},{% endif %}
+    {% endfor %}
+    {% for fragment in fragmentSpreads %}
+    val {{ fragment.name|lowercasedFirstLetter }}: {{ fragment.name }} {% if not forloop.last %},{% endif %}
+    {% endfor %}
+): Response {
+    constructor(jsonObject: JsonObject) : this (
+        realized = when (jsonObject.get("__typename").asString) {
+            {% for concreteType in concreteTypeNames %}
+            "{{ concreteType }}" -> Realized.{{ concreteType }}(jsonObject)
+            {% endfor %}
+            else -> Realized.Other
+        }{% if baseFields or fragmentSpreads %},{% endif %}
+        {% for field in baseFields %}
+        {{ field|decodeField }}{% if fragmentSpreads or not forloop.last %},{% endif %}
+        {% endfor %}
+        {% for fragment in fragmentSpreads %}
+        {{ fragment.name|lowercasedFirstLetter }} = {{ fragment.name }}(jsonObject){% if not forloop.last %},{% endif %}
+        {% endfor %}
+    )
+ companion object {
+   const val typeName = "{{ interfaceTypeName }}"
+   
+   {% if fragmentSelections %}
+   fun getSelections(operationVariables: Map<String, String>): List<Selection> {
+     return {{ fragmentSelections|renderKotlinSelections }}
+   }
+   {% endif %}
+ }
+ 
+ sealed class Realized {
+   {{ collectedFields|nestedInterfaceTypeDefinitions:interfaceTypeName,groupedFragmentSpreads,concreteTypeNames }}
+    object Other: Realized()
+}
+
+{% for field in baseFields %}
+{{ field|nestedTypeDefinition }}
+{% endfor %}
+
+{% for field in baseFields %}
+{{ field|nestedInterfaceWrapper }}
+{% endfor %}
+
+{% for field in baseFields %}
+{{ field|nestedUnionWrapper }}
+{% endfor %}
+}

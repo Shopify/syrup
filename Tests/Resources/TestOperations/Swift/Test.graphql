@@ -1,0 +1,513 @@
+query Test {
+  shop {
+    id
+  }
+}
+
+fragment BasicFragment on Customer {
+  id
+  note
+}
+
+fragment MultiLevelFragment on Customer {
+  lastOrder {
+    customerJourney{
+      firstVisit {
+        id
+      }
+    }
+  }
+}
+
+fragment MultiLevelInterfaceFragment on EventConnection {
+  edges {
+    node {
+      __typename
+      id
+    }
+  }
+}
+
+fragment MultiLevelInterfaceFragmentWithOnlyInlineFragments on EventConnection {
+  edges {
+    node {
+      __typename
+      ... on CommentEvent {
+        id
+      }
+    }
+  }
+}
+
+fragment TopLevelFragment on QueryRoot {
+  node(id: "") {
+    __typename
+    ... on Product {
+      id
+    }
+  }
+}
+
+query TopLevelFragmentQuery {
+  ...TopLevelFragment
+}
+
+query MultiLevelInterfaceFragmentWithOnlyInlineFragmentsQuery {
+  customer(id: "") {
+    events(first: 1) {
+      ...MultiLevelInterfaceFragmentWithOnlyInlineFragments
+    }
+  }
+}
+
+fragment InterfaceFragment on DiscountCode {
+  __typename
+  ... on DiscountCodeBasic {
+    createdAt
+    shareableUrls {
+      title
+      url
+    }
+  }  
+}
+
+query BasicFragmentCustomerQuery {
+  shop {
+    customers(first: 1) {
+      edges {
+        node {
+          ...BasicFragment
+        }
+      }
+    }
+  }
+}
+
+query MultiLevelFragmentCustomerQuery {
+  shop {
+    customers(first: 10) {
+      edges {
+        node {
+          ...MultiLevelFragment
+        }
+      }
+    }
+  }
+}
+
+query MultipleFragmentsQuery {
+  shop {
+    customers(first: 10) {
+      edges {
+        node {
+          ...BasicFragment
+          ...MultiLevelFragment
+        }
+      }
+    }
+  }
+}
+
+query InterfaceFragmentDiscountsQuery {
+  codeDiscountNodes(first: 1){
+    edges {
+      node {
+        codeDiscount {
+          ...InterfaceFragment
+        }
+      }
+    }
+  }
+}
+
+query CustomerEvents {
+  customer(id: "") {
+    events(first: 10) {
+      ...MultiLevelInterfaceFragment
+    }
+  }
+}
+
+mutation WithInputVariable($input:CustomerInput!) {
+  customerUpdate(input:$input){
+    customer {
+      id
+    }
+  }
+}
+
+query CustomScalar {
+  customer(id: "") {
+    ordersCount
+  }
+}
+
+query Union1 {
+  priceRule(id:"") {
+    id
+    value {
+      __typename
+      ... on PriceRulePercentValue {
+        percentage
+      }
+      ... on PriceRuleFixedAmountValue {
+        amount
+      }
+    }
+  }
+}
+
+fragment UnionFrag on PriceRuleValue {
+  __typename
+  ... on PriceRulePercentValue {
+    percentage
+  }
+  ... on PriceRuleFixedAmountValue {
+    amount
+  }
+}
+
+query Union2 {
+  priceRule(id: "") {
+    value {
+      ...UnionFrag
+    }
+  }
+}
+
+fragment UnionFrag2 on QueryRoot {
+  priceRule(id: "") {
+    value {
+      __typename
+      ... on PriceRulePercentValue {
+        percentage
+      }
+      ... on PriceRuleFixedAmountValue {
+        amount
+      }
+    }
+  }
+}
+
+query Union3 {
+  ...UnionFrag2
+}
+
+fragment UnionFrag4 on PriceRule {
+  value {
+    ... on PriceRulePercentValue {
+      percentage
+    }
+  }
+}
+
+query Union4 {
+  priceRule(id: "") {
+    ...UnionFrag4
+  }
+}
+
+
+query InterfaceWrapperNestedFragment {
+  publication(id: "") {
+    collectionPublicationsV3(first: 10) {
+      edges {
+        node {
+          publishable {
+            availablePublicationCount
+            resourcePublications {
+              ...Publications
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment Publications on ResourcePublicationConnection {
+  edges {
+    node {
+      isPublished
+      publishDate
+    }
+  }
+}
+
+fragment InterfaceFragmentWithNestedFragment on Publishable {
+  availablePublicationCount
+  resourcePublications {
+    ...Publications
+  }
+}
+
+query InterfaceFragmentWithNestedFragment {
+  publication(id: "") {
+    collectionPublicationsV3(first: 10) {
+      edges {
+        node {
+          publishable {
+            ...InterfaceFragmentWithNestedFragment
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment NestedFragmentSpread on Shop {
+  ...Features
+  id
+}
+
+fragment Features on Shop {
+  features {
+    shopifyPlus
+  }
+}
+
+query NestedFragment {
+  shop {
+    ...NestedFragmentSpread
+  }
+}
+
+query SimpleDuplicateField {
+  shop {
+    name
+    id
+    id
+    features {
+      shopifyPlus
+    }
+  }
+  shop {
+    features {
+      storefront
+    }
+  }
+}
+
+query FragmentDuplicatedField {
+  shop {
+    name
+    id
+    features {
+      storefront
+    }
+    ...Features
+  }
+}
+
+fragment DuplicatedFragment on Shop {
+  name
+  features {
+    storefront
+  }
+  ...Features
+}
+
+query MultipleDuplicatedFragments {
+  shop {
+    ...DuplicatedFragment
+  }
+}
+
+fragment CommonFieldsWithUnionTypes on DiscountApplication {
+  value {
+    ... on PricingPercentageValue {
+      percentage
+    }
+    ... on MoneyV2 {
+      amount
+    }
+  }
+  ... on DiscountCodeApplication {
+    code
+  }
+}
+
+fragment DuplicateFieldsOnInterface on AppPurchase {
+  createdAt
+  price {
+    amount
+    currencyCode
+  }
+  ... on AppPurchaseOneTime {
+    createdAt
+    price {
+      amount
+      currencyCode
+    }
+    returnUrl
+  }
+}
+
+query DuplicateFieldsOnInterface {
+  node(id: "") {
+    ... on AppPurchase {
+      ...DuplicateFieldsOnInterface
+    }
+  }
+}
+
+fragment ConditionalDirectivesFrag1 on Shop {
+  features {
+    shopifyPlus
+    multiLocation @skip(if: $someCondition)
+  }
+}
+
+query ConditionalDirectives($someCondition: Boolean!) {
+  shop {
+    primaryDomain @include(if: false) {
+      url
+    }
+    ...ConditionalDirectivesFrag1
+  }
+}
+
+query ConditionalDirectives2 {
+  ...ConditionalDirectivesFrag2 @include(if: false)
+}
+
+fragment ConditionalDirectivesFrag2 on QueryRoot {
+  shop {
+    features {
+      shopifyPlus
+    }
+  }
+}
+
+query ConditionalDirectiveInlineFragment {
+  node(id:"123") {
+    id
+    ... on Product @include(if: true) {
+      title
+    }
+  }
+}
+
+fragment ChannelDetailsFields on App {
+  failedRequirements {
+    action {
+      title
+      url
+    }
+    message
+  }
+  screenshots {
+    transformedSrc
+  }
+  icon {
+    transformedSrc
+  }
+  title
+  pricingDetails
+  pricingDetailsSummary
+  description
+  features
+  installUrl
+}
+
+query ChannelDetails($id: ID!) {
+  node(id: $id) {
+    ... on App {
+      ...ChannelDetailsFields
+    }
+  }
+}
+
+fragment UserErrors on UserError {
+  field
+  message
+}
+
+mutation DuplicatedFragment($orderInput: OrderInput!, $customerInput: CustomerInput!) {
+  orderUpdate(input: $orderInput) {
+    userErrors {
+      ...UserErrors
+    }
+  }
+  customerUpdate(input: $customerInput) {
+    userErrors {
+      ...UserErrors
+    }
+  }
+}
+
+query DeepMergeDuplicateFields($orderId: ID!) {
+  order(id: $orderId) {
+    ...DeepMergeDuplicateFields
+  }
+}
+
+fragment DeepMergeDuplicateFields on Order {
+  id
+  fulfillments {
+    fulfillmentLineItems(first: 250) {
+      edges {
+        node {
+          lineItem {
+            id
+          }
+        }
+      }
+    }
+  }
+  fulfillments {
+    fulfillmentLineItems(first: 250) {
+      edges {
+        node {
+          lineItem {
+            id
+          }
+        }
+      }
+    }
+  }
+}
+
+query NodeInterface {
+  node(id: "gid://shopify/Collection/27584545") {
+    id
+    ... on HasMetafields {
+      metafields(first: 1) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      ...Metafield
+    }
+  }
+}
+
+query ProductInterface {
+  product(id: "gid://shopify/Product/123") {
+    id
+    ... on HasMetafields {
+      metafields(first: 1) {
+        edges {
+          node {
+            id
+          }
+        }
+      }
+      ...Metafield
+    }
+  }
+}
+
+fragment Metafield on HasMetafields {
+  metafield(namespace: "someNamespace", key: "someKey") {
+    description
+  }
+}
+
+query NullableCustomCodedScalar {
+  currentBulkOperation {
+    fileSize
+  }
+}

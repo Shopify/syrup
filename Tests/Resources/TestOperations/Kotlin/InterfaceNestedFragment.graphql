@@ -1,0 +1,15 @@
+query NodeInterfaces($nodeId : ID!) {
+  node (id: $nodeId) {
+    __typename
+    ...NodeId
+    ... on Product{
+        ... ProductNodeTitle
+    }
+  }
+}
+fragment ProductNodeTitle on Product {
+  title
+}
+fragment NodeId on Node{
+  id
+}

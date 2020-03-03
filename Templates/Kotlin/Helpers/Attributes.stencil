@@ -1,0 +1,13 @@
+{% macro commentString string %}
+    
+    /**
+    {% for line in string|splitNewlines where line %}
+     * {{ line }}
+    {% endfor %}
+     */
+{% endmacro %}
+
+{% if attributes.description %}{% call commentString attributes.description %}{% endif %}
+{% if attributes.isDeprecated %}
+    @Deprecated("""{{ attributes.deprecationReason }}""")
+{% endif %}

@@ -1,0 +1,27 @@
+name: Swift
+
+on: [push]
+
+jobs:
+  macOS:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
+
+  Linux:
+
+    runs-on: ubuntu-latest
+    container: swift:5.0
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v

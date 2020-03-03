@@ -1,0 +1,15 @@
+mutation ProductVariantShipping($variantInput: ProductVariantInput!) {
+  productVariantUpdate(input: $variantInput) {
+    productVariant {
+      id
+      weight
+        weightUnit
+        requiresShipping
+        harmonizedSystemCode
+    }
+    userErrors {
+      message
+      field
+    }
+  }
+}

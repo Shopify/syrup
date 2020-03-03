@@ -1,0 +1,11 @@
+{% extends "Helpers/Selections.stencil" %}
+{% block content %}
+extension {{ moduleName }}.{{ fragment.name }} {
+  static let fragmentSpread = GraphSelections.FragmentSpread(
+    name: "{{ fragment.name }}",
+    typeCondition: {{ fragment.typeCondition|renderTypeCondition }},
+    selectionSet: {% call renderSelections fragment.selectionSet %}
+  )
+}
+{% endblock %}
+

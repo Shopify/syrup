@@ -1,0 +1,76 @@
+{% extends "Base.stencil" %}
+
+{% block content %}
+{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, Equatable {
+	{{ accessLevel }} var realized: Realized
+	{{ accessLevel }} var __typename: String
+
+	{% for fragment in fragmentSpreads %}
+		{{ accessLevel }} var as{{ fragment.name }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}
+	{% endfor %}
+
+	{{ accessLevel }} enum Realized: Equatable {
+		{% for concreteTypeName in concreteTypeNames %}
+			case {{ concreteTypeName|lowercasedFirstLetter }}({{ concreteTypeName }})
+		{% endfor %}
+		case unknown
+	}
+
+	public static let customDecoder: JSONDecoder = {{ moduleName }}.customDecoder
+	public static let customEncoder: JSONEncoder = {{ moduleName }}.customEncoder
+
+	private enum CodingKeys: String, CodingKey {
+		case __typename = "__typename"
+		{% for fragment in fragmentSpreads %}
+			case as{{ fragment.name }}Fragment = "fragment:as{{ fragment.name }}Fragment"
+		{% endfor %}
+	}
+
+	{{ accessLevel }} init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.__typename = try container.decode(String.self, forKey: .__typename)
+		switch __typename {
+		{% for concreteTypeName in concreteTypeNames %}
+			case "{{ concreteTypeName }}":
+				self.realized = .{{ concreteTypeName|lowercasedFirstLetter }}(try {{ concreteTypeName }}(from: decoder))
+		{% endfor %}
+		default:
+			self.realized = .unknown
+		}
+		{% for fragment in fragmentSpreads %}
+			do {
+				self.as{{ fragment.name }}Fragment = try {{ moduleName }}.{{ fragment.name }}(from: decoder)
+			} catch {
+				self.as{{ fragment.name }}Fragment = try container.decode({{ moduleName }}.{{ fragment.name }}.self, forKey: .as{{ fragment.name }}Fragment)
+			}
+		{% endfor %}
+	}
+
+	{{ accessLevel }} func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(__typename, forKey: .__typename)
+		switch realized {
+		{% for concreteTypeName in concreteTypeNames %}
+			case .{{ concreteTypeName|lowercasedFirstLetter }}(let value):
+				try value.encode(to: encoder)
+		{% endfor %}
+		case .unknown:
+			break
+		}
+		{% for fragment in fragmentSpreads %}
+			try container.encode(as{{ fragment.name }}Fragment, forKey: .as{{ fragment.name }}Fragment)
+		{% endfor %}
+	}
+
+	{% map fragmentSpreads into fragmentArgs using fragment %}{{ fragment.name|lowercasedFirstLetter }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}{% endmap %}
+	{{ accessLevel }} init(__typename: String, realized: Realized{% if fragmentArgs %}, {% endif %}{{ fragmentArgs|join:", " }}) {
+		self.__typename = __typename
+		self.realized = realized
+		{% for fragment in fragmentSpreads %}
+			self.as{{ fragment.name }}Fragment = {{ fragment.name|lowercasedFirstLetter }}Fragment
+		{% endfor %}
+	}
+
+	{{ collectedFields|nestedUnionTypeDefinitions:unionTypeName,groupedFragmentSpreads,concreteTypeNames }}
+}
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "Base.stencil" %}
+
+{% block content %}
+	{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiQuery, ResponseAssociable, Equatable {
+		// MARK: - Query Variables
+		{% for variable in operation.variables %}
+			{{ accessLevel }} let {{ variable.name|escapeReservedWord }}: {{ variable.type|renderVariableType }}
+		{% endfor %}
+
+		// MARK: - Initializer
+		{{ accessLevel }} init({{ operation.variables|renderArguments }}) {
+			{% for field in operation.variables %}
+				self.{{ field.name|escapeReservedWord }} = {{ field.name|escapeReservedWord }}
+			{% endfor %}
+		}
+
+		// MARK: - Helpers
+
+		public static let customEncoder: JSONEncoder = {{ moduleName }}.customEncoder
+
+		private enum CodingKeys: CodingKey {
+			{% for variable in operation.variables %}
+				case {{ variable.name|escapeReservedWord }}
+			{% endfor %}
+		}
+		{% if requiresCustomEncoder %}
+			{{ accessLevel }} func encode(to encoder: Encoder) throws {
+				var container = encoder.container(keyedBy: CodingKeys.self)
+				{% for variable in operation.variables %}
+					{% with variable as field %}{% include "Helpers/EncodeField.stencil" %}{% endwith %}
+				{% endfor %}
+			}
+		{% endif %}
+
+		{{ accessLevel }} typealias Response = {{ operation.name }}Response
+
+		{{ accessLevel }} let queryString: String = """
+		{{ queryString }}
+		"""
+	}
+{% endblock %}

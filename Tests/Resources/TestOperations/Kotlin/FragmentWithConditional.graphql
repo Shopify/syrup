@@ -1,0 +1,10 @@
+query QueryWithFragmentConditional($getName:Boolean!) {
+  shop {
+    id
+    ...FragmentWithConditional
+  }
+}
+
+fragment FragmentWithConditional on Shop {
+  name @include(if:$getName)
+}

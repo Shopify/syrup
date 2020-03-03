@@ -1,0 +1,77 @@
+{% macro renderObjectFields fields %}
+  {% map fields into renderedFields using field %}
+    GraphSelections.ObjectField(name: "{{ field.name }}", value: {% call renderArgumentValue field.value %})
+  {% endmap %}
+  [{{ renderedFields|join:", " }}]
+{% endmacro %}
+
+{% macro renderArgumentValue value %}
+  {% if value|isArgumentValueType:"Variable" %}
+    .variable("{{ value.name }}")
+  {% elif value|isArgumentValueType:"IntValue" %}
+    .intValue({{ value.value }})
+  {% elif value|isArgumentValueType:"FloatValue" %}
+    .floatValue({{ value.value }})
+  {% elif value|isArgumentValueType:"StringValue" %}
+    {% if value.blockQuote %}
+      .stringValue("""{{ value.value }}""")
+    {% else %}
+      .stringValue("{{ value.value }}")
+    {% endif %}
+  {% elif value|isArgumentValueType:"BooleanValue" %}
+    .booleanValue({{ value.value }})
+  {% elif value|isArgumentValueType:"NullValue" %}
+    .nullValue
+  {% elif value|isArgumentValueType:"EnumValue" %}
+    .enumValue("{{ value.value }}")
+  {% elif value|isArgumentValueType:"ListValue" %}
+    {% map value.values into renderedArgumentValues using listValue %}{% call renderArgumentValue listValue %}{% endmap %}
+    .listValue([{{ renderedArgumentValues|join:", " }}])
+  {% elif value|isArgumentValueType:"ObjectValue" %}
+    .objectValue({% call renderObjectFields value.fields %})
+  {% endif %}
+{% endmacro %}
+
+{% macro renderConditionalDirective conditionalDirective %}
+  {% if conditionalDirective.skip %}
+    , conditionalDirective: .skip({% call renderArgumentValue conditionalDirective.skip %})
+  {% elif conditionalDirective.include %}
+    , conditionalDirective: .include({% call renderArgumentValue conditionalDirective.include %})
+  {% endif %}
+{% endmacro %}
+
+{% macro renderArguments arguments %}
+  {% map arguments into renderedArguments using argument %}
+    GraphSelections.Argument(name: "{{ argument.name }}", value: {% call renderArgumentValue argument.value %})
+  {% endmap %}
+  [{{ renderedArguments|join:", " }}]
+{% endmacro %}
+
+{% macro renderFieldSelection field %}
+  .field(GraphSelections.Field(name: "{{ field.name }}", alias: {% if field.alias %}"{{ field.alias }}"{% else %}nil{% endif %}{% call renderConditionalDirective field.conditionalDirective %}, arguments: {% call renderArguments field.arguments %}, parentType: {{ field.parentType|renderTypeCondition }}, type: {{ field.type|renderTypeCondition }}, selectionSet: {% call renderSelections field.selectionSet %}
+  ))
+{% endmacro %}
+
+{% macro renderFragmentSpreadSelection fragmentSpread %}
+  .fragmentSpread({{ moduleName }}.{{ fragmentSpread.name }}.fragmentSpread{% call renderConditionalDirective fragmentSpread.conditionalDirective %})
+{% endmacro %}
+
+{% macro renderInlineFragmentSelection inlineFragment %}
+  .inlineFragment(GraphSelections.InlineFragment(typeCondition: {{ inlineFragment.typeCondition|renderTypeCondition }}{% call renderConditionalDirective inlineFragment.conditionalDirective %}, selectionSet: {% call renderSelections inlineFragment.selectionSet %}
+  ))
+{% endmacro %}
+
+{% macro renderSelections selections %}
+  {% map selections into renderedSelections using selection %}
+    {% if selection.field %}
+      {% call renderFieldSelection selection.field %}
+    {% elif selection.fragmentSpread %}
+      {% call renderFragmentSpreadSelection selection.fragmentSpread %}
+    {% elif selection.inlineFragment %}
+      {% call renderInlineFragmentSelection selection.inlineFragment %}
+    {% endif %}
+  {% endmap %}
+  [{{ renderedSelections|join:", " }}]
+{% endmacro %}
+
+{% block content %}{% endblock %}

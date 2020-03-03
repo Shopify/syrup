@@ -1,0 +1,24 @@
+{% if asFile %}
+@file:Suppress("UNUSED_PARAMETER")
+package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.enums
+
+{{ header }}
+import com.google.gson.annotations.SerializedName
+import javax.annotation.Generated
+{% endif %}
+
+@Generated("{% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}")
+enum class {{ enumType.name }}(val value: String) {
+    {% for enumValue in enumType.values %}
+
+    {% with enumValue.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+    @SerializedName("{{ enumValue.value }}")
+    {{ enumValue.value|uppercase }}("{{ enumValue.value }}"),
+    {% endfor %}
+
+    UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
+
+    companion object {
+        fun safeValueOf(name: String): {{ enumType.name }} = {{ enumType.name }}.values().firstOrNull { it.value == name } ?: {{ enumType.name }}.UNKNOWN_SYRUP_ENUM
+    }
+}

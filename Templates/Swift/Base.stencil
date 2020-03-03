@@ -1,0 +1,9 @@
+{% if asFile %}{{ header }}{% endif %}
+
+{% if asFile %}
+{{ accessLevel }} extension {{ moduleName }} {
+	{% block content %}{% endblock %}
+}
+{% else %}
+{% block content %}{% endblock %}
+{% endif %}

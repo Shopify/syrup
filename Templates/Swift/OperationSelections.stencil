@@ -1,0 +1,13 @@
+{% extends "Helpers/Selections.stencil" %}
+{% block content %}
+extension {{ moduleName }}.{{ operation.name }}{{ suffix }} {
+{% if enabled %}
+  public static let operationSelections: GraphSelections.Operation? = GraphSelections.Operation(
+    type: {{ operation.type|renderOperationType }},
+    selectionSet: {% call renderSelections operation.selectionSet %}
+  )
+{% else %}
+  public static let operationSelections: GraphSelections.Operation? = nil
+{% endif %}
+}
+{% endblock %}

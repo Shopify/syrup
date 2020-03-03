@@ -1,0 +1,24 @@
+location: https://app.shopify.com/services/graphql/introspection/admin?api_client_api_key=55c57a22d1f71e7aefa627803d712d69
+customScalars:
+- graphType: DateTime
+  nativeType: Date
+- graphType: Money
+  nativeType: Money
+- graphType: URL
+  nativeType: URL
+- graphType: FormattedString
+  nativeType: String
+- graphType: HTML
+  nativeType: String
+- graphType: UnsignedInt64
+  nativeType: UInt64
+  rawValueType: String
+- graphType: Decimal
+  nativeType: NSDecimalNumber
+  rawValueType: String
+moduleName: MerchantApi
+filenameSuffix: "Next"
+header: |
+        // Syrup auto-generated file
+        import Foundation
+generateSelections: true

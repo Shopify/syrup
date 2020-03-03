@@ -1,0 +1,22 @@
+{% extends "Base.stencil" %}
+
+{% block content %}
+	{% with enumType.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+	enum {{ enumType.name }}: String, Codable {
+		{% for enumValue in enumType.values %}
+			{% with enumValue.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+			case {{ enumValue.value|camelCased|escapeReservedWord }} = "{{ enumValue.value }}"
+		{% endfor %}
+		case unknownValue = ""
+
+		{{ accessLevel }} init(from decoder: Decoder) throws {
+			let container = try decoder.singleValueContainer()
+			let stringValue = try container.decode(String.self)
+			if let value = {{ enumType.name }}(rawValue: stringValue) {
+				self = value
+			} else {
+				self = .unknownValue
+			}
+		}
+	}
+{% endblock %}

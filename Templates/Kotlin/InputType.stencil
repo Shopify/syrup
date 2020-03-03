@@ -1,0 +1,20 @@
+{% if asFile %}
+package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.inputs
+
+{{ header }}
+{% if importEnums %}import {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.enums.*{% endif %}
+import java.math.BigDecimal
+import org.joda.time.DateTime;
+import javax.annotation.Generated
+
+@Generated("{% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}")
+{% endif %}
+data class {{ inputType.name }}({{ inputType.inputFields|renderKotlinInputArguments }}) {
+
+  {% for field in inputType.inputFields %}
+      fun set{{ field.name|capitalizeFirstLetter }}(value: {{ field|renderKotlinVariableType }}) {
+        this.{{ field.name|escapeReservedWord }}.defineValue(value)
+      }
+
+    {% endfor %}
+}

@@ -1,0 +1,39 @@
+{% if asFile %}
+package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.{% if isQuery %}queries{% else %}mutations{% endif %}
+
+{{ header }}
+import com.google.gson.*
+import java.math.BigDecimal
+import org.joda.time.DateTime
+{% if importEnums %}import {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.enums.*{% endif %}
+{% if importInputs %}import {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.inputs.*{% endif %}
+{% if importFragments %}import {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.fragments.*{% endif %}
+import {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.responses.*
+import javax.annotation.Generated
+
+@Generated("{% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}")
+{% endif %}
+class {{ name }}({{ operation.variables|renderKotlinArguments }}): {% if isQuery %}Query{% else %}Mutation{% endif %}<{{ operation.name }}Response> {
+
+    val rawQueryString = "{{ queryString|replace:"$","\$"|replaceQuotes }}"
+
+    override fun decodeResponse(jsonObject: JsonObject): {{ operation.name }}Response {
+        return {{ operation.name }}Response(jsonObject)
+    }
+
+    override fun getQueryString(): String {
+        val gson = OperationGsonBuilder.gson
+        var variables = gson.toJson(this)
+        if (variables != "{}") {
+            variables = setDefinedNulls(variables)
+            return "{ \"query\": \"$rawQueryString\", \"variables\": $variables}"
+        }
+        return "{ \"query\": \"$rawQueryString\" }"
+    }
+
+    val operationVariables = mapOf<String, String>(
+        {{ operation.variables|renderKotlinOperationVariables }}
+    )
+
+    override val selections = {{ selections|renderKotlinSelections }}
+}

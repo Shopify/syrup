@@ -1,0 +1,22 @@
+location: https://app.shopify.com/services/graphql/introspection/admin?api_client_api_key=55c57a22d1f71e7aefa627803d712d69
+customScalars:
+- graphType: DateTime
+  nativeType: DateTime
+- graphType: Money
+  nativeType: BigDecimal
+- graphType: Decimal
+  nativeType: BigDecimal
+- graphType: URL
+  nativeType: String
+- graphType: FormattedString
+  nativeType: String
+- graphType: UnsignedInt64
+  nativeType: UInt64
+  rawValueType: String
+moduleName: ""
+filenameSuffix: ""
+header: |
+        import com.shopify.foundation.syrupsupport.*
+supportFilesHeader: |
+                    package com.shopify.foundation.syrupsupport
+              

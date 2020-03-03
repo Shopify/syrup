@@ -1,0 +1,19 @@
+query TestQuery11($productId : ID!) {
+  node (id: $productId) {
+    __typename
+    ... on Product{
+      id
+      collections(first: 100) {
+        edges {
+          node {
+            id
+            title
+          }
+        }
+      }
+    }
+    ... on ProductOption {
+      id
+    }
+  }
+}

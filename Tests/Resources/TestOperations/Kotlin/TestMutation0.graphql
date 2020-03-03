@@ -1,0 +1,7 @@
+mutation TestMutation0($input:CustomerInput!) {
+  customerUpdate(input:$input){
+    customer {
+      id
+    }
+  }
+}

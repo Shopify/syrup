@@ -1,0 +1,10 @@
+location: ""
+customScalars: []
+moduleName: StarWarsAPI
+header: |
+        // Syrup auto-generated file
+        import Foundation
+supportFilesHeader: |
+        // Syrup auto-generated support file
+        import Foundation
+generateSelections: false

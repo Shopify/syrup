@@ -1,0 +1,113 @@
+{% extends "Base.stencil" %}
+{% block content %}
+{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, Equatable {
+	// MARK: - Response Fields
+	{% for field in fields %}
+		{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+		{{ accessLevel }} var {{ field|renderPropertyDeclaration }}
+	{% endfor %}
+
+	{% for field in computedFragmentFields %}
+		{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+		{{ accessLevel }} var {{ field|renderComputedPropertyDeclaration }} {
+			get {
+				return as{{ field.parentFragment.name }}Fragment{% if field.parentFragment.conditionallySelected %}?{% endif %}.{{ field.name }}
+			}
+			{% if not field.parentFragment.conditionallySelected %}
+			set {
+				as{{ field.parentFragment.name }}Fragment{% if field.parentFragment.conditionallySelected %}?{% endif %}.{{ field.name }} = newValue
+			}
+			{% endif %}
+		}
+	{% endfor %}
+
+	{% for fragment in fragmentSpreads %}
+		{{ accessLevel }} var as{{ fragment.name }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}
+	{% endfor %}
+
+	// MARK: - Helpers
+	{{ accessLevel }} let __typename: String
+
+	public static let customDecoder: JSONDecoder = {{ moduleName }}.customDecoder
+	public static let customEncoder: JSONEncoder = {{ moduleName }}.customEncoder
+
+	{% if requiresCustomCoder or fragmentSpreads %}
+		private enum CodingKeys: String, CodingKey {
+			case __typename
+			{% for field in fields %}
+				case {{ field.name|escapeReservedWord }}
+			{% endfor %}
+			{% for fragment in fragmentSpreads %}
+				case as{{ fragment.name }}Fragment = "fragment:as{{ fragment.name }}Fragment"
+			{% endfor %}
+		}
+
+		{{ accessLevel }} init(from decoder: Decoder) throws {
+			{% if requiresCustomCoder %}
+			let customScalarResolver = {{ moduleName }}.customScalarResolver
+			{% endif %}
+			let container = try decoder.container(keyedBy: CodingKeys.self)
+			self.__typename = try container.decode(String.self, forKey: .__typename)
+			{% for field in fields %}
+				{{ field|decodeField }}
+			{% endfor %}
+			{% for fragment in fragmentSpreads %}
+				do {
+					self.as{{ fragment.name }}Fragment = try {{ moduleName }}.{{ fragment.name }}(from: decoder)
+				} catch {% if not fragment.conditionallySelected %}let originalError{% endif %} {
+					do {
+						self.as{{ fragment.name }}Fragment = try container.decode({{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}.self, forKey: .as{{ fragment.name }}Fragment)
+					} catch {
+						{% if fragment.conditionallySelected %}
+							self.as{{ fragment.name }}Fragment = nil
+						{% else %}
+							throw originalError
+						{% endif %}
+					}
+				}
+			{% endfor %}
+		}
+	{% endif %}
+
+	{% if requiresCustomCoder %}
+
+		{{ accessLevel }} func encode(to encoder: Encoder) throws {
+			{% if requiresCustomCoder %}
+			let customScalarResolver = {{ moduleName }}.customScalarResolver
+			{% endif %}
+			var container = encoder.container(keyedBy: CodingKeys.self)
+			try container.encode(__typename, forKey: .__typename)
+			{% for field in fields %}
+				{% include "Helpers/EncodeField.stencil" %}
+			{% endfor %}
+			{% for fragment in fragmentSpreads %}
+				try container.encode(as{{ fragment.name }}Fragment, forKey: .as{{ fragment.name }}Fragment)
+			{% endfor %}
+		}
+	{% endif %}
+
+	{% map fields into initArgs using field %}{{ field.name }}: {{ field|renderType }}{% endmap %}
+	{% map fragmentSpreads into fragmentArgs using fragment %}{{ fragment.name|lowercasedFirstLetter }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}{% endmap %}
+	{{ accessLevel }} init({{ initArgs|join:", " }}{% if fragmentArgs and initArgs %}, {% endif %}{{ fragmentArgs|join:", " }}) {
+		{% for field in fields %}
+			self.{{ field.name }} = {{ field.name }}
+		{% endfor %}
+		{% for fragment in fragmentSpreads %}
+			self.as{{ fragment.name }}Fragment = {{ fragment.name|lowercasedFirstLetter }}Fragment
+		{% endfor %}
+			self.__typename = "{{ graphQLName }}"
+	}
+
+	{% if fields|requiresNestedTypeDefinitions %}
+		// MARK: - Nested Types{% endif %}
+	{% for field in fields %}
+		{{ field|nestedTypeDefinition }}
+	{% endfor %}
+	{% for field in fields %}
+		{{ field|nestedInterfaceWrapper }}
+	{% endfor %}
+	{% for field in fields %}
+		{{ field|nestedUnionWrapper }}
+	{% endfor %}
+}
+{% endblock %}

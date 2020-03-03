@@ -1,0 +1,44 @@
+{% extends "Base.stencil" %}
+
+{% block content %}
+	{% with inputType.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+	{% if not asFile %}{{ accessLevel }} {% endif %}final class {{ inputType.name }}: Encodable, Equatable {
+		// MARK: - Input Fields
+		{% for field in inputType.inputFields %}
+			{{ accessLevel }} var {{ field.name|escapeReservedWord }}: {{ field.type|renderInputVariableType }}
+		{% endfor %}
+
+		// MARK: - Initializer
+		{{ accessLevel }} init({{ inputType.inputFields|renderInputArguments }}) {
+		{% for field in inputType.inputFields %}
+			self.{{ field.name|escapeReservedWord }} = {{ field.name|escapeReservedWord }}
+		{% endfor %}
+		}
+
+		enum CodingKeys: String, CodingKey {
+			{% for field in inputType.inputFields %}
+				case {{ field.name|escapeReservedWord }}
+			{% endfor %}
+		}
+
+		{{ accessLevel }} func encode(to encoder: Encoder) throws {
+			{% if requiresCustomEncoder %}
+				let customScalarResolver = {{ moduleName }}.customScalarResolver
+			{% endif %}
+			var container = encoder.container(keyedBy: CodingKeys.self)
+			{% for field in inputType.inputFields %}
+				{% include "Helpers/EncodeField.stencil" %}
+			{% endfor %}
+		}
+
+		{{ accessLevel }} static func ==(lhs: {{ inputType.name }}, rhs: {{ inputType.name }}) -> Bool {
+			{% for field in inputType.inputFields %}
+			  {% if forloop.first %}
+					return lhs.{{ field.name|escapeReservedWord }} == rhs.{{ field.name|escapeReservedWord }}
+			  {% else %}
+					&& lhs.{{ field.name|escapeReservedWord }} == rhs.{{ field.name|escapeReservedWord }}
+			  {% endif %}
+			{% endfor %}
+		}
+	}
+{% endblock %}

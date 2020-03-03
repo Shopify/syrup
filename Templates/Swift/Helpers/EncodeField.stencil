@@ -1,0 +1,23 @@
+{% macro writeEncodeable %}
+	{% if field|requiresCustomCoder %}
+		{% if field|isNullable %}
+		try customScalarResolver.encode({{ field.name|escapeReservedWord }}, rawValueType: {{ field|nestedRawValueType }}.self, forKey: .{{ field.name|escapeReservedWord }}, container: &container) { [codingPath = container.codingPath] (value) -> {{ field|nestedRawValueType }} in
+			return try customScalarResolver.encoderFor{{ field|nestedGraphType }}(value, codingPath)
+		}
+		{% else %}
+		try customScalarResolver.encode({{ field.name|escapeReservedWord }}, rawValueType: {{ field|nestedRawValueType }}.self, forKey: .{{ field.name|escapeReservedWord }}, container: &container) { [codingPath = container.codingPath] (value) -> {{ field|nestedRawValueType }} in
+			return try customScalarResolver.encoderFor{{ field|nestedGraphType }}(value, codingPath)
+		}
+		{% endif %}
+	{% else %}
+		try container.encode({{ field.name|escapeReservedWord }}, forKey: .{{ field.name|escapeReservedWord }})
+	{% endif %}
+{% endmacro %}
+
+{% if field|isNullable %}
+	if case .value(let {{ field.name|escapeReservedWord }}) = {{ field.name|escapeReservedWord }} {
+		{% call writeEncodeable %}
+	}
+{% else %}
+	{% call writeEncodeable %}
+{% endif %}

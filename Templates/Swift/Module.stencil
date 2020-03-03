@@ -1,0 +1,9 @@
+{{ header }}
+// Namespace for all generated models
+{{ accessLevel }} enum {{ moduleName }}: GraphModule {
+  {% if hasCustomCodedScalars %}
+  public typealias CustomScalarResolverType = {{ moduleName }}.CustomScalarResolver
+  {% else %}
+  public static var customScalarResolver = BaseCustomScalarResolver()
+  {% endif %}
+}

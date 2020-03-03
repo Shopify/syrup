@@ -1,0 +1,9 @@
+query MarketingOptInLevel {
+  customers(first: 5) {
+    edges {
+      node {
+        marketingOptInLevel
+      }
+    }
+  }
+}

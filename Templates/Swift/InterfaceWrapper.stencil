@@ -1,0 +1,89 @@
+{% extends "Base.stencil" %}
+{% block content %}
+{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, Equatable {
+	{{ accessLevel }} var realized: Realized
+	private var common: {{ fallbackTypeName }}
+	{{ accessLevel }} var __typename: String
+
+	{% if baseFields %}// MARK: - Common Fields{% endif %}
+	{% for field in baseFields %}
+		{{ field|renderInterfaceWrapperTypeAlias:accessLevel }}
+		{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+		{{ accessLevel }} var {{ field|renderPropertyDeclaration }} {
+			get {
+				return common.{{ field.name }}
+			}
+			set {
+				common.{{ field.name }} = newValue
+			}
+		}
+	{% endfor %}
+
+	{% for field in computedFragmentFields %}
+		{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+		{{ accessLevel }} var {{ field|renderComputedPropertyDeclaration }} {
+			return common.as{{ field.parentFragment.name }}Fragment.{% if field.parentFragment.conditionallySelected %}?{% endif %}{{ field.name }}
+		}
+	{% endfor %}
+
+	{% for fragment in fragmentSpreads %}
+		{{ accessLevel }} var as{{ fragment.name }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %} {
+			return common.as{{ fragment.name }}Fragment
+		}
+	{% endfor %}
+
+	{{ accessLevel }} enum Realized: Equatable {
+		{% for concreteTypeName in concreteTypeNames %}
+			case {{ concreteTypeName|lowercasedFirstLetter }}({{ concreteTypeName }})
+		{% endfor %}
+		case base({{ fallbackTypeName }})
+	}
+
+	public static let customDecoder: JSONDecoder = {{ moduleName }}.customDecoder
+	public static let customEncoder: JSONEncoder = {{ moduleName }}.customEncoder
+
+	private enum CodingKeys: String, CodingKey {
+		case __typename = "__typename"
+	}
+
+	{{ accessLevel }} init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.__typename = try container.decode(String.self, forKey: .__typename)
+		switch __typename {
+		{% for concreteTypeName in concreteTypeNames %}
+			case "{{ concreteTypeName }}":
+				self.realized = .{{ concreteTypeName|lowercasedFirstLetter }}(try {{ concreteTypeName }}(from: decoder))
+		{% endfor %}
+		default:
+			self.realized = .base(try {{ fallbackTypeName }}(from: decoder))
+		}
+		self.common = try {{ fallbackTypeName }}(from: decoder)
+	}
+
+	{{ accessLevel }} func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(__typename, forKey: .__typename)
+		switch realized {
+		{% for concreteTypeName in concreteTypeNames %}
+			case .{{ concreteTypeName|lowercasedFirstLetter }}(let value):
+				try value.encode(to: encoder)
+		{% endfor %}
+		case .base(let value):
+			try value.encode(to: encoder)
+		}
+	}
+
+	{% map baseFields into initArgs using field %}{{ field.name }}: {{ field|renderType }}{% endmap %}
+	{% map fragmentSpreads into initFragmentArgs using fragment %}{{ fragment.name|lowercasedFirstLetter }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}{% endmap %}
+
+	{{ accessLevel }} init(__typename: String, realized: Realized{% if initArgs %}, {% endif %}{{ initArgs|join:", " }}{% if initFragmentArgs %}, {% endif %}{{ initFragmentArgs|join:", " }}) {
+		self.__typename = __typename
+		self.realized = realized
+		{% map baseFields into commonArgs using field %}{{ field.name }}: {{ field.name }}{% endmap %}
+		{% map fragmentSpreads into commonFragmentArgs using fragment %}{{ fragment.name|lowercasedFirstLetter }}Fragment: {{ fragment.name|lowercasedFirstLetter }}Fragment{% endmap %}
+		self.common = {{ fallbackTypeName }}({{ commonArgs|join:", " }}{% if commonArgs and commonFragmentArgs %}, {% endif %}{{ commonFragmentArgs|join:", " }})
+	}
+
+	{{ collectedFields|nestedInterfaceTypeDefinitions:interfaceTypeName,groupedFragmentSpreads,groupedComputedFragmentFields,concreteTypeNames }}
+}
+{% endblock %}

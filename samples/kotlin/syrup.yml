@@ -1,0 +1,13 @@
+location: swapi.json
+customScalars: []
+moduleName: "com.shopify.syrup"
+filenameSuffix: ""
+header: |
+        // Syrup auto-generated file
+        import com.shopify.syrup.support.*
+supportFilesHeader: |
+        /*
+         * Syrup auto-generated support file.
+         * Do not Modify this file manually.
+         */
+        package com.shopify.syrup.support
