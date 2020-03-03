@@ -18,7 +18,7 @@ $ make
 ```
 
 This will create an executable for you located at `.build/debug/Syrup`
-To run Syrup, simply run the executable from the command line with the required [command](https://github.com/shopify/syrup#commands) and [launch arguments](https://github.com/shopify/syrup#launch-arguments)
+To run Syrup, simply run the executable from the command line with the required [command](#commands) and [launch arguments](#launch-arguments)
 
 ### Running via Xcode:
 First, create your Xcode project:
@@ -28,10 +28,10 @@ $ make xcode
 
 Select the Syrup scheme (Product -> Scheme -> Syrup)
 
-After this, the project should successfully build. To get it to successfully run, you must supply the required [command](https://github.com/shopify/syrup#commands) and [launch arguments](https://github.com/shopify/syrup#launch-arguments) by editing the Syrup target's scheme (Product -> Scheme -> Edit Scheme) and providing them as "Arguments passed on launch" under the Arguments tab.
+After this, the project should successfully build. To get it to successfully run, you must supply the required [command](#commands) and [launch arguments](#launch-arguments) by editing the Syrup target's scheme (Product -> Scheme -> Edit Scheme) and providing them as "Arguments passed on launch" under the Arguments tab.
 
 ### Commands
-Syrup supports the following commands. The launch arguments of each command are described in more detail under [launch arguments](github.com/shopify/syrup#launch-arguments).
+Syrup supports the following commands. The launch arguments of each command are described in more detail under [launch arguments](#launch-arguments).
 
 #### generate
 This will generate the models representing your GraphQL operations as well as the necessary support files.
@@ -66,8 +66,8 @@ This lists the possible arguments to Syrup. Note that not all launch arguments a
 
 #### Applies to all commands
 - **Template**: This provides the path to the [Templates](https://github.com/Shopify/Syrup/tree/master/Templates) folder that are included in the Syrup repository.
-- **`--project`**: The (optional) location of the [YAML file](https://github.com/shopify/syrup#project-file-format) that describes the project. By default, `.syrup.yml` in the current directory is used.
-- **`--schema`**: The (optional) location of the [YAML file](https://github.com/shopify/syrup#schema-file-format) that describes the schema. By default, `.syrup.yml` in the current directory is used.
+- **`--project`**: The (optional) location of the [YAML file](#project-file-format) that describes the project. By default, `.syrup.yml` in the current directory is used.
+- **`--schema`**: The (optional) location of the [YAML file](#schema-file-format) that describes the schema. By default, `.syrup.yml` in the current directory is used.
 - **`--override-schema`**: An optional argument to override the location of the schema to be used. Can be either a file path or URL.
 
 ### Project File Format
