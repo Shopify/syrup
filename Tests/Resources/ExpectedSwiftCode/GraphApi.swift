@@ -435,3 +435,23 @@ private extension GraphApiResponse {
 		}
 	}
 }
+
+#if compiler(<5.1)
+/// A class of types whose instances hold the value of an entity with stable identity.
+/// See https://github.com/apple/swift/blob/master/stdlib/public/core/Identifiable.swift
+/// for more details.
+public protocol Identifiable {
+
+	/// A type representing the stable identity of the entity associated with `self`.
+	associatedtype ID: Hashable
+
+	/// The stable identity of the entity associated with `self`.
+	var id: ID { get }
+}
+
+extension Identifiable where Self: AnyObject {
+	public var id: ObjectIdentifier {
+		return ObjectIdentifier(self)
+	}
+}
+#endif

@@ -1,6 +1,6 @@
 {% extends "Base.stencil" %}
 {% block content %}
-{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, Equatable {
+{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, {% if "id" in computedFragmentFields %}Identifiable, {% endif %}Equatable {
 	{{ accessLevel }} var realized: Realized
 	private var common: {{ fallbackTypeName }}
 	{{ accessLevel }} var __typename: String

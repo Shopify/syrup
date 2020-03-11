@@ -1,6 +1,6 @@
 {% extends "Base.stencil" %}
 {% block content %}
-{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, Equatable {
+{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, {% if "id" in computedFragmentFields or "id" in fields %}Identifiable, {% endif %}Equatable {
 	// MARK: - Response Fields
 	{% for field in fields %}
 		{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
