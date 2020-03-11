@@ -2,17 +2,14 @@
 import Foundation
 
 public extension MerchantApi {
+@dynamicMemberLookup
+
 struct Union3Response: GraphApiResponse, Equatable {
 	// MARK: - Response Fields
 
-		/// Lookup a price rule by ID.
-		public var priceRule: MerchantApi.UnionFrag2.PriceRule? {
-			get {
-				return asUnionFrag2Fragment.priceRule
-			}
-			set {
-				asUnionFrag2Fragment.priceRule = newValue
-			}
+		public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.UnionFrag2, T>) -> T {
+			get { asUnionFrag2Fragment[keyPath: keyPath] }
+			set { asUnionFrag2Fragment[keyPath: keyPath] = newValue }
 		}
 
 		public var asUnionFrag2Fragment: MerchantApi.UnionFrag2

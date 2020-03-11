@@ -32,16 +32,12 @@ struct CustomerEventsResponse: GraphApiResponse, Equatable {
 				self.__typename = "Customer"
 		}
 			// MARK: - Nested Types
-				public struct Events: GraphApiResponse, Equatable {
+				@dynamicMemberLookup
+		public struct Events: GraphApiResponse, Equatable {
 			// MARK: - Response Fields
-				/// A list of edges.
-				public var edges: [MerchantApi.MultiLevelInterfaceFragment.Edges] {
-					get {
-						return asMultiLevelInterfaceFragmentFragment.edges
-					}
-					set {
-						asMultiLevelInterfaceFragmentFragment.edges = newValue
-					}
+				public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.MultiLevelInterfaceFragment, T>) -> T {
+					get { asMultiLevelInterfaceFragmentFragment[keyPath: keyPath] }
+					set { asMultiLevelInterfaceFragmentFragment[keyPath: keyPath] = newValue }
 				}
 				public var asMultiLevelInterfaceFragmentFragment: MerchantApi.MultiLevelInterfaceFragment
 			// MARK: - Helpers

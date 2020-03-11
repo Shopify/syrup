@@ -1,5 +1,9 @@
 {% extends "Base.stencil" %}
 {% block content %}
+{% if computedFragmentFields.count != 0 %}
+@dynamicMemberLookup
+
+{% endif %}
 {% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiResponse, Equatable {
 	// MARK: - Response Fields
 	{% for field in fields %}
@@ -7,19 +11,20 @@
 		{{ accessLevel }} var {{ field|renderPropertyDeclaration }}
 	{% endfor %}
 
-	{% for field in computedFragmentFields %}
-		{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
-		{{ accessLevel }} var {{ field|renderComputedPropertyDeclaration }} {
-			get {
-				return as{{ field.parentFragment.name }}Fragment{% if field.parentFragment.conditionallySelected %}?{% endif %}.{{ field.name }}
-			}
-			{% if not field.parentFragment.conditionallySelected %}
-			set {
-				as{{ field.parentFragment.name }}Fragment{% if field.parentFragment.conditionallySelected %}?{% endif %}.{{ field.name }} = newValue
-			}
-			{% endif %}
+	{% if computedFragmentFields.count != 0 %}
+	{% for fragment in fragmentSpreads %}
+		{% if fragment.conditionallySelected %}
+		{{ accessLevel }} subscript<T>(dynamicMember keyPath: KeyPath<{{ moduleName }}.{{ fragment.name }}?, T>) -> T? {
+			as{{ fragment.name }}Fragment?[keyPath: keyPath]
 		}
+		{% else %}
+		{{ accessLevel }} subscript<T>(dynamicMember keyPath: WritableKeyPath<{{moduleName }}.{{ fragment.name }}, T>) -> T {
+			get { as{{ fragment.name }}Fragment[keyPath: keyPath] }
+			set { as{{ fragment.name }}Fragment[keyPath: keyPath] = newValue }
+		}
+		{% endif %}
 	{% endfor %}
+	{% endif %}
 
 	{% for fragment in fragmentSpreads %}
 		{{ accessLevel }} var as{{ fragment.name }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}

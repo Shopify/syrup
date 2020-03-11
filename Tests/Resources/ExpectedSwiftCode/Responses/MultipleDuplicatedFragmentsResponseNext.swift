@@ -19,16 +19,12 @@ struct MultipleDuplicatedFragmentsResponse: GraphApiResponse, Equatable {
 	}
 
 		// MARK: - Nested Types
-			public struct Shop: GraphApiResponse, Equatable {
+			@dynamicMemberLookup
+	public struct Shop: GraphApiResponse, Equatable {
 		// MARK: - Response Fields
-			/// The shop's name.
-			public var name: String {
-				get {
-					return asDuplicatedFragmentFragment.name
-				}
-				set {
-					asDuplicatedFragmentFragment.name = newValue
-				}
+			public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.DuplicatedFragment, T>) -> T {
+				get { asDuplicatedFragmentFragment[keyPath: keyPath] }
+				set { asDuplicatedFragmentFragment[keyPath: keyPath] = newValue }
 			}
 			public var asDuplicatedFragmentFragment: MerchantApi.DuplicatedFragment
 		// MARK: - Helpers

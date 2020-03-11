@@ -61,16 +61,12 @@ struct MultiLevelFragmentCustomerQueryResponse: GraphApiResponse, Equatable {
 						self.__typename = "CustomerEdge"
 				}
 					// MARK: - Nested Types
-						public struct Node: GraphApiResponse, Equatable {
+						@dynamicMemberLookup
+				public struct Node: GraphApiResponse, Equatable {
 					// MARK: - Response Fields
-						/// The customer's last order.
-						public var lastOrder: MerchantApi.MultiLevelFragment.LastOrder? {
-							get {
-								return asMultiLevelFragmentFragment.lastOrder
-							}
-							set {
-								asMultiLevelFragmentFragment.lastOrder = newValue
-							}
+						public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.MultiLevelFragment, T>) -> T {
+							get { asMultiLevelFragmentFragment[keyPath: keyPath] }
+							set { asMultiLevelFragmentFragment[keyPath: keyPath] = newValue }
 						}
 						public var asMultiLevelFragmentFragment: MerchantApi.MultiLevelFragment
 					// MARK: - Helpers

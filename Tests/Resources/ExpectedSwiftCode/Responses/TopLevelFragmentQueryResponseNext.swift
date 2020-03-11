@@ -2,17 +2,14 @@
 import Foundation
 
 public extension MerchantApi {
+@dynamicMemberLookup
+
 struct TopLevelFragmentQueryResponse: GraphApiResponse, Equatable {
 	// MARK: - Response Fields
 
-		/// Returns a specific node by ID.
-		public var node: MerchantApi.TopLevelFragment.Node? {
-			get {
-				return asTopLevelFragmentFragment.node
-			}
-			set {
-				asTopLevelFragmentFragment.node = newValue
-			}
+		public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.TopLevelFragment, T>) -> T {
+			get { asTopLevelFragmentFragment[keyPath: keyPath] }
+			set { asTopLevelFragmentFragment[keyPath: keyPath] = newValue }
 		}
 
 		public var asTopLevelFragmentFragment: MerchantApi.TopLevelFragment

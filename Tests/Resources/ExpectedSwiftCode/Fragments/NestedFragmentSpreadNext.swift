@@ -2,19 +2,16 @@
 import Foundation
 
 public extension MerchantApi {
+@dynamicMemberLookup
+
 struct NestedFragmentSpread: GraphApiResponse, Equatable {
 	// MARK: - Response Fields
 		/// Globally unique identifier.
 		public var id: GraphID
 
-		/// The shop's features.
-		public var features: MerchantApi.Features.Features {
-			get {
-				return asFeaturesFragment.features
-			}
-			set {
-				asFeaturesFragment.features = newValue
-			}
+		public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.Features, T>) -> T {
+			get { asFeaturesFragment[keyPath: keyPath] }
+			set { asFeaturesFragment[keyPath: keyPath] = newValue }
 		}
 
 		public var asFeaturesFragment: MerchantApi.Features

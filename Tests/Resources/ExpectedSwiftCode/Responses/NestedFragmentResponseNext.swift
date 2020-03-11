@@ -19,16 +19,12 @@ struct NestedFragmentResponse: GraphApiResponse, Equatable {
 	}
 
 		// MARK: - Nested Types
-			public struct Shop: GraphApiResponse, Equatable {
+			@dynamicMemberLookup
+	public struct Shop: GraphApiResponse, Equatable {
 		// MARK: - Response Fields
-			/// Globally unique identifier.
-			public var id: GraphID {
-				get {
-					return asNestedFragmentSpreadFragment.id
-				}
-				set {
-					asNestedFragmentSpreadFragment.id = newValue
-				}
+			public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.NestedFragmentSpread, T>) -> T {
+				get { asNestedFragmentSpreadFragment[keyPath: keyPath] }
+				set { asNestedFragmentSpreadFragment[keyPath: keyPath] = newValue }
 			}
 			public var asNestedFragmentSpreadFragment: MerchantApi.NestedFragmentSpread
 		// MARK: - Helpers

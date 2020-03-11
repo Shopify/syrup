@@ -58,88 +58,12 @@ public struct Node: GraphApiResponse, Equatable {
 		self.realized = realized
 		self.common = BaseNode()
 	}
+@dynamicMemberLookup
 public struct App: GraphApiResponse, Equatable {
 	// MARK: - Response Fields
-		/// Requirements that must be met before the app can be installed.
-		public var failedRequirements: [MerchantApi.ChannelDetailsFields.FailedRequirements] {
-			get {
-				return asChannelDetailsFieldsFragment.failedRequirements
-			}
-			set {
-				asChannelDetailsFieldsFragment.failedRequirements = newValue
-			}
-		}
-		/// Screenshots of the app.
-		public var screenshots: [MerchantApi.ChannelDetailsFields.Screenshots] {
-			get {
-				return asChannelDetailsFieldsFragment.screenshots
-			}
-			set {
-				asChannelDetailsFieldsFragment.screenshots = newValue
-			}
-		}
-		/// Icon that represents the app.
-		public var icon: MerchantApi.ChannelDetailsFields.Icon {
-			get {
-				return asChannelDetailsFieldsFragment.icon
-			}
-			set {
-				asChannelDetailsFieldsFragment.icon = newValue
-			}
-		}
-		/// Name of the app.
-		public var title: String {
-			get {
-				return asChannelDetailsFieldsFragment.title
-			}
-			set {
-				asChannelDetailsFieldsFragment.title = newValue
-			}
-		}
-		/// Detailed information about the app pricing.
-		public var pricingDetails: String? {
-			get {
-				return asChannelDetailsFieldsFragment.pricingDetails
-			}
-			set {
-				asChannelDetailsFieldsFragment.pricingDetails = newValue
-			}
-		}
-		/// Summary of the app pricing details.
-		public var pricingDetailsSummary: String {
-			get {
-				return asChannelDetailsFieldsFragment.pricingDetailsSummary
-			}
-			set {
-				asChannelDetailsFieldsFragment.pricingDetailsSummary = newValue
-			}
-		}
-		/// Description of the app.
-		public var description: String? {
-			get {
-				return asChannelDetailsFieldsFragment.description
-			}
-			set {
-				asChannelDetailsFieldsFragment.description = newValue
-			}
-		}
-		/// List of app features.
-		public var features: [String] {
-			get {
-				return asChannelDetailsFieldsFragment.features
-			}
-			set {
-				asChannelDetailsFieldsFragment.features = newValue
-			}
-		}
-		/// Webpage where you can install the app.
-		public var installUrl: URL? {
-			get {
-				return asChannelDetailsFieldsFragment.installUrl
-			}
-			set {
-				asChannelDetailsFieldsFragment.installUrl = newValue
-			}
+		public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.ChannelDetailsFields, T>) -> T {
+			get { asChannelDetailsFieldsFragment[keyPath: keyPath] }
+			set { asChannelDetailsFieldsFragment[keyPath: keyPath] = newValue }
 		}
 		public var asChannelDetailsFieldsFragment: MerchantApi.ChannelDetailsFields
 	// MARK: - Helpers

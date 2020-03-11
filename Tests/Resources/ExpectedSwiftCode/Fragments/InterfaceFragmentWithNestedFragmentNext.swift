@@ -80,16 +80,12 @@ public struct BasePublishable: GraphApiResponse, Equatable {
 			self.__typename = "Publishable"
 	}
 		// MARK: - Nested Types
-			public struct ResourcePublications: GraphApiResponse, Equatable {
+			@dynamicMemberLookup
+	public struct ResourcePublications: GraphApiResponse, Equatable {
 		// MARK: - Response Fields
-			/// A list of edges.
-			public var edges: [MerchantApi.Publications.Edges] {
-				get {
-					return asPublicationsFragment.edges
-				}
-				set {
-					asPublicationsFragment.edges = newValue
-				}
+			public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.Publications, T>) -> T {
+				get { asPublicationsFragment[keyPath: keyPath] }
+				set { asPublicationsFragment[keyPath: keyPath] = newValue }
 			}
 			public var asPublicationsFragment: MerchantApi.Publications
 		// MARK: - Helpers

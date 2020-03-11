@@ -32,16 +32,12 @@ struct MultiLevelInterfaceFragmentWithOnlyInlineFragmentsQueryResponse: GraphApi
 				self.__typename = "Customer"
 		}
 			// MARK: - Nested Types
-				public struct Events: GraphApiResponse, Equatable {
+				@dynamicMemberLookup
+		public struct Events: GraphApiResponse, Equatable {
 			// MARK: - Response Fields
-				/// A list of edges.
-				public var edges: [MerchantApi.MultiLevelInterfaceFragmentWithOnlyInlineFragments.Edges] {
-					get {
-						return asMultiLevelInterfaceFragmentWithOnlyInlineFragmentsFragment.edges
-					}
-					set {
-						asMultiLevelInterfaceFragmentWithOnlyInlineFragmentsFragment.edges = newValue
-					}
+				public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.MultiLevelInterfaceFragmentWithOnlyInlineFragments, T>) -> T {
+					get { asMultiLevelInterfaceFragmentWithOnlyInlineFragmentsFragment[keyPath: keyPath] }
+					set { asMultiLevelInterfaceFragmentWithOnlyInlineFragmentsFragment[keyPath: keyPath] = newValue }
 				}
 				public var asMultiLevelInterfaceFragmentWithOnlyInlineFragmentsFragment: MerchantApi.MultiLevelInterfaceFragmentWithOnlyInlineFragments
 			// MARK: - Helpers

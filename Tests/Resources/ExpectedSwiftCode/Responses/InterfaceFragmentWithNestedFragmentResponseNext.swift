@@ -116,25 +116,12 @@ struct InterfaceFragmentWithNestedFragmentResponse: GraphApiResponse, Equatable 
 						self.realized = realized
 						self.common = BasePublishable(interfaceFragmentWithNestedFragmentFragment: interfaceFragmentWithNestedFragmentFragment)
 					}
+				@dynamicMemberLookup
 				public struct BasePublishable: GraphApiResponse, Equatable {
 					// MARK: - Response Fields
-						/// The number of publications a resource is published to without feedback errors.
-						public var availablePublicationCount: Int32 {
-							get {
-								return asInterfaceFragmentWithNestedFragmentFragment.availablePublicationCount
-							}
-							set {
-								asInterfaceFragmentWithNestedFragmentFragment.availablePublicationCount = newValue
-							}
-						}
-						/// The list of resources that are published to a publication.
-						public var resourcePublications: MerchantApi.InterfaceFragmentWithNestedFragment.ResourcePublications {
-							get {
-								return asInterfaceFragmentWithNestedFragmentFragment.resourcePublications
-							}
-							set {
-								asInterfaceFragmentWithNestedFragmentFragment.resourcePublications = newValue
-							}
+						public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.InterfaceFragmentWithNestedFragment, T>) -> T {
+							get { asInterfaceFragmentWithNestedFragmentFragment[keyPath: keyPath] }
+							set { asInterfaceFragmentWithNestedFragmentFragment[keyPath: keyPath] = newValue }
 						}
 						public var asInterfaceFragmentWithNestedFragmentFragment: MerchantApi.InterfaceFragmentWithNestedFragment
 					// MARK: - Helpers

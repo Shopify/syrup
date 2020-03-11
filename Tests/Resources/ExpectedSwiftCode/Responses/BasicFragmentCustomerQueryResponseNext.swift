@@ -61,25 +61,12 @@ struct BasicFragmentCustomerQueryResponse: GraphApiResponse, Equatable {
 						self.__typename = "CustomerEdge"
 				}
 					// MARK: - Nested Types
-						public struct Node: GraphApiResponse, Equatable {
+						@dynamicMemberLookup
+				public struct Node: GraphApiResponse, Equatable {
 					// MARK: - Response Fields
-						/// Globally unique identifier.
-						public var id: GraphID {
-							get {
-								return asBasicFragmentFragment.id
-							}
-							set {
-								asBasicFragmentFragment.id = newValue
-							}
-						}
-						/// A note about the customer.
-						public var note: String? {
-							get {
-								return asBasicFragmentFragment.note
-							}
-							set {
-								asBasicFragmentFragment.note = newValue
-							}
+						public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.BasicFragment, T>) -> T {
+							get { asBasicFragmentFragment[keyPath: keyPath] }
+							set { asBasicFragmentFragment[keyPath: keyPath] = newValue }
 						}
 						public var asBasicFragmentFragment: MerchantApi.BasicFragment
 					// MARK: - Helpers

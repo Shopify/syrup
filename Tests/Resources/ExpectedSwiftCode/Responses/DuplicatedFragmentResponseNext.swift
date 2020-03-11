@@ -35,25 +35,12 @@ struct DuplicatedFragmentResponse: GraphApiResponse, Equatable {
 				self.__typename = "OrderUpdatePayload"
 		}
 			// MARK: - Nested Types
-				public struct UserErrors: GraphApiResponse, Equatable {
+				@dynamicMemberLookup
+		public struct UserErrors: GraphApiResponse, Equatable {
 			// MARK: - Response Fields
-				/// Path to the input field which caused the error.
-				public var field: [String]? {
-					get {
-						return asUserErrorsFragment.field
-					}
-					set {
-						asUserErrorsFragment.field = newValue
-					}
-				}
-				/// The error message.
-				public var message: String {
-					get {
-						return asUserErrorsFragment.message
-					}
-					set {
-						asUserErrorsFragment.message = newValue
-					}
+				public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.UserErrors, T>) -> T {
+					get { asUserErrorsFragment[keyPath: keyPath] }
+					set { asUserErrorsFragment[keyPath: keyPath] = newValue }
 				}
 				public var asUserErrorsFragment: MerchantApi.UserErrors
 			// MARK: - Helpers
@@ -96,25 +83,12 @@ struct DuplicatedFragmentResponse: GraphApiResponse, Equatable {
 				self.__typename = "CustomerUpdatePayload"
 		}
 			// MARK: - Nested Types
-				public struct UserErrors: GraphApiResponse, Equatable {
+				@dynamicMemberLookup
+		public struct UserErrors: GraphApiResponse, Equatable {
 			// MARK: - Response Fields
-				/// Path to the input field which caused the error.
-				public var field: [String]? {
-					get {
-						return asUserErrorsFragment.field
-					}
-					set {
-						asUserErrorsFragment.field = newValue
-					}
-				}
-				/// The error message.
-				public var message: String {
-					get {
-						return asUserErrorsFragment.message
-					}
-					set {
-						asUserErrorsFragment.message = newValue
-					}
+				public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.UserErrors, T>) -> T {
+					get { asUserErrorsFragment[keyPath: keyPath] }
+					set { asUserErrorsFragment[keyPath: keyPath] = newValue }
 				}
 				public var asUserErrorsFragment: MerchantApi.UserErrors
 			// MARK: - Helpers

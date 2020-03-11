@@ -19,18 +19,14 @@ struct ConditionalDirectivesResponse: GraphApiResponse, Equatable {
 	}
 
 		// MARK: - Nested Types
-			public struct Shop: GraphApiResponse, Equatable {
+			@dynamicMemberLookup
+	public struct Shop: GraphApiResponse, Equatable {
 		// MARK: - Response Fields
 			/// The shop's primary domain name.
 			public var primaryDomain: PrimaryDomain?
-			/// The shop's features.
-			public var features: MerchantApi.ConditionalDirectivesFrag1.Features {
-				get {
-					return asConditionalDirectivesFrag1Fragment.features
-				}
-				set {
-					asConditionalDirectivesFrag1Fragment.features = newValue
-				}
+			public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.ConditionalDirectivesFrag1, T>) -> T {
+				get { asConditionalDirectivesFrag1Fragment[keyPath: keyPath] }
+				set { asConditionalDirectivesFrag1Fragment[keyPath: keyPath] = newValue }
 			}
 			public var asConditionalDirectivesFrag1Fragment: MerchantApi.ConditionalDirectivesFrag1
 		// MARK: - Helpers

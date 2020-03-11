@@ -2,14 +2,13 @@
 import Foundation
 
 public extension MerchantApi {
+@dynamicMemberLookup
+
 struct ConditionalDirectives2Response: GraphApiResponse, Equatable {
 	// MARK: - Response Fields
 
-		/// Returns a Shop resource corresponding to access token used in request.
-		public var shop: MerchantApi.ConditionalDirectivesFrag2.Shop? {
-			get {
-				return asConditionalDirectivesFrag2Fragment?.shop
-			}
+		public subscript<T>(dynamicMember keyPath: KeyPath<MerchantApi.ConditionalDirectivesFrag2?, T>) -> T? {
+			asConditionalDirectivesFrag2Fragment?[keyPath: keyPath]
 		}
 
 		public var asConditionalDirectivesFrag2Fragment: MerchantApi.ConditionalDirectivesFrag2?

@@ -19,19 +19,12 @@ struct Union4Response: GraphApiResponse, Equatable {
 	}
 
 		// MARK: - Nested Types
-			public struct PriceRule: GraphApiResponse, Equatable {
+			@dynamicMemberLookup
+	public struct PriceRule: GraphApiResponse, Equatable {
 		// MARK: - Response Fields
-			/// The value of the price rule.
-			/// - Warning:
-			/// Use `valueV2` instead
-	@available(*, deprecated, message: "")
-			public var value: MerchantApi.UnionFrag4.Value {
-				get {
-					return asUnionFrag4Fragment.value
-				}
-				set {
-					asUnionFrag4Fragment.value = newValue
-				}
+			public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.UnionFrag4, T>) -> T {
+				get { asUnionFrag4Fragment[keyPath: keyPath] }
+				set { asUnionFrag4Fragment[keyPath: keyPath] = newValue }
 			}
 			public var asUnionFrag4Fragment: MerchantApi.UnionFrag4
 		// MARK: - Helpers

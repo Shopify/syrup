@@ -19,25 +19,12 @@ struct DeepMergeDuplicateFieldsResponse: GraphApiResponse, Equatable {
 	}
 
 		// MARK: - Nested Types
-			public struct Order: GraphApiResponse, Equatable {
+			@dynamicMemberLookup
+	public struct Order: GraphApiResponse, Equatable {
 		// MARK: - Response Fields
-			/// Globally unique identifier.
-			public var id: GraphID {
-				get {
-					return asDeepMergeDuplicateFieldsFragment.id
-				}
-				set {
-					asDeepMergeDuplicateFieldsFragment.id = newValue
-				}
-			}
-			/// List of shipments for the order.
-			public var fulfillments: [MerchantApi.DeepMergeDuplicateFields.Fulfillments] {
-				get {
-					return asDeepMergeDuplicateFieldsFragment.fulfillments
-				}
-				set {
-					asDeepMergeDuplicateFieldsFragment.fulfillments = newValue
-				}
+			public subscript<T>(dynamicMember keyPath: WritableKeyPath<MerchantApi.DeepMergeDuplicateFields, T>) -> T {
+				get { asDeepMergeDuplicateFieldsFragment[keyPath: keyPath] }
+				set { asDeepMergeDuplicateFieldsFragment[keyPath: keyPath] = newValue }
 			}
 			public var asDeepMergeDuplicateFieldsFragment: MerchantApi.DeepMergeDuplicateFields
 		// MARK: - Helpers
