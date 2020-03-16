@@ -81,6 +81,5 @@ Generated/*
 # Ignore Test Artifact
 /main
 .idea
-
-*.gradle
+.gradle/
 local.properties
