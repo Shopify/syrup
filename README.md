@@ -27,7 +27,7 @@ Select the Syrup scheme (Product -> Scheme -> Syrup)
 After this, the project should successfully build. To get it to successfully run, you must supply the required [command](https://github.com/shopify/syrup#commands) and [launch arguments](https://github.com/shopify/syrup#launch-arguments) by editing the Syrup target's scheme (Product -> Scheme -> Edit Scheme) and providing them as "Arguments passed on launch" under the Arguments tab.
 
 ### Commands
-Syrup supports the following commands. The launch arguments of each command are described in more detail under [launch arguments](github.com/shopify/syrup#launch-arguments).
+Syrup supports the following commands. The launch arguments of each command are described in more detail under [launch arguments](https://github.com/shopify/syrup#launch-arguments).
 
 #### generate
 This will generate the models representing your GraphQL operations as well as the necessary support files.
