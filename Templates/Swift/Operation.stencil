@@ -23,11 +23,19 @@
 				case {{ variable.name|escapeReservedWord }}
 			{% endfor %}
 		}
+
 		{% if requiresCustomEncoder %}
 			{{ accessLevel }} func encode(to encoder: Encoder) throws {
+				let customScalarResolver = {{ moduleName }}.customScalarResolver
 				var container = encoder.container(keyedBy: CodingKeys.self)
 				{% for variable in operation.variables %}
-					{% with variable as field %}{% include "Helpers/EncodeField.stencil" %}{% endwith %}
+					{% if variable|requiresCustomCoder %}
+						try customScalarResolver.encode({{ variable.name|escapeReservedWord }}, rawValueType: {{ variable|nestedRawValueType }}.self, forKey: .{{ variable.name|escapeReservedWord }}, container: &container) { [codingPath = container.codingPath] (value) -> {{ variable|nestedRawValueType }} in
+							return try customScalarResolver.encoderFor{{ variable|nestedGraphType }}(value, codingPath)
+						}
+					{% else %}
+						try container.encode({{ variable.name|escapeReservedWord }}, forKey: .{{ variable.name|escapeReservedWord }})
+					{% endif %}
 				{% endfor %}
 			}
 		{% endif %}
