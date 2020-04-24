@@ -82,6 +82,7 @@ open class Renderer {
 		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
 		let importInputs = intermediateRepresentation.referencedInputTypes.isEmpty == false
 		let importFragments = intermediateRepresentation.fragmentDefinitions.isEmpty == false
+		let requiresCustomEncoder = query.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar})
 		let context: [String: Any] = [
 			"name": name,
 			"operation": query,
@@ -91,6 +92,7 @@ open class Renderer {
 			"importEnums": importEnums,
 			"importInputs": importInputs,
 			"importFragments": importFragments,
+			"requiresCustomEncoder": requiresCustomEncoder,
 			"selections": querySelections.selectionSet
 		]
 		return try render(template: "Operation", asFile: true, context: context)
@@ -110,6 +112,7 @@ open class Renderer {
 		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
 		let importInputs = intermediateRepresentation.referencedInputTypes.isEmpty == false
 		let importFragments = intermediateRepresentation.fragmentDefinitions.isEmpty == false
+		let requiresCustomEncoder = mutation.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar})
 		let context: [String: Any] = [
 			"name": name,
 			"operation": mutation,
@@ -119,6 +122,7 @@ open class Renderer {
 			"importEnums": importEnums,
 			"importInputs": importInputs,
 			"importFragments": importFragments,
+			"requiresCustomEncoder": requiresCustomEncoder,
 			"selections": mutationSelections.selectionSet
 		]
 		return try render(template: "Operation", asFile: true, context: context)
