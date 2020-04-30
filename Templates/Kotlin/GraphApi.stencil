@@ -86,11 +86,11 @@ object InputWrapperExclusionStrategy : ExclusionStrategy {
 
 class InputWrapperSerializer : JsonSerializer<InputWrapper<Any?>> {
     override fun serialize(src: InputWrapper<Any?>, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement? {
-        return if (src.isDefined()) {
-            if (src.value() == null) {
+        return if (src.isDefined) {
+            if (src.value == null) {
                 JsonPrimitive(DEFINED_NULL_FLAG)
             } else {
-                OperationGsonBuilder.gson.toJsonTree(src.value())
+                OperationGsonBuilder.gson.toJsonTree(src.value)
             }
         } else {
             null

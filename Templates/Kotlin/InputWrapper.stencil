@@ -3,23 +3,20 @@ import javax.annotation.Generated
 
 @Generated("com.shopify.syrup")
 class InputWrapper<T>() {
-    private var value: T? = null
-    private var defined = false
+    var value: T? = null
+        set(value) {
+            isDefined = true
+            field = value
+        }
 
-    constructor(t: T?): this() {
+    var isDefined = false
+        private set
+
+    constructor(t: T?) : this() {
         this.value = t
-        this.defined = true
+        this.isDefined = true
     }
 
-    fun defineValue(value: T?) {
-        this.value = value
-        this.defined = true
-    }
-
-    fun value() = this.value
-
-    fun isDefined() = this.defined
-    
     override fun equals(other: Any?): Boolean {
         return (other as? InputWrapper<*>)?.let {
             it.value == value
@@ -29,7 +26,7 @@ class InputWrapper<T>() {
     override fun hashCode(): Int {
         return this.value?.hashCode() ?: 0
     }
-    
+
     override fun toString(): String {
         return value.toString()
     }

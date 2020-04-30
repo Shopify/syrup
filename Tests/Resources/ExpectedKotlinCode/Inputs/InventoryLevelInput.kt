@@ -8,14 +8,4 @@ import org.joda.time.DateTime;
 import javax.annotation.Generated
 
 @Generated("com.shopify.syrup")
-data class InventoryLevelInput(var availableQuantity: InputWrapper<Int>, var locationId: InputWrapper<ID>) {
-
-      fun setAvailablequantity(value: Int) {
-        this.availableQuantity.defineValue(value)
-      }
-
-      fun setLocationid(value: ID) {
-        this.locationId.defineValue(value)
-      }
-
-}
+data class InventoryLevelInput(var availableQuantity: InputWrapper<Int>, var locationId: InputWrapper<ID>)

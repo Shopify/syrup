@@ -8,14 +8,4 @@ import org.joda.time.DateTime;
 import javax.annotation.Generated
 
 @Generated("com.shopify.syrup")
-data class SEOInput(var title: InputWrapper<String?> = InputWrapper(), var description: InputWrapper<String?> = InputWrapper()) {
-
-      fun setTitle(value: String?) {
-        this.title.defineValue(value)
-      }
-
-      fun setDescription(value: String?) {
-        this.description.defineValue(value)
-      }
-
-}
+data class SEOInput(var title: InputWrapper<String?> = InputWrapper(), var description: InputWrapper<String?> = InputWrapper())

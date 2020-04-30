@@ -8,14 +8,4 @@ import org.joda.time.DateTime;
 import javax.annotation.Generated
 
 @Generated("com.shopify.syrup")
-data class PrivateMetafieldValueInput(var value: InputWrapper<String>, var valueType: InputWrapper<PrivateMetafieldValueType>) {
-
-      fun setValue(value: String) {
-        this.value.defineValue(value)
-      }
-
-      fun setValuetype(value: PrivateMetafieldValueType) {
-        this.valueType.defineValue(value)
-      }
-
-}
+data class PrivateMetafieldValueInput(var value: InputWrapper<String>, var valueType: InputWrapper<PrivateMetafieldValueType>)
