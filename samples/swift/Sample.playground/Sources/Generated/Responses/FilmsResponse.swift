@@ -14,7 +14,7 @@ struct FilmsResponse: GraphApiResponse, Equatable {
 
 	public init(allFilms: AllFilms?) {
 			self.allFilms = allFilms
-			self.__typename = "QueryRoot"
+			self.__typename = "Root"
 	}
 
 		// MARK: - Nested Types

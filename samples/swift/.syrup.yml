@@ -1,4 +1,4 @@
-location: ""
+location: schema.json
 customScalars: []
 moduleName: StarWarsAPI
 header: |
