@@ -1,3 +1,3 @@
 #!/bin/sh
 
-mint run shopify/syrup@master syrup generate GraphQL Sample.playground/Sources/Generated Sample.playground/Sources/Generated "Swift" --override-schema "schema.json"
+mint run shopify/syrup@master syrup generate GraphQL Sample.playground/Sources/Generated Sample.playground/Sources/Generated "Swift"

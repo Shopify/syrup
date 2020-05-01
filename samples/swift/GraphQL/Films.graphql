@@ -1,0 +1,12 @@
+query Films($first: Int!) {
+  allFilms(first: $first) {
+    edges {
+      node {
+        id
+        title
+        director
+        openingCrawl
+      }
+    }
+  }
+}
