@@ -30,7 +30,6 @@ name = "title",
 type = "String",
 cacheKey = "title",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "Product",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))

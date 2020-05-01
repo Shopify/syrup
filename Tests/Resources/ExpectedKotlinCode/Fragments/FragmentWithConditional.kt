@@ -30,7 +30,6 @@ name = "name",
 type = "String",
 cacheKey = "name",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "Shop",
 shouldSkipBasedOnConditionalDirective = !"${operationVariables["getName"]}".toBoolean(),
 selections = listOf<Selection>()))

@@ -145,15 +145,6 @@ class SelectionSetExtension: Extension {
 		return ""
 	}
 	
-	func renderGIDReference(_ field: SelectionSetVisitor.Field) -> String {
-		for selection in field.selectionSet {
-			if renderKotlinTypeCondition(selection.field?.type) == "ID" {
-				return "\"\(selection.field!.name)\""
-			}
-		}
-		return "null"
-	}
-	
 	func renderGIDPassed(_ field: SelectionSetVisitor.Field) -> String {
 		for argument in field.arguments {
 			if argument.name == "id", let variable = argument.value as? SelectionSetVisitor.Variable {
@@ -218,7 +209,6 @@ class SelectionSetExtension: Extension {
 					render.append("\ntype = \"\(renderKotlinTypeCondition(field.type))\",")
 					render.append("\ncacheKey = \"\(name)\(renderArguments(field.arguments))\",")
 					render.append("\npassedGID = \(renderGIDPassed(field)),")
-					render.append("\nbackingGIDReference = \(renderGIDReference(field)),")
 					render.append("\ntypeCondition = \"\(renderKotlinTypeCondition(field.parentType))\",")
 					render.append("\nshouldSkipBasedOnConditionalDirective = \(renderConditionalDirective(field)),")
 					var typeConditionArgs: [String] = []

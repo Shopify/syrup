@@ -14,23 +14,13 @@ import javax.annotation.Generated
 @Generated("com.shopify.syrup")
 class QueryWithFragmentConditionalQuery(var getName: Boolean): Query<QueryWithFragmentConditionalResponse> {
 
-    val rawQueryString = "fragment FragmentWithConditional on Shop { __typename name @include(if: \$getName) } query QueryWithFragmentConditional(\$getName: Boolean!) { __typename shop { __typename id ... FragmentWithConditional } }"
+    override val rawQueryString = "fragment FragmentWithConditional on Shop { __typename name @include(if: \$getName) } query QueryWithFragmentConditional(\$getName: Boolean!) { __typename shop { __typename id ... FragmentWithConditional } }"
 
     override fun decodeResponse(jsonObject: JsonObject): QueryWithFragmentConditionalResponse {
         return QueryWithFragmentConditionalResponse(jsonObject)
     }
 
-    override fun getQueryString(): String {
-        val gson = OperationGsonBuilder.gson
-        var variables = gson.toJson(this)
-        if (variables != "{}") {
-            variables = setDefinedNulls(variables)
-            return "{ \"query\": \"$rawQueryString\", \"variables\": $variables}"
-        }
-        return "{ \"query\": \"$rawQueryString\" }"
-    }
-
-    val operationVariables = mapOf<String, String>(
+    override val operationVariables = mapOf<String, String>(
         "getName" to "$getName"
     )
 
@@ -40,7 +30,6 @@ name = "shop",
 type = "Shop",
 cacheKey = "shop",
 passedGID = null,
-backingGIDReference = "id",
 typeCondition = "QueryRoot",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
@@ -49,7 +38,6 @@ name = "id",
 type = "ID",
 cacheKey = "id",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "Shop",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>())) + FragmentWithConditional.getSelections(operationVariables).map { it.copy(typeCondition = "Shop") }))

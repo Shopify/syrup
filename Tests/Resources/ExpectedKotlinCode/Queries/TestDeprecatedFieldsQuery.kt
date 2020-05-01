@@ -14,23 +14,13 @@ import javax.annotation.Generated
 @Generated("com.shopify.syrup")
 class TestDeprecatedFieldsQuery(var first: Int? = null): Query<TestDeprecatedFieldsResponse> {
 
-    val rawQueryString = "query TestDeprecatedFields(\$first: Int) { __typename channels(first: \$first) { __typename edges { __typename node { __typename app { __typename id icon { __typename src } } } } } }"
+    override val rawQueryString = "query TestDeprecatedFields(\$first: Int) { __typename channels(first: \$first) { __typename edges { __typename node { __typename app { __typename id icon { __typename src } } } } } }"
 
     override fun decodeResponse(jsonObject: JsonObject): TestDeprecatedFieldsResponse {
         return TestDeprecatedFieldsResponse(jsonObject)
     }
 
-    override fun getQueryString(): String {
-        val gson = OperationGsonBuilder.gson
-        var variables = gson.toJson(this)
-        if (variables != "{}") {
-            variables = setDefinedNulls(variables)
-            return "{ \"query\": \"$rawQueryString\", \"variables\": $variables}"
-        }
-        return "{ \"query\": \"$rawQueryString\" }"
-    }
-
-    val operationVariables = mapOf<String, String>(
+    override val operationVariables = mapOf<String, String>(
         "first" to "$first"
     )
 
@@ -40,7 +30,6 @@ name = "channels",
 type = "ChannelConnection",
 cacheKey = "channels(first: ${operationVariables["first"]})",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "QueryRoot",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
@@ -49,7 +38,6 @@ name = "edges",
 type = "ChannelEdge",
 cacheKey = "edges",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "ChannelConnection",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
@@ -58,7 +46,6 @@ name = "node",
 type = "Channel",
 cacheKey = "node",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "ChannelEdge",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
@@ -67,7 +54,6 @@ name = "app",
 type = "App",
 cacheKey = "app",
 passedGID = null,
-backingGIDReference = "id",
 typeCondition = "Channel",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
@@ -76,7 +62,6 @@ name = "id",
 type = "ID",
 cacheKey = "id",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "App",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
@@ -85,7 +70,6 @@ name = "icon",
 type = "Image",
 cacheKey = "icon",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "App",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
@@ -94,7 +78,6 @@ name = "src",
 type = "URL",
 cacheKey = "src",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "Image",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))))))))))

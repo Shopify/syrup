@@ -28,7 +28,6 @@ name = "id",
 type = "ID",
 cacheKey = "id",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "Node",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))
