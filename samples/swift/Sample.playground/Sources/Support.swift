@@ -1,7 +1,7 @@
 import Foundation
 
 // These need to be set manually, to allow for custom configuration of the logger and decoder/encoder behaviour.
-// Your generated code will not compile withou this.
+// Your generated code will not compile without this.
 extension GraphApiQuery {
 	public static var errorLogger: GraphApiLogger? {
 		nil
