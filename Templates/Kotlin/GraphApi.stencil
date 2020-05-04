@@ -15,15 +15,27 @@ import java.lang.reflect.Type
 
 const val DEFINED_NULL_FLAG = "__DEFINED_NULL"
 
-interface SyrupOperation<T: Response> {
-    fun getQueryString(): String
-    fun decodeResponse(jsonObject: JsonObject): T
+interface SyrupOperation<T : Response> {
+    val rawQueryString: String
+    val operationVariables: Map<String, String>
     val selections: List<Selection>
+
+    fun getQueryString(): String {
+        if (operationVariables.isNotEmpty()) {
+            val gson = OperationGsonBuilder.gson
+            var variables = gson.toJson(this)
+            variables = setDefinedNulls(variables)
+            return "{ \"query\": \"$rawQueryString\", \"variables\": $variables}"
+        }
+        return "{ \"query\": \"$rawQueryString\" }"
+    }
+
+    fun decodeResponse(jsonObject: JsonObject): T
 }
 
-interface Query<T: Response> : SyrupOperation<T>
+interface Query<T : Response> : SyrupOperation<T>
 
-interface Mutation<T: Response> : SyrupOperation<T>
+interface Mutation<T : Response> : SyrupOperation<T>
 
 interface Response
 
@@ -50,7 +62,6 @@ data class Selection(
     val name: String,
     val type: String,
     val passedGID: String? = null,
-    val backingGIDReference: String? = null,
     val typeCondition: String? = null,
     val shouldSkipBasedOnConditionalDirective: Boolean = false,
     val selections: List<Selection> = listOf()

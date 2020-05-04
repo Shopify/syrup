@@ -14,23 +14,13 @@ import javax.annotation.Generated
 @Generated("com.shopify.syrup")
 class TestQuery0Query(): Query<TestQuery0Response> {
 
-    val rawQueryString = "query TestQuery0 { __typename nodes(ids: [\\\"gid://shopify/Customer/350635977\\\"]) { __typename id } }"
+    override val rawQueryString = "query TestQuery0 { __typename nodes(ids: [\\\"gid://shopify/Customer/350635977\\\"]) { __typename id } }"
 
     override fun decodeResponse(jsonObject: JsonObject): TestQuery0Response {
         return TestQuery0Response(jsonObject)
     }
 
-    override fun getQueryString(): String {
-        val gson = OperationGsonBuilder.gson
-        var variables = gson.toJson(this)
-        if (variables != "{}") {
-            variables = setDefinedNulls(variables)
-            return "{ \"query\": \"$rawQueryString\", \"variables\": $variables}"
-        }
-        return "{ \"query\": \"$rawQueryString\" }"
-    }
-
-    val operationVariables = mapOf<String, String>(
+    override val operationVariables = mapOf<String, String>(
     )
 
     override val selections = listOf<Selection>(
@@ -39,7 +29,6 @@ name = "nodes",
 type = "Node",
 cacheKey = "nodes(ids: [gid://shopify/Customer/350635977])",
 passedGID = null,
-backingGIDReference = "id",
 typeCondition = "QueryRoot",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
@@ -48,7 +37,6 @@ name = "id",
 type = "ID",
 cacheKey = "id",
 passedGID = null,
-backingGIDReference = null,
 typeCondition = "Node",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))

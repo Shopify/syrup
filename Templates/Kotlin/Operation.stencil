@@ -15,23 +15,13 @@ import javax.annotation.Generated
 {% endif %}
 class {{ name }}({{ operation.variables|renderKotlinArguments }}): {% if isQuery %}Query{% else %}Mutation{% endif %}<{{ operation.name }}Response> {
 
-    val rawQueryString = "{{ queryString|replace:"$","\$"|replaceQuotes }}"
+    override val rawQueryString = "{{ queryString|replace:"$","\$"|replaceQuotes }}"
 
     override fun decodeResponse(jsonObject: JsonObject): {{ operation.name }}Response {
         return {{ operation.name }}Response(jsonObject)
     }
 
-    override fun getQueryString(): String {
-        val gson = OperationGsonBuilder.gson
-        var variables = gson.toJson(this)
-        if (variables != "{}") {
-            variables = setDefinedNulls(variables)
-            return "{ \"query\": \"$rawQueryString\", \"variables\": $variables}"
-        }
-        return "{ \"query\": \"$rawQueryString\" }"
-    }
-
-    val operationVariables = mapOf<String, String>(
+    override val operationVariables = mapOf<String, String>(
         {{ operation.variables|renderKotlinOperationVariables }}
     )
 
