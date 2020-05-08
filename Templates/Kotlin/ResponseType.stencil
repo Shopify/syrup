@@ -29,15 +29,13 @@ data class {{ name }}(
         {% endfor %}
     )
 
+    {% if fragmentSelections %}
     companion object {
-        const val typeName = "{{ graphQLName }}"
-
-        {% if fragmentSelections %}
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return {{ fragmentSelections|renderKotlinSelections:graphQLName }}
         }
-        {% endif %}
     }
+    {% endif %}
 
     {% for field in fields %}
     {{ field|nestedTypeDefinition }}
