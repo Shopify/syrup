@@ -20,11 +20,6 @@ data class TestQuery6Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * The shop's name.
@@ -67,9 +62,6 @@ data class TestQuery6Response(
     },
             orders = Orders(jsonObject.getAsJsonObject("orders"))
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class BillingAddress(
             /**
              * The name of the city, district, village, or town.
@@ -94,9 +86,6 @@ data class TestQuery6Response(
                 latitude = if (!jsonObject.has("latitude") || jsonObject.get("latitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("latitude"), Double::class.java),
                 longitude = if (!jsonObject.has("longitude") || jsonObject.get("longitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("longitude"), Double::class.java)
             )
-            companion object {
-                const val typeName = "MailingAddress"
-            }
         }
             data class FulfillmentServices(
             /**
@@ -112,9 +101,6 @@ data class TestQuery6Response(
                 serviceName = OperationGsonBuilder.gson.fromJson(jsonObject.get("serviceName"), String::class.java),
                 handle = OperationGsonBuilder.gson.fromJson(jsonObject.get("handle"), String::class.java)
             )
-            companion object {
-                const val typeName = "FulfillmentService"
-            }
         }
             data class Orders(
             /**
@@ -132,9 +118,6 @@ data class TestQuery6Response(
         list
         }
             )
-            companion object {
-                const val typeName = "OrderConnection"
-            }
                 data class Edges(
                 /**
                  * The item at the end of OrderEdge.
@@ -144,9 +127,6 @@ data class TestQuery6Response(
                 constructor(jsonObject: JsonObject) : this(
                     node = Node(jsonObject.getAsJsonObject("node"))
                 )
-                companion object {
-                    const val typeName = "OrderEdge"
-                }
                     data class Node(
                     /**
                      * Unique identifier for the order that appears on the order.
@@ -164,9 +144,6 @@ data class TestQuery6Response(
                         name = OperationGsonBuilder.gson.fromJson(jsonObject.get("name"), String::class.java),
                         displayFulfillmentStatus = OrderDisplayFulfillmentStatus.safeValueOf(jsonObject.decodeEnumValue<OrderDisplayFulfillmentStatus>("displayFulfillmentStatus"))
                     )
-                    companion object {
-                        const val typeName = "Order"
-                    }
                 }
             }
         }

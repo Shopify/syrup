@@ -20,11 +20,6 @@ data class TestQuery10Response(
         priceRule = if (jsonObject.has("priceRule") && !jsonObject.get("priceRule").isJsonNull) PriceRule(jsonObject.getAsJsonObject("priceRule")) else null
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class PriceRule(
         /**
          * Globally unique identifier.
@@ -45,9 +40,6 @@ data class TestQuery10Response(
             value = Value(jsonObject.getAsJsonObject("value")),
             valueV2 = ValueV2(jsonObject.getAsJsonObject("valueV2"))
         )
-        companion object {
-            const val typeName = "PriceRule"
-        }
     data class Value(
         val realized: Realized
     ): Response {
@@ -71,9 +63,6 @@ data class TestQuery10Response(
         constructor(jsonObject: JsonObject) : this(
             amount = OperationGsonBuilder.gson.fromJson(jsonObject.get("amount"), BigDecimal::class.java)
         )
-        companion object {
-            const val typeName = "PriceRuleFixedAmountValue"
-        }
     }
     data class PriceRulePercentValue(
         /**
@@ -84,9 +73,6 @@ data class TestQuery10Response(
         constructor(jsonObject: JsonObject) : this(
             percentage = OperationGsonBuilder.gson.fromJson(jsonObject.get("percentage"), Double::class.java)
         )
-        companion object {
-            const val typeName = "PriceRulePercentValue"
-        }
     }
         object Other: Realized()
       }
@@ -114,9 +100,6 @@ data class TestQuery10Response(
         constructor(jsonObject: JsonObject) : this(
             amount = OperationGsonBuilder.gson.fromJson(jsonObject.get("amount"), BigDecimal::class.java)
         )
-        companion object {
-            const val typeName = "MoneyV2"
-        }
     }
     data class PricingPercentageValue(
         /**
@@ -127,9 +110,6 @@ data class TestQuery10Response(
         constructor(jsonObject: JsonObject) : this(
             percentage = OperationGsonBuilder.gson.fromJson(jsonObject.get("percentage"), Double::class.java)
         )
-        companion object {
-            const val typeName = "PricingPercentageValue"
-        }
     }
         object Other: Realized()
       }

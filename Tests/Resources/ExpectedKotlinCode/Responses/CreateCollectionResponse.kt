@@ -20,11 +20,6 @@ data class CreateCollectionResponse(
         collectionCreate = if (jsonObject.has("collectionCreate") && !jsonObject.get("collectionCreate").isJsonNull) CollectionCreate(jsonObject.getAsJsonObject("collectionCreate")) else null
     )
 
-    companion object {
-        const val typeName = "Mutation"
-
-    }
-
         data class CollectionCreate(
         /**
          * List of errors that occurred executing the mutation.
@@ -46,9 +41,6 @@ data class CreateCollectionResponse(
     },
             collection = if (jsonObject.has("collection") && !jsonObject.get("collection").isJsonNull) Collection(jsonObject.getAsJsonObject("collection")) else null
         )
-        companion object {
-            const val typeName = "CollectionCreatePayload"
-        }
             data class UserErrors(
             /**
              * Path to the input field which caused the error.
@@ -67,9 +59,6 @@ data class CreateCollectionResponse(
         },
                 message = OperationGsonBuilder.gson.fromJson(jsonObject.get("message"), String::class.java)
             )
-            companion object {
-                const val typeName = "UserError"
-            }
         }
             data class Collection(
             /**
@@ -90,9 +79,6 @@ data class CreateCollectionResponse(
                 id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
                 feedback = if (jsonObject.has("feedback") && !jsonObject.get("feedback").isJsonNull) Feedback(jsonObject.getAsJsonObject("feedback")) else null
             )
-            companion object {
-                const val typeName = "Collection"
-            }
                 data class Feedback(
                 /**
                  * Summary of resource feedback pertaining to the resource.
@@ -102,9 +88,6 @@ data class CreateCollectionResponse(
                 constructor(jsonObject: JsonObject) : this(
                     summary = OperationGsonBuilder.gson.fromJson(jsonObject.get("summary"), String::class.java)
                 )
-                companion object {
-                    const val typeName = "ResourceFeedback"
-                }
             }
         }
     }

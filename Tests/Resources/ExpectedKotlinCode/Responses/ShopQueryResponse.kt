@@ -17,9 +17,4 @@ data class ShopQueryResponse(
         shop = com.shopify.syrup.fragments.Shop(jsonObject)
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
 }

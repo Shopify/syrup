@@ -27,8 +27,6 @@ data class BasicFragment(
     )
 
     companion object {
-        const val typeName = "Customer"
-
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
 Selection(

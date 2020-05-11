@@ -21,8 +21,6 @@ data class ProductNodeTitle(
     )
 
     companion object {
-        const val typeName = "Product"
-
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
 Selection(

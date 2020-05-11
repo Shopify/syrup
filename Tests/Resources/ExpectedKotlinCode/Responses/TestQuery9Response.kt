@@ -21,11 +21,6 @@ data class TestQuery9Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * Customer accounts associated to the shop.
@@ -36,9 +31,6 @@ data class TestQuery9Response(
         constructor(jsonObject: JsonObject) : this(
             customers = Customers(jsonObject.getAsJsonObject("customers"))
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class Customers(
             /**
              * A list of edges.
@@ -55,9 +47,6 @@ data class TestQuery9Response(
         list
         }
             )
-            companion object {
-                const val typeName = "CustomerConnection"
-            }
                 data class Edges(
                 /**
                  * The item at the end of CustomerEdge.
@@ -67,9 +56,6 @@ data class TestQuery9Response(
                 constructor(jsonObject: JsonObject) : this(
                     node = Node(jsonObject.getAsJsonObject("node"))
                 )
-                companion object {
-                    const val typeName = "CustomerEdge"
-                }
                     data class Node(
                     /**
                      * Globally unique identifier.
@@ -81,9 +67,6 @@ data class TestQuery9Response(
                         id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
                         basicFragment = com.shopify.syrup.fragments.BasicFragment(jsonObject)
                     )
-                    companion object {
-                        const val typeName = "Customer"
-                    }
                 }
             }
         }

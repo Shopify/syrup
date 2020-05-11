@@ -20,11 +20,6 @@ data class TestQuery4Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * Globally unique identifier.
@@ -39,9 +34,6 @@ data class TestQuery4Response(
             id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
             availableChannelApps = AvailableChannelApps(jsonObject.getAsJsonObject("availableChannelApps"))
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class AvailableChannelApps(
             /**
              * A list of edges.
@@ -58,9 +50,6 @@ data class TestQuery4Response(
         list
         }
             )
-            companion object {
-                const val typeName = "AppConnection"
-            }
                 data class Edges(
                 /**
                  * The item at the end of AppEdge.
@@ -70,9 +59,6 @@ data class TestQuery4Response(
                 constructor(jsonObject: JsonObject) : this(
                     node = Node(jsonObject.getAsJsonObject("node"))
                 )
-                companion object {
-                    const val typeName = "AppEdge"
-                }
                     data class Node(
                     /**
                      * Globally unique identifier.
@@ -87,9 +73,6 @@ data class TestQuery4Response(
                         id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
                         title = OperationGsonBuilder.gson.fromJson(jsonObject.get("title"), String::class.java)
                     )
-                    companion object {
-                        const val typeName = "App"
-                    }
                 }
             }
         }

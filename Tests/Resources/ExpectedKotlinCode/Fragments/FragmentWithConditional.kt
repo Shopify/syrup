@@ -21,8 +21,6 @@ data class FragmentWithConditional(
     )
 
     companion object {
-        const val typeName = "Shop"
-
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
 Selection(

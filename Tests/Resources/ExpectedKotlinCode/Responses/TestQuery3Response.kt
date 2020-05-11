@@ -20,11 +20,6 @@ data class TestQuery3Response(
         customer = if (jsonObject.has("customer") && !jsonObject.get("customer").isJsonNull) Customer(jsonObject.getAsJsonObject("customer")) else null
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Customer(
         /**
          * A list of addresses associated with the customer.
@@ -46,9 +41,6 @@ data class TestQuery3Response(
     },
             defaultAddress = if (jsonObject.has("defaultAddress") && !jsonObject.get("defaultAddress").isJsonNull) DefaultAddress(jsonObject.getAsJsonObject("defaultAddress")) else null
         )
-        companion object {
-            const val typeName = "Customer"
-        }
             data class Addresses(
             /**
              * The name of the country.
@@ -58,9 +50,6 @@ data class TestQuery3Response(
             constructor(jsonObject: JsonObject) : this(
                 country = if (!jsonObject.has("country") || jsonObject.get("country").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("country"), String::class.java)
             )
-            companion object {
-                const val typeName = "MailingAddress"
-            }
         }
             data class DefaultAddress(
             /**
@@ -81,9 +70,6 @@ data class TestQuery3Response(
                 longitude = if (!jsonObject.has("longitude") || jsonObject.get("longitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("longitude"), Double::class.java),
                 latitude = if (!jsonObject.has("latitude") || jsonObject.get("latitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("latitude"), Double::class.java)
             )
-            companion object {
-                const val typeName = "MailingAddress"
-            }
         }
     }
 

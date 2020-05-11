@@ -21,11 +21,6 @@ data class TestDeprecatedFieldsResponse(
         channels = Channels(jsonObject.getAsJsonObject("channels"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Channels(
         /**
          * A list of edges.
@@ -42,9 +37,6 @@ data class TestDeprecatedFieldsResponse(
     list
     }
         )
-        companion object {
-            const val typeName = "ChannelConnection"
-        }
             data class Edges(
             /**
              * The item at the end of ChannelEdge.
@@ -54,9 +46,6 @@ data class TestDeprecatedFieldsResponse(
             constructor(jsonObject: JsonObject) : this(
                 node = Node(jsonObject.getAsJsonObject("node"))
             )
-            companion object {
-                const val typeName = "ChannelEdge"
-            }
                 data class Node(
                 /**
                  * Underlying app used by the channel.
@@ -66,9 +55,6 @@ data class TestDeprecatedFieldsResponse(
                 constructor(jsonObject: JsonObject) : this(
                     app = App(jsonObject.getAsJsonObject("app"))
                 )
-                companion object {
-                    const val typeName = "Channel"
-                }
                     data class App(
                     /**
                      * Globally unique identifier.
@@ -83,9 +69,6 @@ data class TestDeprecatedFieldsResponse(
                         id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
                         icon = Icon(jsonObject.getAsJsonObject("icon"))
                     )
-                    companion object {
-                        const val typeName = "App"
-                    }
                         data class Icon(
                         /**
                          * The location of the image as a URL.
@@ -131,9 +114,6 @@ data class TestDeprecatedFieldsResponse(
                         constructor(jsonObject: JsonObject) : this(
                             src = OperationGsonBuilder.gson.fromJson(jsonObject.get("src"), String::class.java)
                         )
-                        companion object {
-                            const val typeName = "Image"
-                        }
                     }
                 }
             }

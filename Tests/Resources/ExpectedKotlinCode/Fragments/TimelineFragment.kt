@@ -34,8 +34,6 @@ list
     )
 
     companion object {
-        const val typeName = "EventConnection"
-
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
 Selection(
@@ -226,9 +224,6 @@ selections = listOf<Selection>()))))))))))
         constructor(jsonObject: JsonObject) : this(
             hasNextPage = OperationGsonBuilder.gson.fromJson(jsonObject.get("hasNextPage"), Boolean::class.java)
         )
-        companion object {
-            const val typeName = "PageInfo"
-        }
     }
         data class Edges(
         /**
@@ -244,9 +239,6 @@ selections = listOf<Selection>()))))))))))
             cursor = OperationGsonBuilder.gson.fromJson(jsonObject.get("cursor"), String::class.java),
             node = Node(jsonObject.getAsJsonObject("node"))
         )
-        companion object {
-            const val typeName = "EventEdge"
-        }
     data class Node(
         val realized: Realized,
         val id: ID ,
@@ -333,9 +325,6 @@ selections = listOf<Selection>()))))))))))
     list
     }
         )
-        companion object {
-            const val typeName = "CommentEvent"
-        }
             data class Attachments(
             /**
              * Globally unique identifier.
@@ -370,9 +359,6 @@ selections = listOf<Selection>()))))))))))
                 url = OperationGsonBuilder.gson.fromJson(jsonObject.get("url"), String::class.java),
                 image = if (jsonObject.has("image") && !jsonObject.get("image").isJsonNull) Image(jsonObject.getAsJsonObject("image")) else null
             )
-            companion object {
-                const val typeName = "CommentEventAttachment"
-            }
                 data class Image(
                 /**
                  * The location of the transformed image as a URL.
@@ -384,9 +370,6 @@ selections = listOf<Selection>()))))))))))
                 constructor(jsonObject: JsonObject) : this(
                     transformedSrc = OperationGsonBuilder.gson.fromJson(jsonObject.get("transformedSrc"), String::class.java)
                 )
-                companion object {
-                    const val typeName = "Image"
-                }
             }
         }
     }
