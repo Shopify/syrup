@@ -21,11 +21,6 @@ data class QueryWithFragmentConditionalResponse(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * Globally unique identifier.
@@ -37,9 +32,6 @@ data class QueryWithFragmentConditionalResponse(
             id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
             fragmentWithConditional = com.shopify.syrup.fragments.FragmentWithConditional(jsonObject)
         )
-        companion object {
-            const val typeName = "Shop"
-        }
     }
 
 }

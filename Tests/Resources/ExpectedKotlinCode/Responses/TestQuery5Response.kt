@@ -20,11 +20,6 @@ data class TestQuery5Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * The shop's name.
@@ -61,9 +56,6 @@ data class TestQuery5Response(
     list
     }
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class BillingAddress(
             /**
              * The name of the city, district, village, or town.
@@ -88,9 +80,6 @@ data class TestQuery5Response(
                 latitude = if (!jsonObject.has("latitude") || jsonObject.get("latitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("latitude"), Double::class.java),
                 longitude = if (!jsonObject.has("longitude") || jsonObject.get("longitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("longitude"), Double::class.java)
             )
-            companion object {
-                const val typeName = "MailingAddress"
-            }
         }
             data class FulfillmentServices(
             /**
@@ -106,9 +95,6 @@ data class TestQuery5Response(
                 serviceName = OperationGsonBuilder.gson.fromJson(jsonObject.get("serviceName"), String::class.java),
                 handle = OperationGsonBuilder.gson.fromJson(jsonObject.get("handle"), String::class.java)
             )
-            companion object {
-                const val typeName = "FulfillmentService"
-            }
         }
     }
 

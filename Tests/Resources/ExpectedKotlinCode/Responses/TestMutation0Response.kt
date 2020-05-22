@@ -20,11 +20,6 @@ data class TestMutation0Response(
         customerUpdate = if (jsonObject.has("customerUpdate") && !jsonObject.get("customerUpdate").isJsonNull) CustomerUpdate(jsonObject.getAsJsonObject("customerUpdate")) else null
     )
 
-    companion object {
-        const val typeName = "Mutation"
-
-    }
-
         data class CustomerUpdate(
         /**
          * The updated customer.
@@ -34,9 +29,6 @@ data class TestMutation0Response(
         constructor(jsonObject: JsonObject) : this(
             customer = if (jsonObject.has("customer") && !jsonObject.get("customer").isJsonNull) Customer(jsonObject.getAsJsonObject("customer")) else null
         )
-        companion object {
-            const val typeName = "CustomerUpdatePayload"
-        }
             data class Customer(
             /**
              * Globally unique identifier.
@@ -46,9 +38,6 @@ data class TestMutation0Response(
             constructor(jsonObject: JsonObject) : this(
                 id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java)
             )
-            companion object {
-                const val typeName = "Customer"
-            }
         }
     }
 

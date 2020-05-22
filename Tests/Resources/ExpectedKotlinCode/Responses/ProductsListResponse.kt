@@ -20,11 +20,6 @@ data class ProductsListResponse(
         products = Products(jsonObject.getAsJsonObject("products"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Products(
         /**
          * A list of edges.
@@ -41,9 +36,6 @@ data class ProductsListResponse(
     list
     }
         )
-        companion object {
-            const val typeName = "ProductConnection"
-        }
             data class Edges(
             /**
              * The item at the end of ProductEdge.
@@ -58,9 +50,6 @@ data class ProductsListResponse(
                 node = Node(jsonObject.getAsJsonObject("node")),
                 cursor = OperationGsonBuilder.gson.fromJson(jsonObject.get("cursor"), String::class.java)
             )
-            companion object {
-                const val typeName = "ProductEdge"
-            }
                 data class Node(
                 /**
                  * Globally unique identifier.
@@ -80,9 +69,6 @@ data class ProductsListResponse(
                     title = OperationGsonBuilder.gson.fromJson(jsonObject.get("title"), String::class.java),
                     description = OperationGsonBuilder.gson.fromJson(jsonObject.get("description"), String::class.java)
                 )
-                companion object {
-                    const val typeName = "Product"
-                }
             }
         }
     }

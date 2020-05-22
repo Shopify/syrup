@@ -20,11 +20,6 @@ data class TestQuery1Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * Globally unique identifier.
@@ -80,9 +75,6 @@ data class TestQuery1Response(
     },
             paymentSettings = PaymentSettings(jsonObject.getAsJsonObject("paymentSettings"))
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class BillingAddress(
             /**
              * The name of the city, district, village, or town.
@@ -107,9 +99,6 @@ data class TestQuery1Response(
                 latitude = if (!jsonObject.has("latitude") || jsonObject.get("latitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("latitude"), Double::class.java),
                 longitude = if (!jsonObject.has("longitude") || jsonObject.get("longitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("longitude"), Double::class.java)
             )
-            companion object {
-                const val typeName = "MailingAddress"
-            }
         }
             data class Alerts(
             /**
@@ -120,9 +109,6 @@ data class TestQuery1Response(
             constructor(jsonObject: JsonObject) : this(
                 description = OperationGsonBuilder.gson.fromJson(jsonObject.get("description"), String::class.java)
             )
-            companion object {
-                const val typeName = "ShopAlert"
-            }
         }
             data class PaymentSettings(
             /**
@@ -137,9 +123,6 @@ data class TestQuery1Response(
         list
         }
             )
-            companion object {
-                const val typeName = "PaymentSettings"
-            }
         }
     }
 

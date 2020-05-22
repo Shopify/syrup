@@ -21,8 +21,6 @@ data class Shop(
     )
 
     companion object {
-        const val typeName = "QueryRoot"
-
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
 Selection(
@@ -77,9 +75,6 @@ selections = listOf<Selection>()))))))))))
         constructor(jsonObject: JsonObject) : this(
             availableChannelApps = AvailableChannelApps(jsonObject.getAsJsonObject("availableChannelApps"))
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class AvailableChannelApps(
             /**
              * A list of edges.
@@ -96,9 +91,6 @@ selections = listOf<Selection>()))))))))))
         list
         }
             )
-            companion object {
-                const val typeName = "AppConnection"
-            }
                 data class Edges(
                 /**
                  * The item at the end of AppEdge.
@@ -108,9 +100,6 @@ selections = listOf<Selection>()))))))))))
                 constructor(jsonObject: JsonObject) : this(
                     node = Node(jsonObject.getAsJsonObject("node"))
                 )
-                companion object {
-                    const val typeName = "AppEdge"
-                }
                     data class Node(
                     /**
                      * Globally unique identifier.
@@ -120,9 +109,6 @@ selections = listOf<Selection>()))))))))))
                     constructor(jsonObject: JsonObject) : this(
                         id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java)
                     )
-                    companion object {
-                        const val typeName = "App"
-                    }
                 }
             }
         }

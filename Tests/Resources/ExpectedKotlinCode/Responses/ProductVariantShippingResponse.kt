@@ -20,11 +20,6 @@ data class ProductVariantShippingResponse(
         productVariantUpdate = if (jsonObject.has("productVariantUpdate") && !jsonObject.get("productVariantUpdate").isJsonNull) ProductVariantUpdate(jsonObject.getAsJsonObject("productVariantUpdate")) else null
     )
 
-    companion object {
-        const val typeName = "Mutation"
-
-    }
-
         data class ProductVariantUpdate(
         /**
          * The updated variant.
@@ -46,9 +41,6 @@ data class ProductVariantShippingResponse(
     list
     }
         )
-        companion object {
-            const val typeName = "ProductVariantUpdatePayload"
-        }
             data class ProductVariant(
             /**
              * Globally unique identifier.
@@ -80,9 +72,6 @@ data class ProductVariantShippingResponse(
                 requiresShipping = OperationGsonBuilder.gson.fromJson(jsonObject.get("requiresShipping"), Boolean::class.java),
                 harmonizedSystemCode = if (!jsonObject.has("harmonizedSystemCode") || jsonObject.get("harmonizedSystemCode").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("harmonizedSystemCode"), String::class.java)
             )
-            companion object {
-                const val typeName = "ProductVariant"
-            }
         }
             data class UserErrors(
             /**
@@ -102,9 +91,6 @@ data class ProductVariantShippingResponse(
         list
         }
             )
-            companion object {
-                const val typeName = "UserError"
-            }
         }
     }
 

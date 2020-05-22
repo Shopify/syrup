@@ -20,11 +20,6 @@ data class MarketingOptInLevelResponse(
         customers = Customers(jsonObject.getAsJsonObject("customers"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Customers(
         /**
          * A list of edges.
@@ -41,9 +36,6 @@ data class MarketingOptInLevelResponse(
     list
     }
         )
-        companion object {
-            const val typeName = "CustomerConnection"
-        }
             data class Edges(
             /**
              * The item at the end of CustomerEdge.
@@ -53,9 +45,6 @@ data class MarketingOptInLevelResponse(
             constructor(jsonObject: JsonObject) : this(
                 node = Node(jsonObject.getAsJsonObject("node"))
             )
-            companion object {
-                const val typeName = "CustomerEdge"
-            }
                 data class Node(
                 /**
                  * The marketing subscription opt-in level (as described by the M3AAWG best practices guideline) that the
@@ -67,9 +56,6 @@ data class MarketingOptInLevelResponse(
                 constructor(jsonObject: JsonObject) : this(
                     marketingOptInLevel = if (jsonObject.has("marketingOptInLevel") && !jsonObject.get("marketingOptInLevel").isJsonNull) CustomerMarketingOptInLevel.safeValueOf(jsonObject.decodeEnumValue<CustomerMarketingOptInLevel>("marketingOptInLevel")) else null
                 )
-                companion object {
-                    const val typeName = "Customer"
-                }
             }
         }
     }

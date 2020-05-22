@@ -20,11 +20,6 @@ data class TestQuery7Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * The shop's name.
@@ -67,9 +62,6 @@ data class TestQuery7Response(
     },
             orders = Orders(jsonObject.getAsJsonObject("orders"))
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class BillingAddress(
             /**
              * The name of the city, district, village, or town.
@@ -94,9 +86,6 @@ data class TestQuery7Response(
                 latitude = if (!jsonObject.has("latitude") || jsonObject.get("latitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("latitude"), Double::class.java),
                 longitude = if (!jsonObject.has("longitude") || jsonObject.get("longitude").isJsonNull) null else OperationGsonBuilder.gson.fromJson(jsonObject.get("longitude"), Double::class.java)
             )
-            companion object {
-                const val typeName = "MailingAddress"
-            }
         }
             data class FulfillmentServices(
             /**
@@ -112,9 +101,6 @@ data class TestQuery7Response(
                 serviceName = OperationGsonBuilder.gson.fromJson(jsonObject.get("serviceName"), String::class.java),
                 handle = OperationGsonBuilder.gson.fromJson(jsonObject.get("handle"), String::class.java)
             )
-            companion object {
-                const val typeName = "FulfillmentService"
-            }
         }
             data class Orders(
             /**
@@ -132,9 +118,6 @@ data class TestQuery7Response(
         list
         }
             )
-            companion object {
-                const val typeName = "OrderConnection"
-            }
                 data class Edges(
                 /**
                  * The item at the end of OrderEdge.
@@ -144,9 +127,6 @@ data class TestQuery7Response(
                 constructor(jsonObject: JsonObject) : this(
                     node = Node(jsonObject.getAsJsonObject("node"))
                 )
-                companion object {
-                    const val typeName = "OrderEdge"
-                }
                     data class Node(
                     /**
                      * Unique identifier for the order that appears on the order.
@@ -176,9 +156,6 @@ data class TestQuery7Response(
                 list
                 }
                     )
-                    companion object {
-                        const val typeName = "Order"
-                    }
                         data class Fulfillments(
                         /**
                          * Human readable reference identifier for this fulfillment.
@@ -213,9 +190,6 @@ data class TestQuery7Response(
                             displayStatus = if (jsonObject.has("displayStatus") && !jsonObject.get("displayStatus").isJsonNull) FulfillmentDisplayStatus.safeValueOf(jsonObject.decodeEnumValue<FulfillmentDisplayStatus>("displayStatus")) else null,
                             events = Events(jsonObject.getAsJsonObject("events"))
                         )
-                        companion object {
-                            const val typeName = "Fulfillment"
-                        }
                             data class Events(
                             /**
                              * A list of edges.
@@ -232,9 +206,6 @@ data class TestQuery7Response(
                         list
                         }
                             )
-                            companion object {
-                                const val typeName = "FulfillmentEventConnection"
-                            }
                                 data class Edges(
                                 /**
                                  * The item at the end of FulfillmentEventEdge.
@@ -244,9 +215,6 @@ data class TestQuery7Response(
                                 constructor(jsonObject: JsonObject) : this(
                                     node = Node(jsonObject.getAsJsonObject("node"))
                                 )
-                                companion object {
-                                    const val typeName = "FulfillmentEventEdge"
-                                }
                                     data class Node(
                                     /**
                                      * The status of this fulfillment event.
@@ -256,9 +224,6 @@ data class TestQuery7Response(
                                     constructor(jsonObject: JsonObject) : this(
                                         status = FulfillmentEventStatus.safeValueOf(jsonObject.decodeEnumValue<FulfillmentEventStatus>("status"))
                                     )
-                                    companion object {
-                                        const val typeName = "FulfillmentEvent"
-                                    }
                                 }
                             }
                         }

@@ -20,11 +20,6 @@ data class TestQuery11Response(
         node = if (jsonObject.has("node") && !jsonObject.get("node").isJsonNull) Node(jsonObject.getAsJsonObject("node")) else null
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
 data class Node(
     val realized: Realized
 ): Response {
@@ -53,9 +48,6 @@ data class Product(
         id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
         collections = Collections(jsonObject.getAsJsonObject("collections"))
     )
-    companion object {
-        const val typeName = "Product"
-    }
         data class Collections(
         /**
          * A list of edges.
@@ -72,9 +64,6 @@ data class Product(
     list
     }
         )
-        companion object {
-            const val typeName = "CollectionConnection"
-        }
             data class Edges(
             /**
              * The item at the end of CollectionEdge.
@@ -84,9 +73,6 @@ data class Product(
             constructor(jsonObject: JsonObject) : this(
                 node = Node(jsonObject.getAsJsonObject("node"))
             )
-            companion object {
-                const val typeName = "CollectionEdge"
-            }
                 data class Node(
                 /**
                  * Globally unique identifier.
@@ -101,9 +87,6 @@ data class Product(
                     id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java),
                     title = OperationGsonBuilder.gson.fromJson(jsonObject.get("title"), String::class.java)
                 )
-                companion object {
-                    const val typeName = "Collection"
-                }
             }
         }
     }
@@ -117,9 +100,6 @@ data class ProductOption(
     constructor(jsonObject: JsonObject) : this(
         id = OperationGsonBuilder.gson.fromJson(jsonObject.get("id"), ID::class.java)
     )
-    companion object {
-        const val typeName = "ProductOption"
-    }
 }
     object Other: Realized()
 }

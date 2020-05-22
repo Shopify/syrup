@@ -20,11 +20,6 @@ data class TestQuery2Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * The shop's name.
@@ -57,9 +52,6 @@ data class TestQuery2Response(
     list
     }
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class Alerts(
             /**
              * Button in the alert that links to related information.
@@ -74,9 +66,6 @@ data class TestQuery2Response(
                 action = Action(jsonObject.getAsJsonObject("action")),
                 description = OperationGsonBuilder.gson.fromJson(jsonObject.get("description"), String::class.java)
             )
-            companion object {
-                const val typeName = "ShopAlert"
-            }
                 data class Action(
                 /**
                  * Action title.
@@ -91,9 +80,6 @@ data class TestQuery2Response(
                     title = OperationGsonBuilder.gson.fromJson(jsonObject.get("title"), String::class.java),
                     url = OperationGsonBuilder.gson.fromJson(jsonObject.get("url"), String::class.java)
                 )
-                companion object {
-                    const val typeName = "ShopAlertAction"
-                }
             }
         }
     }

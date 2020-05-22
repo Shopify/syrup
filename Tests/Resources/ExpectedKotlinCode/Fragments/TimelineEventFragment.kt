@@ -234,9 +234,6 @@ this.forEach {
 list
 }
     )
-    companion object {
-        const val typeName = "CommentEvent"
-    }
         data class Attachments(
         /**
          * Globally unique identifier.
@@ -271,9 +268,6 @@ list
             url = OperationGsonBuilder.gson.fromJson(jsonObject.get("url"), String::class.java),
             image = if (jsonObject.has("image") && !jsonObject.get("image").isJsonNull) Image(jsonObject.getAsJsonObject("image")) else null
         )
-        companion object {
-            const val typeName = "CommentEventAttachment"
-        }
             data class Image(
             /**
              * The location of the transformed image as a URL.
@@ -285,9 +279,6 @@ list
             constructor(jsonObject: JsonObject) : this(
                 transformedSrc = OperationGsonBuilder.gson.fromJson(jsonObject.get("transformedSrc"), String::class.java)
             )
-            companion object {
-                const val typeName = "Image"
-            }
         }
     }
 }

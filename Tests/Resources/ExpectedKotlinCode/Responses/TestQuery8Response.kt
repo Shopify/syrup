@@ -20,11 +20,6 @@ data class TestQuery8Response(
         shop = Shop(jsonObject.getAsJsonObject("shop"))
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
         data class Shop(
         /**
          * Globally unique identifier.
@@ -46,9 +41,6 @@ data class TestQuery8Response(
             firstProduct = FirstProduct(jsonObject.getAsJsonObject("firstProduct")),
             lastProduct = LastProduct(jsonObject.getAsJsonObject("lastProduct"))
         )
-        companion object {
-            const val typeName = "Shop"
-        }
             data class FirstProduct(
             /**
              * A list of edges.
@@ -65,9 +57,6 @@ data class TestQuery8Response(
         list
         }
             )
-            companion object {
-                const val typeName = "ProductConnection"
-            }
                 data class Edges(
                 /**
                  * A cursor for use in pagination.
@@ -82,9 +71,6 @@ data class TestQuery8Response(
                     cursor = OperationGsonBuilder.gson.fromJson(jsonObject.get("cursor"), String::class.java),
                     node = Node(jsonObject.getAsJsonObject("node"))
                 )
-                companion object {
-                    const val typeName = "ProductEdge"
-                }
                     data class Node(
                     /**
                      * The title of the product.
@@ -94,9 +80,6 @@ data class TestQuery8Response(
                     constructor(jsonObject: JsonObject) : this(
                         title = OperationGsonBuilder.gson.fromJson(jsonObject.get("title"), String::class.java)
                     )
-                    companion object {
-                        const val typeName = "Product"
-                    }
                 }
             }
         }
@@ -116,9 +99,6 @@ data class TestQuery8Response(
         list
         }
             )
-            companion object {
-                const val typeName = "ProductConnection"
-            }
                 data class Edges(
                 /**
                  * A cursor for use in pagination.
@@ -133,9 +113,6 @@ data class TestQuery8Response(
                     cursor = OperationGsonBuilder.gson.fromJson(jsonObject.get("cursor"), String::class.java),
                     node = Node(jsonObject.getAsJsonObject("node"))
                 )
-                companion object {
-                    const val typeName = "ProductEdge"
-                }
                     data class Node(
                     /**
                      * The title of the product.
@@ -145,9 +122,6 @@ data class TestQuery8Response(
                     constructor(jsonObject: JsonObject) : this(
                         title = OperationGsonBuilder.gson.fromJson(jsonObject.get("title"), String::class.java)
                     )
-                    companion object {
-                        const val typeName = "Product"
-                    }
                 }
             }
         }

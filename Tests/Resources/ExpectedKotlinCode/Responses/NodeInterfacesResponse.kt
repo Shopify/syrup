@@ -21,11 +21,6 @@ data class NodeInterfacesResponse(
         node = if (jsonObject.has("node") && !jsonObject.get("node").isJsonNull) Node(jsonObject.getAsJsonObject("node")) else null
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
 data class Node(
     val realized: Realized,
     val nodeId: NodeId 
@@ -49,9 +44,6 @@ data class Product(
         nodeId = com.shopify.syrup.fragments.NodeId(jsonObject),
         productNodeTitle = com.shopify.syrup.fragments.ProductNodeTitle(jsonObject)
     )
-    companion object {
-        const val typeName = "Product"
-    }
 }
     object Other: Realized()
 }

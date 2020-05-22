@@ -27,11 +27,6 @@ list
 }
     )
 
-    companion object {
-        const val typeName = "QueryRoot"
-
-    }
-
 data class Nodes(
     val realized: Realized,
     val id: ID 
