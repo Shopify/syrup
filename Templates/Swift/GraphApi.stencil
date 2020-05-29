@@ -108,7 +108,7 @@ open class BaseCustomScalarResolver {
 		return accumulator
 	}
 
-	public func decode<T, R: Decodable, K>(_ type: Optional<T>.Type, rawValueType: R.Type, forKey key: K, container: inout KeyedDecodingContainer<K>, resolver: (R) throws -> T) throws -> Optional<T> {
+	public func decode<T, R: Decodable, K>(_ type: Optional<T>.Type, rawValueType: R.Type, forKey key: K, container: KeyedDecodingContainer<K>, resolver: (R) throws -> T) throws -> Optional<T> {
 		guard let value = try container.decodeIfPresent(R.self, forKey: key) else {
 			return nil
 		}
