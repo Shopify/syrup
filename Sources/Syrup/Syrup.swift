@@ -171,7 +171,7 @@ class Syrup {
 		addOverrideSchemaArgument(to: reportParser)
 		addDeprecationReportArgument(to: reportParser)
 		let overwriteReportArg = addOverwriteReportArgument(to: reportParser)
-		let verboseArg = addVerboseArgument(to:reportParser)
+		let verboseArg = addVerboseArgument(to: reportParser)
 
 		// BINDING ARGUMENTS TO &options
 		// The bound arguments below match across sub-parsers, since they are identical.

@@ -34,7 +34,7 @@ public final class Generator {
 	}
 	
 	public func generate() throws {
-		let schema = try loadSchema(location:config.schema.location)
+		let schema = try loadSchema(location: config.schema.location)
 		if config.shouldGenerateModels {
 			print("Generating models")
 			try Folder.root.createSubfolderIfNeeded(at: config.destination)
@@ -78,7 +78,7 @@ public final class Generator {
 	
 	private func cleanup(folder: Folder, generated: Set<File>) throws {
 		try folder.files.recursive.forEach { file in
-			if(!generated.contains(file)) {
+			if !generated.contains(file) {
 				try file.delete()
 			}
 		}
@@ -195,7 +195,7 @@ public final class Generator {
 				do {
 					let results = try block()
 					files.value.append(contentsOf: results)
-				} catch(let thrownError) {
+				} catch let thrownError {
 					error.value = thrownError
 					operationQueue.cancelAllOperations()
 				}
@@ -224,7 +224,6 @@ public final class Generator {
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations }, fileType: .response, renderer: renderer.renderResponseTypes)
 		}
 		
-		
 		concurrentPerform {
 			let renderer = KotlinRenderer(config: self.config)
 			
@@ -233,13 +232,11 @@ public final class Generator {
 			})
 		}
 		
-		
 		concurrentPerform {
 			let renderer = KotlinRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.referencedInputTypes }, fileType: .input, renderer: renderer.renderInputTypes)
 		}
-		
 		
 		concurrentPerform {
 			let renderer = KotlinRenderer(config: self.config)
@@ -279,7 +276,7 @@ public final class Generator {
 				do {
 					let results = try block()
 					files.value.append(contentsOf: results)
-				} catch(let thrownError) {
+				} catch let thrownError {
 					error.value = thrownError
 					operationQueue.cancelAllOperations()
 				}

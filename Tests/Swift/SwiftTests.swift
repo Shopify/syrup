@@ -119,8 +119,8 @@ extension File {
 		case fileContentsDoNotMatch(file: String, expectedLine: String?, actualLine: String?)
 	}
 	static func compareContents(expected: File, actual: File) throws {
-		let expectedContents = String(data:try expected.read(),encoding: .utf8)?.split(separator:"\n") ?? []
-		let actualContents = String(data:try actual.read(),encoding: .utf8)?.split(separator: "\n") ?? []
+		let expectedContents = String(data: try expected.read(), encoding: .utf8)?.split(separator: "\n") ?? []
+		let actualContents = String(data: try actual.read(), encoding: .utf8)?.split(separator: "\n") ?? []
 		
 		var actualContentsIterator = actualContents.makeIterator()
 		for expectedLine in expectedContents {

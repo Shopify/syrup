@@ -416,7 +416,7 @@ final class KotlinRenderer: Renderer {
 		var listInitializer = ""
 		var listNullabilityMarker = ""
 
-		if (isNonNullList) {
+		if isNonNullList {
 			listNullabilityMarker = ""
 			listInitializer = "arrayListOf<\(fieldName.capitalizedFirstLetter)\(listObjectNullabilityMarker)>()"
 		} else {
@@ -425,10 +425,9 @@ final class KotlinRenderer: Renderer {
 		}
 
 		var objectDeserializerExpression = ""
-		if(isListObjectNonNull) {
+		if isListObjectNonNull {
 			objectDeserializerExpression = "\(fieldName.capitalizedFirstLetter)(it.asJsonObject)"
-		}
-		else {
+		} else {
 			objectDeserializerExpression = """
 										   if(it.isJsonNull) null else \(fieldName.capitalizedFirstLetter)(it.asJsonObject)
 										   """

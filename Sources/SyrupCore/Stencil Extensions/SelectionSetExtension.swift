@@ -212,7 +212,7 @@ class SelectionSetExtension: Extension {
 					render.append("\ntypeCondition = \"\(renderKotlinTypeCondition(field.parentType))\",")
 					render.append("\nshouldSkipBasedOnConditionalDirective = \(renderConditionalDirective(field)),")
 					var typeConditionArgs: [String] = []
-					if (shouldPassTypeCondition(field.type)) {
+					if shouldPassTypeCondition(field.type) {
 						typeConditionArgs = [renderKotlinTypeCondition(field.type)]
 					}
 					render.append("\nselections = \(renderKotlinSelections(field.selectionSet, args: typeConditionArgs))")

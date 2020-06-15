@@ -16,11 +16,11 @@ extension GraphApiResponse {
 
 extension StarWarsAPI {
 	public static var customDecoder: JSONDecoder {
-		JSONDecoder.init()
+		JSONDecoder()
 	}
 	
 	public static var customEncoder: JSONEncoder {
-		JSONEncoder.init()
+		JSONEncoder()
 	}
 }
 
@@ -69,4 +69,3 @@ private struct RequestBody<Q: GraphApiQuery>: Encodable {
 private struct RequestResponse<R: GraphApiResponse>: Decodable {
 	let data: R
 }
-

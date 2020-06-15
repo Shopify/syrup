@@ -82,7 +82,7 @@ open class Renderer {
 		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
 		let importInputs = intermediateRepresentation.referencedInputTypes.isEmpty == false
 		let importFragments = intermediateRepresentation.fragmentDefinitions.isEmpty == false
-		let requiresCustomEncoder = query.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar})
+		let requiresCustomEncoder = query.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar })
 		let context: [String: Any] = [
 			"name": name,
 			"operation": query,
@@ -112,7 +112,7 @@ open class Renderer {
 		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
 		let importInputs = intermediateRepresentation.referencedInputTypes.isEmpty == false
 		let importFragments = intermediateRepresentation.fragmentDefinitions.isEmpty == false
-		let requiresCustomEncoder = mutation.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar})
+		let requiresCustomEncoder = mutation.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar })
 		let context: [String: Any] = [
 			"name": name,
 			"operation": mutation,
