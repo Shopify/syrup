@@ -24,18 +24,17 @@
 
 import Foundation
 
-func loadSchema(location: String) throws -> Schema {
-	let url = URL(string: location)!
+func loadSchema(location: URL) throws -> Schema {
 	let schemaData: Data
-	if url.scheme == nil && url.host == nil {
+	if location.scheme == nil && location.host == nil {
 		print("Loading schema: \u{001B}[96m./\(location)\u{001B}[0m")
-		schemaData = try Data(contentsOf: URL(fileURLWithPath: location))
+		schemaData = try Data(contentsOf: location)
 	} else {
 		print("Downloading latest schema...")
 		let semaphore = DispatchSemaphore(value: 0)
 		let session = URLSession.shared
 		var taskResult: (data: Data?, response: URLResponse?, error: Error?)! = nil
-		let task = session.dataTask(with: url) { (data, response, error) in
+		let task = session.dataTask(with: location) { (data, response, error) in
 			taskResult = (data, response, error)
 			semaphore.signal()
 		}

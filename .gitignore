@@ -83,3 +83,5 @@ Generated/*
 .idea
 .gradle/
 local.properties
+
+/Test.env

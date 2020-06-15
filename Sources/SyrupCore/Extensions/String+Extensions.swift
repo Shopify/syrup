@@ -61,3 +61,13 @@ extension String {
 		return String(self.dropLast(suffix.count))
 	}
 }
+
+public extension String {
+	func toURL() throws -> URL {
+		guard let url = URL(string: self) else {
+			// TODO: make this into a better error and check that its a valid https or file url
+			throw NSError(domain: "SyrupCore", code: 1, userInfo: nil)
+		}
+		return url
+	}
+}

@@ -22,5 +22,23 @@
  * THE SOFTWARE.
  */
 
-let syrup = Syrup()
-syrup.run()
+import Foundation
+import Files
+
+var additionalArgs: [String] = []
+#if DEBUG
+if let folder = Folder.swiftPackage,
+	let testArgs = try? folder.file(named: "Test.env").readAsString() {
+	var lines = testArgs.components(separatedBy: .newlines).filter { !$0.starts(with: "#") }
+	if let firstLine = lines.first {
+		if let folder = try? Folder(path: firstLine) {
+			FileManager.default.changeCurrentDirectoryPath(folder.path)
+			lines.removeFirst()
+		}
+		lines.forEach {
+			additionalArgs.append(contentsOf: $0.components(separatedBy: .whitespaces).filter { !$0.isEmpty })
+		}
+	}
+}
+#endif
+Syrup.main(CommandLine.arguments.dropFirst() + additionalArgs)

@@ -23,30 +23,15 @@
  */
 
 import Foundation
-import Files
+import ArgumentParser
 
-public struct Config {
-	public var schema: URL
-	public var shouldGenerateModels: Bool
-	public var shouldGenerateSupportFiles: Bool
-	public var queries: String
-	public var destination: String
-	public var supportFilesDestination: String
-	public var template: TemplateSpec
-	public var project: ProjectSpec
-	public var scalars: ScalarSpec
-	public var verbose: Bool
-	
-	public init(schema: URL, shouldGenerateModels: Bool, shouldGenerateSupportFiles: Bool, queries: String, destination: String, supportFilesDestination: String, template: TemplateSpec, project: ProjectSpec, scalars: ScalarSpec, verbose: Bool) {
-		self.schema = schema
-		self.shouldGenerateModels = shouldGenerateModels
-		self.shouldGenerateSupportFiles = shouldGenerateSupportFiles
-		self.queries = queries
-		self.destination = destination
-		self.supportFilesDestination = supportFilesDestination
-		self.template = template
-		self.project = project
-		self.scalars = scalars
-		self.verbose = verbose
-	}
+struct Syrup: ParsableCommand {
+	static var configuration = CommandConfiguration(
+		abstract: "Deal with your localized string resources.",
+		version: "1.0",
+		subcommands: [
+			Generate.self,
+		],
+		defaultSubcommand: Generate.self
+	)
 }
