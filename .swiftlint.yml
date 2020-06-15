@@ -61,3 +61,4 @@ excluded:
 - Tests/tmp
 - Package.swift
 - .build
+- samples/swift/Sample.playground/Sources/Generated/

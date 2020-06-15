@@ -28,10 +28,10 @@ public enum DeprecationType: String, Codable, CaseIterable {
 	case Operation, Fragment
 }
 
-struct Deprecation : Codable {
-	let type:DeprecationType
-	let key:String
-	let value:Date
+struct Deprecation: Codable {
+	let type: DeprecationType
+	let key: String
+	let value: Date
 }
 
 public struct ReportSpec: Codable {
@@ -73,7 +73,7 @@ public struct ReportSpec: Codable {
 				parent[deprecation.key] = deprecation.value
 				result[deprecation.type] = parent
 			} else {
-				result[deprecation.type] = [deprecation.key:deprecation.value]
+				result[deprecation.type] = [deprecation.key: deprecation.value]
 			}
 		}
 	}

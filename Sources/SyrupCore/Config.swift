@@ -38,7 +38,7 @@ public struct Config {
 	var deprecationReport: AbsolutePath? = nil
 	var shouldOverwriteReport: Bool = false
 
-	public init(shouldGenerateModels: Bool, shouldGenerateSupportFiles: Bool, queries: String, destination: String, supportFilesDestination: String, template: TemplateSpec, project: ProjectSpec, schema: SchemaSpec, verbose: Bool, outputReportFilePath:AbsolutePath?, shouldOverwriteReport:Bool) {
+	public init(shouldGenerateModels: Bool, shouldGenerateSupportFiles: Bool, queries: String, destination: String, supportFilesDestination: String, template: TemplateSpec, project: ProjectSpec, schema: SchemaSpec, verbose: Bool, outputReportFilePath: AbsolutePath?, shouldOverwriteReport: Bool) {
 		self.shouldGenerateModels = shouldGenerateModels
 		self.shouldGenerateSupportFiles = shouldGenerateSupportFiles
 		self.queries = queries

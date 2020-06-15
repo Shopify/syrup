@@ -23,7 +23,7 @@
  */
 
 func warnDupeKey(key: [String], verbose: Bool = false) {
-	if( verbose ) {
+	if  verbose {
 		print("\u{001B}[3mWarning: duplicate field detected `\(key.joined(separator: "."))`\u{001B}[0m")
 	}
 }
@@ -52,12 +52,12 @@ extension Sequence where Iterator.Element == IntermediateRepresentation.Selectio
 				case .field(let field):
 					let currentKey = parentKey + [field.name]
 					let currentKeyField = [currentKey: field]
-					if (result.keys.contains(currentKey)) {
-						warnDupeKey(key:currentKey, verbose: verbose)
+					if result.keys.contains(currentKey) {
+						warnDupeKey(key: currentKey, verbose: verbose)
 					}
 					let subKeyFields = field.type.findFields(parentKey: currentKey) ?? [:]
 					subKeyFields.keys.forEach {
-						if (result.keys.contains($0)) {
+						if result.keys.contains($0) {
 							warnDupeKey(key: $0, verbose: verbose)
 						}
 					}
@@ -67,9 +67,9 @@ extension Sequence where Iterator.Element == IntermediateRepresentation.Selectio
 				case .inlineFragment(let inline):
 					let currentKey = parentKey + [inline.typeCondition.name]
 					let inlineFields = inline.selectionSet.findFields(parentKey: currentKey, verbose: verbose)
-					if (result.keys.contains(currentKey)) { warnDupeKey(key: currentKey, verbose: verbose) }
+					if result.keys.contains(currentKey) { warnDupeKey(key: currentKey, verbose: verbose) }
 					return result.merging(inlineFields) { (_, new) in new }
-				case .fragmentSpread(_):
+				case .fragmentSpread:
 					return result
 			}
 		}
@@ -83,7 +83,7 @@ extension IntermediateRepresentation.FieldType {
 				return nestedType.findFields(parentKey: parentKey, verbose: verbose)
 			case .nonNull(let nestedType):
 				return nestedType.findFields(parentKey: parentKey, verbose: verbose)
-			case .scalar(_), .enum(_):
+			case .scalar, .enum:
 				return nil
 			case .object(let object):
 				return object.selectionSet.findFields(parentKey: parentKey, verbose: verbose)
