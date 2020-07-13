@@ -48,7 +48,7 @@
       },
       {
         "package": "SwiftGraphQLParser",
-        "repositoryURL": "https://github.com/RyanBillard/SwiftGraphQLParser",
+        "repositoryURL": "https://github.com/Shopify/SwiftGraphQLParser",
         "state": {
           "branch": null,
           "revision": "0fcadd4bf9a348c6af97fed05d1c25302e86e1ec",

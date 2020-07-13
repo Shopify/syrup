@@ -35,7 +35,7 @@ let package = Package(
 			.exact("0.3.0")
 		),
 		.package(
-			url: "https://github.com/RyanBillard/SwiftGraphQLParser",
+			url: "https://github.com/Shopify/SwiftGraphQLParser",
 			from: "0.1.7"
 		)
 	],
