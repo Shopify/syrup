@@ -1,6 +1,12 @@
 buildscript {
+    repositories {
+        maven {
+            url  "https://dl.bintray.com/shopify/shopify-java"
+        }
+    }
+
     dependencies {
-        classpath files("${project.rootDir.path}/syrup-plugin-0.2.jar")
+        classpath 'com.shopify.syrup:syrup-gradle:0.2'
     }
 }
 

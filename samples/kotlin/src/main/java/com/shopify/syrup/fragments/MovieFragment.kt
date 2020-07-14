@@ -35,33 +35,37 @@ data class MovieFragment(
 
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
-Selection(
-name = "title",
-type = "String",
-cacheKey = "title",
-passedGID = null,
-backingGIDReference = null,
-typeCondition = "Film",
-shouldSkipBasedOnConditionalDirective = false,
-selections = listOf<Selection>()),
-Selection(
-name = "director",
-type = "String",
-cacheKey = "director",
-passedGID = null,
-backingGIDReference = null,
-typeCondition = "Film",
-shouldSkipBasedOnConditionalDirective = false,
-selections = listOf<Selection>()),
-Selection(
-name = "openingCrawl",
-type = "String",
-cacheKey = "openingCrawl",
-passedGID = null,
-backingGIDReference = null,
-typeCondition = "Film",
-shouldSkipBasedOnConditionalDirective = false,
-selections = listOf<Selection>()))
+                Selection(
+                    name = "title",
+                    type = "String",
+                    cacheKey = "title",
+                    passedGID = null,
+                    backingGIDReference = null,
+                    typeCondition = "Film",
+                    shouldSkipBasedOnConditionalDirective = false,
+                    selections = listOf<Selection>()
+                ),
+                Selection(
+                    name = "director",
+                    type = "String",
+                    cacheKey = "director",
+                    passedGID = null,
+                    backingGIDReference = null,
+                    typeCondition = "Film",
+                    shouldSkipBasedOnConditionalDirective = false,
+                    selections = listOf<Selection>()
+                ),
+                Selection(
+                    name = "openingCrawl",
+                    type = "String",
+                    cacheKey = "openingCrawl",
+                    passedGID = null,
+                    backingGIDReference = null,
+                    typeCondition = "Film",
+                    shouldSkipBasedOnConditionalDirective = false,
+                    selections = listOf<Selection>()
+                )
+            )
         }
     }
 }

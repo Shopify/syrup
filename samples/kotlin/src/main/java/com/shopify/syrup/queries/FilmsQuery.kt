@@ -30,31 +30,37 @@ class FilmsQuery() : Query<FilmsResponse> {
     val operationVariables = mapOf<String, String>()
 
     override val selections = listOf<Selection>(
-Selection(
-name = "allFilms",
-type = "FilmsConnection",
-cacheKey = "allFilms",
-passedGID = null,
-backingGIDReference = null,
-typeCondition = "Root",
-shouldSkipBasedOnConditionalDirective = false,
-selections = listOf<Selection>(
-Selection(
-name = "edges",
-type = "FilmsEdge",
-cacheKey = "edges",
-passedGID = null,
-backingGIDReference = null,
-typeCondition = "FilmsConnection",
-shouldSkipBasedOnConditionalDirective = false,
-selections = listOf<Selection>(
-Selection(
-name = "node",
-type = "Film",
-cacheKey = "node",
-passedGID = null,
-backingGIDReference = null,
-typeCondition = "FilmsEdge",
-shouldSkipBasedOnConditionalDirective = false,
-selections = listOf<Selection>() + MovieFragment.getSelections(operationVariables).map { it.copy(typeCondition = "Film") }))))))
+        Selection(
+            name = "allFilms",
+            type = "FilmsConnection",
+            cacheKey = "allFilms",
+            passedGID = null,
+            backingGIDReference = null,
+            typeCondition = "Root",
+            shouldSkipBasedOnConditionalDirective = false,
+            selections = listOf<Selection>(
+                Selection(
+                    name = "edges",
+                    type = "FilmsEdge",
+                    cacheKey = "edges",
+                    passedGID = null,
+                    backingGIDReference = null,
+                    typeCondition = "FilmsConnection",
+                    shouldSkipBasedOnConditionalDirective = false,
+                    selections = listOf<Selection>(
+                        Selection(
+                            name = "node",
+                            type = "Film",
+                            cacheKey = "node",
+                            passedGID = null,
+                            backingGIDReference = null,
+                            typeCondition = "FilmsEdge",
+                            shouldSkipBasedOnConditionalDirective = false,
+                            selections = listOf<Selection>() + MovieFragment.getSelections(operationVariables).map { it.copy(typeCondition = "Film") }
+                        )
+                    )
+                )
+            )
+        )
+    )
 }

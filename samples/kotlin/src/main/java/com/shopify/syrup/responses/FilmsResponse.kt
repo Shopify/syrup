@@ -20,40 +20,40 @@ data class FilmsResponse(
         const val typeName = "Root"
     }
 
-        data class AllFilms(
-            /**    
-             * A list of edges.    
-             */    
-            val edges: ArrayList<Edges?>?
-        ) : Response {
+    data class AllFilms(
+        /**    
+         * A list of edges.    
+         */    
+        val edges: ArrayList<Edges?>?
+    ) : Response {
         constructor(jsonObject: JsonObject) : this(
             edges = if (!jsonObject.has("edges") || jsonObject.get("edges").isJsonNull) null else jsonObject.getAsJsonArray("edges").run {
-    val list: ArrayList<Edges?>? = ArrayList()
-    this.forEach {
-            val edges = if (it.isJsonNull) null else Edges(it.asJsonObject)
-            list?.add(edges)
-    }
-    list
-    }
+                val list: ArrayList<Edges?>? = ArrayList()
+                this.forEach {
+                    val edges = if (it.isJsonNull) null else Edges(it.asJsonObject)
+                    list?.add(edges)
+                }
+                list
+            }
         )
         companion object {
             const val typeName = "FilmsConnection"
         }
-            data class Edges(
-                /**    
-                 * The item at the end of the edge    
-                 */    
-                val node: Node?
-            ) : Response {
+        data class Edges(
+            /**    
+             * The item at the end of the edge    
+             */    
+            val node: Node?
+        ) : Response {
             constructor(jsonObject: JsonObject) : this(
                 node = if (jsonObject.has("node") && !jsonObject.get("node").isJsonNull) Node(jsonObject.getAsJsonObject("node")) else null
             )
             companion object {
                 const val typeName = "FilmsEdge"
             }
-                data class Node(
-                    val movieFragment: com.shopify.syrup.fragments.MovieFragment
-                ) : Response {
+            data class Node(
+                val movieFragment: com.shopify.syrup.fragments.MovieFragment
+            ) : Response {
                 constructor(jsonObject: JsonObject) : this(
                     movieFragment = com.shopify.syrup.fragments.MovieFragment(jsonObject)
                 )
