@@ -3,7 +3,7 @@
 {% block content %}
 	{% with enumType.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
 	enum {{ enumType.name }}: String, Codable {
-		{% for enumValue in enumType.values %}
+		{% for enumValue in sortedEnumValues %}
 			{% with enumValue.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
 			case {{ enumValue.value|camelCased|escapeReservedWord }} = "{{ enumValue.value }}"
 		{% endfor %}

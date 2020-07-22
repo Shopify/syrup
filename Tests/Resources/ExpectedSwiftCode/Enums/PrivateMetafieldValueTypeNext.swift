@@ -4,11 +4,11 @@ import Foundation
 public extension MerchantApi {
 	enum PrivateMetafieldValueType: String, Codable {
 		/// A private metafield value type.
-			case string = "STRING"
-		/// A private metafield value type.
 			case integer = "INTEGER"
 		/// A private metafield value type.
 			case jsonString = "JSON_STRING"
+		/// A private metafield value type.
+			case string = "STRING"
 		case unknownValue = ""
 
 		public init(from decoder: Decoder) throws {
