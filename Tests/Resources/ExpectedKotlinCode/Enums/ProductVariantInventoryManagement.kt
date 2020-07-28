@@ -10,10 +10,10 @@ import javax.annotation.Generated
 enum class ProductVariantInventoryManagement(val value: String) {
 
     /**
-     * Shopify tracks this product variant's inventory.
+     * A third-party fulfillment service tracks this product variant's inventory.
      */
-    @SerializedName("SHOPIFY")
-    SHOPIFY("SHOPIFY"),
+    @SerializedName("FULFILLMENT_SERVICE")
+    FULFILLMENT_SERVICE("FULFILLMENT_SERVICE"),
 
     /**
      * This product variant's inventory is not tracked.
@@ -22,10 +22,10 @@ enum class ProductVariantInventoryManagement(val value: String) {
     NOT_MANAGED("NOT_MANAGED"),
 
     /**
-     * A third-party fulfillment service tracks this product variant's inventory.
+     * Shopify tracks this product variant's inventory.
      */
-    @SerializedName("FULFILLMENT_SERVICE")
-    FULFILLMENT_SERVICE("FULFILLMENT_SERVICE"),
+    @SerializedName("SHOPIFY")
+    SHOPIFY("SHOPIFY"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 

@@ -10,16 +10,16 @@ import javax.annotation.Generated
 enum class ProductVariantInventoryPolicy(val value: String) {
 
     /**
-     * Stop selling a product variant when it is out of stock.
-     */
-    @SerializedName("DENY")
-    DENY("DENY"),
-
-    /**
      * Continue selling a product variant when it is out of stock.
      */
     @SerializedName("CONTINUE")
     CONTINUE("CONTINUE"),
+
+    /**
+     * Stop selling a product variant when it is out of stock.
+     */
+    @SerializedName("DENY")
+    DENY("DENY"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 

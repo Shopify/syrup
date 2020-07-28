@@ -133,8 +133,7 @@ open class Renderer {
 		for enumType in intermediateRepresentation.referencedEnums {
 			let context: [String: Any] = [
 				"moduleName": config.project.moduleName,
-				"enumType": enumType,
-				"sortedEnumValues": enumType.values.sorted { lhs, rhs in lhs.value < rhs.value }
+				"enumType": enumType
 			]
 			rendered.append(try render(template: "EnumType", asFile: true, context: context))
 		}

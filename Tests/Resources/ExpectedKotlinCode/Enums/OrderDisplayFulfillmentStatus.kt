@@ -10,34 +10,16 @@ import javax.annotation.Generated
 enum class OrderDisplayFulfillmentStatus(val value: String) {
 
     /**
-     * Displayed as **Unfulfilled**.
-     */
-    @SerializedName("UNFULFILLED")
-    UNFULFILLED("UNFULFILLED"),
-
-    /**
-     * Displayed as **Partially fulfilled**.
-     */
-    @SerializedName("PARTIALLY_FULFILLED")
-    PARTIALLY_FULFILLED("PARTIALLY_FULFILLED"),
-
-    /**
      * Displayed as **Fulfilled**.
      */
     @SerializedName("FULFILLED")
     FULFILLED("FULFILLED"),
 
     /**
-     * Displayed as **Restocked**.
+     * Displayed as **In progress**.
      */
-    @SerializedName("RESTOCKED")
-    RESTOCKED("RESTOCKED"),
-
-    /**
-     * Displayed as **Pending fulfillment**.
-     */
-    @SerializedName("PENDING_FULFILLMENT")
-    PENDING_FULFILLMENT("PENDING_FULFILLMENT"),
+    @SerializedName("IN_PROGRESS")
+    IN_PROGRESS("IN_PROGRESS"),
 
     /**
      * Displayed as **Open**.
@@ -46,10 +28,28 @@ enum class OrderDisplayFulfillmentStatus(val value: String) {
     OPEN("OPEN"),
 
     /**
-     * Displayed as **In progress**.
+     * Displayed as **Partially fulfilled**.
      */
-    @SerializedName("IN_PROGRESS")
-    IN_PROGRESS("IN_PROGRESS"),
+    @SerializedName("PARTIALLY_FULFILLED")
+    PARTIALLY_FULFILLED("PARTIALLY_FULFILLED"),
+
+    /**
+     * Displayed as **Pending fulfillment**.
+     */
+    @SerializedName("PENDING_FULFILLMENT")
+    PENDING_FULFILLMENT("PENDING_FULFILLMENT"),
+
+    /**
+     * Displayed as **Restocked**.
+     */
+    @SerializedName("RESTOCKED")
+    RESTOCKED("RESTOCKED"),
+
+    /**
+     * Displayed as **Unfulfilled**.
+     */
+    @SerializedName("UNFULFILLED")
+    UNFULFILLED("UNFULFILLED"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 

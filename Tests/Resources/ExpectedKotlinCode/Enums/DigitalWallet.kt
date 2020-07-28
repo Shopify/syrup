@@ -10,16 +10,16 @@ import javax.annotation.Generated
 enum class DigitalWallet(val value: String) {
 
     /**
-     * Apple Pay.
-     */
-    @SerializedName("APPLE_PAY")
-    APPLE_PAY("APPLE_PAY"),
-
-    /**
      * Android Pay.
      */
     @SerializedName("ANDROID_PAY")
     ANDROID_PAY("ANDROID_PAY"),
+
+    /**
+     * Apple Pay.
+     */
+    @SerializedName("APPLE_PAY")
+    APPLE_PAY("APPLE_PAY"),
 
     /**
      * Google Pay.

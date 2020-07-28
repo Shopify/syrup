@@ -10,46 +10,16 @@ import javax.annotation.Generated
 enum class FulfillmentEventStatus(val value: String) {
 
     /**
-     * A shipping label has been purchased.
+     * A delivery was attempted.
      */
-    @SerializedName("LABEL_PURCHASED")
-    LABEL_PURCHASED("LABEL_PURCHASED"),
-
-    /**
-     * A purchased shipping label has been printed.
-     */
-    @SerializedName("LABEL_PRINTED")
-    LABEL_PRINTED("LABEL_PRINTED"),
-
-    /**
-     * The fulfillment is ready to be picked up.
-     */
-    @SerializedName("READY_FOR_PICKUP")
-    READY_FOR_PICKUP("READY_FOR_PICKUP"),
+    @SerializedName("ATTEMPTED_DELIVERY")
+    ATTEMPTED_DELIVERY("ATTEMPTED_DELIVERY"),
 
     /**
      * The fulfillment is confirmed.
      */
     @SerializedName("CONFIRMED")
     CONFIRMED("CONFIRMED"),
-
-    /**
-     * The fulfillment is in transit.
-     */
-    @SerializedName("IN_TRANSIT")
-    IN_TRANSIT("IN_TRANSIT"),
-
-    /**
-     * The fulfillment is out for delivery.
-     */
-    @SerializedName("OUT_FOR_DELIVERY")
-    OUT_FOR_DELIVERY("OUT_FOR_DELIVERY"),
-
-    /**
-     * A delivery was attempted.
-     */
-    @SerializedName("ATTEMPTED_DELIVERY")
-    ATTEMPTED_DELIVERY("ATTEMPTED_DELIVERY"),
 
     /**
      * The fulfillment was successfully delivered.
@@ -62,6 +32,36 @@ enum class FulfillmentEventStatus(val value: String) {
      */
     @SerializedName("FAILURE")
     FAILURE("FAILURE"),
+
+    /**
+     * The fulfillment is in transit.
+     */
+    @SerializedName("IN_TRANSIT")
+    IN_TRANSIT("IN_TRANSIT"),
+
+    /**
+     * A purchased shipping label has been printed.
+     */
+    @SerializedName("LABEL_PRINTED")
+    LABEL_PRINTED("LABEL_PRINTED"),
+
+    /**
+     * A shipping label has been purchased.
+     */
+    @SerializedName("LABEL_PURCHASED")
+    LABEL_PURCHASED("LABEL_PURCHASED"),
+
+    /**
+     * The fulfillment is out for delivery.
+     */
+    @SerializedName("OUT_FOR_DELIVERY")
+    OUT_FOR_DELIVERY("OUT_FOR_DELIVERY"),
+
+    /**
+     * The fulfillment is ready to be picked up.
+     */
+    @SerializedName("READY_FOR_PICKUP")
+    READY_FOR_PICKUP("READY_FOR_PICKUP"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 
