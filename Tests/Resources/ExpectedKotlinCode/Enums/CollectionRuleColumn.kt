@@ -10,6 +10,12 @@ import javax.annotation.Generated
 enum class CollectionRuleColumn(val value: String) {
 
     /**
+     * The `is_price_reduced` attribute.
+     */
+    @SerializedName("IS_PRICE_REDUCED")
+    IS_PRICE_REDUCED("IS_PRICE_REDUCED"),
+
+    /**
      * The `tag` attribute.
      */
     @SerializedName("TAG")
@@ -28,34 +34,10 @@ enum class CollectionRuleColumn(val value: String) {
     TYPE("TYPE"),
 
     /**
-     * The `vendor` attribute.
-     */
-    @SerializedName("VENDOR")
-    VENDOR("VENDOR"),
-
-    /**
-     * The `variant_price` attribute.
-     */
-    @SerializedName("VARIANT_PRICE")
-    VARIANT_PRICE("VARIANT_PRICE"),
-
-    /**
-     * The `is_price_reduced` attribute.
-     */
-    @SerializedName("IS_PRICE_REDUCED")
-    IS_PRICE_REDUCED("IS_PRICE_REDUCED"),
-
-    /**
      * The `variant_compare_at_price` attribute.
      */
     @SerializedName("VARIANT_COMPARE_AT_PRICE")
     VARIANT_COMPARE_AT_PRICE("VARIANT_COMPARE_AT_PRICE"),
-
-    /**
-     * The `variant_weight` attribute.
-     */
-    @SerializedName("VARIANT_WEIGHT")
-    VARIANT_WEIGHT("VARIANT_WEIGHT"),
 
     /**
      * The `variant_inventory` attribute.
@@ -64,10 +46,28 @@ enum class CollectionRuleColumn(val value: String) {
     VARIANT_INVENTORY("VARIANT_INVENTORY"),
 
     /**
+     * The `variant_price` attribute.
+     */
+    @SerializedName("VARIANT_PRICE")
+    VARIANT_PRICE("VARIANT_PRICE"),
+
+    /**
      * The `variant_title` attribute.
      */
     @SerializedName("VARIANT_TITLE")
     VARIANT_TITLE("VARIANT_TITLE"),
+
+    /**
+     * The `variant_weight` attribute.
+     */
+    @SerializedName("VARIANT_WEIGHT")
+    VARIANT_WEIGHT("VARIANT_WEIGHT"),
+
+    /**
+     * The `vendor` attribute.
+     */
+    @SerializedName("VENDOR")
+    VENDOR("VENDOR"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 

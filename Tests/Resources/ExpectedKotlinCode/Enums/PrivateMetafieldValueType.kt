@@ -12,12 +12,6 @@ enum class PrivateMetafieldValueType(val value: String) {
     /**
      * A private metafield value type.
      */
-    @SerializedName("STRING")
-    STRING("STRING"),
-
-    /**
-     * A private metafield value type.
-     */
     @SerializedName("INTEGER")
     INTEGER("INTEGER"),
 
@@ -26,6 +20,12 @@ enum class PrivateMetafieldValueType(val value: String) {
      */
     @SerializedName("JSON_STRING")
     JSON_STRING("JSON_STRING"),
+
+    /**
+     * A private metafield value type.
+     */
+    @SerializedName("STRING")
+    STRING("STRING"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 

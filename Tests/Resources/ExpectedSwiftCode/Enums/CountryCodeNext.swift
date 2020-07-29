@@ -3,486 +3,486 @@ import Foundation
 
 public extension MerchantApi {
 	enum CountryCode: String, Codable {
-		/// Afghanistan.
-			case af = "AF"
-		/// Aland Islands.
-			case ax = "AX"
-		/// Albania.
-			case al = "AL"
-		/// Algeria.
-			case dz = "DZ"
 		/// Andorra.
 			case ad = "AD"
-		/// Angola.
-			case ao = "AO"
-		/// Anguilla.
-			case ai = "AI"
+		/// United Arab Emirates.
+			case ae = "AE"
+		/// Afghanistan.
+			case af = "AF"
 		/// Antigua And Barbuda.
 			case ag = "AG"
-		/// Argentina.
-			case ar = "AR"
+		/// Anguilla.
+			case ai = "AI"
+		/// Albania.
+			case al = "AL"
 		/// Armenia.
 			case am = "AM"
-		/// Aruba.
-			case aw = "AW"
-		/// Australia.
-			case au = "AU"
+		/// Netherlands Antilles.
+			case an = "AN"
+		/// Angola.
+			case ao = "AO"
+		/// Argentina.
+			case ar = "AR"
 		/// Austria.
 			case at = "AT"
+		/// Australia.
+			case au = "AU"
+		/// Aruba.
+			case aw = "AW"
+		/// Aland Islands.
+			case ax = "AX"
 		/// Azerbaijan.
 			case az = "AZ"
-		/// Bahamas.
-			case bs = "BS"
-		/// Bahrain.
-			case bh = "BH"
-		/// Bangladesh.
-			case bd = "BD"
-		/// Barbados.
-			case bb = "BB"
-		/// Belarus.
-			case by = "BY"
-		/// Belgium.
-			case be = "BE"
-		/// Belize.
-			case bz = "BZ"
-		/// Benin.
-			case bj = "BJ"
-		/// Bermuda.
-			case bm = "BM"
-		/// Bhutan.
-			case bt = "BT"
-		/// Bolivia.
-			case bo = "BO"
 		/// Bosnia And Herzegovina.
 			case ba = "BA"
-		/// Botswana.
-			case bw = "BW"
-		/// Bouvet Island.
-			case bv = "BV"
-		/// Brazil.
-			case br = "BR"
-		/// British Indian Ocean Territory.
-			case io = "IO"
-		/// Brunei.
-			case bn = "BN"
-		/// Bulgaria.
-			case bg = "BG"
+		/// Barbados.
+			case bb = "BB"
+		/// Bangladesh.
+			case bd = "BD"
+		/// Belgium.
+			case be = "BE"
 		/// Burkina Faso.
 			case bf = "BF"
+		/// Bulgaria.
+			case bg = "BG"
+		/// Bahrain.
+			case bh = "BH"
 		/// Burundi.
 			case bi = "BI"
-		/// Cambodia.
-			case kh = "KH"
-		/// Canada.
-			case ca = "CA"
-		/// Cape Verde.
-			case cv = "CV"
+		/// Benin.
+			case bj = "BJ"
+		/// Saint Barthélemy.
+			case bl = "BL"
+		/// Bermuda.
+			case bm = "BM"
+		/// Brunei.
+			case bn = "BN"
+		/// Bolivia.
+			case bo = "BO"
 		/// Caribbean Netherlands.
 			case bq = "BQ"
-		/// Cayman Islands.
-			case ky = "KY"
-		/// Central African Republic.
-			case cf = "CF"
-		/// Chad.
-			case td = "TD"
-		/// Chile.
-			case cl = "CL"
-		/// China.
-			case cn = "CN"
-		/// Christmas Island.
-			case cx = "CX"
+		/// Brazil.
+			case br = "BR"
+		/// Bahamas.
+			case bs = "BS"
+		/// Bhutan.
+			case bt = "BT"
+		/// Bouvet Island.
+			case bv = "BV"
+		/// Botswana.
+			case bw = "BW"
+		/// Belarus.
+			case by = "BY"
+		/// Belize.
+			case bz = "BZ"
+		/// Canada.
+			case ca = "CA"
 		/// Cocos (Keeling) Islands.
 			case cc = "CC"
-		/// Colombia.
-			case co = "CO"
-		/// Comoros.
-			case km = "KM"
-		/// Congo.
-			case cg = "CG"
 		/// Congo, The Democratic Republic Of The.
 			case cd = "CD"
+		/// Central African Republic.
+			case cf = "CF"
+		/// Congo.
+			case cg = "CG"
+		/// Switzerland.
+			case ch = "CH"
+		/// Côte d'Ivoire.
+			case ci = "CI"
 		/// Cook Islands.
 			case ck = "CK"
+		/// Chile.
+			case cl = "CL"
+		/// Republic of Cameroon.
+			case cm = "CM"
+		/// China.
+			case cn = "CN"
+		/// Colombia.
+			case co = "CO"
 		/// Costa Rica.
 			case cr = "CR"
-		/// Croatia.
-			case hr = "HR"
 		/// Cuba.
 			case cu = "CU"
+		/// Cape Verde.
+			case cv = "CV"
 		/// Curaçao.
 			case cw = "CW"
+		/// Christmas Island.
+			case cx = "CX"
 		/// Cyprus.
 			case cy = "CY"
 		/// Czech Republic.
 			case cz = "CZ"
-		/// Côte d'Ivoire.
-			case ci = "CI"
-		/// Denmark.
-			case dk = "DK"
+		/// Germany.
+			case de = "DE"
 		/// Djibouti.
 			case dj = "DJ"
+		/// Denmark.
+			case dk = "DK"
 		/// Dominica.
 			case dm = "DM"
 		/// Dominican Republic.
 			case `do` = "DO"
+		/// Algeria.
+			case dz = "DZ"
 		/// Ecuador.
 			case ec = "EC"
-		/// Egypt.
-			case eg = "EG"
-		/// El Salvador.
-			case sv = "SV"
-		/// Equatorial Guinea.
-			case gq = "GQ"
-		/// Eritrea.
-			case er = "ER"
 		/// Estonia.
 			case ee = "EE"
-		/// Eswatini.
-			case sz = "SZ"
+		/// Egypt.
+			case eg = "EG"
+		/// Western Sahara.
+			case eh = "EH"
+		/// Eritrea.
+			case er = "ER"
+		/// Spain.
+			case es = "ES"
 		/// Ethiopia.
 			case et = "ET"
+		/// Finland.
+			case fi = "FI"
+		/// Fiji.
+			case fj = "FJ"
 		/// Falkland Islands (Malvinas).
 			case fk = "FK"
 		/// Faroe Islands.
 			case fo = "FO"
-		/// Fiji.
-			case fj = "FJ"
-		/// Finland.
-			case fi = "FI"
 		/// France.
 			case fr = "FR"
-		/// French Guiana.
-			case gf = "GF"
-		/// French Polynesia.
-			case pf = "PF"
-		/// French Southern Territories.
-			case tf = "TF"
 		/// Gabon.
 			case ga = "GA"
-		/// Gambia.
-			case gm = "GM"
+		/// United Kingdom.
+			case gb = "GB"
+		/// Grenada.
+			case gd = "GD"
 		/// Georgia.
 			case ge = "GE"
-		/// Germany.
-			case de = "DE"
+		/// French Guiana.
+			case gf = "GF"
+		/// Guernsey.
+			case gg = "GG"
 		/// Ghana.
 			case gh = "GH"
 		/// Gibraltar.
 			case gi = "GI"
-		/// Greece.
-			case gr = "GR"
 		/// Greenland.
 			case gl = "GL"
-		/// Grenada.
-			case gd = "GD"
-		/// Guadeloupe.
-			case gp = "GP"
-		/// Guatemala.
-			case gt = "GT"
-		/// Guernsey.
-			case gg = "GG"
+		/// Gambia.
+			case gm = "GM"
 		/// Guinea.
 			case gn = "GN"
+		/// Guadeloupe.
+			case gp = "GP"
+		/// Equatorial Guinea.
+			case gq = "GQ"
+		/// Greece.
+			case gr = "GR"
+		/// South Georgia And The South Sandwich Islands.
+			case gs = "GS"
+		/// Guatemala.
+			case gt = "GT"
 		/// Guinea Bissau.
 			case gw = "GW"
 		/// Guyana.
 			case gy = "GY"
-		/// Haiti.
-			case ht = "HT"
-		/// Heard Island And Mcdonald Islands.
-			case hm = "HM"
-		/// Holy See (Vatican City State).
-			case va = "VA"
-		/// Honduras.
-			case hn = "HN"
 		/// Hong Kong.
 			case hk = "HK"
+		/// Heard Island And Mcdonald Islands.
+			case hm = "HM"
+		/// Honduras.
+			case hn = "HN"
+		/// Croatia.
+			case hr = "HR"
+		/// Haiti.
+			case ht = "HT"
 		/// Hungary.
 			case hu = "HU"
-		/// Iceland.
-			case `is` = "IS"
-		/// India.
-			case `in` = "IN"
 		/// Indonesia.
 			case id = "ID"
-		/// Iran, Islamic Republic Of.
-			case ir = "IR"
-		/// Iraq.
-			case iq = "IQ"
 		/// Ireland.
 			case ie = "IE"
-		/// Isle Of Man.
-			case im = "IM"
 		/// Israel.
 			case il = "IL"
+		/// Isle Of Man.
+			case im = "IM"
+		/// India.
+			case `in` = "IN"
+		/// British Indian Ocean Territory.
+			case io = "IO"
+		/// Iraq.
+			case iq = "IQ"
+		/// Iran, Islamic Republic Of.
+			case ir = "IR"
+		/// Iceland.
+			case `is` = "IS"
 		/// Italy.
 			case it = "IT"
-		/// Jamaica.
-			case jm = "JM"
-		/// Japan.
-			case jp = "JP"
 		/// Jersey.
 			case je = "JE"
+		/// Jamaica.
+			case jm = "JM"
 		/// Jordan.
 			case jo = "JO"
-		/// Kazakhstan.
-			case kz = "KZ"
+		/// Japan.
+			case jp = "JP"
 		/// Kenya.
 			case ke = "KE"
-		/// Kiribati.
-			case ki = "KI"
-		/// Korea, Democratic People's Republic Of.
-			case kp = "KP"
-		/// Kosovo.
-			case xk = "XK"
-		/// Kuwait.
-			case kw = "KW"
 		/// Kyrgyzstan.
 			case kg = "KG"
+		/// Cambodia.
+			case kh = "KH"
+		/// Kiribati.
+			case ki = "KI"
+		/// Comoros.
+			case km = "KM"
+		/// Saint Kitts And Nevis.
+			case kn = "KN"
+		/// Korea, Democratic People's Republic Of.
+			case kp = "KP"
+		/// South Korea.
+			case kr = "KR"
+		/// Kuwait.
+			case kw = "KW"
+		/// Cayman Islands.
+			case ky = "KY"
+		/// Kazakhstan.
+			case kz = "KZ"
 		/// Lao People's Democratic Republic.
 			case la = "LA"
-		/// Latvia.
-			case lv = "LV"
 		/// Lebanon.
 			case lb = "LB"
-		/// Lesotho.
-			case ls = "LS"
-		/// Liberia.
-			case lr = "LR"
-		/// Libyan Arab Jamahiriya.
-			case ly = "LY"
+		/// Saint Lucia.
+			case lc = "LC"
 		/// Liechtenstein.
 			case li = "LI"
+		/// Sri Lanka.
+			case lk = "LK"
+		/// Liberia.
+			case lr = "LR"
+		/// Lesotho.
+			case ls = "LS"
 		/// Lithuania.
 			case lt = "LT"
 		/// Luxembourg.
 			case lu = "LU"
-		/// Macao.
-			case mo = "MO"
+		/// Latvia.
+			case lv = "LV"
+		/// Libyan Arab Jamahiriya.
+			case ly = "LY"
+		/// Morocco.
+			case ma = "MA"
+		/// Monaco.
+			case mc = "MC"
+		/// Moldova, Republic of.
+			case md = "MD"
+		/// Montenegro.
+			case me = "ME"
+		/// Saint Martin.
+			case mf = "MF"
 		/// Madagascar.
 			case mg = "MG"
-		/// Malawi.
-			case mw = "MW"
-		/// Malaysia.
-			case my = "MY"
-		/// Maldives.
-			case mv = "MV"
+		/// North Macedonia.
+			case mk = "MK"
 		/// Mali.
 			case ml = "ML"
-		/// Malta.
-			case mt = "MT"
+		/// Myanmar.
+			case mm = "MM"
+		/// Mongolia.
+			case mn = "MN"
+		/// Macao.
+			case mo = "MO"
 		/// Martinique.
 			case mq = "MQ"
 		/// Mauritania.
 			case mr = "MR"
-		/// Mauritius.
-			case mu = "MU"
-		/// Mayotte.
-			case yt = "YT"
-		/// Mexico.
-			case mx = "MX"
-		/// Moldova, Republic of.
-			case md = "MD"
-		/// Monaco.
-			case mc = "MC"
-		/// Mongolia.
-			case mn = "MN"
-		/// Montenegro.
-			case me = "ME"
 		/// Montserrat.
 			case ms = "MS"
-		/// Morocco.
-			case ma = "MA"
+		/// Malta.
+			case mt = "MT"
+		/// Mauritius.
+			case mu = "MU"
+		/// Maldives.
+			case mv = "MV"
+		/// Malawi.
+			case mw = "MW"
+		/// Mexico.
+			case mx = "MX"
+		/// Malaysia.
+			case my = "MY"
 		/// Mozambique.
 			case mz = "MZ"
-		/// Myanmar.
-			case mm = "MM"
 		/// Namibia.
 			case na = "NA"
-		/// Nauru.
-			case nr = "NR"
-		/// Nepal.
-			case np = "NP"
-		/// Netherlands.
-			case nl = "NL"
-		/// Netherlands Antilles.
-			case an = "AN"
 		/// New Caledonia.
 			case nc = "NC"
-		/// New Zealand.
-			case nz = "NZ"
-		/// Nicaragua.
-			case ni = "NI"
 		/// Niger.
 			case ne = "NE"
-		/// Nigeria.
-			case ng = "NG"
-		/// Niue.
-			case nu = "NU"
 		/// Norfolk Island.
 			case nf = "NF"
-		/// North Macedonia.
-			case mk = "MK"
+		/// Nigeria.
+			case ng = "NG"
+		/// Nicaragua.
+			case ni = "NI"
+		/// Netherlands.
+			case nl = "NL"
 		/// Norway.
 			case no = "NO"
+		/// Nepal.
+			case np = "NP"
+		/// Nauru.
+			case nr = "NR"
+		/// Niue.
+			case nu = "NU"
+		/// New Zealand.
+			case nz = "NZ"
 		/// Oman.
 			case om = "OM"
-		/// Pakistan.
-			case pk = "PK"
-		/// Palestinian Territory, Occupied.
-			case ps = "PS"
 		/// Panama.
 			case pa = "PA"
-		/// Papua New Guinea.
-			case pg = "PG"
-		/// Paraguay.
-			case py = "PY"
 		/// Peru.
 			case pe = "PE"
+		/// French Polynesia.
+			case pf = "PF"
+		/// Papua New Guinea.
+			case pg = "PG"
 		/// Philippines.
 			case ph = "PH"
-		/// Pitcairn.
-			case pn = "PN"
+		/// Pakistan.
+			case pk = "PK"
 		/// Poland.
 			case pl = "PL"
+		/// Saint Pierre And Miquelon.
+			case pm = "PM"
+		/// Pitcairn.
+			case pn = "PN"
+		/// Palestinian Territory, Occupied.
+			case ps = "PS"
 		/// Portugal.
 			case pt = "PT"
+		/// Paraguay.
+			case py = "PY"
 		/// Qatar.
 			case qa = "QA"
-		/// Republic of Cameroon.
-			case cm = "CM"
 		/// Reunion.
 			case re = "RE"
 		/// Romania.
 			case ro = "RO"
+		/// Serbia.
+			case rs = "RS"
 		/// Russia.
 			case ru = "RU"
 		/// Rwanda.
 			case rw = "RW"
-		/// Saint Barthélemy.
-			case bl = "BL"
-		/// Saint Helena.
-			case sh = "SH"
-		/// Saint Kitts And Nevis.
-			case kn = "KN"
-		/// Saint Lucia.
-			case lc = "LC"
-		/// Saint Martin.
-			case mf = "MF"
-		/// Saint Pierre And Miquelon.
-			case pm = "PM"
-		/// Samoa.
-			case ws = "WS"
-		/// San Marino.
-			case sm = "SM"
-		/// Sao Tome And Principe.
-			case st = "ST"
 		/// Saudi Arabia.
 			case sa = "SA"
-		/// Senegal.
-			case sn = "SN"
-		/// Serbia.
-			case rs = "RS"
-		/// Seychelles.
-			case sc = "SC"
-		/// Sierra Leone.
-			case sl = "SL"
-		/// Singapore.
-			case sg = "SG"
-		/// Sint Maarten.
-			case sx = "SX"
-		/// Slovakia.
-			case sk = "SK"
-		/// Slovenia.
-			case si = "SI"
 		/// Solomon Islands.
 			case sb = "SB"
-		/// Somalia.
-			case so = "SO"
-		/// South Africa.
-			case za = "ZA"
-		/// South Georgia And The South Sandwich Islands.
-			case gs = "GS"
-		/// South Korea.
-			case kr = "KR"
-		/// South Sudan.
-			case ss = "SS"
-		/// Spain.
-			case es = "ES"
-		/// Sri Lanka.
-			case lk = "LK"
-		/// St. Vincent.
-			case vc = "VC"
+		/// Seychelles.
+			case sc = "SC"
 		/// Sudan.
 			case sd = "SD"
-		/// Suriname.
-			case sr = "SR"
-		/// Svalbard And Jan Mayen.
-			case sj = "SJ"
 		/// Sweden.
 			case se = "SE"
-		/// Switzerland.
-			case ch = "CH"
+		/// Singapore.
+			case sg = "SG"
+		/// Saint Helena.
+			case sh = "SH"
+		/// Slovenia.
+			case si = "SI"
+		/// Svalbard And Jan Mayen.
+			case sj = "SJ"
+		/// Slovakia.
+			case sk = "SK"
+		/// Sierra Leone.
+			case sl = "SL"
+		/// San Marino.
+			case sm = "SM"
+		/// Senegal.
+			case sn = "SN"
+		/// Somalia.
+			case so = "SO"
+		/// Suriname.
+			case sr = "SR"
+		/// South Sudan.
+			case ss = "SS"
+		/// Sao Tome And Principe.
+			case st = "ST"
+		/// El Salvador.
+			case sv = "SV"
+		/// Sint Maarten.
+			case sx = "SX"
 		/// Syria.
 			case sy = "SY"
-		/// Taiwan.
-			case tw = "TW"
-		/// Tajikistan.
-			case tj = "TJ"
-		/// Tanzania, United Republic Of.
-			case tz = "TZ"
-		/// Thailand.
-			case th = "TH"
-		/// Timor Leste.
-			case tl = "TL"
-		/// Togo.
-			case tg = "TG"
-		/// Tokelau.
-			case tk = "TK"
-		/// Tonga.
-			case to = "TO"
-		/// Trinidad and Tobago.
-			case tt = "TT"
-		/// Tunisia.
-			case tn = "TN"
-		/// Turkey.
-			case tr = "TR"
-		/// Turkmenistan.
-			case tm = "TM"
+		/// Eswatini.
+			case sz = "SZ"
 		/// Turks and Caicos Islands.
 			case tc = "TC"
+		/// Chad.
+			case td = "TD"
+		/// French Southern Territories.
+			case tf = "TF"
+		/// Togo.
+			case tg = "TG"
+		/// Thailand.
+			case th = "TH"
+		/// Tajikistan.
+			case tj = "TJ"
+		/// Tokelau.
+			case tk = "TK"
+		/// Timor Leste.
+			case tl = "TL"
+		/// Turkmenistan.
+			case tm = "TM"
+		/// Tunisia.
+			case tn = "TN"
+		/// Tonga.
+			case to = "TO"
+		/// Turkey.
+			case tr = "TR"
+		/// Trinidad and Tobago.
+			case tt = "TT"
 		/// Tuvalu.
 			case tv = "TV"
-		/// Uganda.
-			case ug = "UG"
+		/// Taiwan.
+			case tw = "TW"
+		/// Tanzania, United Republic Of.
+			case tz = "TZ"
 		/// Ukraine.
 			case ua = "UA"
-		/// United Arab Emirates.
-			case ae = "AE"
-		/// United Kingdom.
-			case gb = "GB"
-		/// United States.
-			case us = "US"
+		/// Uganda.
+			case ug = "UG"
 		/// United States Minor Outlying Islands.
 			case um = "UM"
+		/// United States.
+			case us = "US"
 		/// Uruguay.
 			case uy = "UY"
 		/// Uzbekistan.
 			case uz = "UZ"
-		/// Vanuatu.
-			case vu = "VU"
+		/// Holy See (Vatican City State).
+			case va = "VA"
+		/// St. Vincent.
+			case vc = "VC"
 		/// Venezuela.
 			case ve = "VE"
-		/// Vietnam.
-			case vn = "VN"
 		/// Virgin Islands, British.
 			case vg = "VG"
+		/// Vietnam.
+			case vn = "VN"
+		/// Vanuatu.
+			case vu = "VU"
 		/// Wallis And Futuna.
 			case wf = "WF"
-		/// Western Sahara.
-			case eh = "EH"
+		/// Samoa.
+			case ws = "WS"
+		/// Kosovo.
+			case xk = "XK"
 		/// Yemen.
 			case ye = "YE"
+		/// Mayotte.
+			case yt = "YT"
+		/// South Africa.
+			case za = "ZA"
 		/// Zambia.
 			case zm = "ZM"
 		/// Zimbabwe.
