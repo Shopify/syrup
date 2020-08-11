@@ -99,6 +99,12 @@ final class SwiftRenderer: Renderer {
 		renderedMutation += try renderQuerySelections(mutationSelections, enabled: config.project.generateSelections)
 		return renderedMutation
 	}
+    
+	override func renderSubscription(subscription: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, subscriptionSelections: SelectionSetVisitor.Operation) throws -> String {
+		var renderedSubscription = try super.renderSubscription(subscription: subscription, intermediateRepresentation: intermediateRepresentation, subscriptionSelections: subscriptionSelections)
+		renderedSubscription += try renderQuerySelections(subscriptionSelections, enabled: config.project.generateSelections)
+		return renderedSubscription
+	}
 	
 	func renderCustomScalarResolver(customScalars: [IntermediateRepresentation.CustomCodedScalar]) throws -> String {
 		let context: [String: Any] = [
@@ -148,6 +154,8 @@ final class SwiftRenderer: Renderer {
 			operationSuffix = "Query"
 		case .mutation:
 			operationSuffix = "Mutation"
+		case .subscription:
+			operationSuffix = "Subscription"
 		}
 		let context: [String: Any] = ["operation": operation, "suffix": operationSuffix, "enabled": enabled]
 		return try render(template: "OperationSelections", context: context)

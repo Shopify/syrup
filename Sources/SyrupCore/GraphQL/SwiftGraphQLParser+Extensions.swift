@@ -25,7 +25,7 @@
 import Foundation
 import SwiftGraphQLParser
 
-func parse(queries: [String], mutations: [String], fragments: [String]) throws -> Document {
-	let graphQLString = [fragments, queries, mutations].flatMap { $0 }.joined(separator: " ")
+func parse(queries: [String], mutations: [String], fragments: [String], subscriptions: [String]) throws -> Document {
+	let graphQLString = [fragments, queries, mutations, subscriptions].flatMap { $0 }.joined(separator: " ")
 	return try parse(graphQLString)
 }

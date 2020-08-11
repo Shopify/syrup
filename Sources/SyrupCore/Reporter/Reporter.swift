@@ -59,7 +59,8 @@ public final class Reporter {
 				builtInScalars: config.template.specification.builtInScalars,
 				queries: opsVisitor.queries,
 				mutations: opsVisitor.mutations,
-				fragments: opsVisitor.fragments
+				fragments: opsVisitor.fragments,
+				subscriptions: opsVisitor.subscriptions
 		)
 
 		let irTraverser = GraphQLTraverser(document: document, with: irVisitor)
