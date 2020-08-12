@@ -30,7 +30,7 @@ struct TemplateInput: ParsableArguments {
 	@Argument(help: "Name of the template to use. This will be resolved against the templatePath")
 	var templateName: String
 	
-	@Option(help: "Overrides the default search path for templates.", transform: Folder.init(path:))
+	@Option(help: "Overrides the default search path for templates.", completion: .directory, transform: Folder.init(path:))
 	var templatePath: Folder?
 	
 	var resolvedTemplateFolder: Folder? {

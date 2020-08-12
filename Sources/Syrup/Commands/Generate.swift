@@ -40,10 +40,16 @@ struct Generate: ParsableCommand {
 	var templateInput: TemplateInput
 	
 	@Flag(help: "Verbose output, reports on duplicates, etc.")
-	var verbose: Bool
+	var verbose = false
 	
 	func run() throws {
-		let project = try YAMLDecoder().decode(ProjectSpec.self, from: input.project.file.url, userInfo: [:])
+		let project: ProjectSpec
+		if let projectURL = input.project?.file.url {
+			project = try YAMLDecoder().decode(ProjectSpec.self, from: projectURL, userInfo: [:])
+		} else {
+			project = ProjectSpec(moduleName: input.workingDirectory.nameExcludingExtension)
+		}
+		
 		let scalars: ScalarSpec
 		if let scalarsFile = input.scalars {
 			scalars = try YAMLDecoder().decode(ScalarSpec.self, from: scalarsFile.url, userInfo: [:])

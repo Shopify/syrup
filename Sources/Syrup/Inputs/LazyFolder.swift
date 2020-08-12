@@ -24,6 +24,7 @@
 
 import Foundation
 import Files
+import ArgumentParser
 
 /// Provides a means to have either a folder that is provided, or, when not provided, a default one is created.
 struct LazyFolder: CustomStringConvertible {
@@ -63,4 +64,12 @@ struct LazyFolder: CustomStringConvertible {
 			return "\(value)"
 		}
 	}
+}
+
+extension LazyFolder: ExpressibleByArgument {
+	init?(argument: String) {
+		try? self.init(string: argument)
+	}
+	
+	static let defaultCompletionKind: CompletionKind = .directory
 }

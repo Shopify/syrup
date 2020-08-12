@@ -27,23 +27,23 @@ import ArgumentParser
 import Files
 
 struct Output: ParsableArguments {
-	@Flag<Bool>(default: true, inversion: .prefixedEnableDisable, help: "")
-	var generateModels: Bool
+	@Flag<Bool>(inversion: .prefixedEnableDisable, help: "")
+	var generateModels = true
 	
 	@Option<LazyFolder>(
-		default: LazyFolder(root: Folder.current, name: "Models"),
 		help: "This provides the path to the folder where the generated code should be written to.",
+		completion: .directory,
 		transform: LazyFolder.init(string:)
 	)
-	var destination: LazyFolder
+	var destination = LazyFolder(root: Folder.current, name: "Models")
 	
 	@Option<LazyFolder>(
-		default: LazyFolder(root: Folder.current, name: "Support"),
 		help: "This provides the path to the folder where the necessary support files should be written to.",
+		completion: .directory,
 		transform: LazyFolder.init(string:)
 	)
-	var supportFilesDestination: LazyFolder
+	var supportFilesDestination = LazyFolder(root: Folder.current, name: "Support")
 	
-	@Flag<Bool>(default: true, inversion: .prefixedEnableDisable, help: "")
-	var generateSupport: Bool
+	@Flag<Bool>(inversion: .prefixedEnableDisable, help: "")
+	var generateSupport = true
 }

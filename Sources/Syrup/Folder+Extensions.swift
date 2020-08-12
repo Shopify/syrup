@@ -24,6 +24,7 @@
 
 import Foundation
 import Files
+import ArgumentParser
 
 #if DEBUG
 extension Folder {
@@ -39,3 +40,11 @@ extension Folder {
 	}
 }
 #endif
+
+extension Folder: ExpressibleByArgument {
+	public init?(argument: String) {
+		try? self.init(path: argument)
+	}
+	
+	public static let defaultCompletionKind: CompletionKind = .directory
+}

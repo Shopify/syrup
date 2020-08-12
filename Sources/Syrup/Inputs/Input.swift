@@ -52,19 +52,21 @@ struct Input: ParsableArguments {
 		}
 	}
 	
-	@Option<File?>(help: "YAML configuration file that describes type mapping of GraphQL scalar to native types.", transform: File.init(path:))
+	@Option<File?>(help: "YAML configuration file that describes type mapping of GraphQL scalar to native types.", completion: .file(extensions: ["yaml", "yml"]), transform: File.init(path:))
 	var scalars: File?
 	
-	@Option<SyrupFile>(default: SyrupFile(), help: "YAML project configuration file.", transform: SyrupFile.init(path:))
-	var project: SyrupFile
+	@Option<SyrupFile?>(help: "YAML project configuration file.", completion: .file(extensions: ["yaml", "yml"]), transform: SyrupFile.init(path:))
+	var project: SyrupFile?
 	
 	@Option<LazyFolder>(
-		default: LazyFolder(root: Folder.current, name: "GraphQL"),
 		help: "This provides the path to the folder containing all of your graphql operation definitions. These files are expected to have the .graphql suffix and should be valid graphql operations.",
+		completion: .directory,
 		transform: LazyFolder.init(string:)
 	)
-	var queries: LazyFolder
+	var queries = LazyFolder(root: Folder.current, name: "GraphQL")
 	
 	@Option<URL>(help: "Location of the GraphQL schema. Can either be a HTTPS URL or a path to a file on disk.", transform: { try $0.toURL() })
 	var schema: URL
+	
+	var workingDirectory: Folder { return Folder.current }
 }
