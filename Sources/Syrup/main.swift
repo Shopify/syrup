@@ -28,7 +28,7 @@ import Files
 var additionalArgs: [String] = []
 #if DEBUG
 if let folder = Folder.swiftPackage,
-	let testArgs = try? folder.file(named: "Test.env").readAsString() {
+	let testArgs = try? folder.file(named: "Test.commands").readAsString() {
 	var lines = testArgs.components(separatedBy: .newlines).filter { !$0.starts(with: "#") }
 	if let firstLine = lines.first {
 		if let folder = try? Folder(path: firstLine) {

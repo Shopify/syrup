@@ -63,7 +63,7 @@ struct Generate: ParsableCommand {
 			schema: input.schema,
 			shouldGenerateModels: output.generateModels,
 			shouldGenerateSupportFiles: output.generateSupport,
-			queries: try input.queries.resolve().path,
+			queries: try input.operations.resolve().path,
 			destination: try output.destination.resolve().path,
 			supportFilesDestination: try output.supportFilesDestination.resolve().path,
 			template: template,

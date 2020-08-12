@@ -63,9 +63,9 @@ struct Input: ParsableArguments {
 		completion: .directory,
 		transform: LazyFolder.init(string:)
 	)
-	var queries = LazyFolder(root: Folder.current, name: "GraphQL")
+	var operations = LazyFolder(root: Folder.current, name: "GraphQL")
 	
-	@Option<URL>(help: "Location of the GraphQL schema. Can either be a HTTPS URL or a path to a file on disk.", transform: { try $0.toURL() })
+	@Option<URL>(help: ArgumentHelp("Location of the GraphQL schema. Can either be a HTTPS URL or a path to a file on disk.", discussion: "The input provided here should be the result of the introspection query."), transform: { try $0.toURL() })
 	var schema: URL
 	
 	var workingDirectory: Folder { return Folder.current }

@@ -84,4 +84,4 @@ Generated/*
 .gradle/
 local.properties
 
-/Test.env
+/Test.commands
