@@ -45,8 +45,8 @@ public final class Generator {
 				return "\(result)\n\(operation)"
 			}
 			let operations = try Generator.parseOperations(graphQLString: graphQLString)
-			let selectionSets = try generateSelectionSets(schema: schema, queries: operations.queries, mutations: operations.mutations, fragments: operations.fragments)
-			let ir = try generateIntermediateRepresentation(schema: schema, customScalars: config.schema.customScalars, queries: operations.queries, mutations: operations.mutations, fragments: operations.fragments)
+			let selectionSets = try generateSelectionSets(schema: schema, queries: operations.queries, mutations: operations.mutations, fragments: operations.fragments, subscriptions: operations.subscriptions)
+			let ir = try generateIntermediateRepresentation(schema: schema, customScalars: config.schema.customScalars, queries: operations.queries, mutations: operations.mutations, fragments: operations.fragments, subscriptions: operations.subscriptions)
 			let generatedFiles: [File]
 			switch config.template.specification.language {
 			case .swift:
@@ -89,6 +89,7 @@ public final class Generator {
 		case response
 		case fragment
 		case mutation
+		case subscription
 		case input
 		case `enum`
 
@@ -102,6 +103,8 @@ public final class Generator {
 				return "Fragments"
 			case .mutation:
 				return "Mutations"
+			case .subscription:
+				return "Subscriptions"
 			case .input:
 				return "Inputs"
 			case .enum:
@@ -117,6 +120,8 @@ public final class Generator {
 				return "Response"
 			case .mutation:
 				return "Mutation"
+			case .subscription:
+				return "Subscription"
 			case .fragment, .input, .enum:
 				return ""
 			}
@@ -142,26 +147,26 @@ public final class Generator {
 		}
 	}
 
-	public static func parseOperations(graphQLString: String) throws -> (queries: [String: String], mutations: [String: String], fragments: [String: String]) {
+	public static func parseOperations(graphQLString: String) throws -> (queries: [String: String], mutations: [String: String], fragments: [String: String], subscriptions: [String: String]) {
 		print("Parsing .graphql files")
 		let visitor = OperationVisitor()
 		let document = try parse(graphQLString)
 		let traverser = GraphQLTraverser(document: document, with: visitor)
 		try traverser.traverse()
-		return (visitor.queries, visitor.mutations, visitor.fragments)
+		return (visitor.queries, visitor.mutations, visitor.fragments, visitor.subscriptions)
 	}
 
-	func generateIntermediateRepresentation(schema: Schema, customScalars: [ScalarType], queries: [String: String], mutations: [String: String], fragments: [String: String]) throws -> IntermediateRepresentation {
-		let visitor = IntermediateRepresentationVisitor(schema: schema, customScalars: customScalars, builtInScalars: config.template.specification.builtInScalars, queries: queries, mutations: mutations, fragments: fragments)
-		let document = try parse(queries: queries.map { $0.value }, mutations: mutations.map { $0.value }, fragments: fragments.map { $0.value })
+	func generateIntermediateRepresentation(schema: Schema, customScalars: [ScalarType], queries: [String: String], mutations: [String: String], fragments: [String: String], subscriptions: [String: String]) throws -> IntermediateRepresentation {
+		let visitor = IntermediateRepresentationVisitor(schema: schema, customScalars: customScalars, builtInScalars: config.template.specification.builtInScalars, queries: queries, mutations: mutations, fragments: fragments, subscriptions: subscriptions)
+		let document = try parse(queries: queries.map { $0.value }, mutations: mutations.map { $0.value }, fragments: fragments.map { $0.value }, subscriptions: subscriptions.map { $0.value })
 		let traverser = GraphQLTraverser(document: document, with: visitor)
 		try traverser.traverse()
 		return visitor.intermediateRepresentation
 	}
 
-	func generateSelectionSets(schema: Schema, queries: [String: String], mutations: [String: String], fragments: [String: String]) throws -> SelectionSetVisitor.Results {
+	func generateSelectionSets(schema: Schema, queries: [String: String], mutations: [String: String], fragments: [String: String], subscriptions: [String: String]) throws -> SelectionSetVisitor.Results {
 		let visitor = SelectionSetVisitor(schema: schema)
-		let document = try parse(queries: queries.map { $0.value }, mutations: mutations.map { $0.value }, fragments: fragments.map { $0.value })
+		let document = try parse(queries: queries.map { $0.value }, mutations: mutations.map { $0.value }, fragments: fragments.map { $0.value }, subscriptions: subscriptions.map { $0.value })
 		let traverser = GraphQLTraverser(document: document, with: visitor)
 		try traverser.traverse()
 		return visitor.results
@@ -229,6 +234,14 @@ public final class Generator {
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.fragmentDefinitions }, fileType: .fragment, renderer: { (ir) -> [String] in
 				return try renderer.renderFragmentDefinitions(intermediateRepresentation: ir, selectionSets: selectionSets)
+			})
+		}
+        
+		concurrentPerform {
+			let renderer = KotlinRenderer(config: self.config)
+			
+			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.subscriptions }, fileType: .subscription, renderer: { (ir) -> [String] in
+				return try renderer.renderSubscriptions(intermediateRepresentation: ir, selectionSets: selectionSets)
 			})
 		}
 		
@@ -310,6 +323,14 @@ public final class Generator {
 			let renderer = SwiftRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations }, fileType: .response, renderer: renderer.renderResponseTypes)
+		}
+        
+		concurrentPerform {
+			let renderer = SwiftRenderer(config: self.config)
+			
+			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.subscriptions }, fileType: .subscription, renderer: { (ir) -> [String] in
+				return try renderer.renderSubscriptions(intermediateRepresentation: ir, selectionSets: selectionSets)
+			})
 		}
 		
 		concurrentPerform {

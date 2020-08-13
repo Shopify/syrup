@@ -127,6 +127,36 @@ open class Renderer {
 		]
 		return try render(template: "Operation", asFile: true, context: context)
 	}
+    
+    func renderSubscriptions(intermediateRepresentation: IntermediateRepresentation, selectionSets: SelectionSetVisitor.Results) throws -> [String] {
+        var rendered: [String] = []
+        for subscription in intermediateRepresentation.operations.subscriptions {
+            rendered.append(try renderSubscription(subscription: subscription, intermediateRepresentation: intermediateRepresentation, subscriptionSelections: selectionSets.operation(named: subscription.name)))
+        }
+        return rendered
+    }
+    
+    func renderSubscription(subscription: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, subscriptionSelections: SelectionSetVisitor.Operation) throws -> String {
+        let name = "\(subscription.name)Subscription"
+        let queryString = intermediateRepresentation.fullQueryString(for: subscription).removingLeadingSpaces.removingNewLines
+        let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
+        let importInputs = intermediateRepresentation.referencedInputTypes.isEmpty == false
+        let importFragments = intermediateRepresentation.fragmentDefinitions.isEmpty == false
+        let requiresCustomEncoder = subscription.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar })
+        let context: [String: Any] = [
+            "name": name,
+            "operation": subscription,
+            "queryString": queryString,
+            "moduleName": config.project.moduleName,
+            "isQuery": true,
+            "importEnums": importEnums,
+            "importInputs": importInputs,
+            "importFragments": importFragments,
+            "requiresCustomEncoder": requiresCustomEncoder,
+            "selections": subscriptionSelections.selectionSet
+        ]
+        return try render(template: "Operation", asFile: true, context: context)
+    }
 
 	func renderEnumTypes(intermediateRepresentation: IntermediateRepresentation) throws -> [String] {
 		var rendered: [String] = []
