@@ -31,7 +31,7 @@ struct Input: ParsableArguments {
 	/// Main reason for this to exist is to provide a nicer output for the default value when looking at the commands help output.
 	struct SyrupFile: CustomStringConvertible {
 		private static var defaultSyrupFile: File? {
-			return [".syrup.yml", "syrup.yml"].compactMap {
+			return [".syrup.yml", ".syrup.yaml", "syrup.yml", "syrup.yaml"].compactMap {
 				try? Folder.current.file(at: $0)
 			}.first
 		}

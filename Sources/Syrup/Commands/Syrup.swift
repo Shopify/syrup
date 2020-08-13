@@ -27,8 +27,8 @@ import ArgumentParser
 
 struct Syrup: ParsableCommand {
 	static var configuration = CommandConfiguration(
-		abstract: "Deal with your localized string resources.",
-		version: "1.0",
+		abstract: "",
+		version: "0.11.0",
 		subcommands: [
 			Generate.self,
 		],
