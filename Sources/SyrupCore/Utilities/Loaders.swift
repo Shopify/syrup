@@ -23,6 +23,9 @@
  */
 
 import Foundation
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 func loadSchema(location: URL) throws -> Schema {
 	let schemaData: Data
