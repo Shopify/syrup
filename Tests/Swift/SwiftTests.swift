@@ -41,13 +41,12 @@ class SwiftTests: XCTestCase {
 		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectURL, userInfo: [:])
 		let scalarsURL = testResourcesURL.appendingPathComponent("Shopify-\(language).yml")
 		let scalars = try YAMLDecoder().decode(ScalarSpec.self, from: scalarsURL, userInfo: [:])
-		//schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
 		
 		let templateURL = baseURL.appendingPathComponent("../../Templates/\(language)", isDirectory: true)
 		let template = try TemplateSpec(location: templateURL.path)
 		
 		let config = SyrupCore.Config(
-			schema: try "https://".toURL(),
+			schema: testResourcesURL.appendingPathComponent("Shopify-Schema.json"),
 			shouldGenerateModels: true,
 			shouldGenerateSupportFiles: true,
 			queries: queries,

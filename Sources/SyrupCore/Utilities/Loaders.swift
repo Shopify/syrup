@@ -26,7 +26,7 @@ import Foundation
 
 func loadSchema(location: URL) throws -> Schema {
 	let schemaData: Data
-	if location.scheme == nil && location.host == nil {
+	if (location.scheme == nil && location.host == nil) || location.isFileURL {
 		print("Loading schema: \u{001B}[96m./\(location)\u{001B}[0m")
 		schemaData = try Data(contentsOf: location)
 	} else {
