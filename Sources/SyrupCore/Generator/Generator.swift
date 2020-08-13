@@ -34,7 +34,7 @@ public final class Generator {
 	}
 	
 	public func generate() throws {
-		let schema = try loadSchema(location: config.schema.location)
+		let schema = try loadSchema(location: config.schema)
 		if config.shouldGenerateModels {
 			print("Generating models")
 			try Folder.root.createSubfolderIfNeeded(at: config.destination)
@@ -46,17 +46,13 @@ public final class Generator {
 			}
 			let operations = try Generator.parseOperations(graphQLString: graphQLString)
 			let selectionSets = try generateSelectionSets(schema: schema, queries: operations.queries, mutations: operations.mutations, fragments: operations.fragments)
-			let ir = try generateIntermediateRepresentation(schema: schema, customScalars: config.schema.customScalars, queries: operations.queries, mutations: operations.mutations, fragments: operations.fragments)
+			let ir = try generateIntermediateRepresentation(schema: schema, customScalars: config.scalars.customScalars, queries: operations.queries, mutations: operations.mutations, fragments: operations.fragments)
 			let generatedFiles: [File]
 			switch config.template.specification.language {
 			case .swift:
 				generatedFiles = try renderGeneratedSwiftModels(intermediateRepresentation: ir, selectionSets: selectionSets)
 			case .kotlin:
 				generatedFiles = try renderGeneratedKotlinModels(intermediateRepresentation: ir, selectionSets: selectionSets)
-			}
-
-			if config.deprecationReport != nil {
-				try Reporter(config: config).process(ir: ir)
 			}
 
 			print("Successfully wrote generated models to \(config.destination)")
@@ -327,7 +323,7 @@ public final class Generator {
 		concurrentPerform {
 			let renderer = SwiftRenderer(config: self.config)
 			let generatedFilesFolder = try Folder.root.createSubfolderIfNeeded(at: self.config.destination)
-			let customCodedScalars = self.config.schema.customScalars.compactMap { $0 as? IntermediateRepresentation.CustomCodedScalar }
+			let customCodedScalars = self.config.scalars.customScalars.compactMap { $0 as? IntermediateRepresentation.CustomCodedScalar }
 			if customCodedScalars.isEmpty == false {
 				let file = try generatedFilesFolder.createFile(named: "CustomScalarResolver.\(self.config.template.specification.extension)")
 				let rendered = try renderer.renderCustomScalarResolver(customScalars: customCodedScalars)
@@ -342,7 +338,7 @@ public final class Generator {
 			let generatedFilesFolder = try Folder.root.createSubfolderIfNeeded(at: self.config.destination)
 			let file = try generatedFilesFolder.createFile(named: "\(self.config.project.moduleName).\(self.config.template.specification.extension)")
 			
-			let rendered = try renderer.renderModuleDefinition(moduleName: self.config.project.moduleName, hasCustomCodedScalars: !self.config.schema.customScalars.isEmpty)
+			let rendered = try renderer.renderModuleDefinition(moduleName: self.config.project.moduleName, hasCustomCodedScalars: !self.config.scalars.customScalars.isEmpty)
 			try file.write(rendered)
 			return [file]
 		}

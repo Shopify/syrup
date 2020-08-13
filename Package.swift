@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 
 import PackageDescription
 
@@ -18,41 +18,25 @@ let package = Package(
 		)
 	],
 	dependencies: [
-		.package(
-			url: "https://github.com/stencilproject/Stencil.git",
-			.exact("0.13.0")
-		),
-		.package(
-			url: "https://github.com/JohnSundell/files",
-			from: "4.0.2"
-		),
-		.package(
-			url: "https://github.com/jpsim/Yams.git",
-			from: "2.0.0"
-		),
-		.package(
-			url: "https://github.com/apple/swift-package-manager.git",
-			.exact("0.3.0")
-		),
-		.package(
-			url: "https://github.com/Shopify/SwiftGraphQLParser",
-			from: "0.1.7"
-		)
+		.package(url: "https://github.com/stencilproject/Stencil.git", .exact("0.13.0")),
+		.package(url: "https://github.com/JohnSundell/Files.git", from: "4.0.2"),
+		.package(url: "https://github.com/jpsim/Yams.git", from: "2.0.0"),
+		.package(url: "https://github.com/apple/swift-argument-parser.git", from: "0.2.2"),
+		.package(url: "https://github.com/Shopify/SwiftGraphQLParser.git", from: "0.1.7")
 	],
 	targets: [
 		.target(
 			name: "Syrup",
-			dependencies: ["SyrupCore", "Utility"]
+			dependencies: ["SyrupCore", .product(name: "ArgumentParser", package: "swift-argument-parser")]
 		),
 		.target(
 			name: "SyrupCore",
-			dependencies: ["Stencil", "Files", "Yams", "Utility", "SwiftGraphQLParser"]
+			dependencies: ["Stencil", "Files", "Yams", "SwiftGraphQLParser"]
 		),
 		.testTarget(
 			name: "SyrupTests",
 			dependencies: ["Syrup"],
 			path: "Tests/Swift"
 		)
-	],
-	swiftLanguageVersions: [.version("5")]
+	]
 )

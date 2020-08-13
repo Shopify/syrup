@@ -37,16 +37,16 @@ class SwiftTests: XCTestCase {
 		let destination = destinationURL.path
 		let supportFilesDestination = destination
 		
-		let projectUrl = testResourcesURL.appendingPathComponent("Shopify-\(language).yml")
-		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
-		let schemaUrl = testResourcesURL.appendingPathComponent("Shopify-\(language).yml")
-		var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
-		schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
+		let projectURL = testResourcesURL.appendingPathComponent("Shopify-\(language).yml")
+		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectURL, userInfo: [:])
+		let scalarsURL = testResourcesURL.appendingPathComponent("Shopify-\(language).yml")
+		let scalars = try YAMLDecoder().decode(ScalarSpec.self, from: scalarsURL, userInfo: [:])
 		
 		let templateURL = baseURL.appendingPathComponent("../../Templates/\(language)", isDirectory: true)
 		let template = try TemplateSpec(location: templateURL.path)
 		
 		let config = SyrupCore.Config(
+			schema: testResourcesURL.appendingPathComponent("Shopify-Schema.json"),
 			shouldGenerateModels: true,
 			shouldGenerateSupportFiles: true,
 			queries: queries,
@@ -54,10 +54,8 @@ class SwiftTests: XCTestCase {
 			supportFilesDestination: supportFilesDestination,
 			template: template,
 			project: project,
-			schema: schema,
-			verbose: false,
-			outputReportFilePath: nil,
-			shouldOverwriteReport: false
+			scalars: scalars,
+			verbose: false
 		)
 		let generator = Generator(config: config)
 		try generator.generate()

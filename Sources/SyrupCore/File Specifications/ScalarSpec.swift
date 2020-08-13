@@ -24,7 +24,7 @@
 
 import Foundation
 
-public struct SchemaSpec: Codable {
+public struct ScalarSpec: Codable {
 	private struct CustomScalar: Codable {
 		let graphType: String
 		let nativeType: String
@@ -56,27 +56,26 @@ public struct SchemaSpec: Codable {
 	}
 	
 	enum CodingKeys: String, CodingKey {
-		case location
 		case customScalars
 	}
-	public var location: String
 	var customScalars: [ScalarType]
 	
-	public init(location: String, customScalars: [ScalarType]) {
-		self.location = location
+	public init() {
+		self.customScalars = []
+	}
+	
+	public init(location: URL, customScalars: [ScalarType]) {
 		self.customScalars = customScalars
 	}
 	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
-		self.location = try container.decode(String.self, forKey: .location)
 		let customScalars = try container.decode([CustomScalar].self, forKey: .customScalars)
 		self.customScalars = customScalars.map { return $0.scalarIR }
 	}
 	
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
-		try container.encode(location, forKey: .location)
 		try container.encode(CustomScalar.scalars(customScalars), forKey: .customScalars)
 	}
 }

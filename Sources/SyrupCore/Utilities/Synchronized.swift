@@ -23,10 +23,9 @@
  */
 
 import Foundation
-import Basic
 
 struct Synchronized<T> {
-	private let lock = Lock()
+	private let lock = NSLock()
 	private var _value: T
 	
 	init(_ value: T) {
@@ -44,5 +43,13 @@ struct Synchronized<T> {
 				_value = newValue
 			}
 		}
+	}
+}
+
+private extension NSLocking {
+	func withLock<T>(_ body: () -> T) -> T {
+		lock()
+		defer { unlock() }
+		return body()
 	}
 }

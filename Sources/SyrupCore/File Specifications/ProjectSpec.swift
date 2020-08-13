@@ -43,6 +43,15 @@ public struct ProjectSpec: Codable {
 		case generateSelections
 	}
 	
+	public init(moduleName: String, filenameSuffix: String? = nil, header: String? = nil, supportFilesHeader: String? = nil, accessLevel: String = "", generateSelections: Bool = true) {
+		self.moduleName = moduleName
+		self.filenameSuffix = filenameSuffix
+		self.header = header
+		self.supportFilesHeader = supportFilesHeader
+		self.accessLevel = accessLevel
+		self.generateSelections = generateSelections
+	}
+	
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.moduleName = try container.decode(String.self, forKey: .moduleName)

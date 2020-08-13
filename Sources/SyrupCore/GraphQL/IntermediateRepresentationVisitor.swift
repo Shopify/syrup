@@ -62,14 +62,18 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		}
 	}
 	
-	required init(schema: Schema, customScalars: [ScalarType], builtInScalars: TemplateSpec.BuiltInScalars, queries: [String: String], mutations: [String: String], fragments: [String: String]) {
+	required init(schema: Schema, scalars: [ScalarType], queries: [String: String], mutations: [String: String], fragments: [String: String]) {
 		self.schema = schema
 		self.queries = queries
 		self.mutations = mutations
 		self.fragments = fragments
-		self.scalars = IntermediateRepresentationVisitor.mergeScalarTypes(customScalars: customScalars, builtInScalars: builtInScalars)
+		self.scalars = scalars
 
 		super.init()
+	}
+	
+	convenience init(schema: Schema, customScalars: [ScalarType], builtInScalars: TemplateSpec.BuiltInScalars, queries: [String: String], mutations: [String: String], fragments: [String: String]) {
+		self.init(schema: schema, scalars: IntermediateRepresentationVisitor.mergeScalarTypes(customScalars: customScalars, builtInScalars: builtInScalars), queries: queries, mutations: mutations, fragments: fragments)
 	}
 	
 	override func visitOperation(operation: SwiftGraphQLParser.Operation) throws {
