@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.2
 
 import PackageDescription
 
@@ -27,7 +27,7 @@ let package = Package(
 	targets: [
 		.target(
 			name: "Syrup",
-			dependencies: ["SyrupCore", "ArgumentParser"]
+			dependencies: ["SyrupCore", .product(name: "ArgumentParser", package: "swift-argument-parser")]
 		),
 		.target(
 			name: "SyrupCore",
@@ -38,6 +38,5 @@ let package = Package(
 			dependencies: ["Syrup"],
 			path: "Tests/Swift"
 		)
-	],
-	swiftLanguageVersions: [.version("5")]
+	]
 )
