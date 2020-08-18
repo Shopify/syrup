@@ -75,13 +75,18 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 	}
 	
 	override func visitOperation(operation: SwiftGraphQLParser.Operation) throws {
-		if operation.operationType == .query {
-			parentType.push(schema.queryType)
-		} else if let mutationType = schema.mutationType {
-			parentType.push(mutationType)
-		} else {
+		let schemaType: Schema.SchemaType
+		switch operation.operationType {
+		case .query:
+			schemaType = schema.queryType
+		case .mutation:
+			schemaType = schema.mutationType!
+		case .subscription:
+			schemaType = schema.subscriptionType!
+		default:
 			throw Error(description: "Cannot create operation type of \(operation.operationType)")
 		}
+		parentType.push(schemaType)
 	}
 	
 	override func exitOperation(operation: SwiftGraphQLParser.Operation) {

@@ -1,5 +1,5 @@
 {% if asFile %}
-package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.{% if isQuery %}queries{% else %}mutations{% endif %}
+package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.{% if isQuery %}queries{% else %}{{ operation.typeName|lowercase }}s{% endif %}
 
 {{ header }}
 import com.google.gson.*
@@ -13,7 +13,7 @@ import javax.annotation.Generated
 
 @Generated("{% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}")
 {% endif %}
-class {{ name }}({{ operation.variables|renderKotlinArguments }}): {% if isQuery %}Query{% else %}Mutation{% endif %}<{{ operation.name }}Response> {
+class {{ name }}({{ operation.variables|renderKotlinArguments }}): {% if isQuery %}Query{% else %}{{ operation.typeName }}{% endif %}<{{ operation.name }}Response> {
 
     override val rawQueryString = "{{ queryString|replace:"$","\$"|replaceQuotes }}"
 
@@ -22,8 +22,8 @@ class {{ name }}({{ operation.variables|renderKotlinArguments }}): {% if isQuery
     }
 
     override val operationVariables = mapOf<String, String>(
-        {{ operation.variables|renderKotlinOperationVariables }}
+        {% if operation.typeName != "Subscription" %}{{ operation.variables|renderKotlinOperationVariables }}{% endif %}
     )
 
-    override val selections = {{ selections|renderKotlinSelections }}
+    override val selections = {% if operation.typeName != "Subscription" %}{{ selections|renderKotlinSelections }}{% else %}listOf<Selection>(){% endif %}
 }
