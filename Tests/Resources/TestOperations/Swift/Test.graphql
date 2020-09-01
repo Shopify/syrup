@@ -511,3 +511,7 @@ query NullableCustomCodedScalar {
     fileSize
   }
 }
+
+subscription Subscription1 {
+	presenceChanged
+}

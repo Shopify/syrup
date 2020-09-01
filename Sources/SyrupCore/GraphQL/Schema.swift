@@ -27,6 +27,7 @@ import Foundation
 struct Schema: Decodable {
 	private let queryTypeName: String
 	private let mutationTypeName: String?
+	private let subscriptionTypeName: String?
 	let types: [SchemaType]
 	let directives: [Directive]
 	
@@ -37,6 +38,11 @@ struct Schema: Decodable {
 	var mutationType: SchemaType? {
 		guard let mutationTypeName = mutationTypeName else { return nil }
 		return self.type(named: mutationTypeName)
+	}
+    
+	var subscriptionType: SchemaType? {
+		guard let subscriptionTypeName = subscriptionTypeName else { return nil }
+		return self.type(named: subscriptionTypeName)
 	}
 	
 	enum DataKey: String, CodingKey {
@@ -50,6 +56,7 @@ struct Schema: Decodable {
 	enum CodingKeys: String, CodingKey {
 		case queryType
 		case mutationType
+		case subscriptionType
 		case types
 		case directives
 	}
@@ -65,6 +72,11 @@ struct Schema: Decodable {
 			mutationTypeName = nil
 		} else {
 			mutationTypeName = try values.nestedContainer(keyedBy: NameKey.self, forKey: .mutationType).decode(String.self, forKey: .name)
+		}
+		if try values.decodeNil(forKey: .subscriptionType) {
+			subscriptionTypeName = nil
+		} else {
+			subscriptionTypeName = try values.nestedContainer(keyedBy: NameKey.self, forKey: .subscriptionType).decode(String.self, forKey: .name)
 		}
 		types = try values.decode([SchemaType].self, forKey: .types)
 		directives = try values.decode([Directive].self, forKey: .directives)

@@ -151,9 +151,10 @@ public enum GraphSelections {
 	public enum OperationType {
 		case mutation(String)
 		case query(String)
+		case subscription(String)
 		public var name: String {
 			switch self {
-			case .mutation(let name), .query(let name):
+			case .mutation(let name), .query(let name), .subscription(let name):
 				return name
 			}
 		}

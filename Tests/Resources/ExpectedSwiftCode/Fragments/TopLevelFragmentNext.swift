@@ -115,13 +115,6 @@ extension MerchantApi.TopLevelFragment {
   []
   ))
   , 
-  .field(GraphSelections.Field(name: "__typename", alias: nil
-, arguments: 
-  []
-, parentType: .interface("Node"), type: .scalar("String"), selectionSet: 
-  []
-  ))
-  , 
   .inlineFragment(GraphSelections.InlineFragment(typeCondition: .object("Product")
 , selectionSet: 
   [

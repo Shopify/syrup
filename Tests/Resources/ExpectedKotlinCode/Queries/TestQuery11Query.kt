@@ -14,7 +14,7 @@ import javax.annotation.Generated
 @Generated("com.shopify.syrup")
 class TestQuery11Query(var productId: ID): Query<TestQuery11Response> {
 
-    override val rawQueryString = "query TestQuery11(\$productId: ID!) { __typename node(id: \$productId) { __typename __typename ... on Product { __typename id collections(first: 100) { __typename edges { __typename node { __typename id title } } } }... on ProductOption { __typename id } } }"
+    override val rawQueryString = "query TestQuery11(\$productId: ID!) { __typename node(id: \$productId) { __typename ... on Product { __typename id collections(first: 100) { __typename edges { __typename node { __typename id title } } } }... on ProductOption { __typename id } } }"
 
     override fun decodeResponse(jsonObject: JsonObject): TestQuery11Response {
         return TestQuery11Response(jsonObject)

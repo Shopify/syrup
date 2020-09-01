@@ -137,13 +137,6 @@ extension MerchantApi.MultiLevelInterfaceFragmentWithOnlyInlineFragments {
   []
   ))
   , 
-  .field(GraphSelections.Field(name: "__typename", alias: nil
-, arguments: 
-  []
-, parentType: .interface("Event"), type: .scalar("String"), selectionSet: 
-  []
-  ))
-  , 
   .inlineFragment(GraphSelections.InlineFragment(typeCondition: .object("CommentEvent")
 , selectionSet: 
   [

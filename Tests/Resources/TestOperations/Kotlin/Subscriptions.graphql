@@ -1,0 +1,3 @@
+subscription Subscription1 {
+	presenceChanged
+}

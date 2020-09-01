@@ -19,7 +19,7 @@ public extension MerchantApi {
 		public typealias Response = MultiLevelInterfaceFragmentWithOnlyInlineFragmentsQueryResponse
 
 		public let queryString: String = """
-		fragment MultiLevelInterfaceFragmentWithOnlyInlineFragments on EventConnection { __typename edges { __typename node { __typename __typename ... on CommentEvent { __typename id } } } } query MultiLevelInterfaceFragmentWithOnlyInlineFragmentsQuery { __typename customer(id: "") { __typename events(first: 1) { __typename ... MultiLevelInterfaceFragmentWithOnlyInlineFragments } } }
+		fragment MultiLevelInterfaceFragmentWithOnlyInlineFragments on EventConnection { __typename edges { __typename node { __typename ... on CommentEvent { __typename id } } } } query MultiLevelInterfaceFragmentWithOnlyInlineFragmentsQuery { __typename customer(id: "") { __typename events(first: 1) { __typename ... MultiLevelInterfaceFragmentWithOnlyInlineFragments } } }
 		"""
 	}
 }

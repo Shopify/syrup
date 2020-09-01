@@ -1,7 +1,7 @@
 {% extends "Base.stencil" %}
 
 {% block content %}
-	{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ name }}: GraphApiQuery, ResponseAssociable, Equatable {
+	{% if not asFile %}{{ accessLevel }} {% endif %}struct {{ operation|renderClassName }}: GraphApiQuery, ResponseAssociable, Equatable {
 		// MARK: - Query Variables
 		{% for variable in operation.variables %}
 			{{ accessLevel }} let {{ variable.name|escapeReservedWord }}: {{ variable.type|renderVariableType }}
