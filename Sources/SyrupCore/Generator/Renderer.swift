@@ -68,62 +68,29 @@ open class Renderer {
 		}
 	}
 	
-	func renderQueries(intermediateRepresentation: IntermediateRepresentation, selectionSets: SelectionSetVisitor.Results) throws -> [String] {
+	func renderOperations(intermediateRepresentation: IntermediateRepresentation, selectionSets: SelectionSetVisitor.Results, operations: [IntermediateRepresentation.OperationDefinition]) throws -> [String] {
 		var rendered: [String] = []
-		for query in intermediateRepresentation.operations.queries {
-			rendered.append(try renderQuery(query: query, intermediateRepresentation: intermediateRepresentation, querySelections: selectionSets.operation(named: query.name)))
+		for operation in operations {
+			rendered.append(try renderOperation(operation: operation, intermediateRepresentation: intermediateRepresentation, operationSelections: selectionSets.operation(named: operation.name)))
 		}
 		return rendered
 	}
 	
-	func renderQuery(query: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, querySelections: SelectionSetVisitor.Operation) throws -> String {
-		let name = "\(query.name)Query"
-		let queryString = intermediateRepresentation.fullQueryString(for: query).removingLeadingSpaces.removingNewLines
+	func renderOperation(operation: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, operationSelections: SelectionSetVisitor.Operation) throws -> String {
+		let queryString = intermediateRepresentation.fullQueryString(for: operation).removingLeadingSpaces.removingNewLines
 		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
 		let importInputs = intermediateRepresentation.referencedInputTypes.isEmpty == false
 		let importFragments = intermediateRepresentation.fragmentDefinitions.isEmpty == false
-		let requiresCustomEncoder = query.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar })
+		let requiresCustomEncoder = operation.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar })
 		let context: [String: Any] = [
-			"name": name,
-			"operation": query,
+			"operation": operation,
 			"queryString": queryString,
 			"moduleName": config.project.moduleName,
-			"isQuery": true,
 			"importEnums": importEnums,
 			"importInputs": importInputs,
 			"importFragments": importFragments,
 			"requiresCustomEncoder": requiresCustomEncoder,
-			"selections": querySelections.selectionSet
-		]
-		return try render(template: "Operation", asFile: true, context: context)
-	}
-	
-	func renderMutations(intermediateRepresentation: IntermediateRepresentation, selectionSets: SelectionSetVisitor.Results) throws -> [String] {
-		var rendered: [String] = []
-		for mutation in intermediateRepresentation.operations.mutations {
-			rendered.append(try renderMutation(mutation: mutation, intermediateRepresentation: intermediateRepresentation, mutationSelections: selectionSets.operation(named: mutation.name)))
-		}
-		return rendered
-	}
-	
-	func renderMutation(mutation: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, mutationSelections: SelectionSetVisitor.Operation) throws -> String {
-		let name = "\(mutation.name)Mutation"
-		let queryString = intermediateRepresentation.fullQueryString(for: mutation).removingLeadingSpaces.removingNewLines
-		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
-		let importInputs = intermediateRepresentation.referencedInputTypes.isEmpty == false
-		let importFragments = intermediateRepresentation.fragmentDefinitions.isEmpty == false
-		let requiresCustomEncoder = mutation.variables.contains(where: { $0.type.nestedScalar() is IntermediateRepresentation.CustomCodedScalar })
-		let context: [String: Any] = [
-			"name": name,
-			"operation": mutation,
-			"queryString": queryString,
-			"moduleName": config.project.moduleName,
-			"isQuery": false,
-			"importEnums": importEnums,
-			"importInputs": importInputs,
-			"importFragments": importFragments,
-			"requiresCustomEncoder": requiresCustomEncoder,
-			"selections": mutationSelections.selectionSet
+			"selections": operationSelections.selectionSet
 		]
 		return try render(template: "Operation", asFile: true, context: context)
 	}

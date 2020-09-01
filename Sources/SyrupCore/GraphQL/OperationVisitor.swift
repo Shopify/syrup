@@ -36,11 +36,12 @@ final class OperationVisitor: GraphQLBaseVisitor {
 	public var queries: [String: String] = [:]
 	public var mutations: [String: String] = [:]
 	public var fragments: [String: String] = [:]
+	public var subscriptions: [String: String] = [:]
 	
 	private var currentOperationName: String = ""
 	private var currentOperationType: OperationType = .query
 	private enum OperationType: String {
-		case query, mutation, fragment
+		case query, mutation, fragment, subscription
 		
 		init?(rawValue: String) {
 			switch rawValue {
@@ -50,6 +51,8 @@ final class OperationVisitor: GraphQLBaseVisitor {
 				self = .mutation
 			case OperationType.fragment.rawValue:
 				self = .fragment
+			case OperationType.subscription.rawValue:
+				self = .subscription
 			default:
 				return nil
 			}
@@ -123,6 +126,8 @@ final class OperationVisitor: GraphQLBaseVisitor {
 			mutations[currentOperationName] = currentOperationContents
 		case .fragment:
 			fragments[currentOperationName] = currentOperationContents
+		case .subscription:
+			subscriptions[currentOperationName] = currentOperationContents
 		}
 	}
 	
@@ -161,7 +166,6 @@ final class OperationVisitor: GraphQLBaseVisitor {
 	
 	override func visitSelectionSet(selectionSet: [SwiftGraphQLParser.Selection]) {
 		currentOperationContents += " {\n"
-		currentOperationContents += "__typename\n"
 	}
 	
 	override func exitSelectionSet(selectionSet: [SwiftGraphQLParser.Selection]) {

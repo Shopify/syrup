@@ -59,6 +59,7 @@ public final class Reporter {
 				builtInScalars: config.template.specification.builtInScalars,
 				queries: opsVisitor.queries,
 				mutations: opsVisitor.mutations,
+				subscriptions: opsVisitor.subscriptions,
 				fragments: opsVisitor.fragments
 		)
 

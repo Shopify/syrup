@@ -14,7 +14,7 @@ import javax.annotation.Generated
 @Generated("com.shopify.syrup")
 class NodeInterfacesQuery(var nodeId: ID): Query<NodeInterfacesResponse> {
 
-    override val rawQueryString = "fragment NodeId on Node { __typename id } fragment ProductNodeTitle on Product { __typename title } query NodeInterfaces(\$nodeId: ID!) { __typename node(id: \$nodeId) { __typename __typename ... NodeId ... on Product { __typename ... ProductNodeTitle } } }"
+    override val rawQueryString = "fragment NodeId on Node { __typename id } fragment ProductNodeTitle on Product { __typename title } query NodeInterfaces(\$nodeId: ID!) { __typename node(id: \$nodeId) { __typename ... NodeId ... on Product { __typename ... ProductNodeTitle } } }"
 
     override fun decodeResponse(jsonObject: JsonObject): NodeInterfacesResponse {
         return NodeInterfacesResponse(jsonObject)

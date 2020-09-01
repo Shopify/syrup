@@ -43,11 +43,11 @@ struct IntermediateRepresentation {
 	}
 	
 	enum ParentType: Equatable {
-		case query(String), mutation(String), fragment(String)
+		case query(String), mutation(String), fragment(String), subscription(String)
 		
 		var name: String {
 			switch self {
-			case .query(let name), .mutation(let name), .fragment(let name):
+			case .query(let name), .mutation(let name), .fragment(let name), .subscription(let name):
 				return name
 			}
 		}
@@ -59,6 +59,8 @@ struct IntermediateRepresentation {
 			case (.mutation(let lhsName), .mutation(let rhsName)):
 				return lhsName == rhsName
 			case (.fragment(let lhsName), .fragment(let rhsName)):
+				return lhsName == rhsName
+			case (.subscription(let lhsName), .subscription(let rhsName)):
 				return lhsName == rhsName
 			default:
 				return false
@@ -222,7 +224,7 @@ struct IntermediateRepresentation {
 	}
 	
 	enum OperationType {
-		case query, mutation
+		case query, mutation, subscription
 	}
 	
 	struct FragmentDefinition: NamedItem {
@@ -377,6 +379,16 @@ extension Array where Element == IntermediateRepresentation.OperationDefinition 
 	var queries: [IntermediateRepresentation.OperationDefinition] {
 		return filter {
 			if case .query = $0.type {
+				return true
+			} else {
+				return false
+			}
+		}
+	}
+    
+	var subscriptions: [IntermediateRepresentation.OperationDefinition] {
+		return filter {
+			if case .subscription = $0.type {
 				return true
 			} else {
 				return false

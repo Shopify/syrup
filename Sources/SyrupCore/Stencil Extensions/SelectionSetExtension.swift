@@ -68,6 +68,8 @@ class SelectionSetExtension: Extension {
 			return ".mutation(\"\(mutationType)\")"
 		case .query(let queryType):
 			return ".query(\"\(queryType)\")"
+		case .subscription(let subscriptionType):
+			return ".subscription(\"\(subscriptionType)\")"
 		}
 	}
 	

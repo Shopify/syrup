@@ -149,13 +149,6 @@ extension MerchantApi.UnionFrag2 {
   []
   ))
   , 
-  .field(GraphSelections.Field(name: "__typename", alias: nil
-, arguments: 
-  []
-, parentType: .union("PriceRuleValue"), type: .scalar("String"), selectionSet: 
-  []
-  ))
-  , 
   .inlineFragment(GraphSelections.InlineFragment(typeCondition: .object("PriceRulePercentValue")
 , selectionSet: 
   [

@@ -95,13 +95,6 @@ extension MerchantApi.InterfaceFragment {
   []
   ))
   , 
-  .field(GraphSelections.Field(name: "__typename", alias: nil
-, arguments: 
-  []
-, parentType: .union("DiscountCode"), type: .scalar("String"), selectionSet: 
-  []
-  ))
-  , 
   .inlineFragment(GraphSelections.InlineFragment(typeCondition: .object("DiscountCodeBasic")
 , selectionSet: 
   [

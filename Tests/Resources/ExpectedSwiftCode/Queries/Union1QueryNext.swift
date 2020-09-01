@@ -19,7 +19,7 @@ public extension MerchantApi {
 		public typealias Response = Union1Response
 
 		public let queryString: String = """
-		query Union1 { __typename priceRule(id: "") { __typename id value { __typename __typename ... on PriceRulePercentValue { __typename percentage }... on PriceRuleFixedAmountValue { __typename amount } } } }
+		query Union1 { __typename priceRule(id: "") { __typename id value { __typename ... on PriceRulePercentValue { __typename percentage }... on PriceRuleFixedAmountValue { __typename amount } } } }
 		"""
 	}
 }
@@ -65,13 +65,6 @@ extension MerchantApi.Union1Query {
   []
 , parentType: .object("PriceRule"), type: .union("PriceRuleValue"), selectionSet: 
   [
-  .field(GraphSelections.Field(name: "__typename", alias: nil
-, arguments: 
-  []
-, parentType: .union("PriceRuleValue"), type: .scalar("String"), selectionSet: 
-  []
-  ))
-  , 
   .field(GraphSelections.Field(name: "__typename", alias: nil
 , arguments: 
   []

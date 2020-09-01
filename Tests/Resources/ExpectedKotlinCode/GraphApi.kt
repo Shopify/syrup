@@ -37,6 +37,8 @@ interface Query<T : Response> : SyrupOperation<T>
 
 interface Mutation<T : Response> : SyrupOperation<T>
 
+interface Subscription<T : Response> : SyrupOperation<T>
+
 interface Response
 
 object OperationGsonBuilder {

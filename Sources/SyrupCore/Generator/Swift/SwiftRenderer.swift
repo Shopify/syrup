@@ -88,16 +88,10 @@ final class SwiftRenderer: Renderer {
 		return rendered
 	}
 	
-	override func renderQuery(query: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, querySelections: SelectionSetVisitor.Operation) throws -> String {
-		var renderedQuery = try super.renderQuery(query: query, intermediateRepresentation: intermediateRepresentation, querySelections: querySelections)
-		renderedQuery += try renderQuerySelections(querySelections, enabled: config.project.generateSelections)
+	override func renderOperation(operation: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, operationSelections: SelectionSetVisitor.Operation) throws -> String {
+		var renderedQuery = try super.renderOperation(operation: operation, intermediateRepresentation: intermediateRepresentation, operationSelections: operationSelections)
+		renderedQuery += try renderoperationSelections(operationSelections, enabled: config.project.generateSelections)
 		return renderedQuery
-	}
-	
-	override func renderMutation(mutation: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, mutationSelections: SelectionSetVisitor.Operation) throws -> String {
-		var renderedMutation = try super.renderMutation(mutation: mutation, intermediateRepresentation: intermediateRepresentation, mutationSelections: mutationSelections)
-		renderedMutation += try renderQuerySelections(mutationSelections, enabled: config.project.generateSelections)
-		return renderedMutation
 	}
 	
 	func renderCustomScalarResolver(customScalars: [IntermediateRepresentation.CustomCodedScalar]) throws -> String {
@@ -141,13 +135,15 @@ final class SwiftRenderer: Renderer {
 		return try render(template: "FragmentSelections", context: context)
 	}
 	
-	private func renderQuerySelections(_ operation: SelectionSetVisitor.Operation, enabled: Bool) throws -> String {
+	private func renderoperationSelections(_ operation: SelectionSetVisitor.Operation, enabled: Bool) throws -> String {
 		let operationSuffix: String
 		switch operation.type {
 		case .query:
 			operationSuffix = "Query"
 		case .mutation:
 			operationSuffix = "Mutation"
+		case .subscription:
+			operationSuffix = "Subscription"
 		}
 		let context: [String: Any] = ["operation": operation, "suffix": operationSuffix, "enabled": enabled]
 		return try render(template: "OperationSelections", context: context)
