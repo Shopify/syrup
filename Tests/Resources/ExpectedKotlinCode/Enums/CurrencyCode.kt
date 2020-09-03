@@ -10,10 +10,28 @@ import javax.annotation.Generated
 enum class CurrencyCode(val value: String) {
 
     /**
-     * United Arab Emirates Dirham (AED).
+     * United States Dollars (USD).
      */
-    @SerializedName("AED")
-    AED("AED"),
+    @SerializedName("USD")
+    USD("USD"),
+
+    /**
+     * Euro (EUR).
+     */
+    @SerializedName("EUR")
+    EUR("EUR"),
+
+    /**
+     * United Kingdom Pounds (GBP).
+     */
+    @SerializedName("GBP")
+    GBP("GBP"),
+
+    /**
+     * Canadian Dollars (CAD).
+     */
+    @SerializedName("CAD")
+    CAD("CAD"),
 
     /**
      * Afghan Afghani (AFN).
@@ -28,16 +46,10 @@ enum class CurrencyCode(val value: String) {
     ALL("ALL"),
 
     /**
-     * Armenian Dram (AMD).
+     * Algerian Dinar (DZD).
      */
-    @SerializedName("AMD")
-    AMD("AMD"),
-
-    /**
-     * Netherlands Antillean Guilder.
-     */
-    @SerializedName("ANG")
-    ANG("ANG"),
+    @SerializedName("DZD")
+    DZD("DZD"),
 
     /**
      * Angolan Kwanza (AOA).
@@ -52,10 +64,10 @@ enum class CurrencyCode(val value: String) {
     ARS("ARS"),
 
     /**
-     * Australian Dollars (AUD).
+     * Armenian Dram (AMD).
      */
-    @SerializedName("AUD")
-    AUD("AUD"),
+    @SerializedName("AMD")
+    AMD("AMD"),
 
     /**
      * Aruban Florin (AWG).
@@ -64,16 +76,10 @@ enum class CurrencyCode(val value: String) {
     AWG("AWG"),
 
     /**
-     * Azerbaijani Manat (AZN).
+     * Australian Dollars (AUD).
      */
-    @SerializedName("AZN")
-    AZN("AZN"),
-
-    /**
-     * Bosnia and Herzegovina Convertible Mark (BAM).
-     */
-    @SerializedName("BAM")
-    BAM("BAM"),
+    @SerializedName("AUD")
+    AUD("AUD"),
 
     /**
      * Barbadian Dollar (BBD).
@@ -82,16 +88,22 @@ enum class CurrencyCode(val value: String) {
     BBD("BBD"),
 
     /**
+     * Azerbaijani Manat (AZN).
+     */
+    @SerializedName("AZN")
+    AZN("AZN"),
+
+    /**
      * Bangladesh Taka (BDT).
      */
     @SerializedName("BDT")
     BDT("BDT"),
 
     /**
-     * Bulgarian Lev (BGN).
+     * Bahamian Dollar (BSD).
      */
-    @SerializedName("BGN")
-    BGN("BGN"),
+    @SerializedName("BSD")
+    BSD("BSD"),
 
     /**
      * Bahraini Dinar (BHD).
@@ -104,48 +116,6 @@ enum class CurrencyCode(val value: String) {
      */
     @SerializedName("BIF")
     BIF("BIF"),
-
-    /**
-     * Bermudian Dollar (BMD).
-     */
-    @SerializedName("BMD")
-    BMD("BMD"),
-
-    /**
-     * Brunei Dollar (BND).
-     */
-    @SerializedName("BND")
-    BND("BND"),
-
-    /**
-     * Bolivian Boliviano (BOB).
-     */
-    @SerializedName("BOB")
-    BOB("BOB"),
-
-    /**
-     * Brazilian Real (BRL).
-     */
-    @SerializedName("BRL")
-    BRL("BRL"),
-
-    /**
-     * Bahamian Dollar (BSD).
-     */
-    @SerializedName("BSD")
-    BSD("BSD"),
-
-    /**
-     * Bhutanese Ngultrum (BTN).
-     */
-    @SerializedName("BTN")
-    BTN("BTN"),
-
-    /**
-     * Botswana Pula (BWP).
-     */
-    @SerializedName("BWP")
-    BWP("BWP"),
 
     /**
      * Belarusian Ruble (BYN).
@@ -167,22 +137,82 @@ enum class CurrencyCode(val value: String) {
     BZD("BZD"),
 
     /**
-     * Canadian Dollars (CAD).
+     * Bermudian Dollar (BMD).
      */
-    @SerializedName("CAD")
-    CAD("CAD"),
+    @SerializedName("BMD")
+    BMD("BMD"),
 
     /**
-     * Congolese franc (CDF).
+     * Bhutanese Ngultrum (BTN).
      */
-    @SerializedName("CDF")
-    CDF("CDF"),
+    @SerializedName("BTN")
+    BTN("BTN"),
 
     /**
-     * Swiss Francs (CHF).
+     * Bosnia and Herzegovina Convertible Mark (BAM).
      */
-    @SerializedName("CHF")
-    CHF("CHF"),
+    @SerializedName("BAM")
+    BAM("BAM"),
+
+    /**
+     * Brazilian Real (BRL).
+     */
+    @SerializedName("BRL")
+    BRL("BRL"),
+
+    /**
+     * Bolivian Boliviano (BOB).
+     */
+    @SerializedName("BOB")
+    BOB("BOB"),
+
+    /**
+     * Botswana Pula (BWP).
+     */
+    @SerializedName("BWP")
+    BWP("BWP"),
+
+    /**
+     * Brunei Dollar (BND).
+     */
+    @SerializedName("BND")
+    BND("BND"),
+
+    /**
+     * Bulgarian Lev (BGN).
+     */
+    @SerializedName("BGN")
+    BGN("BGN"),
+
+    /**
+     * Burmese Kyat (MMK).
+     */
+    @SerializedName("MMK")
+    MMK("MMK"),
+
+    /**
+     * Cambodian Riel.
+     */
+    @SerializedName("KHR")
+    KHR("KHR"),
+
+    /**
+     * Cape Verdean escudo (CVE).
+     */
+    @SerializedName("CVE")
+    CVE("CVE"),
+
+    /**
+     * Cayman Dollars (KYD).
+     */
+    @SerializedName("KYD")
+    KYD("KYD"),
+
+    /**
+     * Central African CFA Franc (XAF).
+     */
+    @SerializedName("XAF")
+    XAF("XAF"),
 
     /**
      * Chilean Peso (CLP).
@@ -203,16 +233,28 @@ enum class CurrencyCode(val value: String) {
     COP("COP"),
 
     /**
+     * Comorian Franc (KMF).
+     */
+    @SerializedName("KMF")
+    KMF("KMF"),
+
+    /**
+     * Congolese franc (CDF).
+     */
+    @SerializedName("CDF")
+    CDF("CDF"),
+
+    /**
      * Costa Rican Colones (CRC).
      */
     @SerializedName("CRC")
     CRC("CRC"),
 
     /**
-     * Cape Verdean escudo (CVE).
+     * Croatian Kuna (HRK).
      */
-    @SerializedName("CVE")
-    CVE("CVE"),
+    @SerializedName("HRK")
+    HRK("HRK"),
 
     /**
      * Czech Koruny (CZK).
@@ -221,16 +263,16 @@ enum class CurrencyCode(val value: String) {
     CZK("CZK"),
 
     /**
-     * Djiboutian Franc (DJF).
-     */
-    @SerializedName("DJF")
-    DJF("DJF"),
-
-    /**
      * Danish Kroner (DKK).
      */
     @SerializedName("DKK")
     DKK("DKK"),
+
+    /**
+     * Djiboutian Franc (DJF).
+     */
+    @SerializedName("DJF")
+    DJF("DJF"),
 
     /**
      * Dominican Peso (DOP).
@@ -239,10 +281,10 @@ enum class CurrencyCode(val value: String) {
     DOP("DOP"),
 
     /**
-     * Algerian Dinar (DZD).
+     * East Caribbean Dollar (XCD).
      */
-    @SerializedName("DZD")
-    DZD("DZD"),
+    @SerializedName("XCD")
+    XCD("XCD"),
 
     /**
      * Egyptian Pound (EGP).
@@ -257,40 +299,22 @@ enum class CurrencyCode(val value: String) {
     ETB("ETB"),
 
     /**
-     * Euro (EUR).
-     */
-    @SerializedName("EUR")
-    EUR("EUR"),
-
-    /**
-     * Fijian Dollars (FJD).
-     */
-    @SerializedName("FJD")
-    FJD("FJD"),
-
-    /**
      * Falkland Islands Pounds (FKP).
      */
     @SerializedName("FKP")
     FKP("FKP"),
 
     /**
-     * United Kingdom Pounds (GBP).
+     * CFP Franc (XPF).
      */
-    @SerializedName("GBP")
-    GBP("GBP"),
+    @SerializedName("XPF")
+    XPF("XPF"),
 
     /**
-     * Georgian Lari (GEL).
+     * Fijian Dollars (FJD).
      */
-    @SerializedName("GEL")
-    GEL("GEL"),
-
-    /**
-     * Ghanaian Cedi (GHS).
-     */
-    @SerializedName("GHS")
-    GHS("GHS"),
+    @SerializedName("FJD")
+    FJD("FJD"),
 
     /**
      * Gibraltar Pounds (GIP).
@@ -305,10 +329,10 @@ enum class CurrencyCode(val value: String) {
     GMD("GMD"),
 
     /**
-     * Guinean Franc (GNF).
+     * Ghanaian Cedi (GHS).
      */
-    @SerializedName("GNF")
-    GNF("GNF"),
+    @SerializedName("GHS")
+    GHS("GHS"),
 
     /**
      * Guatemalan Quetzal (GTQ).
@@ -323,22 +347,16 @@ enum class CurrencyCode(val value: String) {
     GYD("GYD"),
 
     /**
-     * Hong Kong Dollars (HKD).
+     * Georgian Lari (GEL).
      */
-    @SerializedName("HKD")
-    HKD("HKD"),
+    @SerializedName("GEL")
+    GEL("GEL"),
 
     /**
-     * Honduran Lempira (HNL).
+     * Guinean Franc (GNF).
      */
-    @SerializedName("HNL")
-    HNL("HNL"),
-
-    /**
-     * Croatian Kuna (HRK).
-     */
-    @SerializedName("HRK")
-    HRK("HRK"),
+    @SerializedName("GNF")
+    GNF("GNF"),
 
     /**
      * Haitian Gourde (HTG).
@@ -347,10 +365,34 @@ enum class CurrencyCode(val value: String) {
     HTG("HTG"),
 
     /**
+     * Honduran Lempira (HNL).
+     */
+    @SerializedName("HNL")
+    HNL("HNL"),
+
+    /**
+     * Hong Kong Dollars (HKD).
+     */
+    @SerializedName("HKD")
+    HKD("HKD"),
+
+    /**
      * Hungarian Forint (HUF).
      */
     @SerializedName("HUF")
     HUF("HUF"),
+
+    /**
+     * Icelandic Kronur (ISK).
+     */
+    @SerializedName("ISK")
+    ISK("ISK"),
+
+    /**
+     * Indian Rupees (INR).
+     */
+    @SerializedName("INR")
+    INR("INR"),
 
     /**
      * Indonesian Rupiah (IDR).
@@ -365,10 +407,10 @@ enum class CurrencyCode(val value: String) {
     ILS("ILS"),
 
     /**
-     * Indian Rupees (INR).
+     * Iranian Rial (IRR).
      */
-    @SerializedName("INR")
-    INR("INR"),
+    @SerializedName("IRR")
+    IRR("IRR"),
 
     /**
      * Iraqi Dinar (IQD).
@@ -377,34 +419,10 @@ enum class CurrencyCode(val value: String) {
     IQD("IQD"),
 
     /**
-     * Iranian Rial (IRR).
-     */
-    @SerializedName("IRR")
-    IRR("IRR"),
-
-    /**
-     * Icelandic Kronur (ISK).
-     */
-    @SerializedName("ISK")
-    ISK("ISK"),
-
-    /**
-     * Jersey Pound.
-     */
-    @SerializedName("JEP")
-    JEP("JEP"),
-
-    /**
      * Jamaican Dollars (JMD).
      */
     @SerializedName("JMD")
     JMD("JMD"),
-
-    /**
-     * Jordanian Dinar (JOD).
-     */
-    @SerializedName("JOD")
-    JOD("JOD"),
 
     /**
      * Japanese Yen (JPY).
@@ -413,46 +431,16 @@ enum class CurrencyCode(val value: String) {
     JPY("JPY"),
 
     /**
-     * Kenyan Shilling (KES).
+     * Jersey Pound.
      */
-    @SerializedName("KES")
-    KES("KES"),
+    @SerializedName("JEP")
+    JEP("JEP"),
 
     /**
-     * Kyrgyzstani Som (KGS).
+     * Jordanian Dinar (JOD).
      */
-    @SerializedName("KGS")
-    KGS("KGS"),
-
-    /**
-     * Cambodian Riel.
-     */
-    @SerializedName("KHR")
-    KHR("KHR"),
-
-    /**
-     * Comorian Franc (KMF).
-     */
-    @SerializedName("KMF")
-    KMF("KMF"),
-
-    /**
-     * South Korean Won (KRW).
-     */
-    @SerializedName("KRW")
-    KRW("KRW"),
-
-    /**
-     * Kuwaiti Dinar (KWD).
-     */
-    @SerializedName("KWD")
-    KWD("KWD"),
-
-    /**
-     * Cayman Dollars (KYD).
-     */
-    @SerializedName("KYD")
-    KYD("KYD"),
+    @SerializedName("JOD")
+    JOD("JOD"),
 
     /**
      * Kazakhstani Tenge (KZT).
@@ -461,40 +449,28 @@ enum class CurrencyCode(val value: String) {
     KZT("KZT"),
 
     /**
+     * Kenyan Shilling (KES).
+     */
+    @SerializedName("KES")
+    KES("KES"),
+
+    /**
+     * Kuwaiti Dinar (KWD).
+     */
+    @SerializedName("KWD")
+    KWD("KWD"),
+
+    /**
+     * Kyrgyzstani Som (KGS).
+     */
+    @SerializedName("KGS")
+    KGS("KGS"),
+
+    /**
      * Laotian Kip (LAK).
      */
     @SerializedName("LAK")
     LAK("LAK"),
-
-    /**
-     * Lebanese Pounds (LBP).
-     */
-    @SerializedName("LBP")
-    LBP("LBP"),
-
-    /**
-     * Sri Lankan Rupees (LKR).
-     */
-    @SerializedName("LKR")
-    LKR("LKR"),
-
-    /**
-     * Liberian Dollar (LRD).
-     */
-    @SerializedName("LRD")
-    LRD("LRD"),
-
-    /**
-     * Lesotho Loti (LSL).
-     */
-    @SerializedName("LSL")
-    LSL("LSL"),
-
-    /**
-     * Lithuanian Litai (LTL).
-     */
-    @SerializedName("LTL")
-    LTL("LTL"),
 
     /**
      * Latvian Lati (LVL).
@@ -503,22 +479,34 @@ enum class CurrencyCode(val value: String) {
     LVL("LVL"),
 
     /**
+     * Lebanese Pounds (LBP).
+     */
+    @SerializedName("LBP")
+    LBP("LBP"),
+
+    /**
+     * Lesotho Loti (LSL).
+     */
+    @SerializedName("LSL")
+    LSL("LSL"),
+
+    /**
+     * Liberian Dollar (LRD).
+     */
+    @SerializedName("LRD")
+    LRD("LRD"),
+
+    /**
      * Libyan Dinar (LYD).
      */
     @SerializedName("LYD")
     LYD("LYD"),
 
     /**
-     * Moroccan Dirham.
+     * Lithuanian Litai (LTL).
      */
-    @SerializedName("MAD")
-    MAD("MAD"),
-
-    /**
-     * Moldovan Leu (MDL).
-     */
-    @SerializedName("MDL")
-    MDL("MDL"),
+    @SerializedName("LTL")
+    LTL("LTL"),
 
     /**
      * Malagasy Ariary (MGA).
@@ -533,40 +521,22 @@ enum class CurrencyCode(val value: String) {
     MKD("MKD"),
 
     /**
-     * Burmese Kyat (MMK).
-     */
-    @SerializedName("MMK")
-    MMK("MMK"),
-
-    /**
-     * Mongolian Tugrik.
-     */
-    @SerializedName("MNT")
-    MNT("MNT"),
-
-    /**
      * Macanese Pataca (MOP).
      */
     @SerializedName("MOP")
     MOP("MOP"),
 
     /**
-     * Mauritian Rupee (MUR).
+     * Malawian Kwacha (MWK).
      */
-    @SerializedName("MUR")
-    MUR("MUR"),
+    @SerializedName("MWK")
+    MWK("MWK"),
 
     /**
      * Maldivian Rufiyaa (MVR).
      */
     @SerializedName("MVR")
     MVR("MVR"),
-
-    /**
-     * Malawian Kwacha (MWK).
-     */
-    @SerializedName("MWK")
-    MWK("MWK"),
 
     /**
      * Mexican Pesos (MXN).
@@ -581,6 +551,30 @@ enum class CurrencyCode(val value: String) {
     MYR("MYR"),
 
     /**
+     * Mauritian Rupee (MUR).
+     */
+    @SerializedName("MUR")
+    MUR("MUR"),
+
+    /**
+     * Moldovan Leu (MDL).
+     */
+    @SerializedName("MDL")
+    MDL("MDL"),
+
+    /**
+     * Moroccan Dirham.
+     */
+    @SerializedName("MAD")
+    MAD("MAD"),
+
+    /**
+     * Mongolian Tugrik.
+     */
+    @SerializedName("MNT")
+    MNT("MNT"),
+
+    /**
      * Mozambican Metical.
      */
     @SerializedName("MZN")
@@ -593,10 +587,22 @@ enum class CurrencyCode(val value: String) {
     NAD("NAD"),
 
     /**
-     * Nigerian Naira (NGN).
+     * Nepalese Rupee (NPR).
      */
-    @SerializedName("NGN")
-    NGN("NGN"),
+    @SerializedName("NPR")
+    NPR("NPR"),
+
+    /**
+     * Netherlands Antillean Guilder.
+     */
+    @SerializedName("ANG")
+    ANG("ANG"),
+
+    /**
+     * New Zealand Dollars (NZD).
+     */
+    @SerializedName("NZD")
+    NZD("NZD"),
 
     /**
      * Nicaraguan Córdoba (NIO).
@@ -605,22 +611,16 @@ enum class CurrencyCode(val value: String) {
     NIO("NIO"),
 
     /**
+     * Nigerian Naira (NGN).
+     */
+    @SerializedName("NGN")
+    NGN("NGN"),
+
+    /**
      * Norwegian Kroner (NOK).
      */
     @SerializedName("NOK")
     NOK("NOK"),
-
-    /**
-     * Nepalese Rupee (NPR).
-     */
-    @SerializedName("NPR")
-    NPR("NPR"),
-
-    /**
-     * New Zealand Dollars (NZD).
-     */
-    @SerializedName("NZD")
-    NZD("NZD"),
 
     /**
      * Omani Rial (OMR).
@@ -635,10 +635,10 @@ enum class CurrencyCode(val value: String) {
     PAB("PAB"),
 
     /**
-     * Peruvian Nuevo Sol (PEN).
+     * Pakistani Rupee (PKR).
      */
-    @SerializedName("PEN")
-    PEN("PEN"),
+    @SerializedName("PKR")
+    PKR("PKR"),
 
     /**
      * Papua New Guinean Kina (PGK).
@@ -647,28 +647,28 @@ enum class CurrencyCode(val value: String) {
     PGK("PGK"),
 
     /**
+     * Paraguayan Guarani (PYG).
+     */
+    @SerializedName("PYG")
+    PYG("PYG"),
+
+    /**
+     * Peruvian Nuevo Sol (PEN).
+     */
+    @SerializedName("PEN")
+    PEN("PEN"),
+
+    /**
      * Philippine Peso (PHP).
      */
     @SerializedName("PHP")
     PHP("PHP"),
 
     /**
-     * Pakistani Rupee (PKR).
-     */
-    @SerializedName("PKR")
-    PKR("PKR"),
-
-    /**
      * Polish Zlotych (PLN).
      */
     @SerializedName("PLN")
     PLN("PLN"),
-
-    /**
-     * Paraguayan Guarani (PYG).
-     */
-    @SerializedName("PYG")
-    PYG("PYG"),
 
     /**
      * Qatari Rial (QAR).
@@ -683,12 +683,6 @@ enum class CurrencyCode(val value: String) {
     RON("RON"),
 
     /**
-     * Serbian dinar (RSD).
-     */
-    @SerializedName("RSD")
-    RSD("RSD"),
-
-    /**
      * Russian Rubles (RUB).
      */
     @SerializedName("RUB")
@@ -701,40 +695,10 @@ enum class CurrencyCode(val value: String) {
     RWF("RWF"),
 
     /**
-     * Saudi Riyal (SAR).
+     * Samoan Tala (WST).
      */
-    @SerializedName("SAR")
-    SAR("SAR"),
-
-    /**
-     * Solomon Islands Dollar (SBD).
-     */
-    @SerializedName("SBD")
-    SBD("SBD"),
-
-    /**
-     * Seychellois Rupee (SCR).
-     */
-    @SerializedName("SCR")
-    SCR("SCR"),
-
-    /**
-     * Sudanese Pound (SDG).
-     */
-    @SerializedName("SDG")
-    SDG("SDG"),
-
-    /**
-     * Swedish Kronor (SEK).
-     */
-    @SerializedName("SEK")
-    SEK("SEK"),
-
-    /**
-     * Singapore Dollars (SGD).
-     */
-    @SerializedName("SGD")
-    SGD("SGD"),
+    @SerializedName("WST")
+    WST("WST"),
 
     /**
      * Saint Helena Pounds (SHP).
@@ -743,22 +707,10 @@ enum class CurrencyCode(val value: String) {
     SHP("SHP"),
 
     /**
-     * Sierra Leonean Leone (SLL).
+     * Saudi Riyal (SAR).
      */
-    @SerializedName("SLL")
-    SLL("SLL"),
-
-    /**
-     * Surinamese Dollar (SRD).
-     */
-    @SerializedName("SRD")
-    SRD("SRD"),
-
-    /**
-     * South Sudanese Pound (SSP).
-     */
-    @SerializedName("SSP")
-    SSP("SSP"),
+    @SerializedName("SAR")
+    SAR("SAR"),
 
     /**
      * Sao Tome And Principe Dobra (STD).
@@ -767,16 +719,100 @@ enum class CurrencyCode(val value: String) {
     STD("STD"),
 
     /**
+     * Serbian dinar (RSD).
+     */
+    @SerializedName("RSD")
+    RSD("RSD"),
+
+    /**
+     * Seychellois Rupee (SCR).
+     */
+    @SerializedName("SCR")
+    SCR("SCR"),
+
+    /**
+     * Sierra Leonean Leone (SLL).
+     */
+    @SerializedName("SLL")
+    SLL("SLL"),
+
+    /**
+     * Singapore Dollars (SGD).
+     */
+    @SerializedName("SGD")
+    SGD("SGD"),
+
+    /**
+     * Sudanese Pound (SDG).
+     */
+    @SerializedName("SDG")
+    SDG("SDG"),
+
+    /**
      * Syrian Pound (SYP).
      */
     @SerializedName("SYP")
     SYP("SYP"),
 
     /**
+     * South African Rand (ZAR).
+     */
+    @SerializedName("ZAR")
+    ZAR("ZAR"),
+
+    /**
+     * South Korean Won (KRW).
+     */
+    @SerializedName("KRW")
+    KRW("KRW"),
+
+    /**
+     * South Sudanese Pound (SSP).
+     */
+    @SerializedName("SSP")
+    SSP("SSP"),
+
+    /**
+     * Solomon Islands Dollar (SBD).
+     */
+    @SerializedName("SBD")
+    SBD("SBD"),
+
+    /**
+     * Sri Lankan Rupees (LKR).
+     */
+    @SerializedName("LKR")
+    LKR("LKR"),
+
+    /**
+     * Surinamese Dollar (SRD).
+     */
+    @SerializedName("SRD")
+    SRD("SRD"),
+
+    /**
      * Swazi Lilangeni (SZL).
      */
     @SerializedName("SZL")
     SZL("SZL"),
+
+    /**
+     * Swedish Kronor (SEK).
+     */
+    @SerializedName("SEK")
+    SEK("SEK"),
+
+    /**
+     * Swiss Francs (CHF).
+     */
+    @SerializedName("CHF")
+    CHF("CHF"),
+
+    /**
+     * Taiwan Dollars (TWD).
+     */
+    @SerializedName("TWD")
+    TWD("TWD"),
 
     /**
      * Thai baht (THB).
@@ -791,16 +827,10 @@ enum class CurrencyCode(val value: String) {
     TJS("TJS"),
 
     /**
-     * Turkmenistani Manat (TMT).
+     * Tanzanian Shilling (TZS).
      */
-    @SerializedName("TMT")
-    TMT("TMT"),
-
-    /**
-     * Tunisian Dinar (TND).
-     */
-    @SerializedName("TND")
-    TND("TND"),
+    @SerializedName("TZS")
+    TZS("TZS"),
 
     /**
      * Tongan Pa'anga (TOP).
@@ -809,34 +839,28 @@ enum class CurrencyCode(val value: String) {
     TOP("TOP"),
 
     /**
-     * Turkish Lira (TRY).
-     */
-    @SerializedName("TRY")
-    TRY("TRY"),
-
-    /**
      * Trinidad and Tobago Dollars (TTD).
      */
     @SerializedName("TTD")
     TTD("TTD"),
 
     /**
-     * Taiwan Dollars (TWD).
+     * Tunisian Dinar (TND).
      */
-    @SerializedName("TWD")
-    TWD("TWD"),
+    @SerializedName("TND")
+    TND("TND"),
 
     /**
-     * Tanzanian Shilling (TZS).
+     * Turkish Lira (TRY).
      */
-    @SerializedName("TZS")
-    TZS("TZS"),
+    @SerializedName("TRY")
+    TRY("TRY"),
 
     /**
-     * Ukrainian Hryvnia (UAH).
+     * Turkmenistani Manat (TMT).
      */
-    @SerializedName("UAH")
-    UAH("UAH"),
+    @SerializedName("TMT")
+    TMT("TMT"),
 
     /**
      * Ugandan Shilling (UGX).
@@ -845,10 +869,16 @@ enum class CurrencyCode(val value: String) {
     UGX("UGX"),
 
     /**
-     * United States Dollars (USD).
+     * Ukrainian Hryvnia (UAH).
      */
-    @SerializedName("USD")
-    USD("USD"),
+    @SerializedName("UAH")
+    UAH("UAH"),
+
+    /**
+     * United Arab Emirates Dirham (AED).
+     */
+    @SerializedName("AED")
+    AED("AED"),
 
     /**
      * Uruguayan Pesos (UYU).
@@ -863,6 +893,12 @@ enum class CurrencyCode(val value: String) {
     UZS("UZS"),
 
     /**
+     * Vanuatu Vatu (VUV).
+     */
+    @SerializedName("VUV")
+    VUV("VUV"),
+
+    /**
      * Venezuelan Bolivares (VEF).
      */
     @SerializedName("VEF")
@@ -875,52 +911,16 @@ enum class CurrencyCode(val value: String) {
     VND("VND"),
 
     /**
-     * Vanuatu Vatu (VUV).
-     */
-    @SerializedName("VUV")
-    VUV("VUV"),
-
-    /**
-     * Samoan Tala (WST).
-     */
-    @SerializedName("WST")
-    WST("WST"),
-
-    /**
-     * Central African CFA Franc (XAF).
-     */
-    @SerializedName("XAF")
-    XAF("XAF"),
-
-    /**
-     * East Caribbean Dollar (XCD).
-     */
-    @SerializedName("XCD")
-    XCD("XCD"),
-
-    /**
      * West African CFA franc (XOF).
      */
     @SerializedName("XOF")
     XOF("XOF"),
 
     /**
-     * CFP Franc (XPF).
-     */
-    @SerializedName("XPF")
-    XPF("XPF"),
-
-    /**
      * Yemeni Rial (YER).
      */
     @SerializedName("YER")
     YER("YER"),
-
-    /**
-     * South African Rand (ZAR).
-     */
-    @SerializedName("ZAR")
-    ZAR("ZAR"),
 
     /**
      * Zambian Kwacha (ZMW).

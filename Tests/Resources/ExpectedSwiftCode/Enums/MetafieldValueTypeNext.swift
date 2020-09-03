@@ -3,12 +3,12 @@ import Foundation
 
 public extension MerchantApi {
 	enum MetafieldValueType: String, Codable {
+		/// A string.
+			case string = "STRING"
 		/// An integer.
 			case integer = "INTEGER"
 		/// A JSON string.
 			case jsonString = "JSON_STRING"
-		/// A string.
-			case string = "STRING"
 		case unknownValue = ""
 
 		public init(from decoder: Decoder) throws {

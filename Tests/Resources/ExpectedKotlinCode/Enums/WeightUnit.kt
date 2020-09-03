@@ -10,28 +10,28 @@ import javax.annotation.Generated
 enum class WeightUnit(val value: String) {
 
     /**
-     * Metric system unit of mass.
-     */
-    @SerializedName("GRAMS")
-    GRAMS("GRAMS"),
-
-    /**
      * 1 kilogram equals 1000 grams.
      */
     @SerializedName("KILOGRAMS")
     KILOGRAMS("KILOGRAMS"),
 
     /**
-     * Imperial system unit of mass.
+     * Metric system unit of mass.
      */
-    @SerializedName("OUNCES")
-    OUNCES("OUNCES"),
+    @SerializedName("GRAMS")
+    GRAMS("GRAMS"),
 
     /**
      * 1 pound equals 16 ounces.
      */
     @SerializedName("POUNDS")
     POUNDS("POUNDS"),
+
+    /**
+     * Imperial system unit of mass.
+     */
+    @SerializedName("OUNCES")
+    OUNCES("OUNCES"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 
