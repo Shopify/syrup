@@ -10,6 +10,12 @@ import javax.annotation.Generated
 enum class MetafieldValueType(val value: String) {
 
     /**
+     * A string.
+     */
+    @SerializedName("STRING")
+    STRING("STRING"),
+
+    /**
      * An integer.
      */
     @SerializedName("INTEGER")
@@ -20,12 +26,6 @@ enum class MetafieldValueType(val value: String) {
      */
     @SerializedName("JSON_STRING")
     JSON_STRING("JSON_STRING"),
-
-    /**
-     * A string.
-     */
-    @SerializedName("STRING")
-    STRING("STRING"),
 
     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
 

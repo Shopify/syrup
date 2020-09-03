@@ -341,7 +341,7 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		let name = schemaType.name
 		let topLevelType = schema.type(named: name)
 		
-		let enumValues = topLevelType.enumValues.sorted(by: { $0.name < $1.name }).map {
+		let enumValues = topLevelType.enumValues.map {
 			return IntermediateRepresentation.EnumType.Value(
 				value: $0.name,
 				attributes: IntermediateRepresentation.Attributes(

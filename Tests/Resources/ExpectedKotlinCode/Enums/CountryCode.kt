@@ -10,82 +10,10 @@ import javax.annotation.Generated
 enum class CountryCode(val value: String) {
 
     /**
-     * Andorra.
-     */
-    @SerializedName("AD")
-    AD("AD"),
-
-    /**
-     * United Arab Emirates.
-     */
-    @SerializedName("AE")
-    AE("AE"),
-
-    /**
      * Afghanistan.
      */
     @SerializedName("AF")
     AF("AF"),
-
-    /**
-     * Antigua And Barbuda.
-     */
-    @SerializedName("AG")
-    AG("AG"),
-
-    /**
-     * Anguilla.
-     */
-    @SerializedName("AI")
-    AI("AI"),
-
-    /**
-     * Albania.
-     */
-    @SerializedName("AL")
-    AL("AL"),
-
-    /**
-     * Armenia.
-     */
-    @SerializedName("AM")
-    AM("AM"),
-
-    /**
-     * Netherlands Antilles.
-     */
-    @SerializedName("AN")
-    AN("AN"),
-
-    /**
-     * Angola.
-     */
-    @SerializedName("AO")
-    AO("AO"),
-
-    /**
-     * Argentina.
-     */
-    @SerializedName("AR")
-    AR("AR"),
-
-    /**
-     * Austria.
-     */
-    @SerializedName("AT")
-    AT("AT"),
-
-    /**
-     * Australia.
-     */
-    @SerializedName("AU")
-    AU("AU"),
-
-    /**
-     * Aruba.
-     */
-    @SerializedName("AW")
-    AW("AW"),
 
     /**
      * Aland Islands.
@@ -94,100 +22,76 @@ enum class CountryCode(val value: String) {
     AX("AX"),
 
     /**
+     * Albania.
+     */
+    @SerializedName("AL")
+    AL("AL"),
+
+    /**
+     * Algeria.
+     */
+    @SerializedName("DZ")
+    DZ("DZ"),
+
+    /**
+     * Andorra.
+     */
+    @SerializedName("AD")
+    AD("AD"),
+
+    /**
+     * Angola.
+     */
+    @SerializedName("AO")
+    AO("AO"),
+
+    /**
+     * Anguilla.
+     */
+    @SerializedName("AI")
+    AI("AI"),
+
+    /**
+     * Antigua And Barbuda.
+     */
+    @SerializedName("AG")
+    AG("AG"),
+
+    /**
+     * Argentina.
+     */
+    @SerializedName("AR")
+    AR("AR"),
+
+    /**
+     * Armenia.
+     */
+    @SerializedName("AM")
+    AM("AM"),
+
+    /**
+     * Aruba.
+     */
+    @SerializedName("AW")
+    AW("AW"),
+
+    /**
+     * Australia.
+     */
+    @SerializedName("AU")
+    AU("AU"),
+
+    /**
+     * Austria.
+     */
+    @SerializedName("AT")
+    AT("AT"),
+
+    /**
      * Azerbaijan.
      */
     @SerializedName("AZ")
     AZ("AZ"),
-
-    /**
-     * Bosnia And Herzegovina.
-     */
-    @SerializedName("BA")
-    BA("BA"),
-
-    /**
-     * Barbados.
-     */
-    @SerializedName("BB")
-    BB("BB"),
-
-    /**
-     * Bangladesh.
-     */
-    @SerializedName("BD")
-    BD("BD"),
-
-    /**
-     * Belgium.
-     */
-    @SerializedName("BE")
-    BE("BE"),
-
-    /**
-     * Burkina Faso.
-     */
-    @SerializedName("BF")
-    BF("BF"),
-
-    /**
-     * Bulgaria.
-     */
-    @SerializedName("BG")
-    BG("BG"),
-
-    /**
-     * Bahrain.
-     */
-    @SerializedName("BH")
-    BH("BH"),
-
-    /**
-     * Burundi.
-     */
-    @SerializedName("BI")
-    BI("BI"),
-
-    /**
-     * Benin.
-     */
-    @SerializedName("BJ")
-    BJ("BJ"),
-
-    /**
-     * Saint Barthélemy.
-     */
-    @SerializedName("BL")
-    BL("BL"),
-
-    /**
-     * Bermuda.
-     */
-    @SerializedName("BM")
-    BM("BM"),
-
-    /**
-     * Brunei.
-     */
-    @SerializedName("BN")
-    BN("BN"),
-
-    /**
-     * Bolivia.
-     */
-    @SerializedName("BO")
-    BO("BO"),
-
-    /**
-     * Caribbean Netherlands.
-     */
-    @SerializedName("BQ")
-    BQ("BQ"),
-
-    /**
-     * Brazil.
-     */
-    @SerializedName("BR")
-    BR("BR"),
 
     /**
      * Bahamas.
@@ -196,22 +100,22 @@ enum class CountryCode(val value: String) {
     BS("BS"),
 
     /**
-     * Bhutan.
+     * Bahrain.
      */
-    @SerializedName("BT")
-    BT("BT"),
+    @SerializedName("BH")
+    BH("BH"),
 
     /**
-     * Bouvet Island.
+     * Bangladesh.
      */
-    @SerializedName("BV")
-    BV("BV"),
+    @SerializedName("BD")
+    BD("BD"),
 
     /**
-     * Botswana.
+     * Barbados.
      */
-    @SerializedName("BW")
-    BW("BW"),
+    @SerializedName("BB")
+    BB("BB"),
 
     /**
      * Belarus.
@@ -220,10 +124,100 @@ enum class CountryCode(val value: String) {
     BY("BY"),
 
     /**
+     * Belgium.
+     */
+    @SerializedName("BE")
+    BE("BE"),
+
+    /**
      * Belize.
      */
     @SerializedName("BZ")
     BZ("BZ"),
+
+    /**
+     * Benin.
+     */
+    @SerializedName("BJ")
+    BJ("BJ"),
+
+    /**
+     * Bermuda.
+     */
+    @SerializedName("BM")
+    BM("BM"),
+
+    /**
+     * Bhutan.
+     */
+    @SerializedName("BT")
+    BT("BT"),
+
+    /**
+     * Bolivia.
+     */
+    @SerializedName("BO")
+    BO("BO"),
+
+    /**
+     * Bosnia And Herzegovina.
+     */
+    @SerializedName("BA")
+    BA("BA"),
+
+    /**
+     * Botswana.
+     */
+    @SerializedName("BW")
+    BW("BW"),
+
+    /**
+     * Bouvet Island.
+     */
+    @SerializedName("BV")
+    BV("BV"),
+
+    /**
+     * Brazil.
+     */
+    @SerializedName("BR")
+    BR("BR"),
+
+    /**
+     * British Indian Ocean Territory.
+     */
+    @SerializedName("IO")
+    IO("IO"),
+
+    /**
+     * Brunei.
+     */
+    @SerializedName("BN")
+    BN("BN"),
+
+    /**
+     * Bulgaria.
+     */
+    @SerializedName("BG")
+    BG("BG"),
+
+    /**
+     * Burkina Faso.
+     */
+    @SerializedName("BF")
+    BF("BF"),
+
+    /**
+     * Burundi.
+     */
+    @SerializedName("BI")
+    BI("BI"),
+
+    /**
+     * Cambodia.
+     */
+    @SerializedName("KH")
+    KH("KH"),
 
     /**
      * Canada.
@@ -232,16 +226,22 @@ enum class CountryCode(val value: String) {
     CA("CA"),
 
     /**
-     * Cocos (Keeling) Islands.
+     * Cape Verde.
      */
-    @SerializedName("CC")
-    CC("CC"),
+    @SerializedName("CV")
+    CV("CV"),
 
     /**
-     * Congo, The Democratic Republic Of The.
+     * Caribbean Netherlands.
      */
-    @SerializedName("CD")
-    CD("CD"),
+    @SerializedName("BQ")
+    BQ("BQ"),
+
+    /**
+     * Cayman Islands.
+     */
+    @SerializedName("KY")
+    KY("KY"),
 
     /**
      * Central African Republic.
@@ -250,28 +250,10 @@ enum class CountryCode(val value: String) {
     CF("CF"),
 
     /**
-     * Congo.
+     * Chad.
      */
-    @SerializedName("CG")
-    CG("CG"),
-
-    /**
-     * Switzerland.
-     */
-    @SerializedName("CH")
-    CH("CH"),
-
-    /**
-     * Côte d'Ivoire.
-     */
-    @SerializedName("CI")
-    CI("CI"),
-
-    /**
-     * Cook Islands.
-     */
-    @SerializedName("CK")
-    CK("CK"),
+    @SerializedName("TD")
+    TD("TD"),
 
     /**
      * Chile.
@@ -280,16 +262,22 @@ enum class CountryCode(val value: String) {
     CL("CL"),
 
     /**
-     * Republic of Cameroon.
-     */
-    @SerializedName("CM")
-    CM("CM"),
-
-    /**
      * China.
      */
     @SerializedName("CN")
     CN("CN"),
+
+    /**
+     * Christmas Island.
+     */
+    @SerializedName("CX")
+    CX("CX"),
+
+    /**
+     * Cocos (Keeling) Islands.
+     */
+    @SerializedName("CC")
+    CC("CC"),
 
     /**
      * Colombia.
@@ -298,10 +286,40 @@ enum class CountryCode(val value: String) {
     CO("CO"),
 
     /**
+     * Comoros.
+     */
+    @SerializedName("KM")
+    KM("KM"),
+
+    /**
+     * Congo.
+     */
+    @SerializedName("CG")
+    CG("CG"),
+
+    /**
+     * Congo, The Democratic Republic Of The.
+     */
+    @SerializedName("CD")
+    CD("CD"),
+
+    /**
+     * Cook Islands.
+     */
+    @SerializedName("CK")
+    CK("CK"),
+
+    /**
      * Costa Rica.
      */
     @SerializedName("CR")
     CR("CR"),
+
+    /**
+     * Croatia.
+     */
+    @SerializedName("HR")
+    HR("HR"),
 
     /**
      * Cuba.
@@ -310,22 +328,10 @@ enum class CountryCode(val value: String) {
     CU("CU"),
 
     /**
-     * Cape Verde.
-     */
-    @SerializedName("CV")
-    CV("CV"),
-
-    /**
      * Curaçao.
      */
     @SerializedName("CW")
     CW("CW"),
-
-    /**
-     * Christmas Island.
-     */
-    @SerializedName("CX")
-    CX("CX"),
 
     /**
      * Cyprus.
@@ -340,22 +346,22 @@ enum class CountryCode(val value: String) {
     CZ("CZ"),
 
     /**
-     * Germany.
+     * Côte d'Ivoire.
      */
-    @SerializedName("DE")
-    DE("DE"),
-
-    /**
-     * Djibouti.
-     */
-    @SerializedName("DJ")
-    DJ("DJ"),
+    @SerializedName("CI")
+    CI("CI"),
 
     /**
      * Denmark.
      */
     @SerializedName("DK")
     DK("DK"),
+
+    /**
+     * Djibouti.
+     */
+    @SerializedName("DJ")
+    DJ("DJ"),
 
     /**
      * Dominica.
@@ -370,22 +376,10 @@ enum class CountryCode(val value: String) {
     DO("DO"),
 
     /**
-     * Algeria.
-     */
-    @SerializedName("DZ")
-    DZ("DZ"),
-
-    /**
      * Ecuador.
      */
     @SerializedName("EC")
     EC("EC"),
-
-    /**
-     * Estonia.
-     */
-    @SerializedName("EE")
-    EE("EE"),
 
     /**
      * Egypt.
@@ -394,10 +388,16 @@ enum class CountryCode(val value: String) {
     EG("EG"),
 
     /**
-     * Western Sahara.
+     * El Salvador.
      */
-    @SerializedName("EH")
-    EH("EH"),
+    @SerializedName("SV")
+    SV("SV"),
+
+    /**
+     * Equatorial Guinea.
+     */
+    @SerializedName("GQ")
+    GQ("GQ"),
 
     /**
      * Eritrea.
@@ -406,28 +406,22 @@ enum class CountryCode(val value: String) {
     ER("ER"),
 
     /**
-     * Spain.
+     * Estonia.
      */
-    @SerializedName("ES")
-    ES("ES"),
+    @SerializedName("EE")
+    EE("EE"),
+
+    /**
+     * Eswatini.
+     */
+    @SerializedName("SZ")
+    SZ("SZ"),
 
     /**
      * Ethiopia.
      */
     @SerializedName("ET")
     ET("ET"),
-
-    /**
-     * Finland.
-     */
-    @SerializedName("FI")
-    FI("FI"),
-
-    /**
-     * Fiji.
-     */
-    @SerializedName("FJ")
-    FJ("FJ"),
 
     /**
      * Falkland Islands (Malvinas).
@@ -442,34 +436,22 @@ enum class CountryCode(val value: String) {
     FO("FO"),
 
     /**
+     * Fiji.
+     */
+    @SerializedName("FJ")
+    FJ("FJ"),
+
+    /**
+     * Finland.
+     */
+    @SerializedName("FI")
+    FI("FI"),
+
+    /**
      * France.
      */
     @SerializedName("FR")
     FR("FR"),
-
-    /**
-     * Gabon.
-     */
-    @SerializedName("GA")
-    GA("GA"),
-
-    /**
-     * United Kingdom.
-     */
-    @SerializedName("GB")
-    GB("GB"),
-
-    /**
-     * Grenada.
-     */
-    @SerializedName("GD")
-    GD("GD"),
-
-    /**
-     * Georgia.
-     */
-    @SerializedName("GE")
-    GE("GE"),
 
     /**
      * French Guiana.
@@ -478,10 +460,40 @@ enum class CountryCode(val value: String) {
     GF("GF"),
 
     /**
-     * Guernsey.
+     * French Polynesia.
      */
-    @SerializedName("GG")
-    GG("GG"),
+    @SerializedName("PF")
+    PF("PF"),
+
+    /**
+     * French Southern Territories.
+     */
+    @SerializedName("TF")
+    TF("TF"),
+
+    /**
+     * Gabon.
+     */
+    @SerializedName("GA")
+    GA("GA"),
+
+    /**
+     * Gambia.
+     */
+    @SerializedName("GM")
+    GM("GM"),
+
+    /**
+     * Georgia.
+     */
+    @SerializedName("GE")
+    GE("GE"),
+
+    /**
+     * Germany.
+     */
+    @SerializedName("DE")
+    DE("DE"),
 
     /**
      * Ghana.
@@ -496,22 +508,22 @@ enum class CountryCode(val value: String) {
     GI("GI"),
 
     /**
+     * Greece.
+     */
+    @SerializedName("GR")
+    GR("GR"),
+
+    /**
      * Greenland.
      */
     @SerializedName("GL")
     GL("GL"),
 
     /**
-     * Gambia.
+     * Grenada.
      */
-    @SerializedName("GM")
-    GM("GM"),
-
-    /**
-     * Guinea.
-     */
-    @SerializedName("GN")
-    GN("GN"),
+    @SerializedName("GD")
+    GD("GD"),
 
     /**
      * Guadeloupe.
@@ -520,28 +532,22 @@ enum class CountryCode(val value: String) {
     GP("GP"),
 
     /**
-     * Equatorial Guinea.
-     */
-    @SerializedName("GQ")
-    GQ("GQ"),
-
-    /**
-     * Greece.
-     */
-    @SerializedName("GR")
-    GR("GR"),
-
-    /**
-     * South Georgia And The South Sandwich Islands.
-     */
-    @SerializedName("GS")
-    GS("GS"),
-
-    /**
      * Guatemala.
      */
     @SerializedName("GT")
     GT("GT"),
+
+    /**
+     * Guernsey.
+     */
+    @SerializedName("GG")
+    GG("GG"),
+
+    /**
+     * Guinea.
+     */
+    @SerializedName("GN")
+    GN("GN"),
 
     /**
      * Guinea Bissau.
@@ -556,10 +562,10 @@ enum class CountryCode(val value: String) {
     GY("GY"),
 
     /**
-     * Hong Kong.
+     * Haiti.
      */
-    @SerializedName("HK")
-    HK("HK"),
+    @SerializedName("HT")
+    HT("HT"),
 
     /**
      * Heard Island And Mcdonald Islands.
@@ -568,22 +574,22 @@ enum class CountryCode(val value: String) {
     HM("HM"),
 
     /**
+     * Holy See (Vatican City State).
+     */
+    @SerializedName("VA")
+    VA("VA"),
+
+    /**
      * Honduras.
      */
     @SerializedName("HN")
     HN("HN"),
 
     /**
-     * Croatia.
+     * Hong Kong.
      */
-    @SerializedName("HR")
-    HR("HR"),
-
-    /**
-     * Haiti.
-     */
-    @SerializedName("HT")
-    HT("HT"),
+    @SerializedName("HK")
+    HK("HK"),
 
     /**
      * Hungary.
@@ -592,28 +598,10 @@ enum class CountryCode(val value: String) {
     HU("HU"),
 
     /**
-     * Indonesia.
+     * Iceland.
      */
-    @SerializedName("ID")
-    ID("ID"),
-
-    /**
-     * Ireland.
-     */
-    @SerializedName("IE")
-    IE("IE"),
-
-    /**
-     * Israel.
-     */
-    @SerializedName("IL")
-    IL("IL"),
-
-    /**
-     * Isle Of Man.
-     */
-    @SerializedName("IM")
-    IM("IM"),
+    @SerializedName("IS")
+    IS("IS"),
 
     /**
      * India.
@@ -622,16 +610,10 @@ enum class CountryCode(val value: String) {
     IN("IN"),
 
     /**
-     * British Indian Ocean Territory.
+     * Indonesia.
      */
-    @SerializedName("IO")
-    IO("IO"),
-
-    /**
-     * Iraq.
-     */
-    @SerializedName("IQ")
-    IQ("IQ"),
+    @SerializedName("ID")
+    ID("ID"),
 
     /**
      * Iran, Islamic Republic Of.
@@ -640,10 +622,28 @@ enum class CountryCode(val value: String) {
     IR("IR"),
 
     /**
-     * Iceland.
+     * Iraq.
      */
-    @SerializedName("IS")
-    IS("IS"),
+    @SerializedName("IQ")
+    IQ("IQ"),
+
+    /**
+     * Ireland.
+     */
+    @SerializedName("IE")
+    IE("IE"),
+
+    /**
+     * Isle Of Man.
+     */
+    @SerializedName("IM")
+    IM("IM"),
+
+    /**
+     * Israel.
+     */
+    @SerializedName("IL")
+    IL("IL"),
 
     /**
      * Italy.
@@ -652,22 +652,10 @@ enum class CountryCode(val value: String) {
     IT("IT"),
 
     /**
-     * Jersey.
-     */
-    @SerializedName("JE")
-    JE("JE"),
-
-    /**
      * Jamaica.
      */
     @SerializedName("JM")
     JM("JM"),
-
-    /**
-     * Jordan.
-     */
-    @SerializedName("JO")
-    JO("JO"),
 
     /**
      * Japan.
@@ -676,64 +664,16 @@ enum class CountryCode(val value: String) {
     JP("JP"),
 
     /**
-     * Kenya.
+     * Jersey.
      */
-    @SerializedName("KE")
-    KE("KE"),
+    @SerializedName("JE")
+    JE("JE"),
 
     /**
-     * Kyrgyzstan.
+     * Jordan.
      */
-    @SerializedName("KG")
-    KG("KG"),
-
-    /**
-     * Cambodia.
-     */
-    @SerializedName("KH")
-    KH("KH"),
-
-    /**
-     * Kiribati.
-     */
-    @SerializedName("KI")
-    KI("KI"),
-
-    /**
-     * Comoros.
-     */
-    @SerializedName("KM")
-    KM("KM"),
-
-    /**
-     * Saint Kitts And Nevis.
-     */
-    @SerializedName("KN")
-    KN("KN"),
-
-    /**
-     * Korea, Democratic People's Republic Of.
-     */
-    @SerializedName("KP")
-    KP("KP"),
-
-    /**
-     * South Korea.
-     */
-    @SerializedName("KR")
-    KR("KR"),
-
-    /**
-     * Kuwait.
-     */
-    @SerializedName("KW")
-    KW("KW"),
-
-    /**
-     * Cayman Islands.
-     */
-    @SerializedName("KY")
-    KY("KY"),
+    @SerializedName("JO")
+    JO("JO"),
 
     /**
      * Kazakhstan.
@@ -742,10 +682,52 @@ enum class CountryCode(val value: String) {
     KZ("KZ"),
 
     /**
+     * Kenya.
+     */
+    @SerializedName("KE")
+    KE("KE"),
+
+    /**
+     * Kiribati.
+     */
+    @SerializedName("KI")
+    KI("KI"),
+
+    /**
+     * Korea, Democratic People's Republic Of.
+     */
+    @SerializedName("KP")
+    KP("KP"),
+
+    /**
+     * Kosovo.
+     */
+    @SerializedName("XK")
+    XK("XK"),
+
+    /**
+     * Kuwait.
+     */
+    @SerializedName("KW")
+    KW("KW"),
+
+    /**
+     * Kyrgyzstan.
+     */
+    @SerializedName("KG")
+    KG("KG"),
+
+    /**
      * Lao People's Democratic Republic.
      */
     @SerializedName("LA")
     LA("LA"),
+
+    /**
+     * Latvia.
+     */
+    @SerializedName("LV")
+    LV("LV"),
 
     /**
      * Lebanon.
@@ -754,22 +736,10 @@ enum class CountryCode(val value: String) {
     LB("LB"),
 
     /**
-     * Saint Lucia.
+     * Lesotho.
      */
-    @SerializedName("LC")
-    LC("LC"),
-
-    /**
-     * Liechtenstein.
-     */
-    @SerializedName("LI")
-    LI("LI"),
-
-    /**
-     * Sri Lanka.
-     */
-    @SerializedName("LK")
-    LK("LK"),
+    @SerializedName("LS")
+    LS("LS"),
 
     /**
      * Liberia.
@@ -778,10 +748,16 @@ enum class CountryCode(val value: String) {
     LR("LR"),
 
     /**
-     * Lesotho.
+     * Libyan Arab Jamahiriya.
      */
-    @SerializedName("LS")
-    LS("LS"),
+    @SerializedName("LY")
+    LY("LY"),
+
+    /**
+     * Liechtenstein.
+     */
+    @SerializedName("LI")
+    LI("LI"),
 
     /**
      * Lithuania.
@@ -796,46 +772,10 @@ enum class CountryCode(val value: String) {
     LU("LU"),
 
     /**
-     * Latvia.
+     * Macao.
      */
-    @SerializedName("LV")
-    LV("LV"),
-
-    /**
-     * Libyan Arab Jamahiriya.
-     */
-    @SerializedName("LY")
-    LY("LY"),
-
-    /**
-     * Morocco.
-     */
-    @SerializedName("MA")
-    MA("MA"),
-
-    /**
-     * Monaco.
-     */
-    @SerializedName("MC")
-    MC("MC"),
-
-    /**
-     * Moldova, Republic of.
-     */
-    @SerializedName("MD")
-    MD("MD"),
-
-    /**
-     * Montenegro.
-     */
-    @SerializedName("ME")
-    ME("ME"),
-
-    /**
-     * Saint Martin.
-     */
-    @SerializedName("MF")
-    MF("MF"),
+    @SerializedName("MO")
+    MO("MO"),
 
     /**
      * Madagascar.
@@ -844,10 +784,22 @@ enum class CountryCode(val value: String) {
     MG("MG"),
 
     /**
-     * North Macedonia.
+     * Malawi.
      */
-    @SerializedName("MK")
-    MK("MK"),
+    @SerializedName("MW")
+    MW("MW"),
+
+    /**
+     * Malaysia.
+     */
+    @SerializedName("MY")
+    MY("MY"),
+
+    /**
+     * Maldives.
+     */
+    @SerializedName("MV")
+    MV("MV"),
 
     /**
      * Mali.
@@ -856,22 +808,10 @@ enum class CountryCode(val value: String) {
     ML("ML"),
 
     /**
-     * Myanmar.
+     * Malta.
      */
-    @SerializedName("MM")
-    MM("MM"),
-
-    /**
-     * Mongolia.
-     */
-    @SerializedName("MN")
-    MN("MN"),
-
-    /**
-     * Macao.
-     */
-    @SerializedName("MO")
-    MO("MO"),
+    @SerializedName("MT")
+    MT("MT"),
 
     /**
      * Martinique.
@@ -886,34 +826,16 @@ enum class CountryCode(val value: String) {
     MR("MR"),
 
     /**
-     * Montserrat.
-     */
-    @SerializedName("MS")
-    MS("MS"),
-
-    /**
-     * Malta.
-     */
-    @SerializedName("MT")
-    MT("MT"),
-
-    /**
      * Mauritius.
      */
     @SerializedName("MU")
     MU("MU"),
 
     /**
-     * Maldives.
+     * Mayotte.
      */
-    @SerializedName("MV")
-    MV("MV"),
-
-    /**
-     * Malawi.
-     */
-    @SerializedName("MW")
-    MW("MW"),
+    @SerializedName("YT")
+    YT("YT"),
 
     /**
      * Mexico.
@@ -922,10 +844,40 @@ enum class CountryCode(val value: String) {
     MX("MX"),
 
     /**
-     * Malaysia.
+     * Moldova, Republic of.
      */
-    @SerializedName("MY")
-    MY("MY"),
+    @SerializedName("MD")
+    MD("MD"),
+
+    /**
+     * Monaco.
+     */
+    @SerializedName("MC")
+    MC("MC"),
+
+    /**
+     * Mongolia.
+     */
+    @SerializedName("MN")
+    MN("MN"),
+
+    /**
+     * Montenegro.
+     */
+    @SerializedName("ME")
+    ME("ME"),
+
+    /**
+     * Montserrat.
+     */
+    @SerializedName("MS")
+    MS("MS"),
+
+    /**
+     * Morocco.
+     */
+    @SerializedName("MA")
+    MA("MA"),
 
     /**
      * Mozambique.
@@ -934,58 +886,16 @@ enum class CountryCode(val value: String) {
     MZ("MZ"),
 
     /**
+     * Myanmar.
+     */
+    @SerializedName("MM")
+    MM("MM"),
+
+    /**
      * Namibia.
      */
     @SerializedName("NA")
     NA("NA"),
-
-    /**
-     * New Caledonia.
-     */
-    @SerializedName("NC")
-    NC("NC"),
-
-    /**
-     * Niger.
-     */
-    @SerializedName("NE")
-    NE("NE"),
-
-    /**
-     * Norfolk Island.
-     */
-    @SerializedName("NF")
-    NF("NF"),
-
-    /**
-     * Nigeria.
-     */
-    @SerializedName("NG")
-    NG("NG"),
-
-    /**
-     * Nicaragua.
-     */
-    @SerializedName("NI")
-    NI("NI"),
-
-    /**
-     * Netherlands.
-     */
-    @SerializedName("NL")
-    NL("NL"),
-
-    /**
-     * Norway.
-     */
-    @SerializedName("NO")
-    NO("NO"),
-
-    /**
-     * Nepal.
-     */
-    @SerializedName("NP")
-    NP("NP"),
 
     /**
      * Nauru.
@@ -994,10 +904,28 @@ enum class CountryCode(val value: String) {
     NR("NR"),
 
     /**
-     * Niue.
+     * Nepal.
      */
-    @SerializedName("NU")
-    NU("NU"),
+    @SerializedName("NP")
+    NP("NP"),
+
+    /**
+     * Netherlands.
+     */
+    @SerializedName("NL")
+    NL("NL"),
+
+    /**
+     * Netherlands Antilles.
+     */
+    @SerializedName("AN")
+    AN("AN"),
+
+    /**
+     * New Caledonia.
+     */
+    @SerializedName("NC")
+    NC("NC"),
 
     /**
      * New Zealand.
@@ -1006,40 +934,52 @@ enum class CountryCode(val value: String) {
     NZ("NZ"),
 
     /**
+     * Nicaragua.
+     */
+    @SerializedName("NI")
+    NI("NI"),
+
+    /**
+     * Niger.
+     */
+    @SerializedName("NE")
+    NE("NE"),
+
+    /**
+     * Nigeria.
+     */
+    @SerializedName("NG")
+    NG("NG"),
+
+    /**
+     * Niue.
+     */
+    @SerializedName("NU")
+    NU("NU"),
+
+    /**
+     * Norfolk Island.
+     */
+    @SerializedName("NF")
+    NF("NF"),
+
+    /**
+     * North Macedonia.
+     */
+    @SerializedName("MK")
+    MK("MK"),
+
+    /**
+     * Norway.
+     */
+    @SerializedName("NO")
+    NO("NO"),
+
+    /**
      * Oman.
      */
     @SerializedName("OM")
     OM("OM"),
-
-    /**
-     * Panama.
-     */
-    @SerializedName("PA")
-    PA("PA"),
-
-    /**
-     * Peru.
-     */
-    @SerializedName("PE")
-    PE("PE"),
-
-    /**
-     * French Polynesia.
-     */
-    @SerializedName("PF")
-    PF("PF"),
-
-    /**
-     * Papua New Guinea.
-     */
-    @SerializedName("PG")
-    PG("PG"),
-
-    /**
-     * Philippines.
-     */
-    @SerializedName("PH")
-    PH("PH"),
 
     /**
      * Pakistan.
@@ -1048,34 +988,22 @@ enum class CountryCode(val value: String) {
     PK("PK"),
 
     /**
-     * Poland.
-     */
-    @SerializedName("PL")
-    PL("PL"),
-
-    /**
-     * Saint Pierre And Miquelon.
-     */
-    @SerializedName("PM")
-    PM("PM"),
-
-    /**
-     * Pitcairn.
-     */
-    @SerializedName("PN")
-    PN("PN"),
-
-    /**
      * Palestinian Territory, Occupied.
      */
     @SerializedName("PS")
     PS("PS"),
 
     /**
-     * Portugal.
+     * Panama.
      */
-    @SerializedName("PT")
-    PT("PT"),
+    @SerializedName("PA")
+    PA("PA"),
+
+    /**
+     * Papua New Guinea.
+     */
+    @SerializedName("PG")
+    PG("PG"),
 
     /**
      * Paraguay.
@@ -1084,10 +1012,46 @@ enum class CountryCode(val value: String) {
     PY("PY"),
 
     /**
+     * Peru.
+     */
+    @SerializedName("PE")
+    PE("PE"),
+
+    /**
+     * Philippines.
+     */
+    @SerializedName("PH")
+    PH("PH"),
+
+    /**
+     * Pitcairn.
+     */
+    @SerializedName("PN")
+    PN("PN"),
+
+    /**
+     * Poland.
+     */
+    @SerializedName("PL")
+    PL("PL"),
+
+    /**
+     * Portugal.
+     */
+    @SerializedName("PT")
+    PT("PT"),
+
+    /**
      * Qatar.
      */
     @SerializedName("QA")
     QA("QA"),
+
+    /**
+     * Republic of Cameroon.
+     */
+    @SerializedName("CM")
+    CM("CM"),
 
     /**
      * Reunion.
@@ -1102,12 +1066,6 @@ enum class CountryCode(val value: String) {
     RO("RO"),
 
     /**
-     * Serbia.
-     */
-    @SerializedName("RS")
-    RS("RS"),
-
-    /**
      * Russia.
      */
     @SerializedName("RU")
@@ -1120,40 +1078,10 @@ enum class CountryCode(val value: String) {
     RW("RW"),
 
     /**
-     * Saudi Arabia.
+     * Saint Barthélemy.
      */
-    @SerializedName("SA")
-    SA("SA"),
-
-    /**
-     * Solomon Islands.
-     */
-    @SerializedName("SB")
-    SB("SB"),
-
-    /**
-     * Seychelles.
-     */
-    @SerializedName("SC")
-    SC("SC"),
-
-    /**
-     * Sudan.
-     */
-    @SerializedName("SD")
-    SD("SD"),
-
-    /**
-     * Sweden.
-     */
-    @SerializedName("SE")
-    SE("SE"),
-
-    /**
-     * Singapore.
-     */
-    @SerializedName("SG")
-    SG("SG"),
+    @SerializedName("BL")
+    BL("BL"),
 
     /**
      * Saint Helena.
@@ -1162,28 +1090,34 @@ enum class CountryCode(val value: String) {
     SH("SH"),
 
     /**
-     * Slovenia.
+     * Saint Kitts And Nevis.
      */
-    @SerializedName("SI")
-    SI("SI"),
+    @SerializedName("KN")
+    KN("KN"),
 
     /**
-     * Svalbard And Jan Mayen.
+     * Saint Lucia.
      */
-    @SerializedName("SJ")
-    SJ("SJ"),
+    @SerializedName("LC")
+    LC("LC"),
 
     /**
-     * Slovakia.
+     * Saint Martin.
      */
-    @SerializedName("SK")
-    SK("SK"),
+    @SerializedName("MF")
+    MF("MF"),
 
     /**
-     * Sierra Leone.
+     * Saint Pierre And Miquelon.
      */
-    @SerializedName("SL")
-    SL("SL"),
+    @SerializedName("PM")
+    PM("PM"),
+
+    /**
+     * Samoa.
+     */
+    @SerializedName("WS")
+    WS("WS"),
 
     /**
      * San Marino.
@@ -1192,40 +1126,46 @@ enum class CountryCode(val value: String) {
     SM("SM"),
 
     /**
-     * Senegal.
-     */
-    @SerializedName("SN")
-    SN("SN"),
-
-    /**
-     * Somalia.
-     */
-    @SerializedName("SO")
-    SO("SO"),
-
-    /**
-     * Suriname.
-     */
-    @SerializedName("SR")
-    SR("SR"),
-
-    /**
-     * South Sudan.
-     */
-    @SerializedName("SS")
-    SS("SS"),
-
-    /**
      * Sao Tome And Principe.
      */
     @SerializedName("ST")
     ST("ST"),
 
     /**
-     * El Salvador.
+     * Saudi Arabia.
      */
-    @SerializedName("SV")
-    SV("SV"),
+    @SerializedName("SA")
+    SA("SA"),
+
+    /**
+     * Senegal.
+     */
+    @SerializedName("SN")
+    SN("SN"),
+
+    /**
+     * Serbia.
+     */
+    @SerializedName("RS")
+    RS("RS"),
+
+    /**
+     * Seychelles.
+     */
+    @SerializedName("SC")
+    SC("SC"),
+
+    /**
+     * Sierra Leone.
+     */
+    @SerializedName("SL")
+    SL("SL"),
+
+    /**
+     * Singapore.
+     */
+    @SerializedName("SG")
+    SG("SG"),
 
     /**
      * Sint Maarten.
@@ -1234,100 +1174,106 @@ enum class CountryCode(val value: String) {
     SX("SX"),
 
     /**
+     * Slovakia.
+     */
+    @SerializedName("SK")
+    SK("SK"),
+
+    /**
+     * Slovenia.
+     */
+    @SerializedName("SI")
+    SI("SI"),
+
+    /**
+     * Solomon Islands.
+     */
+    @SerializedName("SB")
+    SB("SB"),
+
+    /**
+     * Somalia.
+     */
+    @SerializedName("SO")
+    SO("SO"),
+
+    /**
+     * South Africa.
+     */
+    @SerializedName("ZA")
+    ZA("ZA"),
+
+    /**
+     * South Georgia And The South Sandwich Islands.
+     */
+    @SerializedName("GS")
+    GS("GS"),
+
+    /**
+     * South Korea.
+     */
+    @SerializedName("KR")
+    KR("KR"),
+
+    /**
+     * South Sudan.
+     */
+    @SerializedName("SS")
+    SS("SS"),
+
+    /**
+     * Spain.
+     */
+    @SerializedName("ES")
+    ES("ES"),
+
+    /**
+     * Sri Lanka.
+     */
+    @SerializedName("LK")
+    LK("LK"),
+
+    /**
+     * St. Vincent.
+     */
+    @SerializedName("VC")
+    VC("VC"),
+
+    /**
+     * Sudan.
+     */
+    @SerializedName("SD")
+    SD("SD"),
+
+    /**
+     * Suriname.
+     */
+    @SerializedName("SR")
+    SR("SR"),
+
+    /**
+     * Svalbard And Jan Mayen.
+     */
+    @SerializedName("SJ")
+    SJ("SJ"),
+
+    /**
+     * Sweden.
+     */
+    @SerializedName("SE")
+    SE("SE"),
+
+    /**
+     * Switzerland.
+     */
+    @SerializedName("CH")
+    CH("CH"),
+
+    /**
      * Syria.
      */
     @SerializedName("SY")
     SY("SY"),
-
-    /**
-     * Eswatini.
-     */
-    @SerializedName("SZ")
-    SZ("SZ"),
-
-    /**
-     * Turks and Caicos Islands.
-     */
-    @SerializedName("TC")
-    TC("TC"),
-
-    /**
-     * Chad.
-     */
-    @SerializedName("TD")
-    TD("TD"),
-
-    /**
-     * French Southern Territories.
-     */
-    @SerializedName("TF")
-    TF("TF"),
-
-    /**
-     * Togo.
-     */
-    @SerializedName("TG")
-    TG("TG"),
-
-    /**
-     * Thailand.
-     */
-    @SerializedName("TH")
-    TH("TH"),
-
-    /**
-     * Tajikistan.
-     */
-    @SerializedName("TJ")
-    TJ("TJ"),
-
-    /**
-     * Tokelau.
-     */
-    @SerializedName("TK")
-    TK("TK"),
-
-    /**
-     * Timor Leste.
-     */
-    @SerializedName("TL")
-    TL("TL"),
-
-    /**
-     * Turkmenistan.
-     */
-    @SerializedName("TM")
-    TM("TM"),
-
-    /**
-     * Tunisia.
-     */
-    @SerializedName("TN")
-    TN("TN"),
-
-    /**
-     * Tonga.
-     */
-    @SerializedName("TO")
-    TO("TO"),
-
-    /**
-     * Turkey.
-     */
-    @SerializedName("TR")
-    TR("TR"),
-
-    /**
-     * Trinidad and Tobago.
-     */
-    @SerializedName("TT")
-    TT("TT"),
-
-    /**
-     * Tuvalu.
-     */
-    @SerializedName("TV")
-    TV("TV"),
 
     /**
      * Taiwan.
@@ -1336,16 +1282,82 @@ enum class CountryCode(val value: String) {
     TW("TW"),
 
     /**
+     * Tajikistan.
+     */
+    @SerializedName("TJ")
+    TJ("TJ"),
+
+    /**
      * Tanzania, United Republic Of.
      */
     @SerializedName("TZ")
     TZ("TZ"),
 
     /**
-     * Ukraine.
+     * Thailand.
      */
-    @SerializedName("UA")
-    UA("UA"),
+    @SerializedName("TH")
+    TH("TH"),
+
+    /**
+     * Timor Leste.
+     */
+    @SerializedName("TL")
+    TL("TL"),
+
+    /**
+     * Togo.
+     */
+    @SerializedName("TG")
+    TG("TG"),
+
+    /**
+     * Tokelau.
+     */
+    @SerializedName("TK")
+    TK("TK"),
+
+    /**
+     * Tonga.
+     */
+    @SerializedName("TO")
+    TO("TO"),
+
+    /**
+     * Trinidad and Tobago.
+     */
+    @SerializedName("TT")
+    TT("TT"),
+
+    /**
+     * Tunisia.
+     */
+    @SerializedName("TN")
+    TN("TN"),
+
+    /**
+     * Turkey.
+     */
+    @SerializedName("TR")
+    TR("TR"),
+
+    /**
+     * Turkmenistan.
+     */
+    @SerializedName("TM")
+    TM("TM"),
+
+    /**
+     * Turks and Caicos Islands.
+     */
+    @SerializedName("TC")
+    TC("TC"),
+
+    /**
+     * Tuvalu.
+     */
+    @SerializedName("TV")
+    TV("TV"),
 
     /**
      * Uganda.
@@ -1354,16 +1366,34 @@ enum class CountryCode(val value: String) {
     UG("UG"),
 
     /**
-     * United States Minor Outlying Islands.
+     * Ukraine.
      */
-    @SerializedName("UM")
-    UM("UM"),
+    @SerializedName("UA")
+    UA("UA"),
+
+    /**
+     * United Arab Emirates.
+     */
+    @SerializedName("AE")
+    AE("AE"),
+
+    /**
+     * United Kingdom.
+     */
+    @SerializedName("GB")
+    GB("GB"),
 
     /**
      * United States.
      */
     @SerializedName("US")
     US("US"),
+
+    /**
+     * United States Minor Outlying Islands.
+     */
+    @SerializedName("UM")
+    UM("UM"),
 
     /**
      * Uruguay.
@@ -1378,16 +1408,10 @@ enum class CountryCode(val value: String) {
     UZ("UZ"),
 
     /**
-     * Holy See (Vatican City State).
+     * Vanuatu.
      */
-    @SerializedName("VA")
-    VA("VA"),
-
-    /**
-     * St. Vincent.
-     */
-    @SerializedName("VC")
-    VC("VC"),
+    @SerializedName("VU")
+    VU("VU"),
 
     /**
      * Venezuela.
@@ -1396,22 +1420,16 @@ enum class CountryCode(val value: String) {
     VE("VE"),
 
     /**
-     * Virgin Islands, British.
-     */
-    @SerializedName("VG")
-    VG("VG"),
-
-    /**
      * Vietnam.
      */
     @SerializedName("VN")
     VN("VN"),
 
     /**
-     * Vanuatu.
+     * Virgin Islands, British.
      */
-    @SerializedName("VU")
-    VU("VU"),
+    @SerializedName("VG")
+    VG("VG"),
 
     /**
      * Wallis And Futuna.
@@ -1420,34 +1438,16 @@ enum class CountryCode(val value: String) {
     WF("WF"),
 
     /**
-     * Samoa.
+     * Western Sahara.
      */
-    @SerializedName("WS")
-    WS("WS"),
-
-    /**
-     * Kosovo.
-     */
-    @SerializedName("XK")
-    XK("XK"),
+    @SerializedName("EH")
+    EH("EH"),
 
     /**
      * Yemen.
      */
     @SerializedName("YE")
     YE("YE"),
-
-    /**
-     * Mayotte.
-     */
-    @SerializedName("YT")
-    YT("YT"),
-
-    /**
-     * South Africa.
-     */
-    @SerializedName("ZA")
-    ZA("ZA"),
 
     /**
      * Zambia.
