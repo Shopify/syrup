@@ -66,6 +66,8 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			parentType = schema.queryType
 		case .mutation:
 			parentType = schema.mutationType!
+		case .subscription:
+			parentType = schema.subscriptionType!
 		default:
 			fatalError("Parsing unsupported operation of type \(operation.operationType)")
 		}
@@ -79,6 +81,8 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			operationType = .query(schema.queryType.name)
 		case .mutation:
 			operationType = .mutation(schema.mutationType!.name)
+		case .subscription:
+			operationType = .subscription(schema.subscriptionType!.name)
 		default:
 			fatalError("Parsing unsupported operation of type \(operation.operationType)")
 		}
@@ -383,10 +387,11 @@ extension SelectionSetVisitor {
 	enum OperationType {
 		case mutation(String)
 		case query(String)
+		case subscription(String)
 		
 		var name: String {
 			switch self {
-			case .mutation(let name), .query(let name):
+			case .mutation(let name), .query(let name), .subscription(let name):
 				return name
 			}
 		}

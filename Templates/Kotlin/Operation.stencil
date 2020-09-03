@@ -1,5 +1,5 @@
 {% if asFile %}
-package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.{% if isQuery %}queries{% else %}mutations{% endif %}
+package {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.{{ operation|renderPackage }}
 
 {{ header }}
 import com.google.gson.*
@@ -13,7 +13,7 @@ import javax.annotation.Generated
 
 @Generated("{% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}")
 {% endif %}
-class {{ name }}({{ operation.variables|renderKotlinArguments }}): {% if isQuery %}Query{% else %}Mutation{% endif %}<{{ operation.name }}Response> {
+class {{ operation|renderClassName }}({{ operation.variables|renderKotlinArguments }}): {{ operation|renderOperationTypeName }}<{{ operation.name }}Response> {
 
     override val rawQueryString = "{{ queryString|replace:"$","\$"|replaceQuotes }}"
 

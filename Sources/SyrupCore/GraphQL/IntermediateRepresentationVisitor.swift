@@ -31,6 +31,7 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 	private let queries: [String: String]
 	private let mutations: [String: String]
 	private let fragments: [String: String]
+	private let subscriptions: [String: String]
 
 	private var operations: [IntermediateRepresentation.OperationDefinition] = []
 	private var fragmentDefinitions: [IntermediateRepresentation.FragmentDefinition] = []
@@ -62,43 +63,55 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		}
 	}
 	
-	required init(schema: Schema, customScalars: [ScalarType], builtInScalars: TemplateSpec.BuiltInScalars, queries: [String: String], mutations: [String: String], fragments: [String: String]) {
+	required init(schema: Schema, customScalars: [ScalarType], builtInScalars: TemplateSpec.BuiltInScalars, queries: [String: String], mutations: [String: String], subscriptions: [String: String], fragments: [String: String]) {
 		self.schema = schema
 		self.queries = queries
 		self.mutations = mutations
 		self.fragments = fragments
+		self.subscriptions = subscriptions
 		self.scalars = IntermediateRepresentationVisitor.mergeScalarTypes(customScalars: customScalars, builtInScalars: builtInScalars)
 
 		super.init()
 	}
 	
 	override func visitOperation(operation: SwiftGraphQLParser.Operation) throws {
-		if operation.operationType == .query {
-			parentType.push(schema.queryType)
-		} else if let mutationType = schema.mutationType {
-			parentType.push(mutationType)
-		} else {
+		let schemaType: Schema.SchemaType
+		switch operation.operationType {
+		case .query:
+			schemaType = schema.queryType
+		case .mutation:
+			schemaType = schema.mutationType!
+		case .subscription:
+			schemaType = schema.subscriptionType!
+		default:
 			throw Error(description: "Cannot create operation type of \(operation.operationType)")
 		}
+		parentType.push(schemaType)
 	}
 	
 	override func exitOperation(operation: SwiftGraphQLParser.Operation) {
 		let name = operation.name!
 		let selections = parsedSelections.pop()
 		parentType.pop()
-		let type: IntermediateRepresentation.OperationType = operation.operationType == .query ? .query : .mutation
-		let operation: String
+		let type: IntermediateRepresentation.OperationType
+		let operationString: String
 		let typeName: String
-		switch type {
+		switch operation.operationType {
 		case .query:
-			operation = queries[name]!
+			type = .query
+			operationString = queries[name]!
 			typeName = schema.queryType.name
 		case .mutation:
-			operation = mutations[name]!
+			type = .mutation
+			operationString = mutations[name]!
 			typeName = schema.mutationType!.name
+		case .subscription:
+			type = .subscription
+			operationString = subscriptions[name]!
+			typeName = schema.subscriptionType!.name
 		}
 		let variables = parsedVariables
-		let operationDefinition = IntermediateRepresentation.OperationDefinition(name: name, selections: selections, typeName: typeName, type: type, variables: variables, operation: operation)
+		let operationDefinition = IntermediateRepresentation.OperationDefinition(name: name, selections: selections, typeName: typeName, type: type, variables: variables, operation: operationString)
 		operations.append(operationDefinition)
 		parsedVariables = []
 	}

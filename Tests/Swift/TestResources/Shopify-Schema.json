@@ -7,7 +7,9 @@
 			"mutationType": {
 				"name": "Mutation"
 			},
-			"subscriptionType": null,
+			"subscriptionType": {
+				"name": "Subscription"
+			},
 			"types": [{
 				"kind": "OBJECT",
 				"name": "AccessScope",
@@ -37092,6 +37094,30 @@
 				"interfaces": null,
 				"enumValues": null,
 				"possibleTypes": null
+			}, {
+				"kind": "OBJECT",
+				"name": "Subscription",
+				"description": "The schema's entry point for all mutation operations.",
+				"inputFields": null,
+				"interfaces": [],
+				"enumValues": null,
+				"possibleTypes": null,
+				"fields": [{
+					"args": [],
+					"deprecationReason": null,
+					"description": "",
+					"isDeprecated": false,
+					"name": "presenceChanged",
+					"type": {
+						"kind": "NON_NULL",
+						"name": null,
+						"ofType": {
+							"kind": "SCALAR",
+							"name": "Boolean",
+							"ofType": null
+						}
+					}
+				}]
 			}, {
 				"kind": "OBJECT",
 				"name": "Mutation",

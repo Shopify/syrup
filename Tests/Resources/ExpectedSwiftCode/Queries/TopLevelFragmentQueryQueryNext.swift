@@ -19,7 +19,7 @@ public extension MerchantApi {
 		public typealias Response = TopLevelFragmentQueryResponse
 
 		public let queryString: String = """
-		fragment TopLevelFragment on QueryRoot { __typename node(id: "") { __typename __typename ... on Product { __typename id } } } query TopLevelFragmentQuery { __typename ... TopLevelFragment }
+		fragment TopLevelFragment on QueryRoot { __typename node(id: "") { __typename ... on Product { __typename id } } } query TopLevelFragmentQuery { __typename ... TopLevelFragment }
 		"""
 	}
 }

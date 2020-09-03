@@ -132,13 +132,6 @@ extension MerchantApi.MultiLevelInterfaceFragment {
   []
   ))
   , 
-  .field(GraphSelections.Field(name: "__typename", alias: nil
-, arguments: 
-  []
-, parentType: .interface("Event"), type: .scalar("String"), selectionSet: 
-  []
-  ))
-  , 
   .field(GraphSelections.Field(name: "id", alias: nil
 , arguments: 
   []

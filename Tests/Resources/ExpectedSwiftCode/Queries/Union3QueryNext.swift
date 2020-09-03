@@ -19,7 +19,7 @@ public extension MerchantApi {
 		public typealias Response = Union3Response
 
 		public let queryString: String = """
-		fragment UnionFrag2 on QueryRoot { __typename priceRule(id: "") { __typename value { __typename __typename ... on PriceRulePercentValue { __typename percentage }... on PriceRuleFixedAmountValue { __typename amount } } } } query Union3 { __typename ... UnionFrag2 }
+		fragment UnionFrag2 on QueryRoot { __typename priceRule(id: "") { __typename value { __typename ... on PriceRulePercentValue { __typename percentage }... on PriceRuleFixedAmountValue { __typename amount } } } } query Union3 { __typename ... UnionFrag2 }
 		"""
 	}
 }

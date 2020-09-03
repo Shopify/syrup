@@ -46,6 +46,9 @@ final class SyrupStencilExtension: Extension {
 		registerFilter("replace", filter: SyrupStencilExtension.replace)
 		registerFilter("replaceQuotes", filter: SyrupStencilExtension.replaceQuotes)
 		registerFilter("capitalizeFirstLetter", filter: SyrupStencilExtension.capitalizeFirstLetter)
+		registerFilter("renderClassName", filter: SyrupStencilExtension.renderClassName)
+		registerFilter("renderPackage", filter: SyrupStencilExtension.renderPackage)
+		registerFilter("renderOperationTypeName", filter: SyrupStencilExtension.renderOperationTypeName)
 	}
 	
 	// MARK: - Custom Filters
@@ -90,5 +93,34 @@ final class SyrupStencilExtension: Extension {
 	static func capitalizeFirstLetter(_ value: Any?) throws -> Any? {
 		guard let value = value as? String else { return nil }
 		return value.capitalized
+	}
+	
+	static func renderPackage(_ value: Any?) throws -> Any? {
+		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
+		switch(value.type) {
+			case .query:
+				return "queries"
+			case .mutation:
+				return "mutations"
+			case .subscription:
+				return "subscriptions"
+		}
+	}
+
+	static func renderClassName(_ value: Any?) throws -> Any? {
+		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
+		switch(value.type) {
+			case .query:
+				return "\(value.name)Query"
+			case .mutation:
+				return "\(value.name)Mutation"
+			case .subscription:
+				return "\(value.name)Subscription"
+		}
+	}
+	
+	static func renderOperationTypeName(_ value: Any?) throws -> Any? {
+		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
+		return "\(value.type)".capitalized
 	}
 }

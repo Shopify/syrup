@@ -19,7 +19,7 @@ public extension MerchantApi {
 		public typealias Response = InterfaceFragmentDiscountsQueryResponse
 
 		public let queryString: String = """
-		fragment InterfaceFragment on DiscountCode { __typename __typename ... on DiscountCodeBasic { __typename createdAt shareableUrls { __typename title url } } } query InterfaceFragmentDiscountsQuery { __typename codeDiscountNodes(first: 1) { __typename edges { __typename node { __typename codeDiscount { __typename ... InterfaceFragment } } } } }
+		fragment InterfaceFragment on DiscountCode { __typename ... on DiscountCodeBasic { __typename createdAt shareableUrls { __typename title url } } } query InterfaceFragmentDiscountsQuery { __typename codeDiscountNodes(first: 1) { __typename edges { __typename node { __typename codeDiscount { __typename ... InterfaceFragment } } } } }
 		"""
 	}
 }
