@@ -35,8 +35,8 @@ struct Synchronized<T> {
 	
 	var value: T {
 		get {
-			return lock.withLock {
-				return _value
+			lock.withLock {
+				_value
 			}
 		}
 		set {

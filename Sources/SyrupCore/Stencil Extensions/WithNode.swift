@@ -55,7 +55,7 @@ final class WithNode: NodeType {
 			throw TemplateSyntaxError("Variable \(variable.variable) couldn't be resolved.")
 		}
 		return try context.push(dictionary: [name: variableResult]) {
-			return try renderNodes(nodes, context)
+			try renderNodes(nodes, context)
 		}
 	}
 }

@@ -39,7 +39,7 @@ extension FieldTypeProtocol {
 	}
 	
 	var isNonNull: Bool {
-		return self is IntermediateRepresentation.NonNullFieldType
+		self is IntermediateRepresentation.NonNullFieldType
 	}
 	
 	var isObject: Bool {

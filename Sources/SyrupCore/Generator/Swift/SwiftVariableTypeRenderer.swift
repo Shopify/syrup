@@ -26,11 +26,11 @@ import Foundation
 
 enum SwiftVariableTypeRenderer: VariableTypeRenderer {
 	static func render(variableType: IntermediateRepresentation.Variable.VariableType) -> String {
-		return render(variableType: variableType, nonNull: false, inputVariable: false)
+		render(variableType: variableType, nonNull: false, inputVariable: false)
 	}
 	
 	static func render(inputVariableType: IntermediateRepresentation.Variable.VariableType) -> String {
-		return render(variableType: inputVariableType, nonNull: false, inputVariable: true)
+		render(variableType: inputVariableType, nonNull: false, inputVariable: true)
 	}
 	
 	private static func render(variableType: IntermediateRepresentation.Variable.VariableType, nonNull: Bool, inputVariable: Bool) -> String {

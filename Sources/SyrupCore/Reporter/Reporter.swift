@@ -196,16 +196,18 @@ public final class Reporter {
 		removedHandler: ((String, Date)) -> Void
 		
 	) -> [DeprecationType: [String: Date]] {
-		return DeprecationType.allCases.reduce(into: [DeprecationType: [String: Date]]()) { result, type in
+        DeprecationType.allCases.reduce(into: [DeprecationType: [String: Date]]()) { result, type in
 			let oldType = old[type] ?? [:]
 			let newType = new[type] ?? [:]
-			
+
 			result[type] = oldType.combineWith(new: newType)
-			
+
 			headerHandler(type.rawValue.uppercased())
-			
+
 			result[type]?
-				.sorted { $0.key < $1.key }
+				.sorted {
+					$0.key < $1.key
+				}
 				.forEach { existing in
 					existingHandler(existing)
 				}
@@ -213,7 +215,7 @@ public final class Reporter {
 			oldType
 				.filterRemoved(new: newType)
 				.sorted {
-					return $0.key < $1.key
+					$0.key < $1.key
 				}
 				.forEach { removed in
 					removedHandler(removed)
@@ -229,12 +231,20 @@ let alertDuration: Int = 7
 extension String {
 
 	func ansi(_ code: String) -> String {
-		return "\u{001B}[\(code)m\(self)\u{001B}[0m"
+		"\u{001B}[\(code)m\(self)\u{001B}[0m"
 	}
-	
-	func mdH1() -> String { return "#\(self)" }
-	func mdH2() -> String { return "##\(self)" }
-	func mdH3() -> String { return "###\(self)" }
+
+	func mdH1() -> String {
+		"#\(self)"
+	}
+
+	func mdH2() -> String {
+		"##\(self)"
+	}
+
+	func mdH3() -> String {
+		"###\(self)"
+	}
 
 	func mdExpiryFlag(_ value: Date) -> String {
 		let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: expiryDuration, to: value)!
@@ -248,11 +258,22 @@ extension String {
 			return self.mdTodo()
 		}
 	}
-	
-	func mdTodo() -> String { return "- \(self)" }
-	func mdAlert() -> String { return self.mdSpan("color:red") + " 🚨" }
-	func mdWarn() -> String { return self.mdSpan("color:darkorange") + " ⚠️" }
-	func mdSpan(_ style: String) -> String { return "<span style=\"\(style)\">\(self)</span>" }
+
+	func mdTodo() -> String {
+		"- \(self)"
+	}
+
+	func mdAlert() -> String {
+		self.mdSpan("color:red") + " 🚨"
+	}
+
+	func mdWarn() -> String {
+		self.mdSpan("color:darkorange") + " ⚠️"
+	}
+
+	func mdSpan(_ style: String) -> String {
+		"<span style=\"\(style)\">\(self)</span>"
+	}
 
 	func ansiExpiryFlag(_ value: Date) -> String {
 		let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: expiryDuration, to: value)!
@@ -267,21 +288,28 @@ extension String {
 		}
 	}
 
-	func ansiAlert() -> String { return self.ansi("31") + " 🚨" }
-	func ansiWarn() -> String { return self.ansi("33") + " ⚠️" }
+	func ansiAlert() -> String {
+		self.ansi("31") + " 🚨"
+	}
+
+	func ansiWarn() -> String {
+		self.ansi("33") + " ⚠️"
+	}
 
 }
 
 extension Dictionary where Key == String, Value == Date {
 	func filterRemoved(new: [Key: Value]) -> [Key: Value] {
-		return self.filter { key, value in !new.keys.contains(key) }
+		self.filter { key, value in
+			!new.keys.contains(key)
+		}
 	}
 }
 
 extension Dictionary { // where Key == String, Value == Date {
 	func combineWith(new: [Key: Value]) -> [Key: Value] {
 		// We default to our existing/self copy, if none exist we add the new one.
-		return new.reduce(into: [Key: Value]()) { result, element in
+		new.reduce(into: [Key: Value]()) { result, element in
 			result[element.key] = self[element.key] ?? element.value
 		}
 	}
@@ -293,7 +321,7 @@ enum ValidationError: Error {
 
 extension File {
 	func yamlRead<T: Decodable>() throws -> T {
-		return try YAMLDecoder().decode(T.self, from: URL(fileURLWithPath: self.path), userInfo: [:])
+		try YAMLDecoder().decode(T.self, from: URL(fileURLWithPath: self.path), userInfo: [:])
 	}
 
 	func yamlWrite<T: Encodable>(encodable: T) throws {
@@ -312,7 +340,7 @@ extension File {
 
 extension Sequence where Iterator.Element == File {
 	func toLoaded() throws -> [String: String] {
-		return try self.reduce(into: [String: String]()) { (results, file) in
+		try self.reduce(into: [String: String]()) { (results, file) in
 			results[file.name] = try file.load()
 		}
 	}
@@ -320,8 +348,10 @@ extension Sequence where Iterator.Element == File {
 
 extension Folder {
 	func fetchGraphQLFiles(suffix: String = "graphql") throws -> [String: String] {
-		return try self.files.recursive
-				.filter { (file: File) in file.extension == suffix }
-				.toLoaded()
+		try self.files.recursive
+			.filter { (file: File) in
+				file.extension == suffix
+			}
+			.toLoaded()
 	}
 }

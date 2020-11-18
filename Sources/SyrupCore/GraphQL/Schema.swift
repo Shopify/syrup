@@ -32,7 +32,7 @@ struct Schema: Decodable {
 	let directives: [Directive]
 	
 	var queryType: SchemaType {
-		return self.type(named: queryTypeName)
+        self.type(named: queryTypeName)
 	}
 	
 	var mutationType: SchemaType? {

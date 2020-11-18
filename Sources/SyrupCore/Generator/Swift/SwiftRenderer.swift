@@ -28,7 +28,7 @@ import PathKit
 
 final class SwiftRenderer: Renderer {
 	override class func customExtensions(config: Config) -> [Extension] {
-		return [
+		[
 			SwiftRenderer.customExtension(config: config),
 			SwiftNestedRendererExtension(config: config),
 			ReservedWordsExtension(reservedWords: config.template.specification.reservedWords),
@@ -102,7 +102,7 @@ final class SwiftRenderer: Renderer {
 	}
 		
 	func renderGraphApi() throws -> String {
-		return try render(template: "GraphApi", context: [:])
+		try render(template: "GraphApi", context: [:])
 	}
 	
 	func renderModuleDefinition(moduleName: String, hasCustomCodedScalars: Bool) throws -> String {

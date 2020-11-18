@@ -45,7 +45,7 @@ public struct SchemaSpec: Codable {
 		}
 		
 		static func scalars(_ scalars: [ScalarType]) -> [CustomScalar] {
-			return scalars.map {
+			scalars.map {
 				if let customCodedScalar = $0 as? IntermediateRepresentation.CustomCodedScalar {
 					return CustomScalar(graphType: $0.graphType, nativeType: $0.nativeType, rawValueType: customCodedScalar.rawValueType)
 				} else {
@@ -71,7 +71,9 @@ public struct SchemaSpec: Codable {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.location = try container.decode(String.self, forKey: .location)
 		let customScalars = try container.decode([CustomScalar].self, forKey: .customScalars)
-		self.customScalars = customScalars.map { return $0.scalarIR }
+		self.customScalars = customScalars.map {
+			$0.scalarIR
+		}
 	}
 	
 	public func encode(to encoder: Encoder) throws {

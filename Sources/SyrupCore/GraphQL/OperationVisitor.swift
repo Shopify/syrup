@@ -30,7 +30,7 @@ final class OperationVisitor: GraphQLBaseVisitor {
 		let description: String
 		
 		var errorDescription: String? {
-			return description
+			description
 		}
 	}
 	public var queries: [String: String] = [:]

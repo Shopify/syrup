@@ -39,7 +39,7 @@ open class SyrupTemplate: Stencil.Template {
 	}
 	
 	open override func render(_ dictionary: [String: Any]? = nil) throws -> String {
-		return try removeExtraLines(from: super.render(dictionary))
+		try removeExtraLines(from: super.render(dictionary))
 	}
 	
 	// Workaround until Stencil fixes https://github.com/kylef/Stencil/issues/22

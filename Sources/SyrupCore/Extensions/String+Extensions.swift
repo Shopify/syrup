@@ -25,17 +25,17 @@ import Foundation
 
 extension String {
 	func indented(indentStr: String = "\t") -> String {
-		return self.split(separator: "\n")
+		self.split(separator: "\n")
 			.map({ indentStr + $0 + "\n" })
 			.joined()
 	}
 	
 	var capitalizedFirstLetter: String {
-		return self.prefix(1).uppercased() + self.suffix(self.count - 1)
+		self.prefix(1).uppercased() + self.suffix(self.count - 1)
 	}
 	
 	var lowercasedFirstLetter: String {
-		return self.prefix(1).lowercased() + self.suffix(self.count - 1)
+		self.prefix(1).lowercased() + self.suffix(self.count - 1)
 	}
 	
 	var removingExcessNewlines: String {
@@ -53,7 +53,7 @@ extension String {
 	}
 	
 	var removingNewLines: String {
-		return self.replacingOccurrences(of: "\n", with: " ")
+		self.replacingOccurrences(of: "\n", with: " ")
 	}
 	
 	func removeSuffix(_ suffix: String) -> String {

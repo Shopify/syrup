@@ -38,7 +38,7 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 	private var referencedEnums: Set<IntermediateRepresentation.EnumType> = []
 	private var referencedInputTypes: Set<IntermediateRepresentation.InputType> = []
 	var intermediateRepresentation: IntermediateRepresentation {
-		return IntermediateRepresentation(operations: operations, fragmentDefinitions: fragmentDefinitions, referencedEnums: Array(referencedEnums), referencedInputTypes: Array(referencedInputTypes))
+		IntermediateRepresentation(operations: operations, fragmentDefinitions: fragmentDefinitions, referencedEnums: Array(referencedEnums), referencedInputTypes: Array(referencedInputTypes))
 	}
 	
 	private var parentType = Stack<Schema.SchemaType>()
@@ -59,7 +59,7 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		let description: String
 		
 		var errorDescription: String? {
-			return description
+			description
 		}
 	}
 	
@@ -83,8 +83,6 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 			schemaType = schema.mutationType!
 		case .subscription:
 			schemaType = schema.subscriptionType!
-		default:
-			throw Error(description: "Cannot create operation type of \(operation.operationType)")
 		}
 		parentType.push(schemaType)
 	}
@@ -342,7 +340,7 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		let topLevelType = schema.type(named: name)
 		
 		let enumValues = topLevelType.enumValues.map {
-			return IntermediateRepresentation.EnumType.Value(
+			IntermediateRepresentation.EnumType.Value(
 				value: $0.name,
 				attributes: IntermediateRepresentation.Attributes(
 					description: $0.description,

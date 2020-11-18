@@ -133,7 +133,7 @@ public final class Generator {
 		let error: Error
 		
 		var errorDescription: String? {
-			return "Error parsing \(fileName): \(error.localizedDescription)"
+			"Error parsing \(fileName): \(error.localizedDescription)"
 		}
 	}
 
@@ -211,7 +211,7 @@ public final class Generator {
 			let renderer = KotlinRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.queries }, fileType: .query, renderer: { (ir) -> [String] in
-				return try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.queries)
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.queries)
 			})
 		}
 		
@@ -219,7 +219,7 @@ public final class Generator {
 			let renderer = KotlinRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.mutations }, fileType: .mutation, renderer: { (ir) -> [String] in
-				return try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations:  ir.operations.mutations)
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.mutations)
 			})
 		}
 		
@@ -233,7 +233,7 @@ public final class Generator {
 			let renderer = KotlinRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.fragmentDefinitions }, fileType: .fragment, renderer: { (ir) -> [String] in
-				return try renderer.renderFragmentDefinitions(intermediateRepresentation: ir, selectionSets: selectionSets)
+				try renderer.renderFragmentDefinitions(intermediateRepresentation: ir, selectionSets: selectionSets)
 			})
 		}
         
@@ -241,7 +241,7 @@ public final class Generator {
 			let renderer = KotlinRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.subscriptions }, fileType: .subscription, renderer: { (ir) -> [String] in
-				return try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.subscriptions)
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.subscriptions)
 			})
 		}
 		
@@ -300,7 +300,7 @@ public final class Generator {
 			let renderer = SwiftRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.fragmentDefinitions }, fileType: .fragment, renderer: { (ir) -> [String] in
-				return try renderer.renderFragmentDefinitions(intermediateRepresentation: ir, selectionSets: selectionSets)
+				try renderer.renderFragmentDefinitions(intermediateRepresentation: ir, selectionSets: selectionSets)
 			})
 		}
 		
@@ -308,7 +308,7 @@ public final class Generator {
 			let renderer = SwiftRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.queries }, fileType: .query, renderer: { (ir) -> [String] in
-				return try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations:  ir.operations.queries)
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.queries)
 			})
 		}
 		
@@ -316,7 +316,8 @@ public final class Generator {
 			let renderer = SwiftRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.mutations }, fileType: .mutation, renderer: { (ir) -> [String] in
-				return try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations:  ir.operations.mutations) })
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.mutations)
+			})
 		}
 		
 		concurrentPerform {
@@ -329,7 +330,7 @@ public final class Generator {
 			let renderer = SwiftRenderer(config: self.config)
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.subscriptions }, fileType: .subscription, renderer: { (ir) -> [String] in
-				return try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.subscriptions)
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.subscriptions)
 			})
 		}
 		

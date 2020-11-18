@@ -26,7 +26,7 @@ import Foundation
 
 enum SwiftTypeAnnotationRenderer {
 	static func render(scalarField: IntermediateRepresentation.CollectedScalarField, outsideOfModule moduleName: String? = nil) -> String {
-		return render(scalarType: scalarField.type, nonNull: false, moduleName: moduleName)
+		render(scalarType: scalarField.type, nonNull: false, moduleName: moduleName)
 	}
 	
 	private static func render(scalarType: FieldTypeProtocol, nonNull: Bool, moduleName: String?) -> String {

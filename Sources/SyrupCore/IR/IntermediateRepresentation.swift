@@ -279,7 +279,7 @@ struct IntermediateRepresentation {
 		}
 		
 		static func ==(lhs: InputType, rhs: InputType) -> Bool {
-			return lhs.name == rhs.name
+			lhs.name == rhs.name
 		}
 	}
 	
@@ -293,7 +293,7 @@ struct IntermediateRepresentation {
 			}
 			
 			static func ==(lhs: Value, rhs: Value) -> Bool {
-				return lhs.value == rhs.value
+				lhs.value == rhs.value
 			}
 		}
 		let name: String
@@ -306,7 +306,7 @@ struct IntermediateRepresentation {
 		}
 		
 		static func ==(lhs: EnumType, rhs: EnumType) -> Bool {
-			return lhs.name == rhs.name && lhs.values == rhs.values
+			lhs.name == rhs.name && lhs.values == rhs.values
 		}
 	}
 	
@@ -357,7 +357,7 @@ struct IntermediateRepresentation {
 private extension Array where Element == IntermediateRepresentation.FragmentDefinition {
 	subscript(index: String) -> IntermediateRepresentation.FragmentDefinition {
 		get {
-			return self.first(where: { (fragmentDefinition) -> Bool in
+			self.first(where: { (fragmentDefinition) -> Bool in
 				fragmentDefinition.name == index
 			})!
 		}
@@ -367,7 +367,7 @@ private extension Array where Element == IntermediateRepresentation.FragmentDefi
 
 extension Array where Element == IntermediateRepresentation.OperationDefinition {
 	var mutations: [IntermediateRepresentation.OperationDefinition] {
-		return filter {
+		filter {
 			if case .mutation = $0.type {
 				return true
 			} else {
@@ -377,7 +377,7 @@ extension Array where Element == IntermediateRepresentation.OperationDefinition 
 	}
 	
 	var queries: [IntermediateRepresentation.OperationDefinition] {
-		return filter {
+		filter {
 			if case .query = $0.type {
 				return true
 			} else {
@@ -387,7 +387,7 @@ extension Array where Element == IntermediateRepresentation.OperationDefinition 
 	}
     
 	var subscriptions: [IntermediateRepresentation.OperationDefinition] {
-		return filter {
+		filter {
 			if case .subscription = $0.type {
 				return true
 			} else {

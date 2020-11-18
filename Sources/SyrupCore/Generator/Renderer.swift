@@ -28,7 +28,7 @@ import PathKit
 
 open class Renderer {
 	class func customExtensions(config: Config) -> [Extension] {
-		return []
+		[]
 	}
 	let config: Config
 	let environment: Environment
@@ -52,7 +52,7 @@ open class Renderer {
 			"asFile": asFile,
 			"moduleName": config.project.moduleName
 		]
-		let mergedContext = context.merging(globalContext, uniquingKeysWith: { value, _ in return value })
+		let mergedContext = context.merging(globalContext, uniquingKeysWith: { value, _ in value })
 		let templateName = "\(template).stencil"
 		do {
 			let rendered = try environment.renderTemplate(name: templateName, context: mergedContext)
