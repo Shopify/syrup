@@ -30,16 +30,20 @@ func warnDupeKey(key: [String], verbose: Bool = false) {
 
 extension Sequence where Iterator.Element == IntermediateRepresentation.OperationDefinition {
 	func findFields(verbose: Bool = false) -> [[String]: IntermediateRepresentation.Field] {
-		return self.reduce([[String]: IntermediateRepresentation.Field]()) {
-			$0.merging($1.selections.findFields(parentKey: [$1.name], verbose: verbose)) { (_, new) in new }
+		self.reduce([[String]: IntermediateRepresentation.Field]()) {
+			$0.merging($1.selections.findFields(parentKey: [$1.name], verbose: verbose)) { (_, new) in
+				new
+			}
 		}
 	}
 }
 
 extension Sequence where Iterator.Element == IntermediateRepresentation.FragmentDefinition {
 	func findFields(verbose: Bool = false) -> [[String]: IntermediateRepresentation.Field] {
-		return self.reduce([[String]: IntermediateRepresentation.Field]()) {
-			$0.merging($1.selections.findFields(parentKey: [$1.name], verbose: verbose)) { (_, new) in new }
+		self.reduce([[String]: IntermediateRepresentation.Field]()) {
+			$0.merging($1.selections.findFields(parentKey: [$1.name], verbose: verbose)) { (_, new) in
+				new
+			}
 		}
 	}
 }
@@ -47,30 +51,38 @@ extension Sequence where Iterator.Element == IntermediateRepresentation.Fragment
 extension Sequence where Iterator.Element == IntermediateRepresentation.Selection {
 	// Builds a dictionary of Key:Field
 	func findFields(parentKey: [String], verbose: Bool = false) -> [[String]: IntermediateRepresentation.Field] {
-		return self.reduce([[String]: IntermediateRepresentation.Field]()) { (result, selection) in
+		self.reduce([[String]: IntermediateRepresentation.Field]()) { (result, selection) in
 			switch selection {
-				case .field(let field):
-					let currentKey = parentKey + [field.name]
-					let currentKeyField = [currentKey: field]
-					if result.keys.contains(currentKey) {
-						warnDupeKey(key: currentKey, verbose: verbose)
+			case .field(let field):
+				let currentKey = parentKey + [field.name]
+				let currentKeyField = [currentKey: field]
+				if result.keys.contains(currentKey) {
+					warnDupeKey(key: currentKey, verbose: verbose)
+				}
+				let subKeyFields = field.type.findFields(parentKey: currentKey) ?? [:]
+				subKeyFields.keys.forEach {
+					if result.keys.contains($0) {
+						warnDupeKey(key: $0, verbose: verbose)
 					}
-					let subKeyFields = field.type.findFields(parentKey: currentKey) ?? [:]
-					subKeyFields.keys.forEach {
-						if result.keys.contains($0) {
-							warnDupeKey(key: $0, verbose: verbose)
+				}
+				return result
+						.merging(currentKeyField) { (_, new) in
+							new
 						}
-					}
-					return result
-							.merging(currentKeyField) { (_, new) in new }
-							.merging(subKeyFields) { (_, new) in new }
-				case .inlineFragment(let inline):
-					let currentKey = parentKey + [inline.typeCondition.name]
-					let inlineFields = inline.selectionSet.findFields(parentKey: currentKey, verbose: verbose)
-					if result.keys.contains(currentKey) { warnDupeKey(key: currentKey, verbose: verbose) }
-					return result.merging(inlineFields) { (_, new) in new }
-				case .fragmentSpread:
-					return result
+						.merging(subKeyFields) { (_, new) in
+							new
+						}
+			case .inlineFragment(let inline):
+				let currentKey = parentKey + [inline.typeCondition.name]
+				let inlineFields = inline.selectionSet.findFields(parentKey: currentKey, verbose: verbose)
+				if result.keys.contains(currentKey) {
+					warnDupeKey(key: currentKey, verbose: verbose)
+				}
+				return result.merging(inlineFields) { (_, new) in
+					new
+				}
+			case .fragmentSpread:
+				return result
 			}
 		}
 	}
@@ -140,9 +152,9 @@ extension Sequence where Iterator.Element == IntermediateRepresentation.Fragment
 
 extension Sequence {
 	func compactFlatMap<SegmentOfResult>(_ transform: (Self.Element) throws -> SegmentOfResult?) rethrows -> [SegmentOfResult.Element] where SegmentOfResult: Sequence {
-		return try self
-				.compactMap(transform)
-				.flatMap { $0 }
+        try self.compactMap(transform).flatMap {
+			$0
+		}
 	}
 }
 

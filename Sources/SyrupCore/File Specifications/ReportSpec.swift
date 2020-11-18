@@ -68,7 +68,7 @@ public struct ReportSpec: Codable {
 	}
 
 	public func toDictionary() throws -> [DeprecationType: [String: Date]] {
-		return self.deprecations.reduce(into: [DeprecationType: [String: Date]]()) { result, deprecation in
+		self.deprecations.reduce(into: [DeprecationType: [String: Date]]()) { result, deprecation in
 			if var parent = result[deprecation.type] {
 				parent[deprecation.key] = deprecation.value
 				result[deprecation.type] = parent

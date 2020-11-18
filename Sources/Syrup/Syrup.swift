@@ -67,8 +67,8 @@ class Syrup {
 			let configFileDefaults = [".syrup.yml", "syrup.yml"]
 			let projectDefaults = configFileDefaults.lazy.map { currentWorkingDirectory.appending(component: $0) }
 			self.project = projectDefaults.first {
-				return localFileSystem.isFile($0)
-				} ?? projectDefaults[0]
+				localFileSystem.isFile($0)
+			} ?? projectDefaults[0]
 			self.schema = self.project
 		}
 
@@ -99,7 +99,7 @@ class Syrup {
 		}
 
 		func addAsSubparser(to parser: ArgumentParser) -> ArgumentParser {
-			return parser.add(subparser: self.rawValue, overview: self.overview)
+			parser.add(subparser: self.rawValue, overview: self.overview)
 		}
 	}
 
@@ -295,52 +295,52 @@ class Syrup {
 
 	@discardableResult
 	private func addQueriesArgument(to parser: ArgumentParser) -> PositionalArgument<PathArgument> {
-		return parser.add(positional: "queries", kind: PathArgument.self, usage: "This provides the path to the folder containing all of your graphql operation definitions. These files are expected to have the .graphql suffix and should be valid graphql operations.")
+		parser.add(positional: "queries", kind: PathArgument.self, usage: "This provides the path to the folder containing all of your graphql operation definitions. These files are expected to have the .graphql suffix and should be valid graphql operations.")
 	}
 	
 	@discardableResult
 	private func addDestinationArgument(to parser: ArgumentParser) -> PositionalArgument<PathArgument> {
-		return parser.add(positional: "destination", kind: PathArgument.self, usage: "This provides the path to the folder where the generated code should be written to.")
+		parser.add(positional: "destination", kind: PathArgument.self, usage: "This provides the path to the folder where the generated code should be written to.")
 	}
 	
 	@discardableResult
 	private func addSupportFilesArgument(to parser: ArgumentParser) -> PositionalArgument<PathArgument> {
-		return parser.add(positional: "supportFilesDestination", kind: PathArgument.self, usage: "This provides the path to the folder where the necessary support files should be written to.")
+		parser.add(positional: "supportFilesDestination", kind: PathArgument.self, usage: "This provides the path to the folder where the necessary support files should be written to.")
 	}
 	
 	@discardableResult
 	private func addTemplateArgument(to parser: ArgumentParser) -> PositionalArgument<String> {
-		return parser.add(positional: "template", kind: String.self, usage: "This provides the path to the Templates folder that are included in the Syrup repository.", completion: .filename)
+		parser.add(positional: "template", kind: String.self, usage: "This provides the path to the Templates folder that are included in the Syrup repository.", completion: .filename)
 	}
 	
 	@discardableResult
 	private func addProjectArgument(to parser: ArgumentParser) -> OptionArgument<PathArgument> {
-		return parser.add(option: "--project", kind: PathArgument.self, usage: "YAML project configuration file")
+		parser.add(option: "--project", kind: PathArgument.self, usage: "YAML project configuration file")
 	}
 
 	@discardableResult
 	private func addSchemaArgument(to parser: ArgumentParser) -> OptionArgument<PathArgument> {
-		return parser.add(option: "--schema", kind: PathArgument.self, usage: "YAML schema configuration file")
+		parser.add(option: "--schema", kind: PathArgument.self, usage: "YAML schema configuration file")
 	}
 
 	@discardableResult
 	private func addOverrideSchemaArgument(to parser: ArgumentParser) -> OptionArgument<String> {
-		return parser.add(option: "--override-schema", kind: String.self, usage: "Overrides the projects schema location. Can be either a URL or a path on the filesystem.")
+		parser.add(option: "--override-schema", kind: String.self, usage: "Overrides the projects schema location. Can be either a URL or a path on the filesystem.")
 	}
 
 	@discardableResult
 	private func addDeprecationReportArgument(to parser: ArgumentParser) -> OptionArgument<PathArgument> {
-		return parser.add(option: "--reports", kind: PathArgument.self, usage: "Deprecation report target output file.")
+		parser.add(option: "--reports", kind: PathArgument.self, usage: "Deprecation report target output file.")
 	}
 
 	@discardableResult
 	private func addOverwriteReportArgument(to parser: ArgumentParser) -> OptionArgument<Bool> {
-		return parser.add(option: "--overwrite", shortName: "-ow", kind: Bool.self, usage: "Overwrite existing report.")
+		parser.add(option: "--overwrite", shortName: "-ow", kind: Bool.self, usage: "Overwrite existing report.")
 	}
 
 	@discardableResult
 	private func addVerboseArgument(to parser: ArgumentParser) -> OptionArgument<Bool> {
-		return parser.add(option: "--verbose", shortName: "-vb", kind: Bool.self, usage: "Verbose output, reports on duplicates, etc.")
+		parser.add(option: "--verbose", shortName: "-vb", kind: Bool.self, usage: "Verbose output, reports on duplicates, etc.")
 	}
 
 }

@@ -36,7 +36,7 @@ protocol CollectedField {
 
 extension CollectedField {
 	var parentType: String {
-		return parentTypeCondition.name
+		parentTypeCondition.name
 	}
 }
 
@@ -130,7 +130,7 @@ extension IntermediateRepresentation {
 		
 		private(set) var path: [PathComponent]
 		var parent: PathComponent {
-			return path.first!
+			path.first!
 		}
 		
 		func with(_ pathComponent: PathComponent) -> SelectionPath {
@@ -163,11 +163,11 @@ extension IntermediateRepresentation {
 		}
 		
 		static func ==(lhs: SelectionPath, rhs: SelectionPath) -> Bool {
-			return lhs.path == rhs.path
+			lhs.path == rhs.path
 		}
 		
 		func hasPrefix(_ prefix: SelectionPath) -> Bool {
-			return Array(path.prefix(upTo: prefix.path.count)) == prefix.path
+			Array(path.prefix(upTo: prefix.path.count)) == prefix.path
 		}
 		
 		/// Returns true if the field is a result of a fragment spread
@@ -181,7 +181,7 @@ extension IntermediateRepresentation {
 		}
 		
 		var count: Int {
-			return path.count
+			path.count
 		}
 	}
 	
@@ -214,7 +214,7 @@ extension IntermediateRepresentation {
 	}
 	
 	private func filterTypeNameField(collectedFields: [CollectedField]) -> [CollectedField] {
-		return collectedFields.compactMap { field in
+		collectedFields.compactMap { field in
 			switch field {
 			case var field as CollectedObjectField:
 				field.collectedFields = filterTypeNameField(collectedFields: field.collectedFields)
@@ -457,7 +457,7 @@ extension IntermediateRepresentation {
 	private static func mergeDuplicateFields(fields: [CollectedField]) throws -> [CollectedField] {
 		var mergedFields: [CollectedField] = []
 		func areDuplicates(lhs: CollectedField, rhs: CollectedField) -> Bool {
-			return lhs.name == rhs.name && lhs.parentType == rhs.parentType && lhs.parentFragment == rhs.parentFragment
+			lhs.name == rhs.name && lhs.parentType == rhs.parentType && lhs.parentFragment == rhs.parentFragment
 		}
 		for field in fields {
 			if let mergedIndex = mergedFields.firstIndex(where: { areDuplicates(lhs: $0, rhs: field) }) {
@@ -493,7 +493,7 @@ extension IntermediateRepresentation {
 		var mergedFields: [CollectedField] = []
 		let fields = inheritedFields + concreteFields
 		func areDuplicates(lhs: CollectedField, rhs: CollectedField) -> Bool {
-			return lhs.name == rhs.name
+			lhs.name == rhs.name
 		}
 		for (index, field) in fields.enumerated() {
 			var finalField = field
@@ -559,11 +559,11 @@ extension IntermediateRepresentation {
 	}
 	
 	static func fragments(from fragmentSpreads: [IntermediateRepresentation.SelectionPath], onInterfaceType interfaceType: String) -> [IntermediateRepresentation.SelectionPath.PathComponent.Fragment] {
-		return fragments(from: fragmentSpreads, onType: interfaceType, isInterfaceType: true)
+		fragments(from: fragmentSpreads, onType: interfaceType, isInterfaceType: true)
 	}
 	
 	static func fragments(from fragmentSpreads: [IntermediateRepresentation.SelectionPath], onConcreteType concreteType: String) -> [IntermediateRepresentation.SelectionPath.PathComponent.Fragment] {
-		return fragments(from: fragmentSpreads, onType: concreteType, isInterfaceType: false)
+		fragments(from: fragmentSpreads, onType: concreteType, isInterfaceType: false)
 	}
 	
 	private static func fragments(from fragmentSpreads: [IntermediateRepresentation.SelectionPath], onType type: String, isInterfaceType: Bool) -> [IntermediateRepresentation.SelectionPath.PathComponent.Fragment] {
@@ -656,7 +656,7 @@ extension IntermediateRepresentation {
 extension Array where Element == CollectedField {
 	func groupedFields(fromInterfaceType interfaceType: String) throws -> [String: [CollectedField]] {
 		var grouped = Dictionary(grouping: self) { (collectedField) -> String in
-			return collectedField.parentType
+			collectedField.parentType
 		}
 		for collectedField in self {
 			switch collectedField.parentTypeCondition {
@@ -668,13 +668,13 @@ extension Array where Element == CollectedField {
 		}
 		let baseFields = self.baseFields(fromInterfaceType: interfaceType)
 		return try grouped.mapValues { (fields) -> [CollectedField] in
-			return try IntermediateRepresentation.mergeDuplicateFields(forInterfaceType: interfaceType, inheritedFields: baseFields, concreteFields: fields)
+			try IntermediateRepresentation.mergeDuplicateFields(forInterfaceType: interfaceType, inheritedFields: baseFields, concreteFields: fields)
 		}
 	}
 	
 	func groupedFields(fromUnionType unionType: String) -> [String: [CollectedField]] {
 		var grouped = Dictionary(grouping: self) { (collectedField) -> String in
-			return collectedField.parentType
+			collectedField.parentType
 		}
 		for collectedField in self {
 			switch collectedField.parentTypeCondition {
@@ -731,7 +731,7 @@ extension Array where Element == CollectedField {
 	}
 	
 	func computedFragmentFields(fragmentSpreads: [IntermediateRepresentation.SelectionPath.PathComponent.Fragment], parentType: String) -> [CollectedField] {
-		return computedFragmentFields(fragmentSpreads: fragmentSpreads, parentTypes: [parentType])
+		computedFragmentFields(fragmentSpreads: fragmentSpreads, parentTypes: [parentType])
 	}
 	
 	func computedFragmentFields(fragmentSpreads: [IntermediateRepresentation.SelectionPath.PathComponent.Fragment], parentTypes: [String]) -> [CollectedField] {
@@ -752,7 +752,7 @@ extension Array where Element == CollectedField {
 		}
 		
 		computedFragmentFields = computedFragmentFields.filter { field in
-			return !duplicateFields.contains(field.name)
+			!duplicateFields.contains(field.name)
 		}
 		
 		return computedFragmentFields

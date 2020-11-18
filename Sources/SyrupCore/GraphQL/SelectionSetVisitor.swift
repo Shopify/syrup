@@ -37,28 +37,28 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 	private var currentArguments: Stack<[Argument]> = []
 	private var currentDirectiveValues: Stack<ConditionalDirective> = []
 	private var isParsingVariableDefinition: Bool = false
-	
+
 	struct Results {
 		let operations: [Operation]
 		let fragmentDefinitions: [FragmentDefinition]
-		
+
 		func fragmentDefinition(named: String) -> FragmentDefinition {
-			return fragmentDefinitions.first(where: { $0.name == named })!
+			fragmentDefinitions.first(where: { $0.name == named })!
 		}
-		
+
 		func operation(named: String) -> Operation {
-			return operations.first(where: { $0.name == named })!
+			operations.first(where: { $0.name == named })!
 		}
 	}
 	var results: Results {
-		return Results(operations: operations, fragmentDefinitions: fragmentDefinitions)
+		Results(operations: operations, fragmentDefinitions: fragmentDefinitions)
 	}
-	
+
 	init(schema: Schema) {
 		self.schema = schema
 		super.init()
 	}
-	
+
 	override func visitOperation(operation: SwiftGraphQLParser.Operation) throws {
 		let parentType: Schema.SchemaType
 		switch operation.operationType {
@@ -68,12 +68,10 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			parentType = schema.mutationType!
 		case .subscription:
 			parentType = schema.subscriptionType!
-		default:
-			fatalError("Parsing unsupported operation of type \(operation.operationType)")
 		}
 		self.currentParentType.push(parentType)
 	}
-	
+
 	override func exitOperation(operation: SwiftGraphQLParser.Operation) throws {
 		let operationType: OperationType
 		switch operation.operationType {
@@ -83,8 +81,6 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			operationType = .mutation(schema.mutationType!.name)
 		case .subscription:
 			operationType = .subscription(schema.subscriptionType!.name)
-		default:
-			fatalError("Parsing unsupported operation of type \(operation.operationType)")
 		}
 		let selections = self.currentSelectionSet.peek()
 		let operation = Operation(
@@ -96,12 +92,12 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 		self.currentParentType.pop()
 		self.currentSelectionSet.pop()
 	}
-	
+
 	override func visitFragmentDefinition(fragmentDefinition: SwiftGraphQLParser.FragmentDefinition) throws {
 		let parentType = schema.type(named: fragmentDefinition.typeCondition.namedType)
 		self.currentParentType.push(parentType)
 	}
-	
+
 	override func exitFragmentDefinition(fragmentDefinition: SwiftGraphQLParser.FragmentDefinition) throws {
 		let typeCondition = parseTypeCondition(from: self.currentParentType.peek().name)
 		let selections = self.currentSelectionSet.peek()
@@ -114,11 +110,11 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 		self.currentSelectionSet.pop()
 		self.currentParentType.pop()
 	}
-	
+
 	override func visitSelectionSet(selectionSet: [SwiftGraphQLParser.Selection]) throws {
 		self.currentSelectionSet.push([])
 	}
-	
+
 	override func visitField(field: SwiftGraphQLParser.Field) throws {
 		if (field.selectionSet?.count ?? 0) > 0 {
 			let parentType = schema.topLevelType(of: field.name, on: self.currentParentType.peek())
@@ -129,7 +125,7 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			parsingDirectiveArguments = false
 		}
 	}
-	
+
 	override func exitField(field: SwiftGraphQLParser.Field) throws {
 		if (field.selectionSet?.count ?? 0) > 0 {
 			self.currentParentType.pop()
@@ -157,7 +153,7 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 					on: self.currentParentType.peek()
 					).name
 			)
-			
+
 		}
 		let nestedSelections: [Selection]
 		switch type {
@@ -179,7 +175,7 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			selections.append(.field(parsedField))
 		}
 	}
-	
+
 	override func exitFragmentSpread(fragmentSpread: SwiftGraphQLParser.FragmentSpread) throws {
 		let conditionalDirective: ConditionalDirective?
 		if fragmentSpread.directives.count > 0 {
@@ -192,12 +188,12 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			selections.append(.fragmentSpread(parsedFragmentSpread))
 		}
 	}
-	
+
 	override func visitInlineFragment(inlineFragment: SwiftGraphQLParser.InlineFragment) throws {
 		let parentType = schema.type(named: inlineFragment.typeCondition!.namedType)
 		currentParentType.push(parentType)
 	}
-	
+
 	override func exitInlineFragment(inlineFragment: SwiftGraphQLParser.InlineFragment) throws {
 		let parentType = parseTypeCondition(from: self.currentParentType.peek().name)
 		let conditionalDirective: ConditionalDirective?
@@ -214,22 +210,22 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 		self.currentSelectionSet.transformTopElement { (selections) in
 			selections.append(.inlineFragment(parsedInlineFragment))
 		}
-		
+
 		currentParentType.pop()
 	}
-	
+
 	override func visitVariableDefinition(variableDefinition: SwiftGraphQLParser.VariableDefinition) throws {
 		isParsingVariableDefinition = true
 	}
-	
+
 	override func exitVariableDefinition(variableDefinition: SwiftGraphQLParser.VariableDefinition) throws {
 		isParsingVariableDefinition = false
 	}
-	
+
 	override func visitArgument(argument: SwiftGraphQLParser.Argument) throws {
 		currentArgumentValue.push([])
 	}
-	
+
 	override func exitArgument(argument: SwiftGraphQLParser.Argument) throws {
 		if parsingDirectiveArguments == false {
 			let value = currentArgumentValue.pop().first!
@@ -238,11 +234,11 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			}
 		}
 	}
-	
+
 	override func visitDirective(directive: SwiftGraphQLParser.Directive) throws {
 		parsingDirectiveArguments = true
 	}
-	
+
 	override func exitDirective(directive: SwiftGraphQLParser.Directive) throws {
 		parsingDirectiveArguments = false
 		let value = currentArgumentValue.pop().first!
@@ -255,11 +251,11 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			fatalError("Encountered unexpected directive \(directive.name)")
 		}
 	}
-	
+
 	override func visitVariable(variable: SwiftGraphQLParser.Variable) throws {
-		
+
 	}
-	
+
 	override func exitVariable(variable: SwiftGraphQLParser.Variable) throws {
 		guard isParsingVariableDefinition == false else {
 			return
@@ -268,25 +264,25 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			values.append(Variable(name: variable.name))
 		}
 	}
-	
+
 	override func visitValue(value: SwiftGraphQLParser.Value) throws {
-		
+
 	}
-	
+
 	override func visitIntValue(intValue: String) throws {
-		
+
 	}
-	
+
 	override func exitIntValue(intValue: String) throws {
 		currentArgumentValue.transformTopElement({ (values) in
 			values.append(IntValue(value: Int(intValue)!))
 		})
 	}
-	
+
 	override func visitStringValue(stringValue: SwiftGraphQLParser.StringValue) throws {
-		
+
 	}
-	
+
 	override func exitStringValue(stringValue: SwiftGraphQLParser.StringValue) throws {
 		currentArgumentValue.transformTopElement { (values) in
 			switch stringValue {
@@ -297,63 +293,63 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			}
 		}
 	}
-	
+
 	override func visitBooleanValue(booleanValue: Bool) throws {
-		
+
 	}
-	
+
 	override func exitBooleanValue(booleanValue: Bool) throws {
 		currentArgumentValue.transformTopElement { (values) in
 			values.append(BooleanValue(value: booleanValue))
 		}
 	}
-	
+
 	override func visitNullValue() throws {
-		
+
 	}
-	
+
 	override func exitNullValue() throws {
 		currentArgumentValue.transformTopElement { (values) in
 			values.append(NullValue())
 		}
 	}
-	
+
 	override func visitEnumValue(enumValue: String) throws {
-		
+
 	}
-	
+
 	override func exitEnumValue(enumValue: String) throws {
 		currentArgumentValue.transformTopElement { (values) in
 			values.append(EnumValue(value: enumValue))
 		}
 	}
-	
+
 	override func visitListValue(listValue: [SwiftGraphQLParser.Value]) throws {
 		currentArgumentValue.push([])
 	}
-	
+
 	override func exitListValue(listValue: [SwiftGraphQLParser.Value]) throws {
 		let listItems = currentArgumentValue.pop()
 		currentArgumentValue.transformTopElement { (values) in
 			values.append(ListValue(values: listItems))
 		}
 	}
-	
+
 	override func visitObjectValue(objectValue: [SwiftGraphQLParser.ObjectField]) throws {
 		currentObjectFields.push([])
 	}
-	
+
 	override func exitObjectValue(objectValue: [SwiftGraphQLParser.ObjectField]) throws {
 		let objectFields = currentObjectFields.pop()
 		currentArgumentValue.transformTopElement { (values) in
 			values.append(ObjectValue(objectFields: objectFields))
 		}
 	}
-	
+
 	override func visitObjectField(objectField: SwiftGraphQLParser.ObjectField) throws {
 		currentArgumentValue.push([])
 	}
-	
+
 	override func exitObjectField(objectField: SwiftGraphQLParser.ObjectField) throws {
 		let value = currentArgumentValue.pop().first!
 		currentObjectFields.transformTopElement { (fields) in
@@ -383,12 +379,12 @@ extension SelectionSetVisitor {
 		let type: OperationType
 		let selectionSet: [Selection]
 	}
-	
+
 	enum OperationType {
 		case mutation(String)
 		case query(String)
 		case subscription(String)
-		
+
 		var name: String {
 			switch self {
 			case .mutation(let name), .query(let name), .subscription(let name):
@@ -396,31 +392,31 @@ extension SelectionSetVisitor {
 			}
 		}
 	}
-	
+
 	struct Selection {
 		let field: Field?
 		let fragmentSpread: FragmentSpread?
 		let inlineFragment: InlineFragment?
-		
+
 		static func field(_ field: Field) -> Selection {
-			return Selection(field: field)
+			Selection(field: field)
 		}
-		
+
 		static func fragmentSpread(_ fragmentSpread: FragmentSpread) -> Selection {
-			return Selection(fragmentSpread: fragmentSpread)
+			Selection(fragmentSpread: fragmentSpread)
 		}
-		
+
 		static func inlineFragment(_ inlineFragment: InlineFragment) -> Selection {
-			return Selection(inlineFragment: inlineFragment)
+			Selection(inlineFragment: inlineFragment)
 		}
-		
+
 		private init(field: Field? = nil, fragmentSpread: FragmentSpread? = nil, inlineFragment: InlineFragment? = nil) {
 			self.field = field
 			self.fragmentSpread = fragmentSpread
 			self.inlineFragment = inlineFragment
 		}
 	}
-	
+
 	struct Field {
 		let name: String
 		let alias: String?
@@ -430,101 +426,101 @@ extension SelectionSetVisitor {
 		let parentType: TypeCondition
 		let type: TypeCondition
 	}
-	
+
 	struct ConditionalDirective {
 		let skip: ArgumentValueType?
 		let include: ArgumentValueType?
-		
+
 		static func skip(_ value: ArgumentValueType) -> ConditionalDirective {
-			return ConditionalDirective(skip: value)
+			ConditionalDirective(skip: value)
 		}
-		
+
 		static func include(_ value: ArgumentValueType) -> ConditionalDirective {
-			return ConditionalDirective(include: value)
+			ConditionalDirective(include: value)
 		}
-		
+
 		private init(skip: ArgumentValueType? = nil, include: ArgumentValueType? = nil) {
 			self.skip = skip
 			self.include = include
 		}
 	}
-	
+
 	struct Argument {
 		let name: String
 		let value: ArgumentValueType
 	}
-	
+
 	struct FragmentSpread {
 		let name: String
 		let conditionalDirective: ConditionalDirective?
 	}
-	
+
 	struct FragmentDefinition {
 		let name: String
 		let typeCondition: TypeCondition
 		let selectionSet: [Selection]
 	}
-	
+
 	struct InlineFragment {
 		let typeCondition: TypeCondition
 		let selectionSet: [Selection]
 		let conditionalDirective: ConditionalDirective?
 	}
-	
+
 	enum TypeCondition {
 		case object(String)
 		case interface(String)
 		case union(String)
 		case scalar(String)
 	}
-	
+
 	struct Variable: ArgumentValueType {
 		let name: String
 	}
-	
+
 	struct IntValue: ArgumentValueType {
 		let value: Int
 	}
-	
+
 	struct FloatValue: ArgumentValueType {
 		let value: Float
 	}
-	
+
 	struct StringValue: ArgumentValueType {
 		let value: String
 		let blockQuote: Bool
-		
+
 		init(blockQuote: String) {
 			self.value = blockQuote
 			self.blockQuote = true
 		}
-		
+
 		init(singleQuote: String) {
 			self.value = singleQuote
 			self.blockQuote = false
 		}
 	}
-	
+
 	struct BooleanValue: ArgumentValueType {
 		let value: Bool
 	}
-	
+
 	struct NullValue: ArgumentValueType {
-		
+
 	}
-	
+
 	struct EnumValue: ArgumentValueType {
 		let value: String
 	}
-	
+
 	struct ListValue: ArgumentValueType {
 		let values: [ArgumentValueType]
 	}
-	
+
 	struct ObjectValue: ArgumentValueType {
 		let objectFields: [ObjectField]
 	}
-	
+
 	struct ObjectField {
 		let name: String
 		let value: ArgumentValueType

@@ -37,8 +37,8 @@ extension Array where Element: Hashable {
 
 extension Array {
 	func all(_ transform: (Element) -> Bool) -> Bool {
-		return self.reduce(true) { (result, element) -> Bool in
-			return result && transform(element)
+		self.reduce(true) { (result, element) -> Bool in
+			result && transform(element)
 		}
 	}
 }

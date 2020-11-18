@@ -33,15 +33,15 @@ struct Stack<Element> {
 	
 	@discardableResult
 	mutating func pop() -> Element {
-		return items.removeLast()
+		items.removeLast()
 	}
 	
 	func peek() -> Element {
-		return items.last!
+		items.last!
 	}
 	
 	var isEmpty: Bool {
-		return items.isEmpty
+		items.isEmpty
 	}
 	
 	mutating func transformTopElement(_ transform: (inout Element) -> Void) {

@@ -28,7 +28,7 @@ import PathKit
 
 final class KotlinRenderer: Renderer {
 	override class func customExtensions(config: Config) -> [Extension] {
-		return [
+		[
 			KotlinRenderer.customExtension(),
 			ReservedWordsExtension(reservedWords: config.template.specification.reservedWords),
 			ArgumentRendererExtension<KotlinVariableTypeRenderer>(
@@ -40,11 +40,11 @@ final class KotlinRenderer: Renderer {
 	}
 
 	func renderGraphApi() throws -> String {
-		return try render(template: "GraphApi", context: [:])
+		try render(template: "GraphApi", context: [:])
 	}
 
 	func renderInputWrapper() throws -> String {
-		return try render(template: "InputWrapper", context: [:])
+		try render(template: "InputWrapper", context: [:])
 	}
 
 	func renderResponseTypes(intermediateRepresentation: IntermediateRepresentation) throws -> [String] {
@@ -243,7 +243,7 @@ final class KotlinRenderer: Renderer {
 	}
 
 	static func decodeJsonScalarField(collectedScalarField: IntermediateRepresentation.CollectedScalarField, nonNull: Bool, fieldName: String) -> String {
-		return decodeJsonScalarField(field: collectedScalarField, fieldType: collectedScalarField.type, fieldName: fieldName, nonNull: nonNull)
+		decodeJsonScalarField(field: collectedScalarField, fieldType: collectedScalarField.type, fieldName: fieldName, nonNull: nonNull)
 	}
 
 	static func decodeJsonScalarField(field: IntermediateRepresentation.CollectedScalarField, fieldType: FieldTypeProtocol, fieldName: String, nonNull: Bool) -> String {
@@ -272,7 +272,7 @@ final class KotlinRenderer: Renderer {
 
 	//Decode Object Type fields
 	static func decodeJsonObjectField(collectedObjectFieldType: IntermediateRepresentation.CollectedObjectField, nonNull: Bool, fieldName: String) -> String {
-		return decodeJsonObjectField(collectedObjectField: collectedObjectFieldType, objectFieldType: collectedObjectFieldType.type, nonNull: nonNull, fieldName: fieldName)
+		decodeJsonObjectField(collectedObjectField: collectedObjectFieldType, objectFieldType: collectedObjectFieldType.type, nonNull: nonNull, fieldName: fieldName)
 	}
 
 	static func decodeJsonObjectField(collectedObjectField: IntermediateRepresentation.CollectedObjectField?, objectFieldType: FieldTypeProtocol, nonNull: Bool, fieldName: String) -> String {
