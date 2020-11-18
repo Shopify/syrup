@@ -1,3 +1,3 @@
-FROM swift:5.0
+FROM swift:5.3.1
 COPY . /syrup
 WORKDIR /syrup
