@@ -26,27 +26,45 @@ class TestMutation0Mutation(var input: CustomerInput): Mutation<TestMutation0Res
 
     override val selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "customerUpdate",
-type = "CustomerUpdatePayload",
 cacheKey = "customerUpdate(input: ${operationVariables["input"]})",
 passedGID = null,
-typeCondition = "Mutation",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
 Selection(
 name = "customer",
-type = "Customer",
 cacheKey = "customer",
 passedGID = null,
-typeCondition = "CustomerUpdatePayload",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "id",
-type = "ID",
 cacheKey = "id",
 passedGID = null,
-typeCondition = "Customer",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))))
 }

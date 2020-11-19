@@ -25,19 +25,31 @@ class TestQuery0Query(): Query<TestQuery0Response> {
 
     override val selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "nodes",
-type = "Node",
 cacheKey = "nodes(ids: [gid://shopify/Customer/350635977])",
 passedGID = null,
-typeCondition = "QueryRoot",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "id",
-type = "ID",
 cacheKey = "id",
 passedGID = null,
-typeCondition = "Node",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))
 }

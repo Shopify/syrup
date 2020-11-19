@@ -28,59 +28,80 @@ class ProductsListQuery(var first: Int? = null, var before: String? = null, var 
 
     override val selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "products",
-type = "ProductConnection",
 cacheKey = "products(first: ${operationVariables["first"]}, reverse: true, before: ${operationVariables["before"]}, after: ${operationVariables["after"]}, sortKey: CREATED_AT)",
 passedGID = null,
-typeCondition = "QueryRoot",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
 Selection(
 name = "edges",
-type = "ProductEdge",
 cacheKey = "edges",
 passedGID = null,
-typeCondition = "ProductConnection",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
 Selection(
 name = "node",
-type = "Product",
 cacheKey = "node",
 passedGID = null,
-typeCondition = "ProductEdge",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "id",
-type = "ID",
 cacheKey = "id",
 passedGID = null,
-typeCondition = "Product",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "title",
-type = "String",
 cacheKey = "title",
 passedGID = null,
-typeCondition = "Product",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "description",
-type = "String",
 cacheKey = "description",
 passedGID = null,
-typeCondition = "Product",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))), 
 Selection(
 name = "cursor",
-type = "String",
 cacheKey = "cursor",
 passedGID = null,
-typeCondition = "ProductEdge",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))))
 }

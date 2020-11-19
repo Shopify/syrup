@@ -26,11 +26,31 @@ class NodeInterfacesQuery(var nodeId: ID): Query<NodeInterfacesResponse> {
 
     override val selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "node",
-type = "Node",
 cacheKey = "node(id: ${operationVariables["nodeId"]})",
 passedGID = "${operationVariables["nodeId"]}",
-typeCondition = "QueryRoot",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
-selections = listOf<Selection>() + NodeId.getSelections(operationVariables) + ProductNodeTitle.getSelections(operationVariables)))
+selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = "Product",
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>())) + NodeId.getSelections(operationVariables)))
 }

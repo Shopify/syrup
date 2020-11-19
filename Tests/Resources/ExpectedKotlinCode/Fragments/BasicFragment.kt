@@ -30,19 +30,24 @@ data class BasicFragment(
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "id",
-type = "ID",
 cacheKey = "id",
 passedGID = null,
-typeCondition = "Customer",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "lastName",
-type = "String",
 cacheKey = "lastName",
 passedGID = null,
-typeCondition = "Customer",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))
         }

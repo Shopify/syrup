@@ -26,19 +26,31 @@ class QueryWithFragmentConditionalQuery(var getName: Boolean): Query<QueryWithFr
 
     override val selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "shop",
-type = "Shop",
 cacheKey = "shop",
 passedGID = null,
-typeCondition = "QueryRoot",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "id",
-type = "ID",
 cacheKey = "id",
 passedGID = null,
-typeCondition = "Shop",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>())) + FragmentWithConditional.getSelections(operationVariables).map { it.copy(typeCondition = "Shop") }))
 }

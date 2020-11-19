@@ -25,59 +25,80 @@ class TestQuery3Query(): Query<TestQuery3Response> {
 
     override val selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "customer",
-type = "Customer",
 cacheKey = "customer(id: )",
 passedGID = null,
-typeCondition = "QueryRoot",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
 Selection(
 name = "addresses",
-type = "MailingAddress",
 cacheKey = "addresses",
 passedGID = null,
-typeCondition = "Customer",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "country",
-type = "String",
 cacheKey = "country",
 passedGID = null,
-typeCondition = "MailingAddress",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))), 
 Selection(
 name = "defaultAddress",
-type = "MailingAddress",
 cacheKey = "defaultAddress",
 passedGID = null,
-typeCondition = "Customer",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "city",
-type = "String",
 cacheKey = "city",
 passedGID = null,
-typeCondition = "MailingAddress",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "longitude",
-type = "Float",
 cacheKey = "longitude",
 passedGID = null,
-typeCondition = "MailingAddress",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "latitude",
-type = "Float",
 cacheKey = "latitude",
 passedGID = null,
-typeCondition = "MailingAddress",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))))
 }

@@ -25,35 +25,59 @@ class MarketingOptInLevelQuery(): Query<MarketingOptInLevelResponse> {
 
     override val selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "customers",
-type = "CustomerConnection",
 cacheKey = "customers(first: 5)",
 passedGID = null,
-typeCondition = "QueryRoot",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
 Selection(
 name = "edges",
-type = "CustomerEdge",
 cacheKey = "edges",
 passedGID = null,
-typeCondition = "CustomerConnection",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
 Selection(
 name = "node",
-type = "Customer",
 cacheKey = "node",
 passedGID = null,
-typeCondition = "CustomerEdge",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "marketingOptInLevel",
-type = "CustomerMarketingOptInLevel",
 cacheKey = "marketingOptInLevel",
 passedGID = null,
-typeCondition = "Customer",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))))))
 }

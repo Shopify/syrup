@@ -189,43 +189,25 @@ class SelectionSetExtension: Extension {
 		
 		var fieldRenders: [String] = []
 		var fragmentSpreadRenders: [String] = []
-		
-		var combinedSelections: [SelectionSetVisitor.Selection] = []
-		
+
 		for selection in selections {
-			if selection.field != nil {
-				combinedSelections.append(selection)
-			} else if selection.inlineFragment != nil {
-				combinedSelections += selection.inlineFragment?.selectionSet ?? []
-			} else if selection.fragmentSpread != nil {
-				combinedSelections.append(selection)
-			}
-		}
-		
-		for selection in combinedSelections {
 			if let field = selection.field {
-				if field.name != "__typename" {
-					let name = field.alias ?? field.name
-					var render = "\nSelection("
-					render.append("\nname = \"\(name)\",")
-					render.append("\ntype = \"\(renderKotlinTypeCondition(field.type))\",")
-					render.append("\ncacheKey = \"\(name)\(renderArguments(field.arguments))\",")
-					render.append("\npassedGID = \(renderGIDPassed(field)),")
-					render.append("\ntypeCondition = \"\(renderKotlinTypeCondition(field.parentType))\",")
-					render.append("\nshouldSkipBasedOnConditionalDirective = \(renderConditionalDirective(field)),")
-					var typeConditionArgs: [String] = []
-					if shouldPassTypeCondition(field.type) {
-						typeConditionArgs = [renderKotlinTypeCondition(field.type)]
+				fieldRenders.append(renderKotlinSelection(field: field, typeCondition: nil))
+			}
+			
+			if let inlineFragment = selection.inlineFragment {
+				for selection in inlineFragment.selectionSet {
+					if let field = selection.field {
+						fieldRenders.append(renderKotlinSelection(field: field, typeCondition: renderKotlinTypeCondition(field.parentType)))
 					}
-					render.append("\nselections = \(renderKotlinSelections(field.selectionSet, args: typeConditionArgs))")
-					render.append(")")
-					fieldRenders.append(render)
 				}
 			}
+			
 			if let fragmentSpread = selection.fragmentSpread {
 				fragmentSpreadRenders.append(fragmentSpread.name)
 			}
 		}
+
 		var addFragmentSpreadRenders = ""
 		var renderPassedTypeCondition = ""
 		if let typeCondition = typeCondition {
@@ -235,5 +217,29 @@ class SelectionSetExtension: Extension {
 			addFragmentSpreadRenders += " + \(fragmentSpread).getSelections(operationVariables)" + renderPassedTypeCondition
 		}
 		return "listOf<Selection>(\((fieldRenders).joined(separator: ", ")))" + addFragmentSpreadRenders
+	}
+	
+	func renderKotlinSelection(field: SelectionSetVisitor.Field, typeCondition: String?) -> String {
+		let name = field.alias ?? field.name
+		var render = "\nSelection("
+		render.append("\nname = \"\(name)\",")
+		render.append("\ncacheKey = \"\(name)\(renderArguments(field.arguments))\",")
+		render.append("\npassedGID = \(renderGIDPassed(field)),")
+		
+		if let typeCondition = typeCondition {
+			render.append("\ntypeCondition = \"\(typeCondition)\",")
+		} else {
+			render.append("\ntypeCondition = null,")
+		}
+		
+		render.append("\nshouldSkipBasedOnConditionalDirective = \(renderConditionalDirective(field)),")
+		var typeConditionArgs: [String] = []
+		if shouldPassTypeCondition(field.type) {
+			typeConditionArgs = [renderKotlinTypeCondition(field.type)]
+		}
+		render.append("\nselections = \(renderKotlinSelections(field.selectionSet, args: typeConditionArgs))")
+		render.append(")")
+		
+		return render
 	}
 }

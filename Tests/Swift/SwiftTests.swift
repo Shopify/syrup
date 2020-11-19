@@ -5,10 +5,11 @@ import Yams
 
 class SwiftTests: XCTestCase {
 	static var recordMode: Bool {
-		guard let recordEnv = ProcessInfo.processInfo.environment["RECORD"], let record = Bool(recordEnv) else {
-			return false
-		}
-		return record
+		return true
+//		guard let recordEnv = ProcessInfo.processInfo.environment["RECORD"], let record = Bool(recordEnv) else {
+//			return false
+//		}
+//		return record
 	}
 	
 	var baseURL: URL {

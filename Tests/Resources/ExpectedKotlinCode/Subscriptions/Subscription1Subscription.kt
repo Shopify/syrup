@@ -26,10 +26,9 @@ class Subscription1Subscription(): Subscription<Subscription1Response> {
     override val selections = listOf<Selection>(
 Selection(
 name = "presenceChanged",
-type = "Boolean",
 cacheKey = "presenceChanged",
 passedGID = null,
-typeCondition = "Subscription",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))
 }

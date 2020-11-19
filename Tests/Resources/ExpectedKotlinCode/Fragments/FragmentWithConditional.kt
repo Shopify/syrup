@@ -24,11 +24,17 @@ data class FragmentWithConditional(
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
 Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
 name = "name",
-type = "String",
 cacheKey = "name",
 passedGID = null,
-typeCondition = "Shop",
+typeCondition = null,
 shouldSkipBasedOnConditionalDirective = !"${operationVariables["getName"]}".toBoolean(),
 selections = listOf<Selection>()))
         }

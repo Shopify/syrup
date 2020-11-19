@@ -24,5 +24,12 @@ class ShopQueryQuery(var first: Int): Query<ShopQueryResponse> {
         "first" to "$first"
     )
 
-    override val selections = listOf<Selection>() + Shop.getSelections(operationVariables)
+    override val selections = listOf<Selection>(
+Selection(
+name = "__typename",
+cacheKey = "__typename",
+passedGID = null,
+typeCondition = null,
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>())) + Shop.getSelections(operationVariables)
 }

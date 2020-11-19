@@ -142,6 +142,7 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 		} else {
 			conditionalDirective = nil
 		}
+
 		let parentType = parseTypeCondition(from: self.currentParentType.peek().name)
 		let type: TypeCondition
 		if field.name == IntermediateRepresentation.typeNameField {
@@ -162,6 +163,7 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 		default:
 			nestedSelections = currentSelectionSet.pop()
 		}
+				
 		let parsedField = Field(
 			name: field.name,
 			alias: field.alias,
