@@ -25,5 +25,5 @@ class {{ operation|renderClassName }}({{ operation.variables|renderKotlinArgumen
         {{ operation.variables|renderKotlinOperationVariables }}
     )
 
-    override val selections = {{ selections|renderKotlinSelections }}
+    override val selections = {{ selections|renderKotlinSelectionsInQuery }}
 }

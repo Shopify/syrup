@@ -27,14 +27,14 @@ Selection(
 name = "__typename",
 cacheKey = "__typename",
 passedGID = null,
-typeCondition = null,
+typeCondition = "Node",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "id",
 cacheKey = "id",
 passedGID = null,
-typeCondition = null,
+typeCondition = "Node",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))
    }

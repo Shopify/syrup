@@ -32,7 +32,7 @@ data class {{ name }}(
     {% if fragmentSelections %}
     companion object {
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
-            return {{ fragmentSelections|renderKotlinSelections:graphQLName }}
+            return {{ fragmentSelections|renderKotlinSelectionsInFragment:graphQLName }}
         }
     }
     {% endif %}

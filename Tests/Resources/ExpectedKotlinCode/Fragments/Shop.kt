@@ -27,14 +27,14 @@ Selection(
 name = "__typename",
 cacheKey = "__typename",
 passedGID = null,
-typeCondition = null,
+typeCondition = "QueryRoot",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "shop",
 cacheKey = "shop",
 passedGID = null,
-typeCondition = null,
+typeCondition = "QueryRoot",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>(
 Selection(

@@ -33,21 +33,21 @@ Selection(
 name = "__typename",
 cacheKey = "__typename",
 passedGID = null,
-typeCondition = null,
+typeCondition = "Customer",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "id",
 cacheKey = "id",
 passedGID = null,
-typeCondition = null,
+typeCondition = "Customer",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "lastName",
 cacheKey = "lastName",
 passedGID = null,
-typeCondition = null,
+typeCondition = "Customer",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))
         }

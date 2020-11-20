@@ -32,7 +32,8 @@ class SelectionSetExtension: Extension {
 		registerFilter("renderTypeCondition", filter: renderTypeCondition)
 		registerFilter("isArgumentValueType", filter: isArgumentValueType)
 		registerFilter("renderOperationType", filter: renderOperationType)
-		registerFilter("renderKotlinSelections", filter: renderKotlinSelections)
+		registerFilter("renderKotlinSelectionsInQuery", filter: renderKotlinSelectionsInQuery)
+		registerFilter("renderKotlinSelectionsInFragment", filter: renderKotlinSelectionsInFragment)
 	}
 	
 	func renderTypeCondition(_ value: Any?) throws -> String? {
@@ -181,7 +182,15 @@ class SelectionSetExtension: Extension {
 		}
 	}
 	
-	func renderKotlinSelections(_ value: Any?, args: [Any?]) -> String {
+	func renderKotlinSelectionsInQuery(_ value: Any?, args: [Any?]) -> String {
+		return renderKotlinSelections(value, args: args, inFragment: false)
+	}
+	
+	func renderKotlinSelectionsInFragment(_ value: Any?, args: [Any?]) -> String {
+		return renderKotlinSelections(value, args: args, inFragment: true)
+	}
+	
+	func renderKotlinSelections(_ value: Any?, args: [Any?], inFragment: Bool) -> String {
 		guard let selections = value as? [SelectionSetVisitor.Selection] else {
 				return ""
 		}
@@ -192,7 +201,8 @@ class SelectionSetExtension: Extension {
 
 		for selection in selections {
 			if let field = selection.field {
-				fieldRenders.append(renderKotlinSelection(field: field, typeCondition: nil))
+				let fieldTypeCondition = inFragment ? renderKotlinTypeCondition(field.parentType) : nil
+				fieldRenders.append(renderKotlinSelection(field: field, typeCondition: fieldTypeCondition))
 			}
 			
 			if let inlineFragment = selection.inlineFragment {
@@ -218,7 +228,7 @@ class SelectionSetExtension: Extension {
 		}
 		return "listOf<Selection>(\((fieldRenders).joined(separator: ", ")))" + addFragmentSpreadRenders
 	}
-	
+
 	func renderKotlinSelection(field: SelectionSetVisitor.Field, typeCondition: String?) -> String {
 		let name = field.alias ?? field.name
 		var render = "\nSelection("
@@ -237,7 +247,7 @@ class SelectionSetExtension: Extension {
 		if shouldPassTypeCondition(field.type) {
 			typeConditionArgs = [renderKotlinTypeCondition(field.type)]
 		}
-		render.append("\nselections = \(renderKotlinSelections(field.selectionSet, args: typeConditionArgs))")
+		render.append("\nselections = \(renderKotlinSelections(field.selectionSet, args: typeConditionArgs, inFragment: false))")
 		render.append(")")
 		
 		return render

@@ -34,7 +34,7 @@ data class {{ name }}(
    
    {% if fragmentSelections %}
    fun getSelections(operationVariables: Map<String, String>): List<Selection> {
-     return {{ fragmentSelections|renderKotlinSelections }}
+     return {{ fragmentSelections|renderKotlinSelectionsInFragment }}
    }
    {% endif %}
  }

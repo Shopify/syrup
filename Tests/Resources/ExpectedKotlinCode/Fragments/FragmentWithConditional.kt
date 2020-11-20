@@ -27,14 +27,14 @@ Selection(
 name = "__typename",
 cacheKey = "__typename",
 passedGID = null,
-typeCondition = null,
+typeCondition = "Shop",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()), 
 Selection(
 name = "name",
 cacheKey = "name",
 passedGID = null,
-typeCondition = null,
+typeCondition = "Shop",
 shouldSkipBasedOnConditionalDirective = !"${operationVariables["getName"]}".toBoolean(),
 selections = listOf<Selection>()))
         }

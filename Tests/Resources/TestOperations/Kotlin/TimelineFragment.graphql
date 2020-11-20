@@ -11,21 +11,23 @@ fragment TimelineFragment on EventConnection {
       attributeToApp
       attributeToUser
       criticalAlert
-      ... on CommentEvent {
-        edited
-        canEdit
-        canDelete
-        attachments {
-          id
-          name
-          size
-          fileExtension
-          url
-          image {
-            transformedSrc
-          }
-        }
-      }
+	  ...CommentEventFragment
     }
+  }
+}
+
+fragment CommentEventFragment on CommentEvent {
+  edited
+  canEdit
+  canDelete
+  attachments {
+	id
+	name
+	size
+	fileExtension
+	url
+	image {
+	  transformedSrc
+	}
   }
 }
