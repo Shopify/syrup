@@ -1,0 +1,7 @@
+fragment TopLevelFragmentWithReservedWord on QueryRoot {
+  node(id: "") {
+    ... on Product {
+      var: id
+    }
+  }
+}

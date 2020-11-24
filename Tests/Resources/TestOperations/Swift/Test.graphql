@@ -513,5 +513,29 @@ query NullableCustomCodedScalar {
 }
 
 subscription Subscription1 {
-	presenceChanged
+  presenceChanged
+}
+
+query QueryWithReservedWord {
+  class: shop {
+    return: id
+    func: name
+  }
+}
+
+query QueryWithReservedWordOnInlineFragment {
+  node(id:"123") {
+    id
+    ... on Product {
+      let: title
+    }
+  }
+}
+
+fragment TopLevelFragmentWithReservedWord on QueryRoot {
+  node(id: "") {
+    ... on Product {
+      var: id
+    }
+  }
 }
