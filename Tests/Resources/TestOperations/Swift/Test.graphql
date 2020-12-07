@@ -534,8 +534,6 @@ query QueryWithReservedWordOnInlineFragment {
 
 fragment TopLevelFragmentWithReservedWord on QueryRoot {
   node(id: "") {
-    ... on Product {
-      var: id
-    }
+    var: id
   }
 }

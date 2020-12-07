@@ -11,10 +11,10 @@
 		{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
 		{{ accessLevel }} var {{ field|renderPropertyDeclaration }} {
 			get {
-				return common.{{ field.name }}
+				return common.{{ field.name|escapeReservedWord }}
 			}
 			set {
-				common.{{ field.name }} = newValue
+				common.{{ field.name|escapeReservedWord }} = newValue
 			}
 		}
 	{% endfor %}
@@ -73,13 +73,13 @@
 		}
 	}
 
-	{% map baseFields into initArgs using field %}{{ field.name }}: {{ field|renderType }}{% endmap %}
+	{% map baseFields into initArgs using field %}{{ field.name|escapeReservedWord }}: {{ field|renderType }}{% endmap %}
 	{% map fragmentSpreads into initFragmentArgs using fragment %}{{ fragment.name|lowercasedFirstLetter }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}{% endmap %}
 
 	{{ accessLevel }} init(__typename: String, realized: Realized{% if initArgs %}, {% endif %}{{ initArgs|join:", " }}{% if initFragmentArgs %}, {% endif %}{{ initFragmentArgs|join:", " }}) {
 		self.__typename = __typename
 		self.realized = realized
-		{% map baseFields into commonArgs using field %}{{ field.name }}: {{ field.name }}{% endmap %}
+		{% map baseFields into commonArgs using field %}{{ field.name }}: {{ field.name|escapeReservedWord }}{% endmap %}
 		{% map fragmentSpreads into commonFragmentArgs using fragment %}{{ fragment.name|lowercasedFirstLetter }}Fragment: {{ fragment.name|lowercasedFirstLetter }}Fragment{% endmap %}
 		self.common = {{ fallbackTypeName }}({{ commonArgs|join:", " }}{% if commonArgs and commonFragmentArgs %}, {% endif %}{{ commonFragmentArgs|join:", " }})
 	}

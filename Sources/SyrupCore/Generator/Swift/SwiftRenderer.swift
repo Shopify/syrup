@@ -220,7 +220,7 @@ final class SwiftRenderer: Renderer {
 		let customExtension = Extension()
 		
 		func escape(_ word: String) -> String {
-			return ReservedWordsExtension.escape(word: word, reservedWords: config.template.specification.reservedWords)
+			ReservedWordsExtension.escape(word: word, reservedWords: config.template.specification.reservedWords)
 		}
 		
 		customExtension.registerFilter("renderInterfaceWrapperTypeAlias", filter: { value, args -> Any? in

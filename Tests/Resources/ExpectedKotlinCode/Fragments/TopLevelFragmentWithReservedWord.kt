@@ -36,35 +36,26 @@ name = "var",
 type = "ID",
 cacheKey = "var",
 passedGID = null,
-typeCondition = "Product",
+typeCondition = "Node",
 shouldSkipBasedOnConditionalDirective = false,
 selections = listOf<Selection>()))))
         }
     }
 
 data class Node(
-    val realized: Realized
+    val realized: Realized,
+    val `var`: ID 
 ): Response {
     constructor(jsonObject: JsonObject) : this (
         realized = when (jsonObject.get("__typename").asString) {
-            "Product" -> Realized.Product(jsonObject)
             else -> Realized.Other
-        }
+        },
+        `var` = OperationGsonBuilder.gson.fromJson(jsonObject.get("var"), ID::class.java)
     )
  companion object {
    const val typeName = "Node"
  }
  sealed class Realized {
-data class Product(
-    /**
-     * Globally unique identifier.
-     */
-    val `var`: ID
-) : Realized() {
-    constructor(jsonObject: JsonObject) : this(
-        `var` = OperationGsonBuilder.gson.fromJson(jsonObject.get("var"), ID::class.java)
-    )
-}
     object Other: Realized()
 }
 }

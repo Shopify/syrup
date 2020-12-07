@@ -189,7 +189,7 @@ final class KotlinRenderer: Renderer {
 		let customExtension = Extension()
 
 		func escape(_ word: String) -> String {
-			return ReservedWordsExtension.escape(word: word, reservedWords: config.template.specification.reservedWords)
+			ReservedWordsExtension.escape(word: word, reservedWords: config.template.specification.reservedWords)
 		}
 		customExtension.registerFilter("renderPropertyDeclaration") { (value, args) -> Any? in
 
