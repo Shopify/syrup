@@ -1,0 +1,6 @@
+query QueryWithReservedWord {
+  class: shop {
+    return: id
+    fun: name
+  }
+}

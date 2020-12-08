@@ -1,0 +1,8 @@
+query QueryWithReservedWordOnInlineFragment {
+  node(id:"123") {
+    id
+    ... on Product {
+      val: title
+    }
+  }
+}

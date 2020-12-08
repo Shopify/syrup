@@ -219,6 +219,10 @@ final class SwiftRenderer: Renderer {
 	private static func customExtension(config: Config) -> Extension {
 		let customExtension = Extension()
 		
+		func escape(_ word: String) -> String {
+			ReservedWordsExtension.escape(word: word, reservedWords: config.template.specification.reservedWords)
+		}
+		
 		customExtension.registerFilter("renderInterfaceWrapperTypeAlias", filter: { value, args -> Any? in
 			guard let field = value as? CollectedField, let accessLevel = args.first as? String else { return nil }
 			
@@ -234,14 +238,15 @@ final class SwiftRenderer: Renderer {
 		})
 		
 		customExtension.registerFilter("renderPropertyDeclaration") { value -> Any? in
+			
 			if let field = value as? IntermediateRepresentation.CollectedObjectField {
-				return "\(field.name): \(SwiftTypeAnnotationRenderer.render(objectField: field))"
+				return "\(escape(field.name)): \(SwiftTypeAnnotationRenderer.render(objectField: field))"
 			} else if let field = value as? IntermediateRepresentation.CollectedScalarField {
-				return "\(field.name): \(SwiftTypeAnnotationRenderer.render(scalarField: field))"
+				return "\(escape(field.name)): \(SwiftTypeAnnotationRenderer.render(scalarField: field))"
 			} else if let field = value as? IntermediateRepresentation.CollectedInterfaceField {
-				return "\(field.name): \(SwiftTypeAnnotationRenderer.render(interfaceWrapper: field))"
+				return "\(escape(field.name)): \(SwiftTypeAnnotationRenderer.render(interfaceWrapper: field))"
 			} else if let field = value as? IntermediateRepresentation.CollectedUnionField {
-				return "\(field.name): \(SwiftTypeAnnotationRenderer.render(unionWrapper: field))"
+				return "\(escape(field.name)): \(SwiftTypeAnnotationRenderer.render(unionWrapper: field))"
 			}
 			return nil
 		}
@@ -278,9 +283,10 @@ final class SwiftRenderer: Renderer {
 			} else {
 				fatalError("Unable to determine type annotation \(field)")
 			}
+			let escapedFieldName = escape(fieldName)
 			if let customCodedScalar = field.type.nestedScalar as? IntermediateRepresentation.CustomCodedScalar {
 				return """
-				self.\(fieldName) = try customScalarResolver.decode(\(typeAnnotation).self, rawValueType: \(customCodedScalar.rawValueType).self, forKey: .\(field.name), container: container) { (value) -> \(customCodedScalar.nativeType) in
+				self.\(escapedFieldName) = try customScalarResolver.decode(\(typeAnnotation).self, rawValueType: \(customCodedScalar.rawValueType).self, forKey: .\(field.name), container: container) { (value) -> \(customCodedScalar.nativeType) in
 				return try customScalarResolver.decoderFor\(customCodedScalar.graphType)(value, container.codingPath)
 				}
 				"""
@@ -288,11 +294,11 @@ final class SwiftRenderer: Renderer {
 			
 			if field.type.isNonNull {
 				return """
-				self.\(fieldName) = try container.decode(\(typeAnnotation).self, forKey: .\(field.name))
+				self.\(escapedFieldName) = try container.decode(\(typeAnnotation).self, forKey: .\(field.name))
 				"""
 			} else {
 				return """
-				self.\(fieldName) = try container.decodeIfPresent(\(typeAnnotation.removeSuffix("?")).self, forKey: .\(field.name))
+				self.\(escapedFieldName) = try container.decodeIfPresent(\(typeAnnotation.removeSuffix("?")).self, forKey: .\(field.name))
 				"""
 			}
 		}

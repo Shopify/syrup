@@ -29,7 +29,7 @@ import PathKit
 final class KotlinRenderer: Renderer {
 	override class func customExtensions(config: Config) -> [Extension] {
 		[
-			KotlinRenderer.customExtension(),
+			KotlinRenderer.customExtension(config: config),
 			ReservedWordsExtension(reservedWords: config.template.specification.reservedWords),
 			ArgumentRendererExtension<KotlinVariableTypeRenderer>(
 					reservedWords: config.template.specification.reservedWords,
@@ -185,9 +185,12 @@ final class KotlinRenderer: Renderer {
 		return try render(template: "InterfaceWrapper", asFile: asFile, context: context)
 	}
 
-	private static func customExtension() -> Extension {
+	private static func customExtension(config: Config) -> Extension {
 		let customExtension = Extension()
 
+		func escape(_ word: String) -> String {
+			ReservedWordsExtension.escape(word: word, reservedWords: config.template.specification.reservedWords)
+		}
 		customExtension.registerFilter("renderPropertyDeclaration") { (value, args) -> Any? in
 
 			enum Context: String {
@@ -202,16 +205,16 @@ final class KotlinRenderer: Renderer {
 				if case .interfaceWrapper = context {
 					prefix = "Base\(field.parentType.capitalizedFirstLetter)"
 				}
-				return "\(field.name): \(KotlinTypeAnnotationRenderer.render(objectField: field, prefix: prefix))"
+				return "\(escape(field.name)): \(KotlinTypeAnnotationRenderer.render(objectField: field, prefix: prefix))"
 			} else if let field = value as? IntermediateRepresentation.CollectedScalarField {
-				return "\(field.name): \(KotlinTypeAnnotationRenderer.render(scalarField: field))"
+				return "\(escape(field.name)): \(KotlinTypeAnnotationRenderer.render(scalarField: field))"
 			} else if let field = value as? IntermediateRepresentation.CollectedUnionField {
-				return "\(field.name): \(KotlinTypeAnnotationRenderer.render(unionWrapper: field))"
+				return "\(escape(field.name)): \(KotlinTypeAnnotationRenderer.render(unionWrapper: field))"
 			} else if let field = value as? IntermediateRepresentation.CollectedInterfaceField {
 				if case .interfaceWrapper = context {
 					prefix = "Base\(field.parentType.capitalizedFirstLetter)"
 				}
-				return "\(field.name): \(KotlinTypeAnnotationRenderer.render(interfaceWrapper: field, prefix: prefix))"
+				return "\(escape(field.name)): \(KotlinTypeAnnotationRenderer.render(interfaceWrapper: field, prefix: prefix))"
 			}
 			return nil
 		}
@@ -237,7 +240,7 @@ final class KotlinRenderer: Renderer {
 			} else {
 				fatalError("Unable to determine type annotation \(field)")
 			}
-			return "\(fieldName) = \(typeAnnotation)"
+			return "\(escape(fieldName)) = \(typeAnnotation)"
 		}
 		return customExtension
 	}

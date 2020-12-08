@@ -5,7 +5,7 @@ reservedWords: [
   "as",
   "as?",
   "break",
-  "classs",
+  "class",
   "continue",
   "do",
   "else",
@@ -36,7 +36,6 @@ reservedWords: [
   "catch",
   "constructor",
   "delegate",
-  "field",
   "file",
   "finally",
   "get",
@@ -77,7 +76,6 @@ reservedWords: [
   "suspend",
   "tailrec",
   "vararg",
-  "field",
   "it"
 ]
 builtInScalars:

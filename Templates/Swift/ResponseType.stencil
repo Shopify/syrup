@@ -86,11 +86,11 @@
 		}
 	{% endif %}
 
-	{% map fields into initArgs using field %}{{ field.name }}: {{ field|renderType }}{% endmap %}
+	{% map fields into initArgs using field %}{{ field.name|escapeReservedWord }}: {{ field|renderType }}{% endmap %}
 	{% map fragmentSpreads into fragmentArgs using fragment %}{{ fragment.name|lowercasedFirstLetter }}Fragment: {{ moduleName }}.{{ fragment.name }}{% if fragment.conditionallySelected %}?{% endif %}{% endmap %}
 	{{ accessLevel }} init({{ initArgs|join:", " }}{% if fragmentArgs and initArgs %}, {% endif %}{{ fragmentArgs|join:", " }}) {
 		{% for field in fields %}
-			self.{{ field.name }} = {{ field.name }}
+			self.{{ field.name|escapeReservedWord }} = {{ field.name|escapeReservedWord }}
 		{% endfor %}
 		{% for fragment in fragmentSpreads %}
 			self.as{{ fragment.name }}Fragment = {{ fragment.name|lowercasedFirstLetter }}Fragment

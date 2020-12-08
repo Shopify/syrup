@@ -1,0 +1,5 @@
+fragment TopLevelFragmentWithReservedWord on QueryRoot {
+  node(id: "") {
+    var: id
+  }
+}
