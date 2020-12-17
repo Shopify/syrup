@@ -14,12 +14,12 @@ import javax.annotation.Generated
 data class {{ name }}(
     {% for field in fields %}
     {% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
-    val {{ field|renderPropertyDeclaration }}{% if fragmentNames or not forloop.last %},{% endif %}
+    {% if name == "UserErrors" %}override {% endif %}val {{ field|renderPropertyDeclaration }}{% if fragmentNames or not forloop.last %},{% endif %}
     {% endfor %}
     {% for fragmentName in fragmentNames %}
     val {{ fragmentName|lowercasedFirstLetter }}: {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.fragments.{{ fragmentName }}{% if not forloop.last %},{% endif %}
     {% endfor %}
-) : {% if superclassOverride %}{{ superclassOverride }}{% else %}Response{% endif %} {
+) : {% if superclassOverride %}{{ superclassOverride }}{% else %}Response{% endif %}{% if name == "UserErrors" %}, UserErrorsInterface(){% endif %} {
     constructor(jsonObject: JsonObject) : this(
         {% for field in fields %}
         {{ field|decodeField }}{% if fragmentNames or not forloop.last %},{% endif %}

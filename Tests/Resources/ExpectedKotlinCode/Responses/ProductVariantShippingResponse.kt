@@ -77,12 +77,12 @@ data class ProductVariantShippingResponse(
             /**
              * The error message.
              */
-            val message: String,
+            override val message: String,
             /**
              * Path to the input field which caused the error.
              */
-            val field: ArrayList<String>?
-        ) : Response {
+            override val field: ArrayList<String>?
+        ) : Response, UserErrorsInterface() {
             constructor(jsonObject: JsonObject) : this(
                 message = OperationGsonBuilder.gson.fromJson(jsonObject.get("message"), String::class.java),
                 field = if(!jsonObject.has("field") || jsonObject.get("field").isJsonNull) null else jsonObject.getAsJsonArray("field")?.run {

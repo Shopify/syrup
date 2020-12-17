@@ -114,3 +114,8 @@ class InputWrapperSerializer : JsonSerializer<InputWrapper<Any?>> {
 fun setDefinedNulls(string: String): String {
     return string.replace("\"$DEFINED_NULL_FLAG\"", "null")
 }
+
+interface UserErrorsInterface {
+    val field: ArrayList<String>?
+    val message: String
+}

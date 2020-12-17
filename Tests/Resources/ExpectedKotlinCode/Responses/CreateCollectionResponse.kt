@@ -45,12 +45,12 @@ data class CreateCollectionResponse(
             /**
              * Path to the input field which caused the error.
              */
-            val field: ArrayList<String>?,
+            override val field: ArrayList<String>?,
             /**
              * The error message.
              */
-            val message: String
-        ) : Response {
+            override val message: String
+        ) : Response, UserErrorsInterface() {
             constructor(jsonObject: JsonObject) : this(
                 field = if(!jsonObject.has("field") || jsonObject.get("field").isJsonNull) null else jsonObject.getAsJsonArray("field")?.run {
         val list: ArrayList<String> = ArrayList()
