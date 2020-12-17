@@ -117,5 +117,9 @@ fun setDefinedNulls(string: String): String {
 
 abstract class UserErrorsInterface {
     open val field: ArrayList<String>? = null
-    abstract val message: String
+    open val message: String = ""
+}
+
+interface ResponseWithUserErrors : Response {
+    val userErrors: ArrayList<out UserErrorsInterface>?
 }
