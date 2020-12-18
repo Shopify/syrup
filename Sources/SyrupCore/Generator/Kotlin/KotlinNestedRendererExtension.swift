@@ -31,6 +31,43 @@ final class KotlinNestedRendererExtension: Extension {
 		self.config = config
 		super.init()
 		
+        registerFilter("hasUserErrors") { (value, args) -> Bool in
+            guard let fields = value as? [IntermediateRepresentation.CollectedObjectField] else { return false }
+            
+            for field in fields {
+                let nestedFields = field.collectedFields.scopedTo(parentFragment: field.parentFragment?.name)
+                
+                for nestedField in nestedFields {
+                    let name = nestedField.name
+                    if (name == "userErrors") {
+                        return true
+                    }
+                }
+            }
+            return false
+        }
+        
+        registerFilter("renderUserErrorGetter") { (value, args) -> String in
+            guard let fields = value as? [IntermediateRepresentation.CollectedObjectField] else { return "" }
+            
+            var value = ""
+            for field in fields {
+                let firstName = field.name
+                let nestedFields = field.collectedFields.scopedTo(parentFragment: field.parentFragment?.name)
+                
+                for nestedField in nestedFields {
+                    let name = nestedField.name
+                    if (name == "userErrors") {
+                        return """
+                            override val userErrors: Array<UserErrorsInterface>?
+                                get() = \(firstName)?.\(name)
+                            """
+                    }
+                }
+            }
+            return ""
+        }
+        
 		registerFilter("nestedTypeDefinition") { (value, args) -> Any? in
 			guard let field = value as? IntermediateRepresentation.CollectedObjectField else { return nil }
 			let fields = field.collectedFields.scopedTo(parentFragment: field.parentFragment?.name)

@@ -15,10 +15,13 @@ data class CreateCollectionResponse(
      * Creates a collection.
      */
     val collectionCreate: CollectionCreate?
-) : Response {
+) : ResponseWithUserErrors {
     constructor(jsonObject: JsonObject) : this(
         collectionCreate = if (jsonObject.has("collectionCreate") && !jsonObject.get("collectionCreate").isJsonNull) CollectionCreate(jsonObject.getAsJsonObject("collectionCreate")) else null
     )
+
+    override val userErrors: Array<UserErrorsInterface>?
+    get() = collectionCreate?.userErrors
 
         data class CollectionCreate(
         /**

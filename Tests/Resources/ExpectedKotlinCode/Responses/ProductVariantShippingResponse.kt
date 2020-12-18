@@ -15,10 +15,13 @@ data class ProductVariantShippingResponse(
      * Updates a product variant.
      */
     val productVariantUpdate: ProductVariantUpdate?
-) : Response {
+) : ResponseWithUserErrors {
     constructor(jsonObject: JsonObject) : this(
         productVariantUpdate = if (jsonObject.has("productVariantUpdate") && !jsonObject.get("productVariantUpdate").isJsonNull) ProductVariantUpdate(jsonObject.getAsJsonObject("productVariantUpdate")) else null
     )
+
+    override val userErrors: Array<UserErrorsInterface>?
+    get() = productVariantUpdate?.userErrors
 
         data class ProductVariantUpdate(
         /**

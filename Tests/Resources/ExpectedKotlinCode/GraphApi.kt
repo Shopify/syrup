@@ -115,7 +115,11 @@ fun setDefinedNulls(string: String): String {
     return string.replace("\"$DEFINED_NULL_FLAG\"", "null")
 }
 
-interface UserErrorsInterface {
-    val field: ArrayList<String>?
-    val message: String
+abstract class UserErrorsInterface {
+    open val field: ArrayList<String>? = null
+    open val message: String = ""
+}
+
+interface ResponseWithUserErrors : Response {
+    val userErrors: ArrayList<out UserErrorsInterface>?
 }
