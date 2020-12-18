@@ -31,7 +31,14 @@ data class {{ name }}(
 
     {% if fields|hasUserErrors %}{{ fields|renderUserErrorGetter }}{% endif %}
 
-    {{ field|renderUserErrorFragment }}
+    {% if name == "UserErrors" %}
+        {% for fragmentName in fragmentNames %}
+            override val message
+                get() = {{ fragmentName|lowercasedFirstLetter }}.message
+            override val fields
+                get() = {{ fragmentName|lowercasedFirstLetter }}.fields
+        {% endfor %}
+    {% endif %}
 
     {% if fragmentSelections %}
     companion object {

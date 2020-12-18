@@ -61,6 +61,10 @@ data class ProductVariantShippingWithUserErrorsResponse(
             constructor(jsonObject: JsonObject) : this(
                 userError = com.shopify.syrup.fragments.UserError(jsonObject)
             )
+                    override val message
+                        get() = userError.message
+                    override val fields
+                        get() = userError.fields
         }
     }
 
