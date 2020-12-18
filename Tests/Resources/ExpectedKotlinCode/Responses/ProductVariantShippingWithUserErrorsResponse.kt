@@ -63,8 +63,8 @@ data class ProductVariantShippingWithUserErrorsResponse(
             )
                     override val message
                         get() = userError.message
-                    override val fields
-                        get() = userError.fields
+                    override val field
+                        get() = userError.field
         }
     }
 

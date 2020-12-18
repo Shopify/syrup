@@ -35,8 +35,9 @@ data class {{ name }}(
         {% for fragmentName in fragmentNames %}
             override val message
                 get() = {{ fragmentName|lowercasedFirstLetter }}.message
-            override val fields
-                get() = {{ fragmentName|lowercasedFirstLetter }}.fields
+                
+            override val field
+                get() = {{ fragmentName|lowercasedFirstLetter }}.field
         {% endfor %}
     {% endif %}
 
