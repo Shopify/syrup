@@ -29,7 +29,7 @@ data class {{ name }}(
         {% endfor %}
     )
 
-    {% if fields|hasUserErrors %}{{ fields|renderUserErrorGetter }}{% endif %}
+    {% if fields|hasUserErrors and asFile %}{{ fields|renderUserErrorGetter }}{% endif %}
 
     {% if name == "UserErrors" %}
         {% for fragmentName in fragmentNames %}
