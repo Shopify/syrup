@@ -20,7 +20,7 @@ data class ProductVariantShippingResponse(
         productVariantUpdate = if (jsonObject.has("productVariantUpdate") && !jsonObject.get("productVariantUpdate").isJsonNull) ProductVariantUpdate(jsonObject.getAsJsonObject("productVariantUpdate")) else null
     )
 
-    override val userErrors: Array<UserErrorsInterface>?
+    override val userErrors: ArrayList<out UserErrorsInterface>?
     get() = productVariantUpdate?.userErrors
 
         data class ProductVariantUpdate(

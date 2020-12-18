@@ -1,0 +1,15 @@
+mutation ProductVariantShippingWithUserErrors($variantInput: ProductVariantInput!) {
+  productVariantUpdate(input: $variantInput) {
+    productVariant {
+      id
+    }
+    userErrors {
+      ...UserError
+    }
+  }
+}
+
+fragment UserError on UserError {
+    message
+    field   
+}

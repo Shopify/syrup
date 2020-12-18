@@ -50,7 +50,6 @@ final class KotlinNestedRendererExtension: Extension {
         registerFilter("renderUserErrorGetter") { (value, args) -> String in
             guard let fields = value as? [IntermediateRepresentation.CollectedObjectField] else { return "" }
             
-            var value = ""
             for field in fields {
                 let firstName = field.name
                 let nestedFields = field.collectedFields.scopedTo(parentFragment: field.parentFragment?.name)
@@ -59,13 +58,32 @@ final class KotlinNestedRendererExtension: Extension {
                     let name = nestedField.name
                     if (name == "userErrors") {
                         return """
-                            override val userErrors: Array<UserErrorsInterface>?
+                            override val userErrors: ArrayList<out UserErrorsInterface>?
                                 get() = \(firstName)?.\(name)
                             """
                     }
                 }
             }
             return ""
+        }
+        
+        registerFilter("renderUserErrorFragment") { (value, args) -> String? in
+            guard let field = value as? IntermediateRepresentation.CollectedObjectField else { return nil }
+//            let fields = field.collectedFields.scopedTo(parentFragment: name)
+//            return "\(fields.first?.name)"
+            
+            let fragmentSpreads = IntermediateRepresentation.fragments(from: field.fragmentSpreads, onConcreteType: field.type.graphQLName)
+            return fragmentSpreads.first?.name
+            
+            for fragment in fragmentSpreads {
+                let name = fragment.name
+                let fields = field.collectedFields.scopedTo(parentFragment: name)
+                return "\(fields.first?.name)"
+                if (fragment.typeCondition.name == "UserError") {
+                    
+                }
+            }
+            return nil
         }
         
 		registerFilter("nestedTypeDefinition") { (value, args) -> Any? in

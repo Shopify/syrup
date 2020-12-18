@@ -20,7 +20,7 @@ data class CreateCollectionResponse(
         collectionCreate = if (jsonObject.has("collectionCreate") && !jsonObject.get("collectionCreate").isJsonNull) CollectionCreate(jsonObject.getAsJsonObject("collectionCreate")) else null
     )
 
-    override val userErrors: Array<UserErrorsInterface>?
+    override val userErrors: ArrayList<out UserErrorsInterface>?
     get() = collectionCreate?.userErrors
 
         data class CollectionCreate(

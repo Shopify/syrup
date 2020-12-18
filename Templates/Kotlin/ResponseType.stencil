@@ -31,6 +31,8 @@ data class {{ name }}(
 
     {% if fields|hasUserErrors %}{{ fields|renderUserErrorGetter }}{% endif %}
 
+    {{ field|renderUserErrorFragment }}
+
     {% if fragmentSelections %}
     companion object {
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
