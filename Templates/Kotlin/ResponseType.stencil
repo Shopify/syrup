@@ -19,7 +19,7 @@ data class {{ name }}(
     {% for fragmentName in fragmentNames %}
     val {{ fragmentName|lowercasedFirstLetter }}: {% if moduleName %}{{ moduleName }}{% else %}com.shopify.syrup{% endif %}.fragments.{{ fragmentName }}{% if not forloop.last %},{% endif %}
     {% endfor %}
-) : {% if superclassOverride %}{{ superclassOverride }}{% else %}{% if fields|hasUserErrors %}ResponseWithUserErrors{% else %}Response{% endif %}{% endif %}{% if name == "UserErrors" %}, UserErrorsInterface(){% endif %} {
+) : {% if superclassOverride %}{{ superclassOverride }}{% else %}{% if fields|hasUserErrors and asFile %}ResponseWithUserErrors{% else %}Response{% endif %}{% endif %}{% if name == "UserErrors" %}, UserErrorsInterface(){% endif %} {
     constructor(jsonObject: JsonObject) : this(
         {% for field in fields %}
         {{ field|decodeField }}{% if fragmentNames or not forloop.last %},{% endif %}
