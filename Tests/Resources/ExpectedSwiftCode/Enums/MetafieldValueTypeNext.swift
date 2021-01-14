@@ -2,7 +2,7 @@
 import Foundation
 
 public extension MerchantApi {
-	enum MetafieldValueType: String, Codable {
+	enum MetafieldValueType: String, Codable, CaseIterable {
 		/// A string.
 			case string = "STRING"
 		/// An integer.
@@ -20,5 +20,11 @@ public extension MerchantApi {
 				self = .unknownValue
 			}
 		}
+
+		public static var allCases: [MetafieldValueType] = [
+			.string,
+			.integer,
+			.jsonString,
+		]
 	}
 }
