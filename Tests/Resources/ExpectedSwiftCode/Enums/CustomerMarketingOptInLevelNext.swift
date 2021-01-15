@@ -2,7 +2,7 @@
 import Foundation
 
 public extension MerchantApi {
-	enum CustomerMarketingOptInLevel: String, Codable {
+	enum CustomerMarketingOptInLevel: String, Codable, CaseIterable {
 		/// The customer started receiving marketing email(s) after providing their email address, without any
 		/// intermediate steps.
 			case singleOptIn = "SINGLE_OPT_IN"
@@ -22,5 +22,11 @@ public extension MerchantApi {
 				self = .unknownValue
 			}
 		}
+
+		public static var allCases: [CustomerMarketingOptInLevel] = [
+			.singleOptIn,
+			.confirmedOptIn,
+			.unknown,
+		]
 	}
 }

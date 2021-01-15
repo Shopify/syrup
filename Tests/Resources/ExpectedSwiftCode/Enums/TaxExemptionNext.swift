@@ -2,7 +2,7 @@
 import Foundation
 
 public extension MerchantApi {
-	enum TaxExemption: String, Codable {
+	enum TaxExemption: String, Codable, CaseIterable {
 		/// This customer is exempt from specific taxes for holding a valid STATUS_CARD_EXEMPTION in Canada.
 			case caStatusCardExemption = "CA_STATUS_CARD_EXEMPTION"
 		/// This customer is exempt from specific taxes for holding a valid RESELLER_EXEMPTION in British Columbia.
@@ -54,5 +54,28 @@ public extension MerchantApi {
 				self = .unknownValue
 			}
 		}
+
+		public static var allCases: [TaxExemption] = [
+			.caStatusCardExemption,
+			.caBcResellerExemption,
+			.caMbResellerExemption,
+			.caSkResellerExemption,
+			.caDiplomatExemption,
+			.caBcCommercialFisheryExemption,
+			.caMbCommercialFisheryExemption,
+			.caNsCommercialFisheryExemption,
+			.caPeCommercialFisheryExemption,
+			.caSkCommercialFisheryExemption,
+			.caBcProductionAndMachineryExemption,
+			.caSkProductionAndMachineryExemption,
+			.caBcSubContractorExemption,
+			.caSkSubContractorExemption,
+			.caBcContractorExemption,
+			.caSkContractorExemption,
+			.caOnPurchaseExemption,
+			.caMbFarmerExemption,
+			.caNsFarmerExemption,
+			.caSkFarmerExemption,
+		]
 	}
 }
