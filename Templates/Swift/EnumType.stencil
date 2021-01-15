@@ -2,10 +2,10 @@
 
 {% block content %}
 	{% with enumType.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
-	enum {{ enumType.name }}: String, Codable {
+	enum {{ enumType.name }}: String, Codable, CaseIterable {
 		{% for enumValue in enumType.values %}
-			{% with enumValue.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
-			case {{ enumValue.value|camelCased|escapeReservedWord }} = "{{ enumValue.value }}"
+		{% with enumValue.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+		case {{ enumValue.value|camelCased|escapeReservedWord }} = "{{ enumValue.value }}"
 		{% endfor %}
 		case unknownValue = ""
 
@@ -18,5 +18,11 @@
 				self = .unknownValue
 			}
 		}
+
+		{{ accessLevel }} static var allCases: [{{ enumType.name }}] = [
+			{% for enumValue in enumType.values %}
+			.{{ enumValue.value|camelCased|escapeReservedWord }},
+			{% endfor %}	
+		]
 	}
 {% endblock %}

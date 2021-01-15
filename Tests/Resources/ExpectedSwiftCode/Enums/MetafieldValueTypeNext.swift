@@ -2,13 +2,13 @@
 import Foundation
 
 public extension MerchantApi {
-	enum MetafieldValueType: String, Codable {
+	enum MetafieldValueType: String, Codable, CaseIterable {
 		/// A string.
-			case string = "STRING"
+		case string = "STRING"
 		/// An integer.
-			case integer = "INTEGER"
+		case integer = "INTEGER"
 		/// A JSON string.
-			case jsonString = "JSON_STRING"
+		case jsonString = "JSON_STRING"
 		case unknownValue = ""
 
 		public init(from decoder: Decoder) throws {
@@ -20,5 +20,11 @@ public extension MerchantApi {
 				self = .unknownValue
 			}
 		}
+
+		public static var allCases: [MetafieldValueType] = [
+			.string,
+			.integer,
+			.jsonString,
+		]
 	}
 }
