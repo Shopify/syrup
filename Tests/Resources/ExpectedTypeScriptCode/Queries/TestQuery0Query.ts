@@ -1,14 +1,16 @@
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 
 export namespace TestQuery0QueryData {
-  export interface Nodes {
-    __typename: unknown;
-    realized: unknown;
+  export interface NodesOther {
+    __typename: '';
+  }
+  export interface Nodes_BaseFields_ {
     /**
      * Globally unique identifier.
      */
     id: ID;
   }
+  export type Nodes = Nodes_BaseFields_ & (NodesOther)
 }
 
 export interface TestQuery0QueryData {

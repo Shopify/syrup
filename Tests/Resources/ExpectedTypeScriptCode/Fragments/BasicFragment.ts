@@ -1,6 +1,7 @@
+import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 
-
-import { ID, GraphSelection, copyWithTypeCondition } from "../GraphApi"
+export namespace BasicFragmentFragmentData {
+}
 
 export interface BasicFragmentFragmentData {
   __typename: 'Customer';
@@ -16,7 +17,7 @@ export interface BasicFragmentFragmentData {
   lastName?: string | null;
 }
 
-export const basicFragmentFragmentDataSelections: GraphSelection[] = ([
+export const basicFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },

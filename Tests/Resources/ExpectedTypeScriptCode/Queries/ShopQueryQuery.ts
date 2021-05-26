@@ -1,7 +1,7 @@
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 import {
   ShopFragmentData,
-  shopFragmentDataSelections,
+  shopSelections,
 } from "../Fragments"
 
 export namespace ShopQueryQueryData {
@@ -29,6 +29,6 @@ const document: SyrupOperation<ShopQueryQueryData, ShopQueryQueryData.Variables>
       directive: null,
       selections: ([] as GraphSelection[])
     }
-  ] as GraphSelection[]).concat(shopFragmentDataSelections)
+  ] as GraphSelection[]).concat(shopSelections)
 }
 export default document

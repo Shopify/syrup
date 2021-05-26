@@ -1,17 +1,16 @@
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 import {
   BasicFragmentFragmentData,
-  basicFragmentFragmentDataSelections,
+  basicFragmentSelections,
 } from "../Fragments"
 
 export namespace TestQuery9QueryData {
-  export interface ShopCustomersEdgesNode {
+  export interface ShopCustomersEdgesNode extends BasicFragmentFragmentData {
     __typename: 'Customer';
     /**
      * Globally unique identifier.
      */
     id: ID;
-    basicFragment: BasicFragmentFragmentData;
   }
   export interface ShopCustomersEdges {
     __typename: 'CustomerEdge';
@@ -138,7 +137,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
                       directive: null,
                       selections: ([] as GraphSelection[])
                     }
-                  ] as GraphSelection[]).concat(basicFragmentFragmentDataSelections).map(x => copyWithTypeCondition(x, { name: "Customer", definedType: "Object" }))
+                  ] as GraphSelection[]).concat(basicFragmentSelections).map(x => copyWithTypeCondition(x, { name: "Customer", definedType: "Object" }))
                 }
               ] as GraphSelection[])
             }

@@ -56,6 +56,11 @@ export enum CountryCode {
   AW = "AW",
 
   /**
+   * Ascension Island.
+   */
+  AC = "AC",
+
+  /**
    * Australia.
    */
   AU = "AU",
@@ -1099,6 +1104,11 @@ export enum CountryCode {
    * Trinidad & Tobago.
    */
   TT = "TT",
+
+  /**
+   * Tristan da Cunha.
+   */
+  TA = "TA",
 
   /**
    * Tunisia.

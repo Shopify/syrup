@@ -1,18 +1,22 @@
+import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 
+export namespace NodeIdFragmentData {
+  export interface Other {
+    __typename: '';
+  }
 
-import { ID, GraphSelection, copyWithTypeCondition } from "../GraphApi"
+  export interface _BaseFields_ {
 
-export interface NodeIdFragmentData {
-  __typename: unknown;
-  realized: unknown;
-
-  /**
-   * Globally unique identifier.
-   */
-  id: ID;
+    /**
+     * Globally unique identifier.
+     */
+    id: ID;
+  }
 }
 
-export const nodeIdFragmentDataSelections: GraphSelection[] = ([
+export type NodeIdFragmentData = NodeIdFragmentData.Other
+
+export const nodeIdSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
@@ -32,3 +36,4 @@ export const nodeIdFragmentDataSelections: GraphSelection[] = ([
     selections: ([] as GraphSelection[])
   }
 ] as GraphSelection[])
+

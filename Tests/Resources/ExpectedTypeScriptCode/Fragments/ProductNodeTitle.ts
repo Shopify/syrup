@@ -1,6 +1,7 @@
+import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 
-
-import { ID, GraphSelection, copyWithTypeCondition } from "../GraphApi"
+export namespace ProductNodeTitleFragmentData {
+}
 
 export interface ProductNodeTitleFragmentData {
   __typename: 'Product';
@@ -11,7 +12,7 @@ export interface ProductNodeTitleFragmentData {
   title: string;
 }
 
-export const productNodeTitleFragmentDataSelections: GraphSelection[] = ([
+export const productNodeTitleSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },

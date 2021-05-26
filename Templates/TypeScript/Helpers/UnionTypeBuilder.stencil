@@ -15,6 +15,4 @@
     {{ field|renderPropertyDeclaration:name,"_BaseFields_" }};
 {% endfor %}
   }
-{% endmacro %}
-
-{% block content %}{% endblock %}
+{% endmacro %}{% block content %}{% endblock %}

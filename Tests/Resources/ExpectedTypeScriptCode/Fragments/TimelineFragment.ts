@@ -1,6 +1,4 @@
-
-
-import { ID, GraphSelection, copyWithTypeCondition } from "../GraphApi"
+import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 
 export namespace TimelineFragmentFragmentData {
   export interface PageInfo {
@@ -10,7 +8,10 @@ export namespace TimelineFragmentFragmentData {
      */
     hasNextPage: boolean;
   }
-  export interface EdgesNodeRealizedCommentEventAttachmentsImage {
+  export interface EdgesNodeOther {
+    __typename: '';
+  }
+  export interface EdgesNodeCommentEventAttachmentsImage {
     __typename: 'Image';
     /**
      * The location of the transformed image as a URL.
@@ -19,7 +20,7 @@ export namespace TimelineFragmentFragmentData {
      */
     transformedSrc: string;
   }
-  export interface EdgesNodeRealizedCommentEventAttachments {
+  export interface EdgesNodeCommentEventAttachments {
     __typename: 'CommentEventAttachment';
     /**
      * Globally unique identifier.
@@ -44,34 +45,10 @@ export namespace TimelineFragmentFragmentData {
     /**
      * The image attached to the comment event.
      */
-    image?: EdgesNodeRealizedCommentEventAttachmentsImage | null;
+    image?: EdgesNodeCommentEventAttachmentsImage | null;
   }
-  export interface EdgesNodeRealizedCommentEvent {
+  export interface EdgesNodeCommentEvent {
     __typename: 'CommentEvent';
-    /**
-     * Globally unique identifier.
-     */
-    id: ID;
-    /**
-     * The date and time when the event was created.
-     */
-    createdAt: string;
-    /**
-     * Human readable text that describes the event.
-     */
-    message: string;
-    /**
-     * Whether the event was created by an app.
-     */
-    attributeToApp: boolean;
-    /**
-     * Whether the event was caused by an admin user.
-     */
-    attributeToUser: boolean;
-    /**
-     * Whether the event is critical.
-     */
-    criticalAlert: boolean;
     /**
      * Whether the comment event has been edited. If true, then the comment event has been edited.
      */
@@ -87,11 +64,9 @@ export namespace TimelineFragmentFragmentData {
     /**
      * The attachments associated with the comment event.
      */
-    attachments: EdgesNodeRealizedCommentEventAttachments[];
+    attachments: EdgesNodeCommentEventAttachments[];
   }
-  export interface EdgesNode {
-    __typename: 'CommentEvent';
-    realized: EdgesNodeRealizedCommentEvent;
+  export interface EdgesNode_BaseFields_ {
     /**
      * Globally unique identifier.
      */
@@ -117,6 +92,7 @@ export namespace TimelineFragmentFragmentData {
      */
     criticalAlert: boolean;
   }
+  export type EdgesNode = EdgesNode_BaseFields_ & (EdgesNodeCommentEvent | EdgesNodeOther)
   export interface Edges {
     __typename: 'EventEdge';
     /**
@@ -144,7 +120,7 @@ export interface TimelineFragmentFragmentData {
   edges: TimelineFragmentFragmentData.Edges[];
 }
 
-export const timelineFragmentFragmentDataSelections: GraphSelection[] = ([
+export const timelineFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },

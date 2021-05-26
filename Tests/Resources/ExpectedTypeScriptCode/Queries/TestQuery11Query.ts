@@ -4,7 +4,10 @@ export namespace TestQuery11QueryData {
   export interface Variables {
     productId: ID;
   }
-  export interface NodeRealizedProductCollectionsEdgesNode {
+  export interface NodeOther {
+    __typename: '';
+  }
+  export interface NodeProductCollectionsEdgesNode {
     __typename: 'Collection';
     /**
      * Globally unique identifier.
@@ -15,21 +18,21 @@ export namespace TestQuery11QueryData {
      */
     title: string;
   }
-  export interface NodeRealizedProductCollectionsEdges {
+  export interface NodeProductCollectionsEdges {
     __typename: 'CollectionEdge';
     /**
      * The item at the end of CollectionEdge.
      */
-    node: NodeRealizedProductCollectionsEdgesNode;
+    node: NodeProductCollectionsEdgesNode;
   }
-  export interface NodeRealizedProductCollections {
+  export interface NodeProductCollections {
     __typename: 'CollectionConnection';
     /**
      * A list of edges.
      */
-    edges: NodeRealizedProductCollectionsEdges[];
+    edges: NodeProductCollectionsEdges[];
   }
-  export interface NodeRealizedProduct {
+  export interface NodeProduct {
     __typename: 'Product';
     /**
      * Globally unique identifier.
@@ -38,19 +41,18 @@ export namespace TestQuery11QueryData {
     /**
      * A list of the collections that include the product.
      */
-    collections: NodeRealizedProductCollections;
+    collections: NodeProductCollections;
   }
-  export interface NodeRealizedProductOption {
+  export interface NodeProductOption {
     __typename: 'ProductOption';
     /**
      * Globally unique identifier.
      */
     id: ID;
   }
-  export interface Node {
-    __typename: 'Product' | 'ProductOption';
-    realized: NodeRealizedProduct | NodeRealizedProductOption;
+  export interface Node_BaseFields_ {
   }
+  export type Node = Node_BaseFields_ & (NodeProduct | NodeProductOption | NodeOther)
 }
 
 export interface TestQuery11QueryData {

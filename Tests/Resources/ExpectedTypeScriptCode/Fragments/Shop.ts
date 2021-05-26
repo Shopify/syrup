@@ -1,6 +1,4 @@
-
-
-import { ID, GraphSelection, copyWithTypeCondition } from "../GraphApi"
+import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 
 export namespace ShopFragmentData {
   export interface ShopAvailableChannelAppsEdgesNode {
@@ -42,7 +40,7 @@ export interface ShopFragmentData {
   shop: ShopFragmentData.Shop;
 }
 
-export const shopFragmentDataSelections: GraphSelection[] = ([
+export const shopSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },

@@ -1,10 +1,11 @@
-
-
-import { ID, GraphSelection, copyWithTypeCondition } from "../GraphApi"
+import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 
 export namespace TimelineEventFragmentFragmentData {
+  export interface Other {
+    __typename: '';
+  }
 
-  export interface RealizedCommentEventAttachmentsImage {
+  export interface CommentEventAttachmentsImage {
     __typename: 'Image';
     /**
      * The location of the transformed image as a URL.
@@ -13,7 +14,7 @@ export namespace TimelineEventFragmentFragmentData {
      */
     transformedSrc: string;
   }
-  export interface RealizedCommentEventAttachments {
+  export interface CommentEventAttachments {
     __typename: 'CommentEventAttachment';
     /**
      * Globally unique identifier.
@@ -38,34 +39,10 @@ export namespace TimelineEventFragmentFragmentData {
     /**
      * The image attached to the comment event.
      */
-    image?: RealizedCommentEventAttachmentsImage | null;
+    image?: CommentEventAttachmentsImage | null;
   }
-  export interface RealizedCommentEvent {
+  export interface CommentEvent {
     __typename: 'CommentEvent';
-    /**
-     * Globally unique identifier.
-     */
-    id: ID;
-    /**
-     * The date and time when the event was created.
-     */
-    createdAt: string;
-    /**
-     * Human readable text that describes the event.
-     */
-    message: string;
-    /**
-     * Whether the event was created by an app.
-     */
-    attributeToApp: boolean;
-    /**
-     * Whether the event was caused by an admin user.
-     */
-    attributeToUser: boolean;
-    /**
-     * Whether the event is critical.
-     */
-    criticalAlert: boolean;
     /**
      * Whether the comment event has been edited. If true, then the comment event has been edited.
      */
@@ -81,45 +58,46 @@ export namespace TimelineEventFragmentFragmentData {
     /**
      * The attachments associated with the comment event.
      */
-    attachments: RealizedCommentEventAttachments[];
+    attachments: CommentEventAttachments[];
+  }
+
+  export interface _BaseFields_ {
+
+    /**
+     * Globally unique identifier.
+     */
+    id: ID;
+
+    /**
+     * The date and time when the event was created.
+     */
+    createdAt: string;
+
+    /**
+     * Human readable text that describes the event.
+     */
+    message: string;
+
+    /**
+     * Whether the event was created by an app.
+     */
+    attributeToApp: boolean;
+
+    /**
+     * Whether the event was caused by an admin user.
+     */
+    attributeToUser: boolean;
+
+    /**
+     * Whether the event is critical.
+     */
+    criticalAlert: boolean;
   }
 }
-export interface TimelineEventFragmentFragmentData {
-  __typename: 'CommentEvent';
-  realized: TimelineEventFragmentFragmentData.RealizedCommentEvent;
 
-  /**
-   * Globally unique identifier.
-   */
-  id: ID;
+export type TimelineEventFragmentFragmentData = TimelineEventFragmentFragmentData.CommentEvent | TimelineEventFragmentFragmentData.Other
 
-  /**
-   * The date and time when the event was created.
-   */
-  createdAt: string;
-
-  /**
-   * Human readable text that describes the event.
-   */
-  message: string;
-
-  /**
-   * Whether the event was created by an app.
-   */
-  attributeToApp: boolean;
-
-  /**
-   * Whether the event was caused by an admin user.
-   */
-  attributeToUser: boolean;
-
-  /**
-   * Whether the event is critical.
-   */
-  criticalAlert: boolean;
-}
-
-export const timelineEventFragmentFragmentDataSelections: GraphSelection[] = ([
+export const timelineEventFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
@@ -312,3 +290,4 @@ export const timelineEventFragmentFragmentDataSelections: GraphSelection[] = ([
     ] as GraphSelection[])
   }
 ] as GraphSelection[])
+

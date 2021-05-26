@@ -4,42 +4,46 @@ export namespace TestQuery10QueryData {
   export interface Variables {
     priceRuleId: ID;
   }
-  export interface PriceRuleValueRealizedPriceRuleFixedAmountValue {
+  export interface PriceRuleValueOther {
+    __typename: '';
+  }
+  export interface PriceRuleValuePriceRuleFixedAmountValue {
     __typename: 'PriceRuleFixedAmountValue';
     /**
      * The monetary value of the price rule.
      */
     amount: number;
   }
-  export interface PriceRuleValueRealizedPriceRulePercentValue {
+  export interface PriceRuleValuePriceRulePercentValue {
     __typename: 'PriceRulePercentValue';
     /**
      * The percent value of the price rule.
      */
     percentage: number;
   }
-  export interface PriceRuleValue {
-    __typename: 'PriceRuleFixedAmountValue' | 'PriceRulePercentValue';
-    realized: PriceRuleValueRealizedPriceRuleFixedAmountValue | PriceRuleValueRealizedPriceRulePercentValue;
+  export interface PriceRuleValue_BaseFields_ {
   }
-  export interface PriceRuleValueV2RealizedMoneyV2 {
+  export type PriceRuleValue = PriceRuleValue_BaseFields_ & (PriceRuleValuePriceRuleFixedAmountValue | PriceRuleValuePriceRulePercentValue | PriceRuleValueOther)
+  export interface PriceRuleValueV2Other {
+    __typename: '';
+  }
+  export interface PriceRuleValueV2MoneyV2 {
     __typename: 'MoneyV2';
     /**
      * Decimal money amount.
      */
     amount: number;
   }
-  export interface PriceRuleValueV2RealizedPricingPercentageValue {
+  export interface PriceRuleValueV2PricingPercentageValue {
     __typename: 'PricingPercentageValue';
     /**
      * The percentage value of the object.
      */
     percentage: number;
   }
-  export interface PriceRuleValueV2 {
-    __typename: 'MoneyV2' | 'PricingPercentageValue';
-    realized: PriceRuleValueV2RealizedMoneyV2 | PriceRuleValueV2RealizedPricingPercentageValue;
+  export interface PriceRuleValueV2_BaseFields_ {
   }
+  export type PriceRuleValueV2 = PriceRuleValueV2_BaseFields_ & (PriceRuleValueV2MoneyV2 | PriceRuleValueV2PricingPercentageValue | PriceRuleValueV2Other)
   export interface PriceRule {
     __typename: 'PriceRule';
     /**

@@ -284,6 +284,20 @@ final class TypeScriptRenderer: Renderer {
             $0.key
         }).unique.sorted()
         
+        let fragmentUnionGroupedFields = collectedFields.filter { field in
+            return fragmentSpreads.contains { element in
+                return field.parentFragment?.name == element.name
+            }
+        }.groupedFields(fromUnionType: typeName)
+        
+        let fragmentUnionTypes = fragmentUnionGroupedFields.map { key, value in
+            return [
+                // All values will have the same parent fragment so we can grab the name from the first value
+                "fragmentName": value[0].parentFragment!.name,
+                "fieldName": key
+            ]
+        }
+        
         var context: [String: Any] = [
             "name": name,
             "typeName": typeName,
@@ -291,7 +305,8 @@ final class TypeScriptRenderer: Renderer {
             "fragmentSpreads": fragmentSpreads,
             "collectedFields": collectedFields,
             "concreteTypeNames": concreteTypeNames,
-            "groupedFragmentSpreads": groupedFragmentSpreads
+            "groupedFragmentSpreads": groupedFragmentSpreads,
+            "fragmentUnionTypes": fragmentUnionTypes
         ]
         
         if let fragment = parentFragment {

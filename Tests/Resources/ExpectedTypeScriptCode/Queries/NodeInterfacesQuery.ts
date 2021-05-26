@@ -1,25 +1,21 @@
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 import {
   NodeIdFragmentData,
-  nodeIdFragmentDataSelections,
+  nodeIdSelections,
   ProductNodeTitleFragmentData,
-  productNodeTitleFragmentDataSelections,
+  productNodeTitleSelections,
 } from "../Fragments"
 
 export namespace NodeInterfacesQueryData {
   export interface Variables {
     nodeId: ID;
   }
-  export interface NodeRealizedProduct {
-    __typename: 'Product';
-    nodeId: NodeIdFragmentData;
-    productNodeTitle: ProductNodeTitleFragmentData;
+  export interface NodeOther {
+    __typename: '';
   }
-  export interface Node {
-    __typename: 'Product';
-    realized: NodeRealizedProduct;
-    nodeId: NodeIdFragmentData;
+  export interface Node_BaseFields_ extends NodeIdFragmentData._BaseFields_ {
   }
+  export type Node = Node_BaseFields_ & (NodeOther)
 }
 
 export interface NodeInterfacesQueryData {
@@ -71,7 +67,7 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
           directive: null,
           selections: ([] as GraphSelection[])
         }
-      ] as GraphSelection[]).concat(nodeIdFragmentDataSelections).concat(productNodeTitleFragmentDataSelections)
+      ] as GraphSelection[]).concat(nodeIdSelections).concat(productNodeTitleSelections)
     }
   ] as GraphSelection[])
 }
