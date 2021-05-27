@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 import Foundation
-import CommonCrypto
+import CryptoSwift
 
 extension String {
 	func indented(indentStr: String = "\t") -> String {
@@ -62,21 +62,11 @@ extension String {
 		return String(self.dropLast(suffix.count))
 	}
 	
-	func sha256() -> String {
-		if let strData = self.data(using: String.Encoding.utf8) {
-			var digest = [UInt8](repeating: 0, count:Int(CC_SHA256_DIGEST_LENGTH))
-
-			_ = strData.withUnsafeBytes {
-				CC_SHA256($0.baseAddress, UInt32(strData.count), &digest)
-			}
-	 
-			var sha256String = ""
-			for byte in digest {
-				sha256String += String(format:"%02x", UInt8(byte))
-			}
-
-			return sha256String
+	func sha256Stringified() -> String {
+		if let value = self.data(using: String.Encoding.utf8) {
+			return value.sha256().toHexString()
 		}
+        
 		return ""
 	}
 }

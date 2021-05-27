@@ -25,6 +25,7 @@ record: build
 record:
 	rm -rf $(ROOT_DIR)/Tests/Resources/ExpectedSwiftCode/*
 	rm -rf $(ROOT_DIR)/Tests/Resources/ExpectedKotlinCode/*
+	rm -rf $(ROOT_DIR)/Tests/Resources/ExpectedTypeScriptCode/*
 	RECORD=true swift test
 	
 xcode:

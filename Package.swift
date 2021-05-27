@@ -37,7 +37,11 @@ let package = Package(
 		.package(
 			url: "https://github.com/Shopify/SwiftGraphQLParser",
 			from: "0.1.8"
-		)
+		),
+        .package(
+            url: "https://github.com/krzyzanowskim/CryptoSwift.git",
+            .exact("1.4.0")
+        )
 	],
 	targets: [
 		.target(
@@ -46,7 +50,7 @@ let package = Package(
 		),
 		.target(
 			name: "SyrupCore",
-			dependencies: ["Stencil", "Files", "Yams", "Utility", "SwiftGraphQLParser"]
+			dependencies: ["Stencil", "Files", "Yams", "Utility", "SwiftGraphQLParser", "CryptoSwift"]
 		),
 		.testTarget(
 			name: "SyrupTests",

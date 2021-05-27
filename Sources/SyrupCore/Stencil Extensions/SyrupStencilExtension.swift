@@ -24,7 +24,6 @@
 
 import Foundation
 import Stencil
-import CommonCrypto
 
 final class SyrupStencilExtension: Extension {
 	override init() {
@@ -128,6 +127,6 @@ final class SyrupStencilExtension: Extension {
     
     static func encryptData(_ value: Any?) throws -> Any? {
         guard let value = value as? String else { return nil }
-        return value.sha256()
+        return value.sha256Stringified()
     }
 }
