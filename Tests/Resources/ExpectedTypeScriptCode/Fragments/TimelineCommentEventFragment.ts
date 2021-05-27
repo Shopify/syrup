@@ -5,19 +5,12 @@ export namespace TimelineCommentEventFragmentFragmentData {
     __typename: '';
   }
 
-  export interface CommentEventAuthor {
-    __typename: 'StaffMember';
-    /**
-     * The staff member's email address.
-     */
-    email: string;
-  }
   export interface CommentEvent {
     __typename: 'CommentEvent';
     /**
-     * The name of the user that authored the comment event.
+     * Whether the comment event has been edited. If true, then the comment event has been edited.
      */
-    author: CommentEventAuthor;
+    edited: boolean;
   }
 
   export interface _BaseFields_ {
@@ -46,32 +39,13 @@ export const timelineCommentEventFragmentSelections: GraphSelection[] = ([
     selections: ([] as GraphSelection[])
   }, 
   {
-    name: "author",
-    type: { name: "StaffMember", definedType: "Object" },
+    name: "edited",
+    type: { name: "Boolean", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
     typeCondition: { name: "CommentEvent", definedType: "Object" },
     directive: null,
-    selections: ([
-      {
-        name: "__typename",
-        type: { name: "String", definedType: "Scalar" },
-        arguments: {},
-        passedGID: null,
-        typeCondition: { name: "StaffMember", definedType: "Object" },
-        directive: null,
-        selections: ([] as GraphSelection[])
-      }, 
-      {
-        name: "email",
-        type: { name: "String", definedType: "Scalar" },
-        arguments: {},
-        passedGID: null,
-        typeCondition: { name: "StaffMember", definedType: "Object" },
-        directive: null,
-        selections: ([] as GraphSelection[])
-      }
-    ] as GraphSelection[])
+    selections: ([] as GraphSelection[])
   }
 ] as GraphSelection[])
 

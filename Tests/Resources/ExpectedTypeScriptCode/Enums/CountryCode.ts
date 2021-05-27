@@ -6,7 +6,7 @@ export enum CountryCode {
   AF = "AF",
 
   /**
-   * Åland Islands.
+   * Aland Islands.
    */
   AX = "AX",
 
@@ -36,7 +36,7 @@ export enum CountryCode {
   AI = "AI",
 
   /**
-   * Antigua & Barbuda.
+   * Antigua And Barbuda.
    */
   AG = "AG",
 
@@ -54,11 +54,6 @@ export enum CountryCode {
    * Aruba.
    */
   AW = "AW",
-
-  /**
-   * Ascension Island.
-   */
-  AC = "AC",
 
   /**
    * Australia.
@@ -131,7 +126,7 @@ export enum CountryCode {
   BO = "BO",
 
   /**
-   * Bosnia & Herzegovina.
+   * Bosnia And Herzegovina.
    */
   BA = "BA",
 
@@ -241,12 +236,12 @@ export enum CountryCode {
   KM = "KM",
 
   /**
-   * Congo - Brazzaville.
+   * Congo.
    */
   CG = "CG",
 
   /**
-   * Congo - Kinshasa.
+   * Congo, The Democratic Republic Of The.
    */
   CD = "CD",
 
@@ -281,12 +276,12 @@ export enum CountryCode {
   CY = "CY",
 
   /**
-   * Czechia.
+   * Czech Republic.
    */
   CZ = "CZ",
 
   /**
-   * Côte d’Ivoire.
+   * Côte d'Ivoire.
    */
   CI = "CI",
 
@@ -351,7 +346,7 @@ export enum CountryCode {
   ET = "ET",
 
   /**
-   * Falkland Islands.
+   * Falkland Islands (Malvinas).
    */
   FK = "FK",
 
@@ -456,7 +451,7 @@ export enum CountryCode {
   GN = "GN",
 
   /**
-   * Guinea-Bissau.
+   * Guinea Bissau.
    */
   GW = "GW",
 
@@ -471,12 +466,12 @@ export enum CountryCode {
   HT = "HT",
 
   /**
-   * Heard & McDonald Islands.
+   * Heard Island And Mcdonald Islands.
    */
   HM = "HM",
 
   /**
-   * Vatican City.
+   * Holy See (Vatican City State).
    */
   VA = "VA",
 
@@ -486,7 +481,7 @@ export enum CountryCode {
   HN = "HN",
 
   /**
-   * Hong Kong SAR.
+   * Hong Kong.
    */
   HK = "HK",
 
@@ -511,7 +506,7 @@ export enum CountryCode {
   ID = "ID",
 
   /**
-   * Iran.
+   * Iran, Islamic Republic Of.
    */
   IR = "IR",
 
@@ -526,7 +521,7 @@ export enum CountryCode {
   IE = "IE",
 
   /**
-   * Isle of Man.
+   * Isle Of Man.
    */
   IM = "IM",
 
@@ -576,7 +571,7 @@ export enum CountryCode {
   KI = "KI",
 
   /**
-   * North Korea.
+   * Korea, Democratic People's Republic Of.
    */
   KP = "KP",
 
@@ -596,7 +591,7 @@ export enum CountryCode {
   KG = "KG",
 
   /**
-   * Laos.
+   * Lao People's Democratic Republic.
    */
   LA = "LA",
 
@@ -621,7 +616,7 @@ export enum CountryCode {
   LR = "LR",
 
   /**
-   * Libya.
+   * Libyan Arab Jamahiriya.
    */
   LY = "LY",
 
@@ -641,7 +636,7 @@ export enum CountryCode {
   LU = "LU",
 
   /**
-   * Macao SAR.
+   * Macao.
    */
   MO = "MO",
 
@@ -701,7 +696,7 @@ export enum CountryCode {
   MX = "MX",
 
   /**
-   * Moldova.
+   * Moldova, Republic of.
    */
   MD = "MD",
 
@@ -736,7 +731,7 @@ export enum CountryCode {
   MZ = "MZ",
 
   /**
-   * Myanmar (Burma).
+   * Myanmar.
    */
   MM = "MM",
 
@@ -821,7 +816,7 @@ export enum CountryCode {
   PK = "PK",
 
   /**
-   * Palestinian Territories.
+   * Palestinian Territory, Occupied.
    */
   PS = "PS",
 
@@ -851,7 +846,7 @@ export enum CountryCode {
   PH = "PH",
 
   /**
-   * Pitcairn Islands.
+   * Pitcairn.
    */
   PN = "PN",
 
@@ -871,12 +866,12 @@ export enum CountryCode {
   QA = "QA",
 
   /**
-   * Cameroon.
+   * Republic of Cameroon.
    */
   CM = "CM",
 
   /**
-   * Réunion.
+   * Reunion.
    */
   RE = "RE",
 
@@ -896,32 +891,32 @@ export enum CountryCode {
   RW = "RW",
 
   /**
-   * St. Barthélemy.
+   * Saint Barthélemy.
    */
   BL = "BL",
 
   /**
-   * St. Helena.
+   * Saint Helena.
    */
   SH = "SH",
 
   /**
-   * St. Kitts & Nevis.
+   * Saint Kitts And Nevis.
    */
   KN = "KN",
 
   /**
-   * St. Lucia.
+   * Saint Lucia.
    */
   LC = "LC",
 
   /**
-   * St. Martin.
+   * Saint Martin.
    */
   MF = "MF",
 
   /**
-   * St. Pierre & Miquelon.
+   * Saint Pierre And Miquelon.
    */
   PM = "PM",
 
@@ -936,7 +931,7 @@ export enum CountryCode {
   SM = "SM",
 
   /**
-   * São Tomé & Príncipe.
+   * Sao Tome And Principe.
    */
   ST = "ST",
 
@@ -1001,7 +996,7 @@ export enum CountryCode {
   ZA = "ZA",
 
   /**
-   * South Georgia & South Sandwich Islands.
+   * South Georgia And The South Sandwich Islands.
    */
   GS = "GS",
 
@@ -1026,7 +1021,7 @@ export enum CountryCode {
   LK = "LK",
 
   /**
-   * St. Vincent & Grenadines.
+   * St. Vincent.
    */
   VC = "VC",
 
@@ -1041,7 +1036,7 @@ export enum CountryCode {
   SR = "SR",
 
   /**
-   * Svalbard & Jan Mayen.
+   * Svalbard And Jan Mayen.
    */
   SJ = "SJ",
 
@@ -1071,7 +1066,7 @@ export enum CountryCode {
   TJ = "TJ",
 
   /**
-   * Tanzania.
+   * Tanzania, United Republic Of.
    */
   TZ = "TZ",
 
@@ -1081,7 +1076,7 @@ export enum CountryCode {
   TH = "TH",
 
   /**
-   * Timor-Leste.
+   * Timor Leste.
    */
   TL = "TL",
 
@@ -1101,14 +1096,9 @@ export enum CountryCode {
   TO = "TO",
 
   /**
-   * Trinidad & Tobago.
+   * Trinidad and Tobago.
    */
   TT = "TT",
-
-  /**
-   * Tristan da Cunha.
-   */
-  TA = "TA",
 
   /**
    * Tunisia.
@@ -1126,7 +1116,7 @@ export enum CountryCode {
   TM = "TM",
 
   /**
-   * Turks & Caicos Islands.
+   * Turks and Caicos Islands.
    */
   TC = "TC",
 
@@ -1161,7 +1151,7 @@ export enum CountryCode {
   US = "US",
 
   /**
-   * U.S. Outlying Islands.
+   * United States Minor Outlying Islands.
    */
   UM = "UM",
 
@@ -1191,12 +1181,12 @@ export enum CountryCode {
   VN = "VN",
 
   /**
-   * British Virgin Islands.
+   * Virgin Islands, British.
    */
   VG = "VG",
 
   /**
-   * Wallis & Futuna.
+   * Wallis And Futuna.
    */
   WF = "WF",
 

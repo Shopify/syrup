@@ -75,9 +75,9 @@ export interface CustomerTimelineQueryData {
 }
 
 const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryData.Variables> = {
-  id: "9542ec20dcdb5ead54dfc32c41e3c88c7a29cc7ad75cb7c0416ca57a15bac16e",
+  id: "f5148ada6684f72c02b7bd7e0d652980d90bad72f6365ebda93134f9abf1b5b8",
   name: "CustomerTimeline",
-  source: "fragment TimelineBasicEventFragment on Event { __typename ... on BasicEvent { __typename attributeToUser attributeToApp } } fragment TimelineCommentEventFragment on Event { __typename ... on CommentEvent { __typename author { __typename email } } } query CustomerTimeline(\$customerId: ID!) { __typename customer(id: \$customerId) { __typename events { __typename edges { __typename node { __typename id createdAt message ... TimelineBasicEventFragment ... TimelineCommentEventFragment } cursor } pageInfo { __typename hasNextPage } } } }",
+  source: "fragment TimelineBasicEventFragment on Event { __typename ... on BasicEvent { __typename attributeToUser attributeToApp } } fragment TimelineCommentEventFragment on Event { __typename ... on CommentEvent { __typename edited } } query CustomerTimeline(\$customerId: ID!) { __typename customer(id: \$customerId) { __typename events { __typename edges { __typename node { __typename id createdAt message ... TimelineBasicEventFragment ... TimelineCommentEventFragment } cursor } pageInfo { __typename hasNextPage } } } }",
   operationType: 'query',
   selections: ([
     {

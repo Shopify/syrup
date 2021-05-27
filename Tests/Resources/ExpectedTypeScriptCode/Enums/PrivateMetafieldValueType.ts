@@ -1,17 +1,17 @@
 export enum PrivateMetafieldValueType {
 
   /**
-   * A string metafield.
+   * A private metafield value type.
    */
   STRING = "STRING",
 
   /**
-   * An integer metafield.
+   * A private metafield value type.
    */
   INTEGER = "INTEGER",
 
   /**
-   * A JSON string metafield.
+   * A private metafield value type.
    */
   JSON_STRING = "JSON_STRING",
 

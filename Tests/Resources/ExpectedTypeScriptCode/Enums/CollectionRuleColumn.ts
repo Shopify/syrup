@@ -26,7 +26,7 @@ export enum CollectionRuleColumn {
   VARIANT_PRICE = "VARIANT_PRICE",
 
   /**
-   * The `is_price_reduced` attribute, a boolean attribute evaluated as `true` if a product has a `compare_at_price` set on any of its variants.
+   * The `is_price_reduced` attribute.
    */
   IS_PRICE_REDUCED = "IS_PRICE_REDUCED",
 

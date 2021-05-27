@@ -29,8 +29,6 @@ fragment TimelineBasicEventFragment on Event {
 
 fragment TimelineCommentEventFragment on Event {
   ... on CommentEvent {
-    author {
-      email
-    }
+    edited
   }
 }

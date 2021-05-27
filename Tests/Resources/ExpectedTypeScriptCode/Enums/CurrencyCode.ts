@@ -91,6 +91,18 @@ export enum CurrencyCode {
   BIF = "BIF",
 
   /**
+   * Belarusian Ruble (BYN).
+   */
+  BYN = "BYN",
+
+  /**
+   * Belarusian Ruble (BYR).
+   *
+   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2019-10` onwards instead.
+   */
+  BYR = "BYR",
+
+  /**
    * Belize Dollar (BZD).
    */
   BZD = "BZD",
@@ -206,6 +218,11 @@ export enum CurrencyCode {
   DKK = "DKK",
 
   /**
+   * Djiboutian Franc (DJF).
+   */
+  DJF = "DJF",
+
+  /**
    * Dominican Peso (DOP).
    */
   DOP = "DOP",
@@ -226,6 +243,11 @@ export enum CurrencyCode {
   ETB = "ETB",
 
   /**
+   * Falkland Islands Pounds (FKP).
+   */
+  FKP = "FKP",
+
+  /**
    * CFP Franc (XPF).
    */
   XPF = "XPF",
@@ -234,6 +256,11 @@ export enum CurrencyCode {
    * Fijian Dollars (FJD).
    */
   FJD = "FJD",
+
+  /**
+   * Gibraltar Pounds (GIP).
+   */
+  GIP = "GIP",
 
   /**
    * Gambian Dalasi (GMD).
@@ -259,6 +286,11 @@ export enum CurrencyCode {
    * Georgian Lari (GEL).
    */
   GEL = "GEL",
+
+  /**
+   * Guinean Franc (GNF).
+   */
+  GNF = "GNF",
 
   /**
    * Haitian Gourde (HTG).
@@ -299,6 +331,11 @@ export enum CurrencyCode {
    * Israeli New Shekel (NIS).
    */
   ILS = "ILS",
+
+  /**
+   * Iranian Rial (IRR).
+   */
+  IRR = "IRR",
 
   /**
    * Iraqi Dinar (IQD).
@@ -369,6 +406,11 @@ export enum CurrencyCode {
    * Liberian Dollar (LRD).
    */
   LRD = "LRD",
+
+  /**
+   * Libyan Dinar (LYD).
+   */
+  LYD = "LYD",
 
   /**
    * Lithuanian Litai (LTL).
@@ -536,6 +578,11 @@ export enum CurrencyCode {
   WST = "WST",
 
   /**
+   * Saint Helena Pounds (SHP).
+   */
+  SHP = "SHP",
+
+  /**
    * Saudi Riyal (SAR).
    */
   SAR = "SAR",
@@ -554,6 +601,11 @@ export enum CurrencyCode {
    * Seychellois Rupee (SCR).
    */
   SCR = "SCR",
+
+  /**
+   * Sierra Leonean Leone (SLL).
+   */
+  SLL = "SLL",
 
   /**
    * Singapore Dollars (SGD).
@@ -626,9 +678,19 @@ export enum CurrencyCode {
   THB = "THB",
 
   /**
+   * Tajikistani Somoni (TJS).
+   */
+  TJS = "TJS",
+
+  /**
    * Tanzanian Shilling (TZS).
    */
   TZS = "TZS",
+
+  /**
+   * Tongan Pa'anga (TOP).
+   */
+  TOP = "TOP",
 
   /**
    * Trinidad and Tobago Dollars (TTD).
@@ -681,6 +743,11 @@ export enum CurrencyCode {
   VUV = "VUV",
 
   /**
+   * Venezuelan Bolivares (VEF).
+   */
+  VEF = "VEF",
+
+  /**
    * Vietnamese đồng (VND).
    */
   VND = "VND",
@@ -699,70 +766,6 @@ export enum CurrencyCode {
    * Zambian Kwacha (ZMW).
    */
   ZMW = "ZMW",
-
-  /**
-   * Belarusian Ruble (BYR).
-   *
-   * @deprecated `BYR` is deprecated. Use `BYN` available from version `2021-01` onwards instead.
-   */
-  BYR = "BYR",
-
-  /**
-   * Djiboutian Franc (DJF).
-   */
-  DJF = "DJF",
-
-  /**
-   * Falkland Islands Pounds (FKP).
-   */
-  FKP = "FKP",
-
-  /**
-   * Gibraltar Pounds (GIP).
-   */
-  GIP = "GIP",
-
-  /**
-   * Guinean Franc (GNF).
-   */
-  GNF = "GNF",
-
-  /**
-   * Iranian Rial (IRR).
-   */
-  IRR = "IRR",
-
-  /**
-   * Libyan Dinar (LYD).
-   */
-  LYD = "LYD",
-
-  /**
-   * Sierra Leonean Leone (SLL).
-   */
-  SLL = "SLL",
-
-  /**
-   * Saint Helena Pounds (SHP).
-   */
-  SHP = "SHP",
-
-  /**
-   * Tajikistani Somoni (TJS).
-   */
-  TJS = "TJS",
-
-  /**
-   * Tongan Pa'anga (TOP).
-   */
-  TOP = "TOP",
-
-  /**
-   * Venezuelan Bolivares (VEF).
-   *
-   * @deprecated `VEF` is deprecated. Use `VES` available from version `2020-10` onwards instead.
-   */
-  VEF = "VEF",
 
   /**
    * Unknown Syrup enum.
