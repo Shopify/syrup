@@ -91,9 +91,32 @@ final class ArgumentRendererExtension<V: VariableTypeRenderer>: Extension {
 			guard let variable = value as? IntermediateRepresentation.Variable else { return nil }
 			let rendered = "\(V.render(variableType: variable.type))"
 			return rendered
-			
+
 		}
 		
+		registerFilter("renderTypeScriptArguments") { (value) -> Any? in
+			guard let variables = value as? [IntermediateRepresentation.Variable] else { return nil }
+			let result: [String] = variables.map { variable in
+				var rendered = "\(TypeScriptReservedWordsExtension.escape(word: variable.name, reservedWords: reservedWords))"
+				switch variable.type {
+				case .nonNull:
+					break
+				default:
+					rendered += "?"
+				}
+				return rendered + ": \(V.render(variableType: variable.type));"
+			}
+			return result.joined(separator: "\n    ")
+		}
+
+		registerFilter("renderTypeScriptInputArguments") { (value) -> Any? in
+			guard let variables = value as? [IntermediateRepresentation.Variable] else { return nil }
+			let result: [String] = variables.map { variable in
+				return "\(TypeScriptReservedWordsExtension.escape(word: variable.name, reservedWords: reservedWords))?: \(V.render(variableType: variable.type));"
+			}
+			return result.joined(separator: "\n  ")
+		}
+
 		registerFilter("renderInputArguments") { (value) -> Any? in
 			guard let variables = value as? [IntermediateRepresentation.Variable] else { return nil }
 			let result: [String] = variables.map { variable in

@@ -1,0 +1,12 @@
+query TestQuery3 {
+  customer(id:"") {
+    addresses {
+      country
+    }
+    defaultAddress {
+      city
+      longitude
+      latitude
+    }
+  }
+}

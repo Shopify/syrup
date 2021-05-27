@@ -1,0 +1,5 @@
+query TestQuery0 {
+  nodes(ids: ["gid://shopify/Customer/350635977"]) {
+    id
+  }
+}

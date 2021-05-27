@@ -1,0 +1,23 @@
+fragment TimelineEventFragment on Event {
+  id
+  createdAt
+  message
+  attributeToApp
+  attributeToUser
+  criticalAlert
+  ... on CommentEvent {
+    edited
+    canEdit
+    canDelete
+    attachments {
+      id
+      name
+      size
+      fileExtension
+      url
+      image {
+        transformedSrc(maxWidth: $maxImageWidth, maxHeight: $maxImageHeight)
+      }
+    }
+  }
+}

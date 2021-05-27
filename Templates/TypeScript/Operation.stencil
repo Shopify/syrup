@@ -1,0 +1,30 @@
+{% include "Helpers/Imports.stencil" %}
+
+export namespace {{ name }} {
+  {% if operation.variables.count > 0 %}export interface Variables {
+    {{ operation.variables|renderTypeScriptArguments }}
+  }{% endif %}
+  
+  {% for field in fields %}
+  {{ field|internalFieldType }}
+  {% endfor %}
+}
+
+export interface {{ name }} {
+  {% for field in fields %}
+  {% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+  {{ field|renderPropertyDeclaration:name,"." }};
+  {% endfor %}
+  {% for fragmentName in topLevelFragmentNames %}
+  {{ fragmentName|lowercasedFirstLetter }}: {{ fragmentName }}FragmentData;
+  {% endfor %}
+}
+
+const document: SyrupOperation<{{ name }}, {% if operation.variables.count > 0 %}{{ name }}.Variables{% else %}{}{% endif %}> = {
+  id: "{{ queryString|encryptData }}",
+  name: "{{ operation.name }}",
+  source: "{{ queryString|replace:"$","\$"|replaceQuotes }}",
+  operationType: '{{ operation|renderOperationTypeName|lowercase } }}',
+  selections: {{ selections|renderTypeScriptSelections:null,2 }}
+}
+export default document

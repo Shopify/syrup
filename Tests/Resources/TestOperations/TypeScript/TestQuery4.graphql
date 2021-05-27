@@ -1,0 +1,13 @@
+query TestQuery4{
+  shop {
+    id
+    availableChannelApps(first: 250) {
+      edges {
+        node {
+          id
+          title
+        }
+      }
+    }
+  }
+}

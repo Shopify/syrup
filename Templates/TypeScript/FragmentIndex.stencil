@@ -1,0 +1,5 @@
+{% if fragmentNames.count > 0 %}{% for name in fragmentNames %}export type { {{ name }}FragmentData } from "./{{ name }}"
+export { {{ name|lowercasedFirstLetter }}Selections } from "./{{ name }}"
+{% endfor %}
+{% else %}export {}
+{% endif %}

@@ -79,6 +79,10 @@ class SwiftTests: XCTestCase {
 	func testKotlinGeneratedFiles() throws {
 		try assertGeneratedCode(language: "Kotlin")
 	}
+	
+	func testTypeScriptGeneratedFiles() throws {
+		try assertGeneratedCode(language: "TypeScript")
+	}
 }
 
 extension Folder {

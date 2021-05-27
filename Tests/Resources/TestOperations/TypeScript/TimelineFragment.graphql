@@ -1,0 +1,31 @@
+fragment TimelineFragment on EventConnection {
+  pageInfo {
+    hasNextPage
+  }
+  edges {
+    cursor
+    node {
+      id
+      createdAt
+      message
+      attributeToApp
+      attributeToUser
+      criticalAlert
+      ... on CommentEvent {
+        edited
+        canEdit
+        canDelete
+        attachments {
+          id
+          name
+          size
+          fileExtension
+          url
+          image {
+            transformedSrc
+          }
+        }
+      }
+    }
+  }
+}

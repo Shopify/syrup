@@ -1,0 +1,68 @@
+language: typescript
+extension: ts
+nullString: null
+reservedWords: [
+	"as",
+  "any",
+  "async",
+  "await",
+  "break",
+  "case",
+  "catch",
+  "class",
+  "const",
+  "constructor",
+  "continue",
+  "declare",
+  "debugger",
+  "default",
+  "delete",
+  "do",
+  "else",
+  "enum",
+  "export",
+  "extends",
+  "false",
+  "finally",
+  "for",
+  "from",
+  "function",
+  "if",
+  "implements",
+  "import",
+  "in",
+  "instanceof",
+  "interface",
+  "let",
+  "module",
+  "namespace",
+  "new",
+  "null",
+  "of",
+  "package",
+  "private",
+  "protected",
+  "public",
+  "readonly",
+  "require",
+  "return",
+  "static",
+  "super",
+  "switch",
+  "throw",
+  "true",
+  "try",
+  "type",
+  "typeof",
+  "var",
+  "void",
+  "while",
+  "with",
+  "yield"
+]
+builtInScalars:
+  Int: "number"
+  Float: "number"
+  String: "string"
+  Boolean: "boolean"
+  ID: "ID"

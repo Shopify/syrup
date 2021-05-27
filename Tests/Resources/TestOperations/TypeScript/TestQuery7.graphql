@@ -1,0 +1,39 @@
+query TestQuery7($first: Int) {
+  shop {
+    name
+    currencyCode
+    weightUnit
+    billingAddress {
+      city
+      company
+      latitude
+      longitude
+    }
+    fulfillmentServices {
+      serviceName
+      handle
+    }
+    orders(first: $first) {
+      edges {
+        node {
+          name
+          displayFulfillmentStatus
+          fulfillments{
+            name
+            createdAt
+            inTransitAt
+            deliveredAt
+            displayStatus
+            events(first: 10) {
+                edges {
+                  node {
+                    status
+                  }
+                }
+            }
+          }
+        }
+      }
+    }
+  }
+}

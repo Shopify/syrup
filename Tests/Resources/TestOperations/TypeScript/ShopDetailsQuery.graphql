@@ -1,0 +1,21 @@
+query ShopDetails {
+   shop {
+    id
+    name
+    currencyCode
+    weightUnit
+    billingAddress {
+      city
+      company
+      latitude
+      longitude
+    }
+    alerts {
+      description
+    }
+    shipsToCountries
+    paymentSettings {
+      supportedDigitalWallets
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{% macro commentString string isDeprecated reason spacing %}
+{{ spacing }}  /**
+{% for line in string|splitNewlines where line %}
+{{ spacing }}   * {{ line }}
+{% endfor %}
+{% if isDeprecated %}
+{% for line in reason|splitNewlines where line %}
+{% if forloop.first %}
+{{ spacing }}   *
+{{ spacing }}   * @deprecated {{ line }}
+{% else %}
+{{ spacing }}   * {{ line }}
+{% endif %}
+{% endfor %}
+{% endif %}
+{{ spacing }}   */
+{% endmacro %}
+
+{% macro deprecationString string spacing %}
+{{ spacing }}  /**
+{% for line in string|splitNewlines where line %}
+{% if forloop.first %}
+{{ spacing }}   * @deprecated {{ line }}
+{% else %}
+{{ spacing }}   * {{ line }}
+{% endif %}
+{% endfor %}
+{{ spacing }}   */
+{% endmacro %}
+
+{% if attributes.description %}
+{% call commentString attributes.description attributes.isDeprecated attributes.deprecationReason spacing %}
+{% elif attributes.isDeprecated %}
+{% call deprecationString attributes.deprecationReason spacing %}
+{% endif %}

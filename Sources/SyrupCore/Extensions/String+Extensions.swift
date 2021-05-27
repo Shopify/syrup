@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 import Foundation
+import CryptoSwift
 
 extension String {
 	func indented(indentStr: String = "\t") -> String {
@@ -59,5 +60,13 @@ extension String {
 	func removeSuffix(_ suffix: String) -> String {
 		guard self.hasSuffix(suffix) else { return self }
 		return String(self.dropLast(suffix.count))
+	}
+	
+	func sha256Stringified() -> String {
+		if let value = self.data(using: String.Encoding.utf8) {
+			return value.sha256().toHexString()
+		}
+        
+		return ""
 	}
 }

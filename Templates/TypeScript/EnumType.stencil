@@ -1,0 +1,15 @@
+{% if header %}
+{{ header }}
+
+{% endif %}export enum {{ enumType.name }} {
+  {% for enumValue in enumType.values %}
+
+  {% with enumValue.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+  {{ enumValue.value|uppercase }} = "{{ enumValue.value }}",
+  {% endfor %}
+
+  /**
+   * Unknown Syrup enum.
+   */
+  UNKNOWN_SYRUP_ENUM = "UNKNOWN_SYRUP_ENUM"
+}

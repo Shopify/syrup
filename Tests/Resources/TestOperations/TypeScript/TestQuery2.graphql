@@ -1,0 +1,14 @@
+query TestQuery2 {
+	shop {
+    name
+    id
+    email
+    alerts{
+      action {
+        title
+        url
+      }
+      description
+    }
+  }
+}

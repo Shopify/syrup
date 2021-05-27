@@ -1,0 +1,11 @@
+{% for field in fields %}
+{{ field|internalFieldType:name }}
+{% endfor %}
+  
+  export interface {{ name }}{% if fragmentSpreads.count > 0 %} extends {% for fragment in fragmentSpreads %}{{ fragment.name }}FragmentData{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %} {
+    __typename: '{{ typeName }}';
+{% for field in fields %}
+{% with field.attributes as attributes %}{% with "  " as spacing %}{% include "Helpers/Attributes.stencil" %}{% endwith %}{% endwith %}
+    {{ field|renderPropertyDeclaration:name }};
+{% endfor %}
+  }
