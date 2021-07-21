@@ -38,22 +38,36 @@ enum FileParser {
 	}
 	
 	static func parseFiles(at location: String) throws -> [String: String] {
-		let folder = try Folder(path: location)
-		var results: [String: String] = [:]
-		try parseFiles(from: folder, intoResult: &results)
+        var results: [String: String] = [:]
+        
+        if location.contains(",") {
+            let files: [File] = try location
+                .components(separatedBy: ",")
+                .filter({ $0 != "" })
+                .compactMap({ try File(path: $0) })
+            try parseFiles(from: files, intoResult: &results)
+        } else {
+            let folder = try Folder(path: location)
+            try parseFiles(from: folder, intoResult: &results)
+        }
+        
 		return results
 	}
+    
+    private static func parseFiles(from files: [File], intoResult result: inout [String: String]) throws {
+        try files.forEach { file in
+            guard file.extension == "graphql" else { return }
+            let data = try file.read()
+            let string = String(data: data, encoding: .utf8)!
+            guard result[file.name] == nil else {
+                throw FileParserError.duplicateFile(file.name)
+            }
+            result[file.name] = string
+        }
+    }
 	
 	private static func parseFiles(from folder: Folder, intoResult result: inout [String: String]) throws {
-		for file in folder.files {
-			guard file.extension == "graphql" else { continue }
-			let data = try file.read()
-			let string = String(data: data, encoding: .utf8)!
-			guard result[file.name] == nil else {
-				throw FileParserError.duplicateFile(file.name)
-			}
-			result[file.name] = string
-		}
+        try parseFiles(from: Array(folder.files), intoResult: &result)
 		for subfolder in folder.subfolders {
 			try parseFiles(from: subfolder, intoResult: &result)
 		}
