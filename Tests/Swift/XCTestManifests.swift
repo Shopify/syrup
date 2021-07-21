@@ -4,6 +4,8 @@ extension SwiftTests {
     static let __allTests = [
         ("testKotlinGeneratedFiles", testKotlinGeneratedFiles),
         ("testSwiftGeneratedFiles", testSwiftGeneratedFiles),
+        ("testKotlinGeneratedFilesFromFiles", testKotlinGeneratedFilesFromFiles),
+        ("testSwiftGeneratedFilesFromFiles", testSwiftGeneratedFilesFromFiles)
     ]
 }
 

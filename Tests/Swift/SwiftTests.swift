@@ -4,6 +4,18 @@ import Yams
 @testable import SyrupCore
 
 class SwiftTests: XCTestCase {
+    
+    enum Constants {
+        enum Languages {
+            static let swift = "Swift"
+            static let kotlin = "Kotlin"
+        }
+        enum TestOperations {
+            static let swift = "TestOperations/\(Languages.swift)"
+            static let kotlin = "TestOperations/\(Languages.kotlin)"
+        }
+    }
+    
 	static var recordMode: Bool {
 		guard let recordEnv = ProcessInfo.processInfo.environment["RECORD"], let record = Bool(recordEnv) else {
 			return false
@@ -24,9 +36,12 @@ class SwiftTests: XCTestCase {
 	var resourcesURL: URL {
 		return baseURL.appendingPathComponent("../Resources", isDirectory: true)
 	}
-	
-	func assertGeneratedCode(language: String, recordMode: Bool = SwiftTests.recordMode, file: StaticString = #file, line: UInt = #line) throws {
-		let queries = resourcesURL.appendingPathComponent("TestOperations/\(language)").path
+    
+    func assertGeneratedCode(language: String,
+                             queries: String,
+                             recordMode: Bool = SwiftTests.recordMode,
+                             file: StaticString = #file,
+                             line: UInt = #line) throws {
 		let expectedDestinationURL = resourcesURL.appendingPathComponent("Expected\(language)Code")
 		let destinationURL: URL
 		if recordMode {
@@ -71,14 +86,32 @@ class SwiftTests: XCTestCase {
 			try generatedFilesFolder.delete()
 		}
 	}
+    
+    func graphqlFiles(for type: String) throws -> String {
+        let path = resourcesURL.appendingPathComponent(type).path
+        let folder = try Folder(path: path)
+        return folder.files.compactMap({ path + "/" + $0.name + "," }).joined()
+    }
 	
 	func testSwiftGeneratedFiles() throws {
-		try assertGeneratedCode(language: "Swift")
+        try assertGeneratedCode(language: Constants.Languages.swift,
+                                queries: resourcesURL.appendingPathComponent(Constants.TestOperations.swift).path)
 	}
+    
+    func testSwiftGeneratedFilesFromFiles() throws {
+        try assertGeneratedCode(language: Constants.Languages.swift,
+                                queries: graphqlFiles(for: Constants.TestOperations.swift))
+    }
 	
 	func testKotlinGeneratedFiles() throws {
-		try assertGeneratedCode(language: "Kotlin")
+        try assertGeneratedCode(language: Constants.Languages.kotlin,
+                                queries: resourcesURL.appendingPathComponent(Constants.TestOperations.kotlin).path)
 	}
+    
+    func testKotlinGeneratedFilesFromFiles() throws {
+        try assertGeneratedCode(language: Constants.Languages.kotlin,
+                                queries: graphqlFiles(for: Constants.TestOperations.kotlin))
+    }
 }
 
 extension Folder {
