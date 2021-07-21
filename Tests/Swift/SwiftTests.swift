@@ -90,7 +90,7 @@ class SwiftTests: XCTestCase {
     func graphqlFiles(for type: String) throws -> String {
         let path = resourcesURL.appendingPathComponent(type).path
         let folder = try Folder(path: path)
-        return folder.files.compactMap({ path + "/" + $0.name + "," }).joined()
+        return folder.files.compactMap({ $0.path + "," }).joined()
     }
 	
 	func testSwiftGeneratedFiles() throws {
@@ -110,7 +110,8 @@ class SwiftTests: XCTestCase {
     
     func testKotlinGeneratedFilesFromFiles() throws {
         try assertGeneratedCode(language: Constants.Languages.kotlin,
-                                queries: graphqlFiles(for: Constants.TestOperations.kotlin))
+                                queries: graphqlFiles(for: Constants.TestOperations.kotlin),
+                                recordMode: false)
     }
 }
 
