@@ -110,8 +110,7 @@ class SwiftTests: XCTestCase {
     
     func testKotlinGeneratedFilesFromFiles() throws {
         try assertGeneratedCode(language: Constants.Languages.kotlin,
-                                queries: graphqlFiles(for: Constants.TestOperations.kotlin),
-                                recordMode: false)
+                                queries: graphqlFiles(for: Constants.TestOperations.kotlin))
     }
 }
 
