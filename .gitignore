@@ -83,3 +83,7 @@ Generated/*
 .idea
 .gradle/
 local.properties
+
+# Ignore node specific files
+**/node_modules
+**/yarn.lock

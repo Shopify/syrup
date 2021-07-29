@@ -1,0 +1,3 @@
+location: swapi.json
+customScalars: []
+moduleName: StarWarsAPI

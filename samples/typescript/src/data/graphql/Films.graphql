@@ -1,0 +1,15 @@
+query Films {
+    allFilms {
+        edges {
+            node {
+                ... MovieFragment
+            }
+        }
+    }
+}
+
+fragment MovieFragment on Film {
+    title
+    director
+    openingCrawl
+}
