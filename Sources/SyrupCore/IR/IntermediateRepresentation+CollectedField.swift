@@ -651,6 +651,46 @@ extension IntermediateRepresentation {
 		}
 		return groupedFragmentSpreads
 	}
+
+    static func allReferencedFragmentNames(selections: [IntermediateRepresentation.Selection]) -> [String] {
+        var fragmentNames: [String] = []
+        
+        for selection in selections {
+            switch selection {
+            case .fragmentSpread(let fragmentSpread):
+                fragmentNames.append(fragmentSpread.name)
+            case .field(let field):
+                let nestedSelections = pullSelectionSetFromFieldType(fieldType: field.type)
+                fragmentNames.append(contentsOf: allReferencedFragmentNames(selections: nestedSelections))
+            default:
+                break
+            }
+        }
+
+        return fragmentNames.unique.sorted()
+    }
+    
+    static func allReferencedEnumNames(fields: [CollectedField]) -> [String] {
+
+        return []
+    }
+    
+    private static func pullSelectionSetFromFieldType(fieldType: IntermediateRepresentation.FieldType) -> [IntermediateRepresentation.Selection] {
+        switch fieldType {
+        case .nonNull(let nestedFieldType):
+            return pullSelectionSetFromFieldType(fieldType: nestedFieldType)
+        case .list(let nestedFieldType):
+            return pullSelectionSetFromFieldType(fieldType: nestedFieldType)
+        case .union(let union):
+            return union.selectionSet
+        case .interface(let interface):
+            return interface.selectionSet
+        case .object(let object):
+            return object.selectionSet
+        default:
+            return []
+        }
+    }
 }
 
 extension Array where Element == CollectedField {

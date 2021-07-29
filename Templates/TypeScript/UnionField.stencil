@@ -1,0 +1,8 @@
+{% extends "Helpers/UnionTypeBuilder.stencil" %}
+{% block content %}
+
+{% call renderUnionFields name typeName commonFields collectedFields groupedFragmentSpreads concreteTypeNames fragmentSpreads parentFragment %}
+
+  export type {{ name }} = {{ name }}_BaseFields_ & ({% for fragment in fragmentUnionTypes %}{{ fragment.fragmentName }}FragmentData.{{ fragment.fieldName }} | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}{{ concreteTypeName }} | {% endfor %}{{ name }}Other)
+
+{% endblock %}

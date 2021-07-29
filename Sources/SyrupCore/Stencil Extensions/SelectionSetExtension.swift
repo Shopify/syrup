@@ -33,6 +33,7 @@ class SelectionSetExtension: Extension {
 		registerFilter("isArgumentValueType", filter: isArgumentValueType)
 		registerFilter("renderOperationType", filter: renderOperationType)
 		registerFilter("renderKotlinSelections", filter: renderKotlinSelections)
+		registerFilter("renderTypeScriptSelections", filter: renderTypeScriptSelections)
 	}
 	
 	func renderTypeCondition(_ value: Any?) throws -> String? {
@@ -140,6 +141,72 @@ class SelectionSetExtension: Extension {
 		}
 	}
 	
+	func renderTypeScriptArguments(_ arguments: [SelectionSetVisitor.Argument]) -> String {
+		var render: [String] = []
+		for arg in arguments {
+			let renderValue = renderTypeScriptArgumentValue(argumentValueType: arg.value)
+			render.append("\(arg.name): \(renderValue)")
+		}
+		if render.isEmpty {
+			return "{}"
+		} else {
+			return "{ \(render.joined(separator: ", ")) }"
+		}
+	}
+	
+	private func renderTypeScriptArgumentValue(argumentValueType: ArgumentValueType) -> String {
+		var renders = ""
+		
+		switch argumentValueType {
+		case let argumentValueType as SelectionSetVisitor.Variable:
+			renders.append("{ type: \"OperationVariableKey\", value: \"\(argumentValueType.name)\" }")
+		case let argumentValueType as SelectionSetVisitor.IntValue:
+			renders.append("{ type: \"IntValue\", value: \(argumentValueType.value) }")
+		case let argumentValueType as SelectionSetVisitor.FloatValue:
+			renders.append("{ type: \"FloatValue\", value: \(argumentValueType.value) }")
+		case let argumentValueType as SelectionSetVisitor.BooleanValue:
+			renders.append("{ type: \"BooleanValue\", value: \(argumentValueType.value) }")
+		case let argumentValueType as SelectionSetVisitor.EnumValue:
+			renders.append("{ type: \"EnumValue\", value: \"\(argumentValueType.value)\" }")
+		case let argumentValueType as SelectionSetVisitor.StringValue:
+			renders.append("{ type: \"StringValue\", value: \"\(argumentValueType.value)\" }")
+		case let argumentValueType as SelectionSetVisitor.ListValue:
+			let values = argumentValueType.values
+			var renderables: [String] = []
+			for value in values {
+				renderables.append(renderTypeScriptArgumentValue(argumentValueType: value))
+			}
+			
+			renders.append("{ type: \"ListValue\", value: [\(renderables.joined(separator: ", "))] }")
+		case let argumentValueType as SelectionSetVisitor.ObjectValue:
+			let fields = argumentValueType.objectFields
+			var renderables: [String] = []
+			for field in fields {
+				renderables.append("{ name: \"\(field.name)\", value: \(renderTypeScriptArgumentValue(argumentValueType: field.value))")
+			}
+			renders.append("{ type: \"ObjectValue\", value: [\(renderables.joined(separator: ", "))] }")
+		default:
+			renders.append("{ type: \"NullValue\", value: null }")
+		}
+		
+		return renders
+	}
+	
+	func renderTypeScriptTypeCondition(_ type: SelectionSetVisitor.TypeCondition?) -> String {
+		switch type {
+		case .object(let name)?:
+			return "{ name: \"\(name)\", definedType: \"Object\" }"
+		case .interface(let name)?:
+			return "{ name: \"\(name)\", definedType: \"Interface\" }"
+		case .union(let name)?:
+			return "{ name: \"\(name)\", definedType: \"Union\" }"
+		case .scalar(let name)?:
+			return "{ name: \"\(name)\", definedType: \"Scalar\" }"
+		default:
+			return "null"
+		}
+	}
+	
 	func renderSelectionArguments(_ selection: SelectionSetVisitor.Selection) -> String {
 		if let field = selection.field {
 			return renderArguments(field.arguments)
@@ -153,6 +220,25 @@ class SelectionSetExtension: Extension {
 				return "\"${operationVariables[\"\(variable.name)\"]}\""
 			}
 		}
+		return "null"
+	}
+	
+	func renderTypeScriptGIDPassed(_ field: SelectionSetVisitor.Field) -> String {
+		for argument in field.arguments {
+			if argument.name == "id", let variable = argument.value as? SelectionSetVisitor.Variable {
+				return "\"\(variable.name)\""
+			}
+		}
+		return "null"
+	}
+	
+	func renderTypeScriptConditionalDirective(_ field: SelectionSetVisitor.Field) -> String {
+		if let skip = field.conditionalDirective?.skip {
+			return "{ directiveType: \"skip\", value: \(renderTypeScriptArgumentValue(argumentValueType: skip)) }"
+		} else if let include = field.conditionalDirective?.include {
+			return "{ directiveType: \"include\", value: \(renderTypeScriptArgumentValue(argumentValueType: include)) }"
+		}
+		
 		return "null"
 	}
 	
@@ -183,7 +269,7 @@ class SelectionSetExtension: Extension {
 	
 	func renderKotlinSelections(_ value: Any?, args: [Any?]) -> String {
 		guard let selections = value as? [SelectionSetVisitor.Selection] else {
-				return ""
+			return ""
 		}
 		let typeCondition = args.first as? String
 		
@@ -235,5 +321,70 @@ class SelectionSetExtension: Extension {
 			addFragmentSpreadRenders += " + \(fragmentSpread).getSelections(operationVariables)" + renderPassedTypeCondition
 		}
 		return "listOf<Selection>(\((fieldRenders).joined(separator: ", ")))" + addFragmentSpreadRenders
+	}
+	
+	func renderTypeScriptSelections(_ value: Any?, args: [Any?]) -> String {
+		guard let selections = value as? [SelectionSetVisitor.Selection] else {
+			return ""
+		}
+		let typeCondition = args.first as? String
+		let spacingAmount = args[1] as? Int ?? 0
+		let spacing = String(repeating: " ", count: spacingAmount)
+		
+		var fieldRenders: [String] = []
+		var fragmentSpreadRenders: [String] = []
+		
+		var combinedSelections: [SelectionSetVisitor.Selection] = []
+		
+		for selection in selections {
+			if selection.field != nil {
+				combinedSelections.append(selection)
+			} else if selection.inlineFragment != nil {
+				combinedSelections += selection.inlineFragment?.selectionSet ?? []
+			} else if selection.fragmentSpread != nil {
+				combinedSelections.append(selection)
+			}
+		}
+		
+		for selection in combinedSelections {
+			if let field = selection.field {
+				let name = field.alias ?? field.name
+				var render = "\n\(spacing)  {"
+				render.append("\n\(spacing)    name: \"\(name)\",")
+				render.append("\n\(spacing)    type: \(renderTypeScriptTypeCondition(field.type)),")
+				render.append("\n\(spacing)    arguments: \(renderTypeScriptArguments(field.arguments)),")
+				render.append("\n\(spacing)    passedGID: \(renderTypeScriptGIDPassed(field)),")
+				render.append("\n\(spacing)    typeCondition: \(renderTypeScriptTypeCondition(field.parentType)),")
+				render.append("\n\(spacing)    directive: \(renderTypeScriptConditionalDirective(field)),")
+				
+				let nextSpacingAmount = spacingAmount+4
+				var typeConditionArgs: [Any?] = []
+				if shouldPassTypeCondition(field.type) {
+					typeConditionArgs = [renderTypeScriptTypeCondition(field.type), nextSpacingAmount]
+				} else {
+					typeConditionArgs = [nil, nextSpacingAmount]
+				}
+				render.append("\n\(spacing)    selections: \(renderTypeScriptSelections(field.selectionSet, args: typeConditionArgs))")
+				render.append("\n\(spacing)  }")
+				fieldRenders.append(render)
+			}
+			if let fragmentSpread = selection.fragmentSpread {
+				fragmentSpreadRenders.append(fragmentSpread.name)
+			}
+		}
+		var addFragmentSpreadRenders = ""
+		var renderPassedTypeCondition = ""
+		if let typeCondition = typeCondition {
+			renderPassedTypeCondition = ".map(x => copyWithTypeCondition(x, \(typeCondition)))"
+		}
+		for fragmentSpread in fragmentSpreadRenders {
+			addFragmentSpreadRenders += ".concat(\(fragmentSpread.lowercasedFirstLetter)Selections)" + renderPassedTypeCondition
+		}
+		
+		if (fieldRenders.isEmpty) {
+			return "([\((fieldRenders).joined(separator: ", "))] as GraphSelection[])" + addFragmentSpreadRenders
+		} else {
+			return "([\((fieldRenders).joined(separator: ", "))\n\(spacing)] as GraphSelection[])" + addFragmentSpreadRenders
+		}
 	}
 }

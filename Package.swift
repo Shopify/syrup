@@ -1,11 +1,11 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 
 import PackageDescription
 
 let package = Package(
 	name: "Syrup",
 	platforms: [
-		.macOS(.v10_13)
+		.macOS(.v10_15)
 	],
 	products: [
 		.executable(
@@ -37,7 +37,11 @@ let package = Package(
 		.package(
 			url: "https://github.com/Shopify/SwiftGraphQLParser",
 			from: "0.1.8"
-		)
+		),
+        .package(
+            url: "https://github.com/apple/swift-crypto.git",
+            .exact("1.1.6")
+        )
 	],
 	targets: [
 		.target(
@@ -46,7 +50,7 @@ let package = Package(
 		),
 		.target(
 			name: "SyrupCore",
-			dependencies: ["Stencil", "Files", "Yams", "Utility", "SwiftGraphQLParser"]
+			dependencies: ["Stencil", "Files", "Yams", "Utility", "SwiftGraphQLParser", "Crypto"]
 		),
 		.testTarget(
 			name: "SyrupTests",

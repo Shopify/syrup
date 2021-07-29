@@ -30,6 +30,7 @@ public struct TemplateSpec {
 		enum Language: String, Codable {
 			case swift
 			case kotlin
+			case typescript
 		}
 		var language: Language
 		var `extension`: String
