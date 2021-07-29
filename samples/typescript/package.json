@@ -1,0 +1,23 @@
+{
+  "name": "typescript-sample-project",
+  "version": "0.0.1",
+  "description": "Sample project for configuring a GraphQL project using Syrup TS",
+  "main": "src/index.ts",
+  "author": "Shopify Inc.",
+  "license": "MIT",
+  "scripts": {
+    "generate-graphql": "mint run shopify/syrup@master syrup generate src/data/graphql src/data/syrup src/data/syrup \"TypeScript\"",
+    "run-sample": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "graphql": "^15.5.0",
+    "node-fetch": "^2.6.1",
+    "ts-node": "^10.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^16.4.6",
+    "@types/node-fetch": "^2.5.12",
+    "graphql-typed": "^1.0.0",
+    "typescript": "^4.3.2"
+  }
+}

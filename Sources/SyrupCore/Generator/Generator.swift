@@ -53,12 +53,14 @@ public final class Generator {
 				generatedFiles = try renderGeneratedSwiftModels(intermediateRepresentation: ir, selectionSets: selectionSets)
 			case .kotlin:
 				generatedFiles = try renderGeneratedKotlinModels(intermediateRepresentation: ir, selectionSets: selectionSets)
+			case .typescript:
+				generatedFiles = try renderGeneratedTypeScriptModels(intermediateRepresentation: ir, selectionSets: selectionSets)
 			}
-
+			
 			if config.deprecationReport != nil {
 				try Reporter(config: config).process(ir: ir)
 			}
-
+			
 			print("Successfully wrote generated models to \(config.destination)")
 			try cleanup(folder: try Folder(path: config.destination), generated: Set(generatedFiles))
 		}
@@ -71,6 +73,8 @@ public final class Generator {
 				try renderGeneratedSwiftSupportFiles()
 			case .kotlin:
 				try renderGeneratedKotlinSupportFiles()
+			case .typescript:
+				try renderGeneratedTypeScriptSupportFiles()
 			}
 			print("Successfully wrote generated support files to \(config.supportFilesDestination)")
 		}
@@ -83,7 +87,7 @@ public final class Generator {
 			}
 		}
 	}
-
+	
 	private enum FileType {
 		case query
 		case response
@@ -92,7 +96,7 @@ public final class Generator {
 		case subscription
 		case input
 		case `enum`
-
+		
 		var directory: String {
 			switch self {
 			case .query:
@@ -111,7 +115,7 @@ public final class Generator {
 				return "Enums"
 			}
 		}
-
+		
 		var file: String {
 			switch self {
 			case .query:
@@ -127,7 +131,7 @@ public final class Generator {
 			}
 		}
 	}
-
+	
 	struct ValidationError: LocalizedError {
 		let fileName: String
 		let error: Error
@@ -136,7 +140,7 @@ public final class Generator {
 			"Error parsing \(fileName): \(error.localizedDescription)"
 		}
 	}
-
+	
 	func validateOperations(operations: [String: String]) throws {
 		for (file, operation) in operations {
 			do {
@@ -146,7 +150,7 @@ public final class Generator {
 			}
 		}
 	}
-
+	
 	public static func parseOperations(graphQLString: String) throws -> (queries: [String: String], mutations: [String: String], subscriptions: [String: String], fragments: [String: String]) {
 		print("Parsing .graphql files")
 		let visitor = OperationVisitor()
@@ -155,7 +159,7 @@ public final class Generator {
 		try traverser.traverse()
 		return (visitor.queries, visitor.mutations, visitor.subscriptions, visitor.fragments)
 	}
-
+	
 	func generateIntermediateRepresentation(schema: Schema, customScalars: [ScalarType], queries: [String: String], mutations: [String: String], subscriptions: [String: String], fragments: [String: String]) throws -> IntermediateRepresentation {
 		let visitor = IntermediateRepresentationVisitor(schema: schema, customScalars: customScalars, builtInScalars: config.template.specification.builtInScalars, queries: queries, mutations: mutations, subscriptions: subscriptions, fragments: fragments)
 		let document = try parse(queries: queries.map { $0.value }, mutations: mutations.map { $0.value }, subscriptions: subscriptions.map { $0.value }, fragments: fragments.map { $0.value })
@@ -163,7 +167,7 @@ public final class Generator {
 		try traverser.traverse()
 		return visitor.intermediateRepresentation
 	}
-
+	
 	func generateSelectionSets(schema: Schema, queries: [String: String], mutations: [String: String], subscriptions: [String: String], fragments: [String: String]) throws -> SelectionSetVisitor.Results {
 		let visitor = SelectionSetVisitor(schema: schema)
 		let document = try parse(queries: queries.map { $0.value }, mutations: mutations.map { $0.value }, subscriptions: subscriptions.map { $0.value }, fragments: fragments.map { $0.value })
@@ -236,7 +240,7 @@ public final class Generator {
 				try renderer.renderFragmentDefinitions(intermediateRepresentation: ir, selectionSets: selectionSets)
 			})
 		}
-        
+		
 		concurrentPerform {
 			let renderer = KotlinRenderer(config: self.config)
 			
@@ -325,7 +329,7 @@ public final class Generator {
 			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations }, fileType: .response, renderer: renderer.renderResponseTypes)
 		}
-        
+		
 		concurrentPerform {
 			let renderer = SwiftRenderer(config: self.config)
 			
@@ -379,10 +383,100 @@ public final class Generator {
 	func renderGeneratedSwiftSupportFiles() throws {
 		let renderer = SwiftRenderer(config: config)
 		let supportFilesFolder = try Folder.root.createSubfolderIfNeeded(at: config.supportFilesDestination)
-				
+		
 		let file = try supportFilesFolder.createFile(named: "GraphApi.\(config.template.specification.extension)")
 		let rendered = try renderer.renderGraphApi()
 		try file.write(rendered)
+	}
+	
+	func renderGeneratedTypeScriptModels(intermediateRepresentation: IntermediateRepresentation, selectionSets: SelectionSetVisitor.Results) throws -> [File] {
+		let operationQueue = OperationQueue()
+		var files: Synchronized<[File]> = Synchronized([])
+		var error: Synchronized<Error?> = Synchronized(nil)
+		
+		func concurrentPerform(block: @escaping () throws -> [File]) {
+			operationQueue.addOperation {
+				do {
+					let results = try block()
+					files.value.append(contentsOf: results)
+				} catch let thrownError {
+					error.value = thrownError
+					operationQueue.cancelAllOperations()
+				}
+			}
+		}
+		
+		concurrentPerform {
+			let renderer = TypeScriptRenderer(config: self.config)
+			
+			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.queries }, fileType: .query, renderer: { (ir) -> [String] in
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.queries)
+			})
+		}
+		
+		concurrentPerform {
+			let renderer = TypeScriptRenderer(config: self.config)
+			
+			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.mutations }, fileType: .mutation, renderer: { (ir) -> [String] in
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.mutations)
+			})
+		}
+		
+		concurrentPerform {
+			let renderer = TypeScriptRenderer(config: self.config)
+			let generatedEnums = try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.referencedEnums }, fileType: .enum, renderer: renderer.renderEnumTypes)
+			let generatedExportFile = try self.renderTypeScriptExportFile(fileType: .enum, renderer: { () throws -> String in
+				try renderer.renderEnumEntryPoint(intermediateRepresentation: intermediateRepresentation)
+			})
+			
+			return generatedEnums + [generatedExportFile]
+		}
+		
+		concurrentPerform {
+			let renderer = TypeScriptRenderer(config: self.config)
+			let generatedInputTypes = try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.referencedInputTypes }, fileType: .input, renderer: renderer.renderInputTypes)
+			let generatedExportFile = try self.renderTypeScriptExportFile(fileType: .input, renderer: { () throws -> String in
+				try renderer.renderInputTypeEntryPoint(intermediateRepresentation: intermediateRepresentation)
+			})
+			
+			return generatedInputTypes + [generatedExportFile]
+		}
+		
+		concurrentPerform {
+			let renderer = TypeScriptRenderer(config: self.config)
+			let generatedFragments = try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.fragmentDefinitions }, fileType: .fragment, renderer: { (ir) -> [String] in
+				try renderer.renderFragmentDefinitions(intermediateRepresentation: ir, selectionSets: selectionSets)
+			})
+			let generatedExportFile = try self.renderTypeScriptExportFile(fileType: .fragment, renderer: { () throws -> String in
+				try renderer.renderFragmentEntryPoint(intermediateRepresentation: intermediateRepresentation)
+			})
+			
+			return generatedFragments + [generatedExportFile]
+		}
+		
+		operationQueue.waitUntilAllOperationsAreFinished()
+		if let error = error.value {
+			throw error
+		}
+		return files.value
+	}
+	
+	func renderGeneratedTypeScriptSupportFiles() throws {
+		let renderer = TypeScriptRenderer(config: config)
+		let supportFilesFolder = try Folder.root.createSubfolderIfNeeded(at: config.supportFilesDestination)
+		
+		let file = try supportFilesFolder.createFile(named: "GraphApi.\(config.template.specification.extension)")
+		let rendered = try renderer.renderGraphApi()
+		try file.write(rendered)
+	}
+	
+	private func renderTypeScriptExportFile(fileType: FileType, renderer: () throws -> String) throws -> File {
+		let generatedFilesFolder = try Folder.root.createSubfolderIfNeeded(at: self.config.destination)
+		let inputFilesFolder = try generatedFilesFolder.createSubfolderIfNeeded(at: fileType.directory)
+		let file = try inputFilesFolder.createFile(named: "index.\(self.config.template.specification.extension)")
+		try file.write(renderer())
+		
+		return file
 	}
 }
 

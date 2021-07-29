@@ -1,0 +1,23 @@
+query TestQuery10($priceRuleId:ID!) {
+	priceRule(id:$priceRuleId) {
+		id
+		value {
+			__typename
+				... on PriceRulePercentValue {
+					percentage
+				}
+			... on PriceRuleFixedAmountValue {
+				amount
+			}
+		}
+		valueV2 {
+			__typename
+				... on MoneyV2 {
+					amount
+				}
+			... on PricingPercentageValue {
+				percentage
+			}
+		}
+	}
+}

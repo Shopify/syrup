@@ -1,0 +1,16 @@
+query TestQuery9 {
+  shop {
+    customers(first: 1) {
+      edges {
+        node {
+          id
+          ...BasicFragment
+        }
+      }
+    }
+  }
+}
+fragment BasicFragment on Customer {
+  id
+  lastName
+}

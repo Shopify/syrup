@@ -1,0 +1,34 @@
+query CustomerTimeline(
+  $customerId: ID!
+) {
+  customer(id: $customerId) {
+    events {
+      edges {
+        node {
+          id
+          createdAt
+          message
+          ...TimelineBasicEventFragment
+          ...TimelineCommentEventFragment
+        }
+        cursor
+      }
+      pageInfo {
+        hasNextPage
+      }
+    }
+  }
+}
+
+fragment TimelineBasicEventFragment on Event {
+  ... on BasicEvent {
+    attributeToUser
+    attributeToApp
+  }
+}
+
+fragment TimelineCommentEventFragment on Event {
+  ... on CommentEvent {
+    edited
+  }
+}

@@ -46,6 +46,8 @@ final class SyrupStencilExtension: Extension {
 		registerFilter("replace", filter: SyrupStencilExtension.replace)
 		registerFilter("replaceQuotes", filter: SyrupStencilExtension.replaceQuotes)
 		registerFilter("capitalizeFirstLetter", filter: SyrupStencilExtension.capitalizeFirstLetter)
+		registerFilter("pascalCase", filter: SyrupStencilExtension.pascalCase)
+		registerFilter("encryptData", filter: SyrupStencilExtension.encryptData)
 		registerFilter("renderClassName", filter: SyrupStencilExtension.renderClassName)
 		registerFilter("renderPackage", filter: SyrupStencilExtension.renderPackage)
 		registerFilter("renderOperationTypeName", filter: SyrupStencilExtension.renderOperationTypeName)
@@ -76,11 +78,11 @@ final class SyrupStencilExtension: Extension {
 	
 	static func replace(_ value: Any?, arguments: [Any?]) throws -> Any? {
 		guard let value = value as? String,
-			let arguments = arguments as? [String],
-			arguments.count == 2,
-			let replaceInput = arguments.first,
-			let replaceOutput = arguments.last else {
-				return nil
+			  let arguments = arguments as? [String],
+			  arguments.count == 2,
+			  let replaceInput = arguments.first,
+			  let replaceOutput = arguments.last else {
+			return nil
 		}
 		return value.replacingOccurrences(of: replaceInput, with: replaceOutput)
 	}
@@ -98,29 +100,39 @@ final class SyrupStencilExtension: Extension {
 	static func renderPackage(_ value: Any?) throws -> Any? {
 		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
 		switch(value.type) {
-			case .query:
-				return "queries"
-			case .mutation:
-				return "mutations"
-			case .subscription:
-				return "subscriptions"
+		case .query:
+			return "queries"
+		case .mutation:
+			return "mutations"
+		case .subscription:
+			return "subscriptions"
 		}
 	}
-
+	
 	static func renderClassName(_ value: Any?) throws -> Any? {
 		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
 		switch(value.type) {
-			case .query:
-				return "\(value.name)Query"
-			case .mutation:
-				return "\(value.name)Mutation"
-			case .subscription:
-				return "\(value.name)Subscription"
+		case .query:
+			return "\(value.name)Query"
+		case .mutation:
+			return "\(value.name)Mutation"
+		case .subscription:
+			return "\(value.name)Subscription"
 		}
 	}
 	
 	static func renderOperationTypeName(_ value: Any?) throws -> Any? {
 		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
 		return "\(value.type)".capitalized
+	}
+	
+	static func encryptData(_ value: Any?) throws -> Any? {
+		guard let value = value as? String else { return nil }
+		return value.sha256Stringified()
+	}
+	
+	static func pascalCase(_ value: Any?) throws -> Any? {
+		guard let value = value as? String else { return nil }
+		return value.convertToPascalCase()
 	}
 }

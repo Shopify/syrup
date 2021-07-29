@@ -21,7 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 import Foundation
+import Crypto
 
 extension String {
 	func indented(indentStr: String = "\t") -> String {
@@ -56,8 +58,24 @@ extension String {
 		self.replacingOccurrences(of: "\n", with: " ")
 	}
 	
+	func convertToPascalCase() -> String {
+		return self.split { char in
+			char.isPunctuation
+		}.map { splitStr in
+			splitStr.capitalized
+		}.joined()
+	}
+	
 	func removeSuffix(_ suffix: String) -> String {
 		guard self.hasSuffix(suffix) else { return self }
 		return String(self.dropLast(suffix.count))
+	}
+	
+	func sha256Stringified() -> String {
+		if let value = self.data(using: String.Encoding.utf8) {
+			return SHA256.hash(data: value).hexStr
+		}
+		
+		return ""
 	}
 }

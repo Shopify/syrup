@@ -1,0 +1,4 @@
+{% if inputNames.count > 0 %}{% for inputName in inputNames %}export type { {{ inputName }} } from "./{{ inputName }}"
+{% endfor %}
+{% else %}export {}
+{% endif %}

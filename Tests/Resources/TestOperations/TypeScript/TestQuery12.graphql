@@ -1,0 +1,15 @@
+query ShopQuery($first: Int!) {
+  ...Shop
+}
+
+fragment Shop on QueryRoot {
+  shop {
+    availableChannelApps(first: $first) {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+query ProductsList($first: Int, $before: String, $after: String) {
+  products(first:$first,reverse: true, before:$before, after:$after, sortKey:CREATED_AT){
+    edges{
+      node {
+        id
+        title
+        description
+      }
+      cursor
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{% include "Helpers/Imports.stencil" %}
+
+export namespace {{ name }}FragmentData {
+{% for field in fields %}
+  {{ field|internalFieldType }}
+{% endfor %}
+}
+
+export interface {{ name }}FragmentData{% if fragmentSpreads.count > 0 %} extends {% for fragment in fragmentSpreads %}{{ fragment.name }}FragmentData{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %} {
+  __typename: '{{ typeName }}';
+{% for field in fields %}
+{% with field.attributes as attributes %}{% include "Helpers/Attributes.stencil" %}{% endwith %}
+  {{ field|renderPropertyDeclaration:name,"FragmentData." }};
+{% endfor %}
+}
+
+export const {{ name|lowercasedFirstLetter }}Selections: GraphSelection[] = {{ selections|renderTypeScriptSelections:null,0 }}
