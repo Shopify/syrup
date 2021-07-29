@@ -1,0 +1,17 @@
+location: https://app.shopify.com/services/graphql/introspection/admin?api_client_api_key=55c57a22d1f71e7aefa627803d712d69
+customScalars:
+- graphType: Money
+  nativeType: number
+- graphType: Decimal
+  nativeType: number
+- graphType: DateTime
+  nativeType: string
+  rawValueType: string
+- graphType: URL
+  nativeType: string
+- graphType: FormattedString
+  nativeType: string
+- graphType: ID
+  nativeType: ID
+moduleName: ""
+filenameSuffix: ""

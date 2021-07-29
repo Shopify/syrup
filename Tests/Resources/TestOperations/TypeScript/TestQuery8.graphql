@@ -1,0 +1,21 @@
+query TestQuery8 {
+    shop {
+    id
+    firstProduct:products(first:1) {
+      edges {
+        cursor
+        node {
+          title
+        }
+      }
+    }
+    lastProduct:products(first:1, reverse:true) {
+      edges {
+        cursor
+        node {
+          title
+        }
+      }
+    }
+  }
+}

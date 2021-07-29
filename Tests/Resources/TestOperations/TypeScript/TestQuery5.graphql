@@ -1,0 +1,17 @@
+query TestQuery5{
+  shop {
+    name
+    currencyCode
+    weightUnit
+    billingAddress {
+      city
+      company
+      latitude
+      longitude
+    }
+  	fulfillmentServices {
+      serviceName
+      handle
+    }
+  }
+}

@@ -1,0 +1,15 @@
+query TestDeprecatedFields($first: Int) {
+  channels(first: $first) {
+    edges {
+      node{
+        app {
+          id
+          icon{
+            src
+          }
+        }
+        
+      }
+    }
+  }
+}
