@@ -22,6 +22,7 @@ const document: SyrupOperation<ShopQueryQueryData, ShopQueryQueryData.Variables>
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,

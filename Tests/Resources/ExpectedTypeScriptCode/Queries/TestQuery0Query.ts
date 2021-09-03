@@ -29,6 +29,7 @@ const document: SyrupOperation<TestQuery0QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -38,6 +39,7 @@ const document: SyrupOperation<TestQuery0QueryData, {}> = {
     }, 
     {
       name: "nodes",
+      alias: null,
       type: { name: "Node", definedType: "Interface" },
       arguments: { ids: { type: "ListValue", value: [{ type: "StringValue", value: "gid://shopify/Customer/350635977" }] } },
       passedGID: null,
@@ -46,6 +48,7 @@ const document: SyrupOperation<TestQuery0QueryData, {}> = {
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -55,6 +58,7 @@ const document: SyrupOperation<TestQuery0QueryData, {}> = {
         }, 
         {
           name: "id",
+          alias: null,
           type: { name: "ID", definedType: "Scalar" },
           arguments: {},
           passedGID: null,

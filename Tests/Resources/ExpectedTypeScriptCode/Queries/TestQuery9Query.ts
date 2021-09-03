@@ -53,6 +53,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -62,6 +63,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
     }, 
     {
       name: "shop",
+      alias: null,
       type: { name: "Shop", definedType: "Object" },
       arguments: {},
       passedGID: null,
@@ -70,6 +72,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -79,6 +82,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
         }, 
         {
           name: "customers",
+          alias: null,
           type: { name: "CustomerConnection", definedType: "Object" },
           arguments: { first: { type: "IntValue", value: 1 } },
           passedGID: null,
@@ -87,6 +91,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -96,6 +101,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
             }, 
             {
               name: "edges",
+              alias: null,
               type: { name: "CustomerEdge", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -104,6 +110,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -113,6 +120,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
                 }, 
                 {
                   name: "node",
+                  alias: null,
                   type: { name: "Customer", definedType: "Object" },
                   arguments: {},
                   passedGID: null,
@@ -121,6 +129,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
                   selections: ([
                     {
                       name: "__typename",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -130,6 +139,7 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
                     }, 
                     {
                       name: "id",
+                      alias: null,
                       type: { name: "ID", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,

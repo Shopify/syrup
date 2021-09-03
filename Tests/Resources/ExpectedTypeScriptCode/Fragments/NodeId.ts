@@ -19,6 +19,7 @@ export type NodeIdFragmentData = NodeIdFragmentData.Other
 export const nodeIdSelections: GraphSelection[] = ([
   {
     name: "__typename",
+    alias: null,
     type: { name: "String", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -28,6 +29,7 @@ export const nodeIdSelections: GraphSelection[] = ([
   }, 
   {
     name: "id",
+    alias: null,
     type: { name: "ID", definedType: "Scalar" },
     arguments: {},
     passedGID: null,

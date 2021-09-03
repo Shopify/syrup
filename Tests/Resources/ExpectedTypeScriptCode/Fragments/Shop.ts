@@ -43,6 +43,7 @@ export interface ShopFragmentData {
 export const shopSelections: GraphSelection[] = ([
   {
     name: "__typename",
+    alias: null,
     type: { name: "String", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -52,6 +53,7 @@ export const shopSelections: GraphSelection[] = ([
   }, 
   {
     name: "shop",
+    alias: null,
     type: { name: "Shop", definedType: "Object" },
     arguments: {},
     passedGID: null,
@@ -60,6 +62,7 @@ export const shopSelections: GraphSelection[] = ([
     selections: ([
       {
         name: "__typename",
+        alias: null,
         type: { name: "String", definedType: "Scalar" },
         arguments: {},
         passedGID: null,
@@ -69,6 +72,7 @@ export const shopSelections: GraphSelection[] = ([
       }, 
       {
         name: "availableChannelApps",
+        alias: null,
         type: { name: "AppConnection", definedType: "Object" },
         arguments: { first: { type: "OperationVariableKey", value: "first" } },
         passedGID: null,
@@ -77,6 +81,7 @@ export const shopSelections: GraphSelection[] = ([
         selections: ([
           {
             name: "__typename",
+            alias: null,
             type: { name: "String", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -86,6 +91,7 @@ export const shopSelections: GraphSelection[] = ([
           }, 
           {
             name: "edges",
+            alias: null,
             type: { name: "AppEdge", definedType: "Object" },
             arguments: {},
             passedGID: null,
@@ -94,6 +100,7 @@ export const shopSelections: GraphSelection[] = ([
             selections: ([
               {
                 name: "__typename",
+                alias: null,
                 type: { name: "String", definedType: "Scalar" },
                 arguments: {},
                 passedGID: null,
@@ -103,6 +110,7 @@ export const shopSelections: GraphSelection[] = ([
               }, 
               {
                 name: "node",
+                alias: null,
                 type: { name: "App", definedType: "Object" },
                 arguments: {},
                 passedGID: null,
@@ -111,6 +119,7 @@ export const shopSelections: GraphSelection[] = ([
                 selections: ([
                   {
                     name: "__typename",
+                    alias: null,
                     type: { name: "String", definedType: "Scalar" },
                     arguments: {},
                     passedGID: null,
@@ -120,6 +129,7 @@ export const shopSelections: GraphSelection[] = ([
                   }, 
                   {
                     name: "id",
+                    alias: null,
                     type: { name: "ID", definedType: "Scalar" },
                     arguments: {},
                     passedGID: null,

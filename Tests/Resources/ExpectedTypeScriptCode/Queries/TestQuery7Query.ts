@@ -30,7 +30,7 @@ export namespace TestQuery7QueryData {
      */
     longitude?: number | null;
   }
-  export interface ShopFulfillmentServices {
+  export interface ShopServices {
     __typename: 'FulfillmentService';
     /**
      * The name of the fulfillment service as seen by merchants.
@@ -142,7 +142,7 @@ export namespace TestQuery7QueryData {
     /**
      * List of the shop's installed fulfillment services.
      */
-    fulfillmentServices: ShopFulfillmentServices[];
+    services: ShopServices[];
     /**
      * List of orders placed on the shop.
      *
@@ -161,13 +161,14 @@ export interface TestQuery7QueryData {
 }
 
 const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variables> = {
-  id: "a98d6ba582aebef8a6fb097fd255dd62e31db9fafbf4d3a0183380bfc329eee3",
+  id: "fea84634662eff752b6ddb956e3f566e4862ee3a26b0b01dab1ff8872be27700",
   name: "TestQuery7",
-  source: "query TestQuery7(\$first: Int) { __typename shop { __typename name currencyCode weightUnit billingAddress { __typename city company latitude longitude } fulfillmentServices { __typename serviceName handle } orders(first: \$first) { __typename edges { __typename node { __typename name displayFulfillmentStatus fulfillments { __typename name createdAt inTransitAt deliveredAt displayStatus events(first: 10) { __typename edges { __typename node { __typename status } } } } } } } } }",
+  source: "query TestQuery7(\$first: Int) { __typename shop { __typename name currencyCode weightUnit billingAddress { __typename city company latitude longitude } services: fulfillmentServices { __typename serviceName handle } orders(first: \$first) { __typename edges { __typename node { __typename name displayFulfillmentStatus fulfillments { __typename name createdAt inTransitAt deliveredAt displayStatus events(first: 10) { __typename edges { __typename node { __typename status } } } } } } } } }",
   operationType: 'query',
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -177,6 +178,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
     }, 
     {
       name: "shop",
+      alias: null,
       type: { name: "Shop", definedType: "Object" },
       arguments: {},
       passedGID: null,
@@ -185,6 +187,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -194,6 +197,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
         }, 
         {
           name: "name",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -203,6 +207,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
         }, 
         {
           name: "currencyCode",
+          alias: null,
           type: { name: "CurrencyCode", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -212,6 +217,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
         }, 
         {
           name: "weightUnit",
+          alias: null,
           type: { name: "WeightUnit", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -221,6 +227,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
         }, 
         {
           name: "billingAddress",
+          alias: null,
           type: { name: "MailingAddress", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -229,6 +236,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -238,6 +246,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
             }, 
             {
               name: "city",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -247,6 +256,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
             }, 
             {
               name: "company",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -256,6 +266,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
             }, 
             {
               name: "latitude",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -265,6 +276,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
             }, 
             {
               name: "longitude",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -276,6 +288,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
         }, 
         {
           name: "fulfillmentServices",
+          alias: "services",
           type: { name: "FulfillmentService", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -284,6 +297,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -293,6 +307,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
             }, 
             {
               name: "serviceName",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -302,6 +317,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
             }, 
             {
               name: "handle",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -313,6 +329,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
         }, 
         {
           name: "orders",
+          alias: null,
           type: { name: "OrderConnection", definedType: "Object" },
           arguments: { first: { type: "OperationVariableKey", value: "first" } },
           passedGID: null,
@@ -321,6 +338,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -330,6 +348,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
             }, 
             {
               name: "edges",
+              alias: null,
               type: { name: "OrderEdge", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -338,6 +357,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -347,6 +367,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                 }, 
                 {
                   name: "node",
+                  alias: null,
                   type: { name: "Order", definedType: "Object" },
                   arguments: {},
                   passedGID: null,
@@ -355,6 +376,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                   selections: ([
                     {
                       name: "__typename",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -364,6 +386,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                     }, 
                     {
                       name: "name",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -373,6 +396,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                     }, 
                     {
                       name: "displayFulfillmentStatus",
+                      alias: null,
                       type: { name: "OrderDisplayFulfillmentStatus", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -382,6 +406,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                     }, 
                     {
                       name: "fulfillments",
+                      alias: null,
                       type: { name: "Fulfillment", definedType: "Object" },
                       arguments: {},
                       passedGID: null,
@@ -390,6 +415,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                       selections: ([
                         {
                           name: "__typename",
+                          alias: null,
                           type: { name: "String", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,
@@ -399,6 +425,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                         }, 
                         {
                           name: "name",
+                          alias: null,
                           type: { name: "String", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,
@@ -408,6 +435,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                         }, 
                         {
                           name: "createdAt",
+                          alias: null,
                           type: { name: "DateTime", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,
@@ -417,6 +445,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                         }, 
                         {
                           name: "inTransitAt",
+                          alias: null,
                           type: { name: "DateTime", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,
@@ -426,6 +455,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                         }, 
                         {
                           name: "deliveredAt",
+                          alias: null,
                           type: { name: "DateTime", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,
@@ -435,6 +465,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                         }, 
                         {
                           name: "displayStatus",
+                          alias: null,
                           type: { name: "FulfillmentDisplayStatus", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,
@@ -444,6 +475,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                         }, 
                         {
                           name: "events",
+                          alias: null,
                           type: { name: "FulfillmentEventConnection", definedType: "Object" },
                           arguments: { first: { type: "IntValue", value: 10 } },
                           passedGID: null,
@@ -452,6 +484,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                           selections: ([
                             {
                               name: "__typename",
+                              alias: null,
                               type: { name: "String", definedType: "Scalar" },
                               arguments: {},
                               passedGID: null,
@@ -461,6 +494,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                             }, 
                             {
                               name: "edges",
+                              alias: null,
                               type: { name: "FulfillmentEventEdge", definedType: "Object" },
                               arguments: {},
                               passedGID: null,
@@ -469,6 +503,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                               selections: ([
                                 {
                                   name: "__typename",
+                                  alias: null,
                                   type: { name: "String", definedType: "Scalar" },
                                   arguments: {},
                                   passedGID: null,
@@ -478,6 +513,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                                 }, 
                                 {
                                   name: "node",
+                                  alias: null,
                                   type: { name: "FulfillmentEvent", definedType: "Object" },
                                   arguments: {},
                                   passedGID: null,
@@ -486,6 +522,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                                   selections: ([
                                     {
                                       name: "__typename",
+                                      alias: null,
                                       type: { name: "String", definedType: "Scalar" },
                                       arguments: {},
                                       passedGID: null,
@@ -495,6 +532,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
                                     }, 
                                     {
                                       name: "status",
+                                      alias: null,
                                       type: { name: "FulfillmentEventStatus", definedType: "Scalar" },
                                       arguments: {},
                                       passedGID: null,

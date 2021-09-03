@@ -88,6 +88,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -97,6 +98,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
     }, 
     {
       name: "shop",
+      alias: null,
       type: { name: "Shop", definedType: "Object" },
       arguments: {},
       passedGID: null,
@@ -105,6 +107,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -114,6 +117,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
         }, 
         {
           name: "id",
+          alias: null,
           type: { name: "ID", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -122,7 +126,8 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           selections: ([] as GraphSelection[])
         }, 
         {
-          name: "firstProduct",
+          name: "products",
+          alias: "firstProduct",
           type: { name: "ProductConnection", definedType: "Object" },
           arguments: { first: { type: "IntValue", value: 1 } },
           passedGID: null,
@@ -131,6 +136,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -140,6 +146,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
             }, 
             {
               name: "edges",
+              alias: null,
               type: { name: "ProductEdge", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -148,6 +155,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -157,6 +165,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                 }, 
                 {
                   name: "cursor",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -166,6 +175,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                 }, 
                 {
                   name: "node",
+                  alias: null,
                   type: { name: "Product", definedType: "Object" },
                   arguments: {},
                   passedGID: null,
@@ -174,6 +184,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                   selections: ([
                     {
                       name: "__typename",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -183,6 +194,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                     }, 
                     {
                       name: "title",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -197,7 +209,8 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           ] as GraphSelection[])
         }, 
         {
-          name: "lastProduct",
+          name: "products",
+          alias: "lastProduct",
           type: { name: "ProductConnection", definedType: "Object" },
           arguments: { first: { type: "IntValue", value: 1 }, reverse: { type: "BooleanValue", value: true } },
           passedGID: null,
@@ -206,6 +219,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -215,6 +229,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
             }, 
             {
               name: "edges",
+              alias: null,
               type: { name: "ProductEdge", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -223,6 +238,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -232,6 +248,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                 }, 
                 {
                   name: "cursor",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -241,6 +258,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                 }, 
                 {
                   name: "node",
+                  alias: null,
                   type: { name: "Product", definedType: "Object" },
                   arguments: {},
                   passedGID: null,
@@ -249,6 +267,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                   selections: ([
                     {
                       name: "__typename",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -258,6 +277,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
                     }, 
                     {
                       name: "title",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,

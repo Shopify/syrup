@@ -39,6 +39,7 @@ const document: SyrupOperation<TestMutation0MutationData, TestMutation0MutationD
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -48,6 +49,7 @@ const document: SyrupOperation<TestMutation0MutationData, TestMutation0MutationD
     }, 
     {
       name: "customerUpdate",
+      alias: null,
       type: { name: "CustomerUpdatePayload", definedType: "Object" },
       arguments: { input: { type: "OperationVariableKey", value: "input" } },
       passedGID: null,
@@ -56,6 +58,7 @@ const document: SyrupOperation<TestMutation0MutationData, TestMutation0MutationD
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -65,6 +68,7 @@ const document: SyrupOperation<TestMutation0MutationData, TestMutation0MutationD
         }, 
         {
           name: "customer",
+          alias: null,
           type: { name: "Customer", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -73,6 +77,7 @@ const document: SyrupOperation<TestMutation0MutationData, TestMutation0MutationD
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -82,6 +87,7 @@ const document: SyrupOperation<TestMutation0MutationData, TestMutation0MutationD
             }, 
             {
               name: "id",
+              alias: null,
               type: { name: "ID", definedType: "Scalar" },
               arguments: {},
               passedGID: null,

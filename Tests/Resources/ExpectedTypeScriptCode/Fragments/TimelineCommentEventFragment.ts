@@ -22,6 +22,7 @@ export type TimelineCommentEventFragmentFragmentData = TimelineCommentEventFragm
 export const timelineCommentEventFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
+    alias: null,
     type: { name: "String", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -31,6 +32,7 @@ export const timelineCommentEventFragmentSelections: GraphSelection[] = ([
   }, 
   {
     name: "__typename",
+    alias: null,
     type: { name: "String", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -40,6 +42,7 @@ export const timelineCommentEventFragmentSelections: GraphSelection[] = ([
   }, 
   {
     name: "edited",
+    alias: null,
     type: { name: "Boolean", definedType: "Scalar" },
     arguments: {},
     passedGID: null,

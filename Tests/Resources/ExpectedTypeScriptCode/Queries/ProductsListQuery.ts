@@ -57,6 +57,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -66,6 +67,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
     }, 
     {
       name: "products",
+      alias: null,
       type: { name: "ProductConnection", definedType: "Object" },
       arguments: { first: { type: "OperationVariableKey", value: "first" }, reverse: { type: "BooleanValue", value: true }, before: { type: "OperationVariableKey", value: "before" }, after: { type: "OperationVariableKey", value: "after" }, sortKey: { type: "EnumValue", value: "CREATED_AT" } },
       passedGID: null,
@@ -74,6 +76,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -83,6 +86,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
         }, 
         {
           name: "edges",
+          alias: null,
           type: { name: "ProductEdge", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -91,6 +95,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -100,6 +105,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
             }, 
             {
               name: "node",
+              alias: null,
               type: { name: "Product", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -108,6 +114,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -117,6 +124,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
                 }, 
                 {
                   name: "id",
+                  alias: null,
                   type: { name: "ID", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -126,6 +134,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
                 }, 
                 {
                   name: "title",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -135,6 +144,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
                 }, 
                 {
                   name: "description",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -146,6 +156,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
             }, 
             {
               name: "cursor",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,

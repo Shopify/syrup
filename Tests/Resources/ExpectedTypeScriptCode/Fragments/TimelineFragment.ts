@@ -123,6 +123,7 @@ export interface TimelineFragmentFragmentData {
 export const timelineFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
+    alias: null,
     type: { name: "String", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -132,6 +133,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
   }, 
   {
     name: "pageInfo",
+    alias: null,
     type: { name: "PageInfo", definedType: "Object" },
     arguments: {},
     passedGID: null,
@@ -140,6 +142,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
     selections: ([
       {
         name: "__typename",
+        alias: null,
         type: { name: "String", definedType: "Scalar" },
         arguments: {},
         passedGID: null,
@@ -149,6 +152,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
       }, 
       {
         name: "hasNextPage",
+        alias: null,
         type: { name: "Boolean", definedType: "Scalar" },
         arguments: {},
         passedGID: null,
@@ -160,6 +164,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
   }, 
   {
     name: "edges",
+    alias: null,
     type: { name: "EventEdge", definedType: "Object" },
     arguments: {},
     passedGID: null,
@@ -168,6 +173,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
     selections: ([
       {
         name: "__typename",
+        alias: null,
         type: { name: "String", definedType: "Scalar" },
         arguments: {},
         passedGID: null,
@@ -177,6 +183,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
       }, 
       {
         name: "cursor",
+        alias: null,
         type: { name: "String", definedType: "Scalar" },
         arguments: {},
         passedGID: null,
@@ -186,6 +193,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
       }, 
       {
         name: "node",
+        alias: null,
         type: { name: "Event", definedType: "Interface" },
         arguments: {},
         passedGID: null,
@@ -194,6 +202,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
         selections: ([
           {
             name: "__typename",
+            alias: null,
             type: { name: "String", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -203,6 +212,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "id",
+            alias: null,
             type: { name: "ID", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -212,6 +222,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "createdAt",
+            alias: null,
             type: { name: "DateTime", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -221,6 +232,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "message",
+            alias: null,
             type: { name: "FormattedString", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -230,6 +242,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "attributeToApp",
+            alias: null,
             type: { name: "Boolean", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -239,6 +252,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "attributeToUser",
+            alias: null,
             type: { name: "Boolean", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -248,6 +262,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "criticalAlert",
+            alias: null,
             type: { name: "Boolean", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -257,6 +272,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "__typename",
+            alias: null,
             type: { name: "String", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -266,6 +282,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "edited",
+            alias: null,
             type: { name: "Boolean", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -275,6 +292,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "canEdit",
+            alias: null,
             type: { name: "Boolean", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -284,6 +302,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "canDelete",
+            alias: null,
             type: { name: "Boolean", definedType: "Scalar" },
             arguments: {},
             passedGID: null,
@@ -293,6 +312,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
           }, 
           {
             name: "attachments",
+            alias: null,
             type: { name: "CommentEventAttachment", definedType: "Object" },
             arguments: {},
             passedGID: null,
@@ -301,6 +321,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
             selections: ([
               {
                 name: "__typename",
+                alias: null,
                 type: { name: "String", definedType: "Scalar" },
                 arguments: {},
                 passedGID: null,
@@ -310,6 +331,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
               }, 
               {
                 name: "id",
+                alias: null,
                 type: { name: "ID", definedType: "Scalar" },
                 arguments: {},
                 passedGID: null,
@@ -319,6 +341,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
               }, 
               {
                 name: "name",
+                alias: null,
                 type: { name: "String", definedType: "Scalar" },
                 arguments: {},
                 passedGID: null,
@@ -328,6 +351,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
               }, 
               {
                 name: "size",
+                alias: null,
                 type: { name: "Int", definedType: "Scalar" },
                 arguments: {},
                 passedGID: null,
@@ -337,6 +361,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
               }, 
               {
                 name: "fileExtension",
+                alias: null,
                 type: { name: "String", definedType: "Scalar" },
                 arguments: {},
                 passedGID: null,
@@ -346,6 +371,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
               }, 
               {
                 name: "url",
+                alias: null,
                 type: { name: "URL", definedType: "Scalar" },
                 arguments: {},
                 passedGID: null,
@@ -355,6 +381,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
               }, 
               {
                 name: "image",
+                alias: null,
                 type: { name: "Image", definedType: "Object" },
                 arguments: {},
                 passedGID: null,
@@ -363,6 +390,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
                 selections: ([
                   {
                     name: "__typename",
+                    alias: null,
                     type: { name: "String", definedType: "Scalar" },
                     arguments: {},
                     passedGID: null,
@@ -372,6 +400,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
                   }, 
                   {
                     name: "transformedSrc",
+                    alias: null,
                     type: { name: "URL", definedType: "Scalar" },
                     arguments: {},
                     passedGID: null,

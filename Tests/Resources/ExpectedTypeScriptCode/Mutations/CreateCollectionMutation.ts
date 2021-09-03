@@ -69,6 +69,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -78,6 +79,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
     }, 
     {
       name: "collectionCreate",
+      alias: null,
       type: { name: "CollectionCreatePayload", definedType: "Object" },
       arguments: { input: { type: "OperationVariableKey", value: "input" } },
       passedGID: null,
@@ -86,6 +88,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -95,6 +98,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
         }, 
         {
           name: "userErrors",
+          alias: null,
           type: { name: "UserError", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -103,6 +107,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -112,6 +117,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
             }, 
             {
               name: "field",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -121,6 +127,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
             }, 
             {
               name: "message",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -132,6 +139,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
         }, 
         {
           name: "collection",
+          alias: null,
           type: { name: "Collection", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -140,6 +148,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -149,6 +158,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
             }, 
             {
               name: "title",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -158,6 +168,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
             }, 
             {
               name: "id",
+              alias: null,
               type: { name: "ID", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -167,6 +178,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
             }, 
             {
               name: "feedback",
+              alias: null,
               type: { name: "ResourceFeedback", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -175,6 +187,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -184,6 +197,7 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
                 }, 
                 {
                   name: "summary",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
