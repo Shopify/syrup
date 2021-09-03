@@ -29,42 +29,24 @@ const document: SyrupOperation<TestQuery0QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "nodes",
-      alias: null,
       type: { name: "Node", definedType: "Interface" },
-      arguments: { ids: { type: "ListValue", value: [{ type: "StringValue", value: "gid://shopify/Customer/350635977" }] } },
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
+      arguments: { ids: { type: "ListValue", value: [{ type: "StringValue", value: "gid://shopify/Customer/350635977" }] } },
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Node", definedType: "Interface" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "id",
-          alias: null,
           type: { name: "ID", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Node", definedType: "Interface" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }
       ] as GraphSelection[])
     }

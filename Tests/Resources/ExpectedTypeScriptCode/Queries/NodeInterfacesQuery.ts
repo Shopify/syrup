@@ -34,42 +34,25 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "node",
-      alias: null,
       type: { name: "Node", definedType: "Interface" },
+      typeCondition: { name: "QueryRoot", definedType: "Object" },
       arguments: { id: { type: "OperationVariableKey", value: "nodeId" } },
       passedGID: "nodeId",
-      typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Node", definedType: "Interface" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Product", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }
       ] as GraphSelection[]).concat(nodeIdSelections).concat(productNodeTitleSelections)
     }

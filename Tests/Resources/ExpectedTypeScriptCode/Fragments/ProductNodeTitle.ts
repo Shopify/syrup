@@ -15,22 +15,12 @@ export interface ProductNodeTitleFragmentData {
 export const productNodeTitleSelections: GraphSelection[] = ([
   {
     name: "__typename",
-    alias: null,
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Product", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }, 
   {
     name: "title",
-    alias: null,
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Product", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }
 ] as GraphSelection[])

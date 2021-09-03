@@ -22,13 +22,8 @@ const document: SyrupOperation<ShopQueryQueryData, ShopQueryQueryData.Variables>
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }
   ] as GraphSelection[]).concat(shopSelections)
 }

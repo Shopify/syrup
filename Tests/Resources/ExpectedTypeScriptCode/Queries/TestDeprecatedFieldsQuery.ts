@@ -99,128 +99,69 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "channels",
-      alias: null,
       type: { name: "ChannelConnection", definedType: "Object" },
-      arguments: { first: { type: "OperationVariableKey", value: "first" } },
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
+      arguments: { first: { type: "OperationVariableKey", value: "first" } },
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "ChannelConnection", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "edges",
-          alias: null,
           type: { name: "ChannelEdge", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "ChannelConnection", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ChannelEdge", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "node",
-              alias: null,
               type: { name: "Channel", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ChannelEdge", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "Channel", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "app",
-                  alias: null,
                   type: { name: "App", definedType: "Object" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "Channel", definedType: "Object" },
-                  directive: null,
                   selections: ([
                     {
                       name: "__typename",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "App", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "id",
-                      alias: null,
                       type: { name: "ID", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "App", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "icon",
-                      alias: null,
                       type: { name: "Image", definedType: "Object" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "App", definedType: "Object" },
-                      directive: null,
                       selections: ([
                         {
                           name: "__typename",
-                          alias: null,
                           type: { name: "String", definedType: "Scalar" },
-                          arguments: {},
-                          passedGID: null,
                           typeCondition: { name: "Image", definedType: "Object" },
-                          directive: null,
-                          selections: ([] as GraphSelection[])
                         }, 
                         {
                           name: "src",
-                          alias: null,
                           type: { name: "URL", definedType: "Scalar" },
-                          arguments: {},
-                          passedGID: null,
                           typeCondition: { name: "Image", definedType: "Object" },
-                          directive: null,
-                          selections: ([] as GraphSelection[])
                         }
                       ] as GraphSelection[])
                     }

@@ -43,99 +43,54 @@ export interface ShopFragmentData {
 export const shopSelections: GraphSelection[] = ([
   {
     name: "__typename",
-    alias: null,
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "QueryRoot", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }, 
   {
     name: "shop",
-    alias: null,
     type: { name: "Shop", definedType: "Object" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "QueryRoot", definedType: "Object" },
-    directive: null,
     selections: ([
       {
         name: "__typename",
-        alias: null,
         type: { name: "String", definedType: "Scalar" },
-        arguments: {},
-        passedGID: null,
         typeCondition: { name: "Shop", definedType: "Object" },
-        directive: null,
-        selections: ([] as GraphSelection[])
       }, 
       {
         name: "availableChannelApps",
-        alias: null,
         type: { name: "AppConnection", definedType: "Object" },
-        arguments: { first: { type: "OperationVariableKey", value: "first" } },
-        passedGID: null,
         typeCondition: { name: "Shop", definedType: "Object" },
-        directive: null,
+        arguments: { first: { type: "OperationVariableKey", value: "first" } },
         selections: ([
           {
             name: "__typename",
-            alias: null,
             type: { name: "String", definedType: "Scalar" },
-            arguments: {},
-            passedGID: null,
             typeCondition: { name: "AppConnection", definedType: "Object" },
-            directive: null,
-            selections: ([] as GraphSelection[])
           }, 
           {
             name: "edges",
-            alias: null,
             type: { name: "AppEdge", definedType: "Object" },
-            arguments: {},
-            passedGID: null,
             typeCondition: { name: "AppConnection", definedType: "Object" },
-            directive: null,
             selections: ([
               {
                 name: "__typename",
-                alias: null,
                 type: { name: "String", definedType: "Scalar" },
-                arguments: {},
-                passedGID: null,
                 typeCondition: { name: "AppEdge", definedType: "Object" },
-                directive: null,
-                selections: ([] as GraphSelection[])
               }, 
               {
                 name: "node",
-                alias: null,
                 type: { name: "App", definedType: "Object" },
-                arguments: {},
-                passedGID: null,
                 typeCondition: { name: "AppEdge", definedType: "Object" },
-                directive: null,
                 selections: ([
                   {
                     name: "__typename",
-                    alias: null,
                     type: { name: "String", definedType: "Scalar" },
-                    arguments: {},
-                    passedGID: null,
                     typeCondition: { name: "App", definedType: "Object" },
-                    directive: null,
-                    selections: ([] as GraphSelection[])
                   }, 
                   {
                     name: "id",
-                    alias: null,
                     type: { name: "ID", definedType: "Scalar" },
-                    arguments: {},
-                    passedGID: null,
                     typeCondition: { name: "App", definedType: "Object" },
-                    directive: null,
-                    selections: ([] as GraphSelection[])
                   }
                 ] as GraphSelection[])
               }
