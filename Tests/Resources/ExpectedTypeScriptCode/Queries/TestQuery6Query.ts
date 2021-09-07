@@ -114,241 +114,128 @@ const document: SyrupOperation<TestQuery6QueryData, TestQuery6QueryData.Variable
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "shop",
-      alias: null,
       type: { name: "Shop", definedType: "Object" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "name",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "currencyCode",
-          alias: null,
           type: { name: "CurrencyCode", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "weightUnit",
-          alias: null,
           type: { name: "WeightUnit", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "billingAddress",
-          alias: null,
           type: { name: "MailingAddress", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "city",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "company",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "latitude",
-              alias: null,
               type: { name: "Float", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "longitude",
-              alias: null,
               type: { name: "Float", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }, 
         {
           name: "fulfillmentServices",
-          alias: null,
           type: { name: "FulfillmentService", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "FulfillmentService", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "serviceName",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "FulfillmentService", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "handle",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "FulfillmentService", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }, 
         {
           name: "orders",
-          alias: null,
           type: { name: "OrderConnection", definedType: "Object" },
-          arguments: { first: { type: "OperationVariableKey", value: "first" } },
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
+          arguments: { first: { type: "OperationVariableKey", value: "first" } },
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "OrderConnection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "edges",
-              alias: null,
               type: { name: "OrderEdge", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "OrderConnection", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "OrderEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "node",
-                  alias: null,
                   type: { name: "Order", definedType: "Object" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "OrderEdge", definedType: "Object" },
-                  directive: null,
                   selections: ([
                     {
                       name: "__typename",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Order", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "name",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Order", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "displayFulfillmentStatus",
-                      alias: null,
                       type: { name: "OrderDisplayFulfillmentStatus", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Order", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }
                   ] as GraphSelection[])
                 }

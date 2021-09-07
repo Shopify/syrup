@@ -88,119 +88,65 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "shop",
-      alias: null,
       type: { name: "Shop", definedType: "Object" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "id",
-          alias: null,
           type: { name: "ID", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "products",
-          alias: "firstProduct",
           type: { name: "ProductConnection", definedType: "Object" },
-          arguments: { first: { type: "IntValue", value: 1 } },
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
+          alias: firstProduct,
+          arguments: { first: { type: "IntValue", value: 1 } },
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductConnection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "edges",
-              alias: null,
               type: { name: "ProductEdge", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductConnection", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "cursor",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "node",
-                  alias: null,
                   type: { name: "Product", definedType: "Object" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
-                  directive: null,
                   selections: ([
                     {
                       name: "__typename",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Product", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "title",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Product", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }
                   ] as GraphSelection[])
                 }
@@ -210,80 +156,45 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
         }, 
         {
           name: "products",
-          alias: "lastProduct",
           type: { name: "ProductConnection", definedType: "Object" },
-          arguments: { first: { type: "IntValue", value: 1 }, reverse: { type: "BooleanValue", value: true } },
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
+          alias: lastProduct,
+          arguments: { first: { type: "IntValue", value: 1 }, reverse: { type: "BooleanValue", value: true } },
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductConnection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "edges",
-              alias: null,
               type: { name: "ProductEdge", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductConnection", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "cursor",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "node",
-                  alias: null,
                   type: { name: "Product", definedType: "Object" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
-                  directive: null,
                   selections: ([
                     {
                       name: "__typename",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Product", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "title",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Product", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }
                   ] as GraphSelection[])
                 }

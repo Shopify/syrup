@@ -69,141 +69,76 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "Mutation", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "collectionCreate",
-      alias: null,
       type: { name: "CollectionCreatePayload", definedType: "Object" },
-      arguments: { input: { type: "OperationVariableKey", value: "input" } },
-      passedGID: null,
       typeCondition: { name: "Mutation", definedType: "Object" },
-      directive: null,
+      arguments: { input: { type: "OperationVariableKey", value: "input" } },
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "CollectionCreatePayload", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "userErrors",
-          alias: null,
           type: { name: "UserError", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "CollectionCreatePayload", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "UserError", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "field",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "UserError", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "message",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "UserError", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }, 
         {
           name: "collection",
-          alias: null,
           type: { name: "Collection", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "CollectionCreatePayload", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "Collection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "title",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "Collection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "id",
-              alias: null,
               type: { name: "ID", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "Collection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "feedback",
-              alias: null,
               type: { name: "ResourceFeedback", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "Collection", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ResourceFeedback", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "summary",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "ResourceFeedback", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }
               ] as GraphSelection[])
             }

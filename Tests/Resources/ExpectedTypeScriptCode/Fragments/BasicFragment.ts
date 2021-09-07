@@ -20,32 +20,17 @@ export interface BasicFragmentFragmentData {
 export const basicFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
-    alias: null,
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Customer", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }, 
   {
     name: "id",
-    alias: null,
     type: { name: "ID", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Customer", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }, 
   {
     name: "lastName",
-    alias: null,
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Customer", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }
 ] as GraphSelection[])

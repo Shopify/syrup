@@ -77,142 +77,76 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "Mutation", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "productVariantUpdate",
-      alias: null,
       type: { name: "ProductVariantUpdatePayload", definedType: "Object" },
-      arguments: { input: { type: "OperationVariableKey", value: "variantInput" } },
-      passedGID: null,
       typeCondition: { name: "Mutation", definedType: "Object" },
-      directive: null,
+      arguments: { input: { type: "OperationVariableKey", value: "variantInput" } },
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "ProductVariantUpdatePayload", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "productVariant",
-          alias: null,
           type: { name: "ProductVariant", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "ProductVariantUpdatePayload", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductVariant", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "id",
-              alias: null,
               type: { name: "ID", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductVariant", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "weight",
-              alias: null,
               type: { name: "Float", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductVariant", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "weightUnit",
-              alias: null,
               type: { name: "WeightUnit", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductVariant", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "requiresShipping",
-              alias: null,
               type: { name: "Boolean", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductVariant", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "harmonizedSystemCode",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "ProductVariant", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }, 
         {
           name: "userErrors",
-          alias: null,
           type: { name: "UserError", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "ProductVariantUpdatePayload", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "UserError", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "message",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "UserError", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "field",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "UserError", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }

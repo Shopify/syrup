@@ -79,162 +79,87 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "priceRule",
-      alias: null,
       type: { name: "PriceRule", definedType: "Object" },
+      typeCondition: { name: "QueryRoot", definedType: "Object" },
       arguments: { id: { type: "OperationVariableKey", value: "priceRuleId" } },
       passedGID: "priceRuleId",
-      typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "PriceRule", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "id",
-          alias: null,
           type: { name: "ID", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "PriceRule", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "value",
-          alias: null,
           type: { name: "PriceRuleValue", definedType: "Union" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "PriceRule", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PriceRuleValue", definedType: "Union" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PriceRulePercentValue", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "percentage",
-              alias: null,
               type: { name: "Float", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PriceRulePercentValue", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PriceRuleFixedAmountValue", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "amount",
-              alias: null,
               type: { name: "Money", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PriceRuleFixedAmountValue", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }, 
         {
           name: "valueV2",
-          alias: null,
           type: { name: "PricingValue", definedType: "Union" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "PriceRule", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PricingValue", definedType: "Union" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MoneyV2", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "amount",
-              alias: null,
               type: { name: "Decimal", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MoneyV2", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PricingPercentageValue", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "percentage",
-              alias: null,
               type: { name: "Float", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "PricingPercentageValue", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }

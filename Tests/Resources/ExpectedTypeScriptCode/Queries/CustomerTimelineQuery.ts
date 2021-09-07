@@ -82,162 +82,89 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "customer",
-      alias: null,
       type: { name: "Customer", definedType: "Object" },
+      typeCondition: { name: "QueryRoot", definedType: "Object" },
       arguments: { id: { type: "OperationVariableKey", value: "customerId" } },
       passedGID: "customerId",
-      typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Customer", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "events",
-          alias: null,
           type: { name: "EventConnection", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Customer", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "EventConnection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "edges",
-              alias: null,
               type: { name: "EventEdge", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "EventConnection", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "EventEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "node",
-                  alias: null,
                   type: { name: "Event", definedType: "Interface" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "EventEdge", definedType: "Object" },
-                  directive: null,
                   selections: ([
                     {
                       name: "__typename",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Event", definedType: "Interface" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "id",
-                      alias: null,
                       type: { name: "ID", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Event", definedType: "Interface" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "createdAt",
-                      alias: null,
                       type: { name: "DateTime", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Event", definedType: "Interface" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "message",
-                      alias: null,
                       type: { name: "FormattedString", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Event", definedType: "Interface" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }
                   ] as GraphSelection[]).concat(timelineBasicEventFragmentSelections).concat(timelineCommentEventFragmentSelections)
                 }, 
                 {
                   name: "cursor",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "EventEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }
               ] as GraphSelection[])
             }, 
             {
               name: "pageInfo",
-              alias: null,
               type: { name: "PageInfo", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "EventConnection", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "PageInfo", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "hasNextPage",
-                  alias: null,
                   type: { name: "Boolean", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "PageInfo", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }
               ] as GraphSelection[])
             }

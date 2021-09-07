@@ -53,99 +53,54 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "shop",
-      alias: null,
       type: { name: "Shop", definedType: "Object" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "customers",
-          alias: null,
           type: { name: "CustomerConnection", definedType: "Object" },
-          arguments: { first: { type: "IntValue", value: 1 } },
-          passedGID: null,
           typeCondition: { name: "Shop", definedType: "Object" },
-          directive: null,
+          arguments: { first: { type: "IntValue", value: 1 } },
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "CustomerConnection", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "edges",
-              alias: null,
               type: { name: "CustomerEdge", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "CustomerConnection", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
-                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "CustomerEdge", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }, 
                 {
                   name: "node",
-                  alias: null,
                   type: { name: "Customer", definedType: "Object" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "CustomerEdge", definedType: "Object" },
-                  directive: null,
                   selections: ([
                     {
                       name: "__typename",
-                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Customer", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }, 
                     {
                       name: "id",
-                      alias: null,
                       type: { name: "ID", definedType: "Scalar" },
-                      arguments: {},
-                      passedGID: null,
                       typeCondition: { name: "Customer", definedType: "Object" },
-                      directive: null,
-                      selections: ([] as GraphSelection[])
                     }
                   ] as GraphSelection[]).concat(basicFragmentSelections).map(x => copyWithTypeCondition(x, { name: "Customer", definedType: "Object" }))
                 }

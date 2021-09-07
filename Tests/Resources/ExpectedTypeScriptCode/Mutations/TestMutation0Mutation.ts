@@ -39,61 +39,34 @@ const document: SyrupOperation<TestMutation0MutationData, TestMutation0MutationD
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "Mutation", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "customerUpdate",
-      alias: null,
       type: { name: "CustomerUpdatePayload", definedType: "Object" },
-      arguments: { input: { type: "OperationVariableKey", value: "input" } },
-      passedGID: null,
       typeCondition: { name: "Mutation", definedType: "Object" },
-      directive: null,
+      arguments: { input: { type: "OperationVariableKey", value: "input" } },
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "CustomerUpdatePayload", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "customer",
-          alias: null,
           type: { name: "Customer", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "CustomerUpdatePayload", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "Customer", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "id",
-              alias: null,
               type: { name: "ID", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "Customer", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }

@@ -52,112 +52,61 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
-      alias: null,
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "customer",
-      alias: null,
       type: { name: "Customer", definedType: "Object" },
-      arguments: { id: { type: "StringValue", value: "" } },
-      passedGID: null,
       typeCondition: { name: "QueryRoot", definedType: "Object" },
-      directive: null,
+      arguments: { id: { type: "StringValue", value: "" } },
       selections: ([
         {
           name: "__typename",
-          alias: null,
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Customer", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "addresses",
-          alias: null,
           type: { name: "MailingAddress", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Customer", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "country",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }, 
         {
           name: "defaultAddress",
-          alias: null,
           type: { name: "MailingAddress", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "Customer", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "city",
-              alias: null,
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "longitude",
-              alias: null,
               type: { name: "Float", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "latitude",
-              alias: null,
               type: { name: "Float", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "MailingAddress", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }
           ] as GraphSelection[])
         }
