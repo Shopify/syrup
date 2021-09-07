@@ -1,5 +1,4 @@
-import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
-{{ header }}
+{% if header %}{{ header }}\n{% endif %}import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 {% if allReferencedFragments and allReferencedFragments.count > 0 %}import {
   {% for name in allReferencedFragments %}{{ name }}FragmentData,
   {{ name|lowercasedFirstLetter }}Selections,

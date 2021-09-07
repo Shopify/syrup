@@ -1,9 +1,5 @@
-{% if supportFilesHeader %}import { SimpleDocument } from "graphql-typed"
-{{ supportFilesHeader }}
+{% if supportFilesHeader %}{{ supportFilesHeader }}\n{% endif %}import { SimpleDocument } from "graphql-typed"
 
-{% else %}import { SimpleDocument } from "graphql-typed"
-
-{% endif %}
 export type ID = string
 
 export interface GraphSelection {
