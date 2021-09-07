@@ -77,6 +77,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -86,6 +87,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
     }, 
     {
       name: "productVariantUpdate",
+      alias: null,
       type: { name: "ProductVariantUpdatePayload", definedType: "Object" },
       arguments: { input: { type: "OperationVariableKey", value: "variantInput" } },
       passedGID: null,
@@ -94,6 +96,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -103,6 +106,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
         }, 
         {
           name: "productVariant",
+          alias: null,
           type: { name: "ProductVariant", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -111,6 +115,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -120,6 +125,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
             }, 
             {
               name: "id",
+              alias: null,
               type: { name: "ID", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -129,6 +135,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
             }, 
             {
               name: "weight",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -138,6 +145,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
             }, 
             {
               name: "weightUnit",
+              alias: null,
               type: { name: "WeightUnit", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -147,6 +155,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
             }, 
             {
               name: "requiresShipping",
+              alias: null,
               type: { name: "Boolean", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -156,6 +165,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
             }, 
             {
               name: "harmonizedSystemCode",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -167,6 +177,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
         }, 
         {
           name: "userErrors",
+          alias: null,
           type: { name: "UserError", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -175,6 +186,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -184,6 +196,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
             }, 
             {
               name: "message",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -193,6 +206,7 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
             }, 
             {
               name: "field",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,

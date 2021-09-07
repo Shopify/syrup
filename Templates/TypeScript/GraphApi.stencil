@@ -8,6 +8,7 @@ export type ID = string
 
 export interface GraphSelection {
   name: string
+  alias: string | null
   arguments: Record<string, any>
   type: TypeDefinition
   passedGID: string | null

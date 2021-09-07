@@ -79,6 +79,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -88,6 +89,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
     }, 
     {
       name: "priceRule",
+      alias: null,
       type: { name: "PriceRule", definedType: "Object" },
       arguments: { id: { type: "OperationVariableKey", value: "priceRuleId" } },
       passedGID: "priceRuleId",
@@ -96,6 +98,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -105,6 +108,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
         }, 
         {
           name: "id",
+          alias: null,
           type: { name: "ID", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -114,6 +118,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
         }, 
         {
           name: "value",
+          alias: null,
           type: { name: "PriceRuleValue", definedType: "Union" },
           arguments: {},
           passedGID: null,
@@ -122,6 +127,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -131,6 +137,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -140,6 +147,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "percentage",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -149,6 +157,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -158,6 +167,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "amount",
+              alias: null,
               type: { name: "Money", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -169,6 +179,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
         }, 
         {
           name: "valueV2",
+          alias: null,
           type: { name: "PricingValue", definedType: "Union" },
           arguments: {},
           passedGID: null,
@@ -177,6 +188,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -186,6 +198,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -195,6 +208,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "amount",
+              alias: null,
               type: { name: "Decimal", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -204,6 +218,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -213,6 +228,7 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
             }, 
             {
               name: "percentage",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,

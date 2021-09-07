@@ -34,6 +34,7 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -43,6 +44,7 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
     }, 
     {
       name: "node",
+      alias: null,
       type: { name: "Node", definedType: "Interface" },
       arguments: { id: { type: "OperationVariableKey", value: "nodeId" } },
       passedGID: "nodeId",
@@ -51,6 +53,7 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -60,6 +63,7 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
         }, 
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,

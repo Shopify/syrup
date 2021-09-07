@@ -61,6 +61,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -70,6 +71,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
     }, 
     {
       name: "shop",
+      alias: null,
       type: { name: "Shop", definedType: "Object" },
       arguments: {},
       passedGID: null,
@@ -78,6 +80,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -87,6 +90,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
         }, 
         {
           name: "name",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -96,6 +100,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
         }, 
         {
           name: "id",
+          alias: null,
           type: { name: "ID", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -105,6 +110,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
         }, 
         {
           name: "email",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -114,6 +120,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
         }, 
         {
           name: "alerts",
+          alias: null,
           type: { name: "ShopAlert", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -122,6 +129,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -131,6 +139,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
             }, 
             {
               name: "action",
+              alias: null,
               type: { name: "ShopAlertAction", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -139,6 +148,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -148,6 +158,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
                 }, 
                 {
                   name: "title",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -157,6 +168,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
                 }, 
                 {
                   name: "url",
+                  alias: null,
                   type: { name: "URL", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -168,6 +180,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
             }, 
             {
               name: "description",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,

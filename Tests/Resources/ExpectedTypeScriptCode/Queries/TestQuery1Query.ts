@@ -93,6 +93,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -102,6 +103,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
     }, 
     {
       name: "shop",
+      alias: null,
       type: { name: "Shop", definedType: "Object" },
       arguments: {},
       passedGID: null,
@@ -110,6 +112,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -119,6 +122,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "id",
+          alias: null,
           type: { name: "ID", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -128,6 +132,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "name",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -137,6 +142,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "currencyCode",
+          alias: null,
           type: { name: "CurrencyCode", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -146,6 +152,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "weightUnit",
+          alias: null,
           type: { name: "WeightUnit", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -155,6 +162,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "billingAddress",
+          alias: null,
           type: { name: "MailingAddress", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -163,6 +171,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -172,6 +181,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
             }, 
             {
               name: "city",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -181,6 +191,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
             }, 
             {
               name: "company",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -190,6 +201,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
             }, 
             {
               name: "latitude",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -199,6 +211,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
             }, 
             {
               name: "longitude",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -210,6 +223,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "alerts",
+          alias: null,
           type: { name: "ShopAlert", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -218,6 +232,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -227,6 +242,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
             }, 
             {
               name: "description",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -238,6 +254,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "shipsToCountries",
+          alias: null,
           type: { name: "CountryCode", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -247,6 +264,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
         }, 
         {
           name: "paymentSettings",
+          alias: null,
           type: { name: "PaymentSettings", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -255,6 +273,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -264,6 +283,7 @@ const document: SyrupOperation<TestQuery1QueryData, {}> = {
             }, 
             {
               name: "supportedDigitalWallets",
+              alias: null,
               type: { name: "DigitalWallet", definedType: "Scalar" },
               arguments: {},
               passedGID: null,

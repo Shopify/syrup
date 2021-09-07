@@ -26,6 +26,7 @@ export type TimelineBasicEventFragmentFragmentData = TimelineBasicEventFragmentF
 export const timelineBasicEventFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
+    alias: null,
     type: { name: "String", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -35,6 +36,7 @@ export const timelineBasicEventFragmentSelections: GraphSelection[] = ([
   }, 
   {
     name: "__typename",
+    alias: null,
     type: { name: "String", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -44,6 +46,7 @@ export const timelineBasicEventFragmentSelections: GraphSelection[] = ([
   }, 
   {
     name: "attributeToUser",
+    alias: null,
     type: { name: "Boolean", definedType: "Scalar" },
     arguments: {},
     passedGID: null,
@@ -53,6 +56,7 @@ export const timelineBasicEventFragmentSelections: GraphSelection[] = ([
   }, 
   {
     name: "attributeToApp",
+    alias: null,
     type: { name: "Boolean", definedType: "Scalar" },
     arguments: {},
     passedGID: null,

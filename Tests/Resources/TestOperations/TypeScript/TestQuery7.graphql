@@ -9,7 +9,7 @@ query TestQuery7($first: Int) {
       latitude
       longitude
     }
-    fulfillmentServices {
+    services: fulfillmentServices {
       serviceName
       handle
     }

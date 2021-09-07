@@ -99,6 +99,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -108,6 +109,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
     }, 
     {
       name: "channels",
+      alias: null,
       type: { name: "ChannelConnection", definedType: "Object" },
       arguments: { first: { type: "OperationVariableKey", value: "first" } },
       passedGID: null,
@@ -116,6 +118,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -125,6 +128,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
         }, 
         {
           name: "edges",
+          alias: null,
           type: { name: "ChannelEdge", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -133,6 +137,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -142,6 +147,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
             }, 
             {
               name: "node",
+              alias: null,
               type: { name: "Channel", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -150,6 +156,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -159,6 +166,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
                 }, 
                 {
                   name: "app",
+                  alias: null,
                   type: { name: "App", definedType: "Object" },
                   arguments: {},
                   passedGID: null,
@@ -167,6 +175,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
                   selections: ([
                     {
                       name: "__typename",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -176,6 +185,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
                     }, 
                     {
                       name: "id",
+                      alias: null,
                       type: { name: "ID", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -185,6 +195,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
                     }, 
                     {
                       name: "icon",
+                      alias: null,
                       type: { name: "Image", definedType: "Object" },
                       arguments: {},
                       passedGID: null,
@@ -193,6 +204,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
                       selections: ([
                         {
                           name: "__typename",
+                          alias: null,
                           type: { name: "String", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,
@@ -202,6 +214,7 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
                         }, 
                         {
                           name: "src",
+                          alias: null,
                           type: { name: "URL", definedType: "Scalar" },
                           arguments: {},
                           passedGID: null,

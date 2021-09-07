@@ -348,9 +348,17 @@ class SelectionSetExtension: Extension {
 		
 		for selection in combinedSelections {
 			if let field = selection.field {
-				let name = field.alias ?? field.name
+				let alias: String
+				
+				if let unwrappedAlias = field.alias {
+					alias = "\"\(unwrappedAlias)\""
+				} else {
+					alias = "null"
+				}
+				
 				var render = "\n\(spacing)  {"
-				render.append("\n\(spacing)    name: \"\(name)\",")
+				render.append("\n\(spacing)    name: \"\(field.name)\",")
+				render.append("\n\(spacing)    alias: \(alias),")
 				render.append("\n\(spacing)    type: \(renderTypeScriptTypeCondition(field.type)),")
 				render.append("\n\(spacing)    arguments: \(renderTypeScriptArguments(field.arguments)),")
 				render.append("\n\(spacing)    passedGID: \(renderTypeScriptGIDPassed(field)),")

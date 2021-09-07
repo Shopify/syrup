@@ -82,6 +82,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -91,6 +92,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
     }, 
     {
       name: "customer",
+      alias: null,
       type: { name: "Customer", definedType: "Object" },
       arguments: { id: { type: "OperationVariableKey", value: "customerId" } },
       passedGID: "customerId",
@@ -99,6 +101,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -108,6 +111,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
         }, 
         {
           name: "events",
+          alias: null,
           type: { name: "EventConnection", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -116,6 +120,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -125,6 +130,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
             }, 
             {
               name: "edges",
+              alias: null,
               type: { name: "EventEdge", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -133,6 +139,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -142,6 +149,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                 }, 
                 {
                   name: "node",
+                  alias: null,
                   type: { name: "Event", definedType: "Interface" },
                   arguments: {},
                   passedGID: null,
@@ -150,6 +158,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                   selections: ([
                     {
                       name: "__typename",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -159,6 +168,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                     }, 
                     {
                       name: "id",
+                      alias: null,
                       type: { name: "ID", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -168,6 +178,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                     }, 
                     {
                       name: "createdAt",
+                      alias: null,
                       type: { name: "DateTime", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -177,6 +188,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                     }, 
                     {
                       name: "message",
+                      alias: null,
                       type: { name: "FormattedString", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -188,6 +200,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                 }, 
                 {
                   name: "cursor",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -199,6 +212,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
             }, 
             {
               name: "pageInfo",
+              alias: null,
               type: { name: "PageInfo", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -207,6 +221,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -216,6 +231,7 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                 }, 
                 {
                   name: "hasNextPage",
+                  alias: null,
                   type: { name: "Boolean", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,

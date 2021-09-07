@@ -71,6 +71,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -80,6 +81,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
     }, 
     {
       name: "node",
+      alias: null,
       type: { name: "Node", definedType: "Interface" },
       arguments: { id: { type: "OperationVariableKey", value: "productId" } },
       passedGID: "productId",
@@ -88,6 +90,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -97,6 +100,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
         }, 
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -106,6 +110,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
         }, 
         {
           name: "id",
+          alias: null,
           type: { name: "ID", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -115,6 +120,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
         }, 
         {
           name: "collections",
+          alias: null,
           type: { name: "CollectionConnection", definedType: "Object" },
           arguments: { first: { type: "IntValue", value: 100 } },
           passedGID: null,
@@ -123,6 +129,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -132,6 +139,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
             }, 
             {
               name: "edges",
+              alias: null,
               type: { name: "CollectionEdge", definedType: "Object" },
               arguments: {},
               passedGID: null,
@@ -140,6 +148,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
               selections: ([
                 {
                   name: "__typename",
+                  alias: null,
                   type: { name: "String", definedType: "Scalar" },
                   arguments: {},
                   passedGID: null,
@@ -149,6 +158,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
                 }, 
                 {
                   name: "node",
+                  alias: null,
                   type: { name: "Collection", definedType: "Object" },
                   arguments: {},
                   passedGID: null,
@@ -157,6 +167,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
                   selections: ([
                     {
                       name: "__typename",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -166,6 +177,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
                     }, 
                     {
                       name: "id",
+                      alias: null,
                       type: { name: "ID", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -175,6 +187,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
                     }, 
                     {
                       name: "title",
+                      alias: null,
                       type: { name: "String", definedType: "Scalar" },
                       arguments: {},
                       passedGID: null,
@@ -190,6 +203,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
         }, 
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -199,6 +213,7 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
         }, 
         {
           name: "id",
+          alias: null,
           type: { name: "ID", definedType: "Scalar" },
           arguments: {},
           passedGID: null,

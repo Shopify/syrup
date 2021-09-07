@@ -52,6 +52,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
   selections: ([
     {
       name: "__typename",
+      alias: null,
       type: { name: "String", definedType: "Scalar" },
       arguments: {},
       passedGID: null,
@@ -61,6 +62,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
     }, 
     {
       name: "customer",
+      alias: null,
       type: { name: "Customer", definedType: "Object" },
       arguments: { id: { type: "StringValue", value: "" } },
       passedGID: null,
@@ -69,6 +71,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
       selections: ([
         {
           name: "__typename",
+          alias: null,
           type: { name: "String", definedType: "Scalar" },
           arguments: {},
           passedGID: null,
@@ -78,6 +81,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
         }, 
         {
           name: "addresses",
+          alias: null,
           type: { name: "MailingAddress", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -86,6 +90,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -95,6 +100,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
             }, 
             {
               name: "country",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -106,6 +112,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
         }, 
         {
           name: "defaultAddress",
+          alias: null,
           type: { name: "MailingAddress", definedType: "Object" },
           arguments: {},
           passedGID: null,
@@ -114,6 +121,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
           selections: ([
             {
               name: "__typename",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -123,6 +131,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
             }, 
             {
               name: "city",
+              alias: null,
               type: { name: "String", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -132,6 +141,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
             }, 
             {
               name: "longitude",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
@@ -141,6 +151,7 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
             }, 
             {
               name: "latitude",
+              alias: null,
               type: { name: "Float", definedType: "Scalar" },
               arguments: {},
               passedGID: null,
