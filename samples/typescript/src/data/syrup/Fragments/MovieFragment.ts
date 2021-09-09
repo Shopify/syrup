@@ -26,37 +26,21 @@ export const movieFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Film", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }, 
   {
     name: "title",
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Film", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }, 
   {
     name: "director",
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Film", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }, 
   {
     name: "openingCrawl",
     type: { name: "String", definedType: "Scalar" },
-    arguments: {},
-    passedGID: null,
     typeCondition: { name: "Film", definedType: "Object" },
-    directive: null,
-    selections: ([] as GraphSelection[])
   }
 ] as GraphSelection[])

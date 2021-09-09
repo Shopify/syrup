@@ -4,12 +4,13 @@ export type ID = string
 
 export interface GraphSelection {
   name: string
-  arguments: Record<string, any>
   type: TypeDefinition
-  passedGID: string | null
-  typeCondition: TypeDefinition | null
-  directive: ConditionalDirective | null
-  selections: GraphSelection[]
+  typeCondition: TypeDefinition
+  alias?: string
+  arguments?: Record<string, any>
+  passedGID?: string
+  directive?: ConditionalDirective
+  selections?: GraphSelection[]
 }
 
 export interface TypeDefinition {

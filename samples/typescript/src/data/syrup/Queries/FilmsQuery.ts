@@ -38,62 +38,37 @@ const document: SyrupOperation<FilmsQueryData, {}> = {
     {
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "Root", definedType: "Object" },
-      directive: null,
-      selections: ([] as GraphSelection[])
     }, 
     {
       name: "allFilms",
       type: { name: "FilmsConnection", definedType: "Object" },
-      arguments: {},
-      passedGID: null,
       typeCondition: { name: "Root", definedType: "Object" },
-      directive: null,
       selections: ([
         {
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "FilmsConnection", definedType: "Object" },
-          directive: null,
-          selections: ([] as GraphSelection[])
         }, 
         {
           name: "edges",
           type: { name: "FilmsEdge", definedType: "Object" },
-          arguments: {},
-          passedGID: null,
           typeCondition: { name: "FilmsConnection", definedType: "Object" },
-          directive: null,
           selections: ([
             {
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "FilmsEdge", definedType: "Object" },
-              directive: null,
-              selections: ([] as GraphSelection[])
             }, 
             {
               name: "node",
               type: { name: "Film", definedType: "Object" },
-              arguments: {},
-              passedGID: null,
               typeCondition: { name: "FilmsEdge", definedType: "Object" },
-              directive: null,
               selections: ([
                 {
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
-                  arguments: {},
-                  passedGID: null,
                   typeCondition: { name: "Film", definedType: "Object" },
-                  directive: null,
-                  selections: ([] as GraphSelection[])
                 }
               ] as GraphSelection[]).concat(movieFragmentSelections).map(x => copyWithTypeCondition(x, { name: "Film", definedType: "Object" }))
             }
