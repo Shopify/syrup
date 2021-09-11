@@ -6,7 +6,7 @@
   "author": "Shopify Inc.",
   "license": "MIT",
   "scripts": {
-    "generate-graphql": "mint run shopify/syrup@master syrup generate src/data/graphql src/data/syrup src/data/syrup \"TypeScript\"",
+    "generate-graphql": "mint run shopify/syrup@main syrup generate src/data/graphql src/data/syrup src/data/syrup \"TypeScript\"",
     "run-sample": "ts-node src/index.ts"
   },
   "dependencies": {
