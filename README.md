@@ -61,7 +61,7 @@ This lists the possible arguments to Syrup. Note that not all launch arguments a
 - **Support Files Destination**: This provides the path to the folder where the support files the generated code relies on should be written to. This is provided as a separate argument from the models destination in the case that your app has multiple frameworks using Syrup and you would like them to all share the same support files.
 
 #### Applies to all commands
-- **Template**: This provides the path to the [Templates](https://github.com/Shopify/Syrup/tree/master/Templates) folder that are included in the Syrup repository.
+- **Template**: This provides the path to the [Templates](https://github.com/Shopify/Syrup/tree/main/Templates) folder that are included in the Syrup repository.
 - **`--project`**: The (optional) location of the [YAML file](https://github.com/shopify/syrup#project-file-format) that describes the project. By default, `.syrup.yml` in the current directory is used.
 - **`--schema`**: The (optional) location of the [YAML file](https://github.com/shopify/syrup#schema-file-format) that describes the schema. By default, `.syrup.yml` in the current directory is used.
 - **`--override-schema`**: An optional argument to override the location of the schema to be used. Can be either a file path or URL.
