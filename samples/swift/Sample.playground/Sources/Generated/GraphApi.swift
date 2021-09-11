@@ -138,7 +138,7 @@ open class BaseCustomScalarResolver {
 }
 
 public enum GraphSelections {
-	public struct Operation {
+	public struct Operation: Equatable {
 		public let type: OperationType
 		public let selectionSet: [Selection]
 
@@ -148,7 +148,7 @@ public enum GraphSelections {
 		}
 	}
 
-	public enum OperationType {
+	public enum OperationType: Equatable {
 		case mutation(String)
 		case query(String)
 		public var name: String {
@@ -159,7 +159,7 @@ public enum GraphSelections {
 		}
 	}
 
-	public enum Selection {
+	public enum Selection: Equatable {
 		case field(Field)
 		case fragmentSpread(FragmentSpread, conditionalDirective: ConditionalDirective?)
 		case inlineFragment(InlineFragment)
@@ -169,7 +169,7 @@ public enum GraphSelections {
 		}
 	}
 
-	public struct Field {
+	public struct Field: Equatable {
 		public let name: String
 		public let alias: String?
 		public let conditionalDirective: ConditionalDirective?
@@ -189,12 +189,12 @@ public enum GraphSelections {
 		}
 	}
 
-	public enum ConditionalDirective {
+	public enum ConditionalDirective: Equatable {
 		case skip(ArgumentValue)
 		case include(ArgumentValue)
 	}
 
-	public struct Argument {
+	public struct Argument: Equatable {
 		public let name: String
 		public let value: ArgumentValue
 
@@ -204,7 +204,7 @@ public enum GraphSelections {
 		}
 	}
 
-	public struct FragmentSpread {
+	public struct FragmentSpread: Equatable {
 		public let name: String
 		public let typeCondition: TypeCondition
 		public let selectionSet: [Selection]
@@ -216,7 +216,7 @@ public enum GraphSelections {
 		}
 	}
 
-	public struct InlineFragment {
+	public struct InlineFragment: Equatable {
 		public let typeCondition: TypeCondition
 		public let conditionalDirective: ConditionalDirective?
 		public let selectionSet: [Selection]
@@ -228,14 +228,14 @@ public enum GraphSelections {
 		}
 	}
 
-	public enum TypeCondition {
+	public enum TypeCondition: Equatable {
 		case object(String)
 		case interface(String)
 		case union(String)
 		case scalar(String)
 	}
 
-	public enum ArgumentValue {
+	public enum ArgumentValue: Equatable {
 		case variable(String)
 		case intValue(Int)
 		case floatValue(Float)
@@ -247,7 +247,7 @@ public enum GraphSelections {
 		case objectValue([ObjectField])
 	}
 
-	public struct ObjectField {
+	public struct ObjectField: Equatable {
 		public let name: String
 		public let value: ArgumentValue
 
