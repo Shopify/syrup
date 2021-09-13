@@ -16,10 +16,6 @@ data class FilmsResponse(
         allFilms = if (jsonObject.has("allFilms") && !jsonObject.get("allFilms").isJsonNull) AllFilms(jsonObject.getAsJsonObject("allFilms")) else null
     )
 
-    companion object {
-        const val typeName = "Root"
-    }
-
     data class AllFilms(
         /**    
          * A list of edges.    
@@ -36,9 +32,6 @@ data class FilmsResponse(
                 list
             }
         )
-        companion object {
-            const val typeName = "FilmsConnection"
-        }
         data class Edges(
             /**    
              * The item at the end of the edge    
@@ -48,18 +41,12 @@ data class FilmsResponse(
             constructor(jsonObject: JsonObject) : this(
                 node = if (jsonObject.has("node") && !jsonObject.get("node").isJsonNull) Node(jsonObject.getAsJsonObject("node")) else null
             )
-            companion object {
-                const val typeName = "FilmsEdge"
-            }
             data class Node(
                 val movieFragment: com.shopify.syrup.fragments.MovieFragment
             ) : Response {
                 constructor(jsonObject: JsonObject) : this(
                     movieFragment = com.shopify.syrup.fragments.MovieFragment(jsonObject)
                 )
-                companion object {
-                    const val typeName = "Film"
-                }
             }
         }
     }

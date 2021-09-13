@@ -31,8 +31,6 @@ data class MovieFragment(
     )
 
     companion object {
-        const val typeName = "Film"
-
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
                 Selection(
@@ -40,7 +38,6 @@ data class MovieFragment(
                     type = "String",
                     cacheKey = "title",
                     passedGID = null,
-                    backingGIDReference = null,
                     typeCondition = "Film",
                     shouldSkipBasedOnConditionalDirective = false,
                     selections = listOf<Selection>()
@@ -50,7 +47,6 @@ data class MovieFragment(
                     type = "String",
                     cacheKey = "director",
                     passedGID = null,
-                    backingGIDReference = null,
                     typeCondition = "Film",
                     shouldSkipBasedOnConditionalDirective = false,
                     selections = listOf<Selection>()
@@ -60,7 +56,6 @@ data class MovieFragment(
                     type = "String",
                     cacheKey = "openingCrawl",
                     passedGID = null,
-                    backingGIDReference = null,
                     typeCondition = "Film",
                     shouldSkipBasedOnConditionalDirective = false,
                     selections = listOf<Selection>()
