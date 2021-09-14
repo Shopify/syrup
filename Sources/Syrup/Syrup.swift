@@ -52,6 +52,9 @@ class Syrup {
 		var schema: AbsolutePath
 		/// Overridden schema location, can be either a path to a file on disk or a remote location via https
 		var overridenSchema: String?
+		
+		/// Should isolate models
+		var shouldIsolateModels: Bool = false
 
 		/// Deprecation report output file [.yml]
 		var deprecationReport: AbsolutePath?
@@ -59,6 +62,7 @@ class Syrup {
 
 		/// If the current version of the tool should be printed
 		var shouldPrintVersion: Bool = false
+		
 
 		var verbose: Bool = false
 
@@ -144,6 +148,7 @@ class Syrup {
 		let templateArg = addTemplateArgument(to: generateParser)
 		let projectArg = addProjectArgument(to: generateParser)
 		let schemaArg = addSchemaArgument(to: generateParser)
+		let isolateModelsArg = addIsolateModelsArgument(to: generateParser)
 		let schemaOverrideArg = addOverrideSchemaArgument(to: generateParser)
 		let deprecationReportArg = addDeprecationReportArgument(to: generateParser)
 
@@ -153,6 +158,7 @@ class Syrup {
 		addTemplateArgument(to: generateModelsParser)
 		addProjectArgument(to: generateModelsParser)
 		addSchemaArgument(to: generateModelsParser)
+		addIsolateModelsArgument(to: generateModelsParser)
 		addOverrideSchemaArgument(to: generateModelsParser)
 		addDeprecationReportArgument(to: generateModelsParser)
 
@@ -226,6 +232,10 @@ class Syrup {
 		binder.bind(option: overwriteReportArg) { (options, shouldOverwrite) in
 			options.shouldOverwriteReport = shouldOverwrite
 		}
+		
+		binder.bind(option: isolateModelsArg) { (options, shouldIsolateModels) in
+			options.shouldOverwriteReport = shouldIsolateModels
+		}
 
 		binder.bind(option: verboseArg) { (options, isVerbose) in
 			options.verbose = isVerbose
@@ -268,6 +278,7 @@ class Syrup {
 				let config = SyrupCore.Config(
 					shouldGenerateModels: syrupArgs.shouldGenerateModels,
 					shouldGenerateSupportFiles: syrupArgs.shouldGenerateSupportFiles,
+					shouldIsolateModels: syrupArgs.shouldIsolateModels,
 					queries: syrupArgs.queries.asString,
 					destination: syrupArgs.destination.asString,
 					supportFilesDestination: syrupArgs.supportFilesDestination.asString,
@@ -326,6 +337,11 @@ class Syrup {
 	@discardableResult
 	private func addOverrideSchemaArgument(to parser: ArgumentParser) -> OptionArgument<String> {
 		parser.add(option: "--override-schema", kind: String.self, usage: "Overrides the projects schema location. Can be either a URL or a path on the filesystem.")
+	}
+	
+	@discardableResult
+	private func addIsolateModelsArgument(to parser: ArgumentParser) -> OptionArgument<Bool> {
+		parser.add(option: "--isolate-models", shortName: "-im", kind: Bool.self, usage: "Isolates queries, mutations, fragments from types.")
 	}
 
 	@discardableResult

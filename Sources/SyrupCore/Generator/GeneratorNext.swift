@@ -23,40 +23,38 @@
  */
 
 import Foundation
-import Files
 
-enum FileParser {
-	enum FileParserError: LocalizedError {
-		case duplicateFile(String)
+public final class GeneratorNext {
+	let config: Config
+	
+	public init(config: Config) {
+		self.config = config
+	}
+	
+	public func generate() throws {
+		let schema = try loadSchema(location: config.schema.location)
 		
-		var errorDescription: String? {
-			switch self {
-			case .duplicateFile(let name):
-				return "Found duplicate file named \(name)"
-			}
-		}
 	}
 	
-	static func parseFiles(at location: String) throws -> [String: String] {
-		let folder = try Folder(path: location)
-		var results: [String: String] = [:]
-		try parseFiles(from: folder, intoResult: &results)
-		return results
+	private func generateModels(filesLocation: String, schema: Schema) {
+		// Get raw operations from folder location
+		let rawOperations = try FileParser.parseFiles(at: filesLocation)
+		
+		// Validate GraphQL syntax
+		try validateOperations(operations: rawOperations)
 	}
 	
-	private static func parseFiles(from folder: Folder, intoResult result: inout [String: String]) throws {
-		for file in folder.files {
-			guard file.extension == "graphql" else { continue }
-			guard result[file.path] == nil else {
-				throw FileParserError.duplicateFile(file.name)
-			}
-			
-			let data = try file.read()
-			
-			result[file.path] = String(data: data, encoding: .utf8)!
-		}
-		for subfolder in folder.subfolders {
-			try parseFiles(from: subfolder, intoResult: &result)
-		}
+	private static func parseOperations(rawOperations: [String: String]) throws -> (
+		queries: [String: String],
+		mutations: [String: String],
+		subscriptions: [String: String],
+		fragments: [String: String]
+	) {
+		print("Parsing .graphql files")
+		let visitor = OperationVisitor()
+		let document = try parse(graphQLString)
+		let traverser = GraphQLTraverser(document: document, with: visitor)
+		try traverser.traverse()
+		return (visitor.queries, visitor.mutations, visitor.subscriptions, visitor.fragments)
 	}
 }

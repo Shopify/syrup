@@ -28,6 +28,7 @@ import Foundation
 public struct Config {
 	var shouldGenerateModels: Bool
 	var shouldGenerateSupportFiles: Bool
+	var shouldIsolateModels: Bool
 	var queries: String
 	var destination: String
 	var supportFilesDestination: String
@@ -38,9 +39,10 @@ public struct Config {
 	var deprecationReport: AbsolutePath? = nil
 	var shouldOverwriteReport: Bool = false
 
-	public init(shouldGenerateModels: Bool, shouldGenerateSupportFiles: Bool, queries: String, destination: String, supportFilesDestination: String, template: TemplateSpec, project: ProjectSpec, schema: SchemaSpec, verbose: Bool, outputReportFilePath: AbsolutePath?, shouldOverwriteReport: Bool) {
+	public init(shouldGenerateModels: Bool, shouldGenerateSupportFiles: Bool, shouldIsolateModels: Bool, queries: String, destination: String, supportFilesDestination: String, template: TemplateSpec, project: ProjectSpec, schema: SchemaSpec, verbose: Bool, outputReportFilePath: AbsolutePath?, shouldOverwriteReport: Bool) {
 		self.shouldGenerateModels = shouldGenerateModels
 		self.shouldGenerateSupportFiles = shouldGenerateSupportFiles
+		self.shouldIsolateModels = shouldIsolateModels
 		self.queries = queries
 		self.destination = destination
 		self.supportFilesDestination = supportFilesDestination
