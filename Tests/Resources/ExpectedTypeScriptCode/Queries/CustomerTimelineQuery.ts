@@ -1,3 +1,5 @@
+// Syrup auto-generated file
+
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 import {
   TimelineBasicEventFragmentFragmentData,

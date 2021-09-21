@@ -1,3 +1,5 @@
+// Syrup auto-generated file
+
 export { CollectionRuleColumn } from "./CollectionRuleColumn"
 export { CollectionRuleRelation } from "./CollectionRuleRelation"
 export { CollectionSortOrder } from "./CollectionSortOrder"

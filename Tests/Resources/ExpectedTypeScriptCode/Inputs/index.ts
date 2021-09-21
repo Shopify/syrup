@@ -1,3 +1,5 @@
+// Syrup auto-generated file
+
 export type { CollectionInput } from "./CollectionInput"
 export type { CollectionPublicationInput } from "./CollectionPublicationInput"
 export type { CollectionRuleInput } from "./CollectionRuleInput"

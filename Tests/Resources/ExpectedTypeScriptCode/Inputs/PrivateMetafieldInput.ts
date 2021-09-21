@@ -1,3 +1,5 @@
+// Syrup auto-generated file
+
 import { ID } from "../GraphApi"
 import { PrivateMetafieldValueInput } from "./PrivateMetafieldValueInput"
 
