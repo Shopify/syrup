@@ -1,3 +1,5 @@
+// Syrup auto-generated file
+
 export type { BasicFragmentFragmentData } from "./BasicFragment"
 export { basicFragmentSelections } from "./BasicFragment"
 export type { NodeIdFragmentData } from "./NodeId"

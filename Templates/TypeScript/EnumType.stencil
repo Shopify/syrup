@@ -1,5 +1,4 @@
-{% if header %}
-{{ header }}
+{% if header %}{{ header }}
 
 {% endif %}export enum {{ enumType.name }} {
   {% for enumValue in enumType.values %}

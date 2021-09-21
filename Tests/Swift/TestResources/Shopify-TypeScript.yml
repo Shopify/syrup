@@ -15,3 +15,7 @@ customScalars:
   nativeType: ID
 moduleName: ""
 filenameSuffix: ""
+header: |
+  // Syrup auto-generated file
+supportFilesHeader: |
+  // Syrup auto-generated file

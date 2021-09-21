@@ -1,3 +1,5 @@
+// Syrup auto-generated file
+
 export enum MetafieldValueType {
 
   /**

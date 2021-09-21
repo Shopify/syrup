@@ -1,4 +1,6 @@
-{% if inputNames.count > 0 %}{% for inputName in inputNames %}export type { {{ inputName }} } from "./{{ inputName }}"
+{% if header %}{{ header }}
+
+{% endif %}{% if inputNames.count > 0 %}{% for inputName in inputNames %}export type { {{ inputName }} } from "./{{ inputName }}"
 {% endfor %}
 {% else %}export {}
 {% endif %}
