@@ -1,5 +1,6 @@
 // Syrup auto-generated file
-\nimport { SimpleDocument } from "graphql-typed"
+
+import { SimpleDocument } from "graphql-typed"
 
 export type ID = string
 
