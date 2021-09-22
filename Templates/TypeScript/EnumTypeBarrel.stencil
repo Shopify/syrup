@@ -1,6 +1,5 @@
-{% if header %}{{ header }}
-
-{% endif %}{% if enumNames.count > 0 %}{% for enumName in enumNames %}export { {{ enumName }} } from "./{{ enumName }}"
+{% include "Helpers/Header.stencil" %}
+{% if enumNames.count > 0 %}{% for enumName in enumNames %}export { {{ enumName }} } from "./{{ enumName }}"
 {% endfor %}
 {% else %}export {}
 {% endif %}

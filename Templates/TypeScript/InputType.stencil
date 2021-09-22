@@ -1,6 +1,5 @@
-{% if header %}{{ header }}
-
-{% endif %}import { ID } from "../GraphApi"
+{% include "Helpers/Header.stencil" %}
+import { ID } from "../GraphApi"
 {% if enumImports.count > 0 %}import {
   {% for enum in enumImports %}{{ enum }},
   {% endfor %}

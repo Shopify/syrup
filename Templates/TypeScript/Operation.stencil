@@ -1,3 +1,4 @@
+{% include "Helpers/Header.stencil" %}
 {% include "Helpers/Imports.stencil" %}
 
 export namespace {{ name }} {

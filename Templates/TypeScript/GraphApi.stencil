@@ -1,4 +1,5 @@
-{% if supportFilesHeader %}{{ supportFilesHeader }}\n{% endif %}import { SimpleDocument } from "graphql-typed"
+{% include "Helpers/SupportHeader.stencil" %}
+import { SimpleDocument } from "graphql-typed"
 
 export type ID = string
 

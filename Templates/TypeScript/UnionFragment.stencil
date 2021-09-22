@@ -1,4 +1,5 @@
-{% extends "Helpers/UnionTypeBuilder.stencil" %}{% block content %}{% include "Helpers/Imports.stencil" %}
+{% extends "Helpers/UnionTypeBuilder.stencil" %}{% block content %}{% include "Helpers/Header.stencil" %}
+{% include "Helpers/Imports.stencil" %}
 
 export namespace {{ name }}FragmentData {
 {% call renderUnionFields "" typeName commonFields collectedFields groupedFragmentSpreads concreteTypeNames fragmentSpreads parentFragment %}
