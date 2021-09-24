@@ -19,8 +19,8 @@ let package = Package(
 	],
 	dependencies: [
 		.package(
-			url: "https://github.com/stencilproject/Stencil.git",
-			.exact("0.13.0")
+			url: "https://github.com/jaredh/Stencil",
+			.branch("master")
 		),
 		.package(
 			url: "https://github.com/JohnSundell/files",
@@ -28,11 +28,11 @@ let package = Package(
 		),
 		.package(
 			url: "https://github.com/jpsim/Yams.git",
-			from: "2.0.0"
+			from: "4.0.6"
 		),
 		.package(
-			url: "https://github.com/apple/swift-package-manager.git",
-			.exact("0.3.0")
+			url: "https://github.com/apple/swift-tools-support-core.git",
+			.exact("0.2.3")
 		),
 		.package(
 			url: "https://github.com/Shopify/SwiftGraphQLParser",
@@ -46,11 +46,11 @@ let package = Package(
 	targets: [
 		.target(
 			name: "Syrup",
-			dependencies: ["SyrupCore", "Utility"]
+			dependencies: ["SyrupCore", "SwiftToolsSupport"]
 		),
 		.target(
 			name: "SyrupCore",
-			dependencies: ["Stencil", "Files", "Yams", "Utility", "SwiftGraphQLParser", "Crypto"]
+			dependencies: ["Stencil", "Files", "Yams", "SwiftToolsSupport", "SwiftGraphQLParser", "Crypto"]
 		),
 		.testTarget(
 			name: "SyrupTests",

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import Basic
+import TSCBasic
 import Files
 import Foundation
 import SwiftGraphQLParser
@@ -122,7 +122,7 @@ public final class Reporter {
 		
 		// Output to console, report.yml and report.md
 		if let outputReportPath = config.deprecationReport {
-			let folder = try Folder(path: outputReportPath.asString)
+			let folder = try Folder(path: outputReportPath.pathString)
 			
 			var mdReport = ""
 			
@@ -137,9 +137,9 @@ public final class Reporter {
 				mdReport += "\n"+"DEPRECATED \(typename) FIELDS\n".mdH2()
 			}
 			
-			func outputDeprecated(element: (key: String, date: Date)) {
-				print("\t\t\(dateFormatter.string(from: element.date))\t\(element.key)".ansiExpiryFlag(element.date))
-				mdReport += "\(dateFormatter.string(from: element.date))\t`\(element.key)`".mdExpiryFlag(element.date) + "\n" // .todo()
+			func outputDeprecated(element: (key: String, value: Date)) {
+				print("\t\t\(dateFormatter.string(from: element.value))\t\(element.key)".ansiExpiryFlag(element.value))
+				mdReport += "\(dateFormatter.string(from: element.value))\t`\(element.key)`".mdExpiryFlag(element.value) + "\n" // .todo()
 			}
 			
 			func outputRemoved(element: (key: String, date: Date)) {

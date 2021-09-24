@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import Basic
+import TSCBasic
 import Foundation
 
 public struct Config {

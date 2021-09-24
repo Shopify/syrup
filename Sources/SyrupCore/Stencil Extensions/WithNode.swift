@@ -27,7 +27,7 @@ import Stencil
 
 final class WithNode: NodeType {
 	class func parse(_ parser: TokenParser, token: Token) throws -> NodeType {
-		let components = token.components()
+		let components = token.components
 		
 		guard components.count == 4 && components[2] == "as" else {
 			throw TemplateSyntaxError("'\(components[0])' statements should use the following '\(components[0]) <variable> as <name>' `\(token.contents)`.")
