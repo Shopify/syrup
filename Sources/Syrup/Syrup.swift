@@ -87,14 +87,14 @@ class Syrup {
 
 		var overview: String {
 			switch self {
-				case .generate:
-					return "Runs the generator. Expected positional arguments in the ordering of <Operations Location> <Models Destination> <Support Files Destination> <Template>\n"
-				case .generateModels:
-					return "Runs the generator and only outputs generated models. Expected positional arguments in the ordering of <Operations Location> <Models Destination> <Template>\n"
-				case .generateSupportFiles:
-					return "Runs the generator and only outputs generated support files. Expected positional arguments in the ordering of <Support Files Destination> <Template>\n"
-				case .report:
-					return "Runs and generates deprecation report only, does not generate any graphql code files. Expected positional arguments in the ordering of <Operations Location> <Template>\n"
+			case .generate:
+				return "Runs the generator. Expected positional arguments in the ordering of <Operations Location> <Models Destination> <Support Files Destination> <Template>\n"
+			case .generateModels:
+				return "Runs the generator and only outputs generated models. Expected positional arguments in the ordering of <Operations Location> <Models Destination> <Template>\n"
+			case .generateSupportFiles:
+				return "Runs the generator and only outputs generated support files. Expected positional arguments in the ordering of <Support Files Destination> <Template>\n"
+			case .report:
+				return "Runs and generates deprecation report only, does not generate any graphql code files. Expected positional arguments in the ordering of <Operations Location> <Template>\n"
 			}
 		}
 

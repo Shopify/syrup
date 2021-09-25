@@ -404,7 +404,7 @@ final class TypeScriptRenderer: Renderer {
 		
 		customExtension.registerFilter("renderPropertyDeclaration") { (value, args) -> Any? in
 			func produceFieldName(field: CollectedField) -> String {
-				if (field.type.isNonNull) {
+				if field.type.isNonNull {
 					return field.name
 				} else {
 					return "\(field.name)?"
