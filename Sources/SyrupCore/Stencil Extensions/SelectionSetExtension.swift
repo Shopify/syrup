@@ -354,7 +354,7 @@ class SelectionSetExtension: Extension {
 				render.append("\n\(spacing)    typeCondition: \(renderTypeScriptTypeCondition(field.parentType)),")
 				
 				if let alias = field.alias {
-					render.append("\n\(spacing)    alias: \(alias),")
+					render.append("\n\(spacing)    alias: \"\(alias)\",")
 				}
 				
 				if let renderedArguments = renderTypeScriptArguments(field.arguments) {

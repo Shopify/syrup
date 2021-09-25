@@ -112,7 +112,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           name: "products",
           type: { name: "ProductConnection", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
-          alias: firstProduct,
+          alias: "firstProduct",
           arguments: { first: { type: "IntValue", value: 1 } },
           selections: ([
             {
@@ -160,7 +160,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           name: "products",
           type: { name: "ProductConnection", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
-          alias: lastProduct,
+          alias: "lastProduct",
           arguments: { first: { type: "IntValue", value: 1 }, reverse: { type: "BooleanValue", value: true } },
           selections: ([
             {

@@ -234,7 +234,7 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
           name: "fulfillmentServices",
           type: { name: "FulfillmentService", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
-          alias: services,
+          alias: "services",
           selections: ([
             {
               name: "__typename",
