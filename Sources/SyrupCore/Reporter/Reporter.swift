@@ -113,7 +113,7 @@ public final class Reporter {
 		}
 		
 		if config.verbose {
-			print("\n[INPUT TYPES] ".ansi("1;35")+"NOTE: Currently unused".ansi("3;90"))
+			print("\n[INPUT TYPES] ".ansi("1;35") + "NOTE: Currently unused".ansi("3;90"))
 		}
 		let deprecatedInputCount = ir.referencedInputTypes.filter { $0.attributes.isDeprecated }.count
 		if config.verbose {
@@ -134,7 +134,7 @@ public final class Reporter {
 			
 			func outputHeader(typename: String) {
 				print( "\t\("[DEPRECATED \(typename) FIELDS]".ansi("36"))" )
-				mdReport += "\n"+"DEPRECATED \(typename) FIELDS\n".mdH2()
+				mdReport += "\n" + "DEPRECATED \(typename) FIELDS\n".mdH2()
 			}
 			
 			func outputDeprecated(element: (key: String, date: Date)) {

@@ -91,18 +91,18 @@ extension Sequence where Iterator.Element == IntermediateRepresentation.Selectio
 extension IntermediateRepresentation.FieldType {
 	func findFields(parentKey: [String], verbose: Bool = false) -> [[String]: IntermediateRepresentation.Field]? {
 		switch self {
-			case .list(let nestedType):
-				return nestedType.findFields(parentKey: parentKey, verbose: verbose)
-			case .nonNull(let nestedType):
-				return nestedType.findFields(parentKey: parentKey, verbose: verbose)
-			case .scalar, .enum:
-				return nil
-			case .object(let object):
-				return object.selectionSet.findFields(parentKey: parentKey, verbose: verbose)
-			case .interface(let interface):
-				return interface.selectionSet.findFields(parentKey: parentKey, verbose: verbose)
-			case .union(let union):
-				return union.selectionSet.findFields(parentKey: parentKey, verbose: verbose)
+		case .list(let nestedType):
+			return nestedType.findFields(parentKey: parentKey, verbose: verbose)
+		case .nonNull(let nestedType):
+			return nestedType.findFields(parentKey: parentKey, verbose: verbose)
+		case .scalar, .enum:
+			return nil
+		case .object(let object):
+			return object.selectionSet.findFields(parentKey: parentKey, verbose: verbose)
+		case .interface(let interface):
+			return interface.selectionSet.findFields(parentKey: parentKey, verbose: verbose)
+		case .union(let union):
+			return union.selectionSet.findFields(parentKey: parentKey, verbose: verbose)
 		}
 	}
 }
@@ -112,14 +112,14 @@ extension Sequence where Iterator.Element == IntermediateRepresentation.Selectio
 		let prefix: String = String(repeating: "\t", count: depth)
 		self.forEach {
 			switch $0 {
-				case .field(let field):
-					field.printInfo(depth: depth)
-				case .fragmentSpread(let spread):
-					print(prefix + "...\(spread.name)")
-				case .inlineFragment(let inline):
-					print(prefix + "... on \(inline.typeCondition.name) {")
-					inline.selectionSet.printInfo(depth: depth + 1)
-					print("\(prefix)}")
+			case .field(let field):
+				field.printInfo(depth: depth)
+			case .fragmentSpread(let spread):
+				print(prefix + "...\(spread.name)")
+			case .inlineFragment(let inline):
+				print(prefix + "... on \(inline.typeCondition.name) {")
+				inline.selectionSet.printInfo(depth: depth + 1)
+				print("\(prefix)}")
 			}
 		}
 	}
@@ -179,26 +179,26 @@ extension IntermediateRepresentation.FieldType {
 	func printInfo(depth: Int, fieldName: String, suffixes: [String] = [String]()) {
 		let prefix: String = String(repeating: "\t", count: depth)
 		switch self {
-			case .list(let nestedType):
-				nestedType.printInfo(depth: depth, fieldName: fieldName, suffixes: suffixes + ["listOf"])
-			case .nonNull(let nestedType):
-				nestedType.printInfo(depth: depth, fieldName: fieldName, suffixes: suffixes + ["nonNull"])
-			case .scalar(let scalarType):
-				print("\(prefix)\(fieldName):\(scalarType.graphType) scalar(\(scalarType.nativeType))[\(suffixes.joined(separator: ","))]")
-			case .enum(let name):
-				print("\(prefix)\(fieldName):\(name) [\(suffixes.joined(separator: ",")),enum]")
-			case .object(let object):
-				print("\(prefix)\(fieldName):\(object.graphQLTypeName) object[\(object.selectionSet.count)][\(suffixes.joined(separator: ","))] {")
-				object.selectionSet.printInfo(depth: depth + 1)
-				print("\(prefix)}")
-			case .interface(let interface):
-				print("\(prefix)\(fieldName):\(interface.graphQLTypeName) interface[\(interface.selectionSet.count)][\(suffixes.joined(separator: ","))] {")
-				interface.selectionSet.printInfo(depth: depth + 1)
-				print("\(prefix)}")
-			case .union(let union):
-				print("\(prefix)\(fieldName):\(union.graphQLTypeName) union[\(union.selectionSet.count)][\(suffixes.joined(separator: ","))] {")
-				union.selectionSet.printInfo(depth: depth + 1)
-				print("\(prefix)}")
+		case .list(let nestedType):
+			nestedType.printInfo(depth: depth, fieldName: fieldName, suffixes: suffixes + ["listOf"])
+		case .nonNull(let nestedType):
+			nestedType.printInfo(depth: depth, fieldName: fieldName, suffixes: suffixes + ["nonNull"])
+		case .scalar(let scalarType):
+			print("\(prefix)\(fieldName):\(scalarType.graphType) scalar(\(scalarType.nativeType))[\(suffixes.joined(separator: ","))]")
+		case .enum(let name):
+			print("\(prefix)\(fieldName):\(name) [\(suffixes.joined(separator: ",")),enum]")
+		case .object(let object):
+			print("\(prefix)\(fieldName):\(object.graphQLTypeName) object[\(object.selectionSet.count)][\(suffixes.joined(separator: ","))] {")
+			object.selectionSet.printInfo(depth: depth + 1)
+			print("\(prefix)}")
+		case .interface(let interface):
+			print("\(prefix)\(fieldName):\(interface.graphQLTypeName) interface[\(interface.selectionSet.count)][\(suffixes.joined(separator: ","))] {")
+			interface.selectionSet.printInfo(depth: depth + 1)
+			print("\(prefix)}")
+		case .union(let union):
+			print("\(prefix)\(fieldName):\(union.graphQLTypeName) union[\(union.selectionSet.count)][\(suffixes.joined(separator: ","))] {")
+			union.selectionSet.printInfo(depth: depth + 1)
+			print("\(prefix)}")
 		}
 	}
 }

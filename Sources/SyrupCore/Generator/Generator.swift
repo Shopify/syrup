@@ -182,7 +182,7 @@ public final class Generator {
 		print("Writing to \(fileType.directory)")
 		var generatedFiles: [File] = []
 		for generated in zip(namesClosure(intermediateRepresentation), try renderer(intermediateRepresentation)) {
-			let filename =  "\(generated.0.name)\(fileType.file)\(config.project.filenameSuffix ?? "").\(config.template.specification.extension)"
+			let filename = "\(generated.0.name)\(fileType.file)\(config.project.filenameSuffix ?? "").\(config.template.specification.extension)"
 			if config.verbose {
 				print("🥊 \(filename)")
 			}
