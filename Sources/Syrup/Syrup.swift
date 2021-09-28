@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import Basic
+import TSCBasic
 import Foundation
 import SyrupCore
-import Utility
+import TSCUtility
 import Yams
 
 class Syrup {
@@ -201,7 +201,7 @@ class Syrup {
 				}
 				
 				guard Arguments.isValidTemplate(absoluteTemplatePath) else {
-					fatalError("Cannot read template file at path \(absoluteTemplatePath.asString)")
+					fatalError("Cannot read template file at path \(absoluteTemplatePath.pathString)")
 				}
 				options.template = absoluteTemplatePath
 			}
@@ -257,20 +257,20 @@ class Syrup {
 				print("\(Syrup.version)", to: &stdoutStream)
 				stdoutStream.flush()
 			} else {
-				let projectUrl = URL(fileURLWithPath: syrupArgs.project.asString)
+				let projectUrl = URL(fileURLWithPath: syrupArgs.project.pathString)
 				let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
-				let schemaUrl = URL(fileURLWithPath: syrupArgs.schema.asString)
+				let schemaUrl = URL(fileURLWithPath: syrupArgs.schema.pathString)
 				var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
 				if let overridenSchema = syrupArgs.overridenSchema {
 					schema.location = overridenSchema
 				}
-				let template = try TemplateSpec(location: syrupArgs.template.asString)
+				let template = try TemplateSpec(location: syrupArgs.template.pathString)
 				let config = SyrupCore.Config(
 					shouldGenerateModels: syrupArgs.shouldGenerateModels,
 					shouldGenerateSupportFiles: syrupArgs.shouldGenerateSupportFiles,
-					queries: syrupArgs.queries.asString,
-					destination: syrupArgs.destination.asString,
-					supportFilesDestination: syrupArgs.supportFilesDestination.asString,
+					queries: syrupArgs.queries.pathString,
+					destination: syrupArgs.destination.pathString,
+					supportFilesDestination: syrupArgs.supportFilesDestination.pathString,
 					template: template,
 					project: project,
 					schema: schema,

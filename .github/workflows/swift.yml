@@ -17,10 +17,15 @@ jobs:
   Linux:
 
     runs-on: ubuntu-latest
-    container: swift:5.3.1
+    container: swift:5.5.0
 
     steps:
     - uses: actions/checkout@v1
+    - name: Install packages
+      shell: bash
+      run: |
+        apt-get update --assume-yes
+        apt-get install --assume-yes libsqlite3-dev
     - name: Build
       run: swift build -v
     - name: Run tests

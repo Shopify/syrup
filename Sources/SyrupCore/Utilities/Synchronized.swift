@@ -23,7 +23,7 @@
  */
 
 import Foundation
-import Basic
+import TSCBasic
 
 struct Synchronized<T> {
 	private let lock = Lock()
