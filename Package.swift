@@ -46,11 +46,11 @@ let package = Package(
 	targets: [
 		.target(
 			name: "Syrup",
-			dependencies: ["SyrupCore", "SwiftToolsSupport"]
+			dependencies: ["SyrupCore", "SwiftToolsSupport-auto"]
 		),
 		.target(
 			name: "SyrupCore",
-			dependencies: ["Stencil", "Files", "Yams", "SwiftToolsSupport", "SwiftGraphQLParser", "Crypto"]
+			dependencies: ["Stencil", "Files", "Yams", "SwiftToolsSupport-auto", "SwiftGraphQLParser", "Crypto"]
 		),
 		.testTarget(
 			name: "SyrupTests",
