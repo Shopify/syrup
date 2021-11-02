@@ -35,12 +35,7 @@ export const copyWithTypeCondition: (
   typeCondition: TypeDefinition | null
 ) => GraphSelection = (selection, typeCondition) => {
   return {
-    name: selection.name,
-    arguments: selection.arguments,
-    type: selection.type,
-    passedGID: selection.passedGID,
+    ...selection,
     typeCondition: typeCondition,
-    directive: selection.directive,
-    selections: selection.selections
   }
 }
