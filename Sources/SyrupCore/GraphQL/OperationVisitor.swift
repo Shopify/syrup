@@ -274,6 +274,7 @@ final class OperationVisitor: GraphQLBaseVisitor {
 	}
 	
 	override func visitObjectField(objectField: SwiftGraphQLParser.ObjectField) {
+		updateContextCounts()
 		valueContext.push(.objectField)
 		currentOperationContents += "\(objectField.name): "
 	}
@@ -296,9 +297,11 @@ final class OperationVisitor: GraphQLBaseVisitor {
 		valueContext.push(.object)
 		objectFieldsSize = objectValue.count
 		objectFieldCount = 0
+		currentOperationContents += valuePrefix()
 	}
 	
 	override func exitObjectValue(objectValue: [SwiftGraphQLParser.ObjectField]) {
+		currentOperationContents += valueSuffix()
 		valueContext.pop()
 	}
 	
