@@ -2,6 +2,12 @@
 
 export type { BasicFragmentFragmentData } from "./BasicFragment"
 export { basicFragmentSelections } from "./BasicFragment"
+export type { EventAlertFragmentData } from "./EventAlert"
+export { eventAlertSelections } from "./EventAlert"
+export type { EventAttributeFieldsFragmentData } from "./EventAttributeFields"
+export { eventAttributeFieldsSelections } from "./EventAttributeFields"
+export type { EventPreviewInfoFragmentData } from "./EventPreviewInfo"
+export { eventPreviewInfoSelections } from "./EventPreviewInfo"
 export type { NodeIdFragmentData } from "./NodeId"
 export { nodeIdSelections } from "./NodeId"
 export type { ProductNodeTitleFragmentData } from "./ProductNodeTitle"

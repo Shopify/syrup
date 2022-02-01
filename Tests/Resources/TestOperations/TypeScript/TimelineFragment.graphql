@@ -6,11 +6,9 @@ fragment TimelineFragment on EventConnection {
     cursor
     node {
       id
-      createdAt
-      message
-      attributeToApp
-      attributeToUser
-      criticalAlert
+      ...EventPreviewInfo
+      ...EventAttributeFields
+      ...EventAlert
       ... on CommentEvent {
         edited
         canEdit
@@ -28,4 +26,18 @@ fragment TimelineFragment on EventConnection {
       }
     }
   }
+}
+
+fragment EventPreviewInfo on Event {
+  createdAt
+  message
+}
+
+fragment EventAttributeFields on Event {
+  attributeToApp
+  attributeToUser
+}
+
+fragment EventAlert on Event {
+  criticalAlert
 }

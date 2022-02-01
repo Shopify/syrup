@@ -1,0 +1,12 @@
+{% macro renderFragmentsFromBarrel allReferencedFragments %}import {
+  {% for name in allReferencedFragments %}{{ name }}FragmentData,
+  {{ name|lowercasedFirstLetter }}Selections,
+  {% endfor %}
+} from "../Fragments"
+{% endmacro %}
+{% macro renderFragmentsLocally allReferencedFragments %}{% for name in allReferencedFragments %}import {
+  {{ name }}FragmentData,
+  {{ name|lowercasedFirstLetter }}Selections,
+} from "./{{ name }}"
+{% endfor %}{% endmacro %}
+{% if isFragment %}{% call renderFragmentsLocally allReferencedFragments %}{% else %}{% call renderFragmentsFromBarrel allReferencedFragments %}{% endif %}

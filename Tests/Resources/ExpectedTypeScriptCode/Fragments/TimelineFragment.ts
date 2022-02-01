@@ -1,6 +1,18 @@
 // Syrup auto-generated file
 
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
+import {
+  EventPreviewInfoFragmentData,
+  eventPreviewInfoSelections,
+} from "./EventPreviewInfo"
+import {
+  EventAttributeFieldsFragmentData,
+  eventAttributeFieldsSelections,
+} from "./EventAttributeFields"
+import {
+  EventAlertFragmentData,
+  eventAlertSelections,
+} from "./EventAlert"
 
 export namespace TimelineFragmentFragmentData {
   export interface PageInfo {
@@ -68,31 +80,11 @@ export namespace TimelineFragmentFragmentData {
      */
     attachments: EdgesNodeCommentEventAttachments[];
   }
-  export interface EdgesNode_BaseFields_ {
+  export interface EdgesNode_BaseFields_ extends EventPreviewInfoFragmentData._BaseFields_, EventAttributeFieldsFragmentData._BaseFields_, EventAlertFragmentData._BaseFields_ {
     /**
      * Globally unique identifier.
      */
     id: ID;
-    /**
-     * The date and time when the event was created.
-     */
-    createdAt: string;
-    /**
-     * Human readable text that describes the event.
-     */
-    message: string;
-    /**
-     * Whether the event was created by an app.
-     */
-    attributeToApp: boolean;
-    /**
-     * Whether the event was caused by an admin user.
-     */
-    attributeToUser: boolean;
-    /**
-     * Whether the event is critical.
-     */
-    criticalAlert: boolean;
   }
   export type EdgesNode = EdgesNode_BaseFields_ & (EdgesNodeCommentEvent | EdgesNodeOther)
   export interface Edges {
@@ -176,31 +168,6 @@ export const timelineFragmentSelections: GraphSelection[] = ([
             typeCondition: { name: "Event", definedType: "Interface" },
           }, 
           {
-            name: "createdAt",
-            type: { name: "DateTime", definedType: "Scalar" },
-            typeCondition: { name: "Event", definedType: "Interface" },
-          }, 
-          {
-            name: "message",
-            type: { name: "FormattedString", definedType: "Scalar" },
-            typeCondition: { name: "Event", definedType: "Interface" },
-          }, 
-          {
-            name: "attributeToApp",
-            type: { name: "Boolean", definedType: "Scalar" },
-            typeCondition: { name: "Event", definedType: "Interface" },
-          }, 
-          {
-            name: "attributeToUser",
-            type: { name: "Boolean", definedType: "Scalar" },
-            typeCondition: { name: "Event", definedType: "Interface" },
-          }, 
-          {
-            name: "criticalAlert",
-            type: { name: "Boolean", definedType: "Scalar" },
-            typeCondition: { name: "Event", definedType: "Interface" },
-          }, 
-          {
             name: "__typename",
             type: { name: "String", definedType: "Scalar" },
             typeCondition: { name: "CommentEvent", definedType: "Object" },
@@ -274,7 +241,7 @@ export const timelineFragmentSelections: GraphSelection[] = ([
               }
             ] as GraphSelection[])
           }
-        ] as GraphSelection[])
+        ] as GraphSelection[]).concat(eventPreviewInfoSelections).concat(eventAttributeFieldsSelections).concat(eventAlertSelections)
       }
     ] as GraphSelection[])
   }

@@ -84,6 +84,7 @@ final class TypeScriptRenderer: Renderer {
 			fields: fields,
 			fragmentSpreads: fragmentSpreads,
 			extras: [
+				"isFragment": true,
 				"allReferencedFragments": referencedImports.fragments,
 				"allReferencedEnums": referencedImports.enums,
 				"selections": fragment.selectionSet
@@ -107,6 +108,7 @@ final class TypeScriptRenderer: Renderer {
 			collectedFields: collectedFields,
 			groupedFragmentSpreads: groupedFragmentSpreads,
 			extras: [
+				"isFragment": true,
 				"allReferencedFragments": referencedImports.fragments,
 				"allReferencedEnums": referencedImports.enums,
 				"selections": fragment.selectionSet
