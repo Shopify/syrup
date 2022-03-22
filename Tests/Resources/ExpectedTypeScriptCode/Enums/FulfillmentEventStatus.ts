@@ -46,9 +46,4 @@ export enum FulfillmentEventStatus {
    * The fulfillment request failed.
    */
   Failure = "FAILURE",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

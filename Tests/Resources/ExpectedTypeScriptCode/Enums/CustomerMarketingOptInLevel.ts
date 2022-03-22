@@ -18,9 +18,4 @@ export enum CustomerMarketingOptInLevel {
    * The customer receives marketing emails, but the original opt-in process is unknown.
    */
   Unknown = "UNKNOWN",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

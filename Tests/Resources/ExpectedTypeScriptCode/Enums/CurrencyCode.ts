@@ -768,9 +768,4 @@ export enum CurrencyCode {
    * Zambian Kwacha (ZMW).
    */
   Zmw = "ZMW",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

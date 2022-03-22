@@ -11,9 +11,4 @@ export enum ProductVariantInventoryPolicy {
    * Continue selling a product variant when it is out of stock.
    */
   Continue = "CONTINUE",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

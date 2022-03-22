@@ -24,7 +24,7 @@ export interface {{ name }} {
 const document: SyrupOperation<{{ name }}, {% if operation.variables.count > 0 %}{{ name }}.Variables{% else %}{}{% endif %}> = {
   id: "{{ queryString|encryptData }}",
   name: "{{ operation.name }}",
-  source: "{{ queryString|replace:"$","\$"|replaceQuotes }}",
+  source: "{{ queryString|replace:"$","\$"|replaceTypeScriptQuotes }}",
   operationType: '{{ operation|renderOperationTypeName|lowercase } }}',
   selections: {{ selections|renderTypeScriptSelections:null,2 }}
 }

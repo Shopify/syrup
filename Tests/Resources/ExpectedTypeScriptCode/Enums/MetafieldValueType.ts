@@ -16,9 +16,4 @@ export enum MetafieldValueType {
    * A JSON string.
    */
   JsonString = "JSON_STRING",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

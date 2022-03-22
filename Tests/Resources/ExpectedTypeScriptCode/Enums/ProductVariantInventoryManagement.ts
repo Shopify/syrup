@@ -16,9 +16,4 @@ export enum ProductVariantInventoryManagement {
    * A third-party fulfillment service tracks this product variant's inventory.
    */
   FulfillmentService = "FULFILLMENT_SERVICE",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

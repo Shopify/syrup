@@ -16,9 +16,4 @@ export enum PrivateMetafieldValueType {
    * A private metafield value type.
    */
   JsonString = "JSON_STRING",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

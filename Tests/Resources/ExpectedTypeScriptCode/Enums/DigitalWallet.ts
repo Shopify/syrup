@@ -21,9 +21,4 @@ export enum DigitalWallet {
    * Shopify Pay.
    */
   ShopifyPay = "SHOPIFY_PAY",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }
