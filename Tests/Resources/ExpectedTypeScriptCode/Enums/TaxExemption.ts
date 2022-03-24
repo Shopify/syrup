@@ -101,9 +101,4 @@ export enum TaxExemption {
    * This customer is exempt from specific taxes for holding a valid FARMER_EXEMPTION in Saskatchewan.
    */
   CaSkFarmerExemption = "CA_SK_FARMER_EXEMPTION",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

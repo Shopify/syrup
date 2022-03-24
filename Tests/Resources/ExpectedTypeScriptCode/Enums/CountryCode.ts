@@ -1211,9 +1211,4 @@ export enum CountryCode {
    * Zimbabwe.
    */
   Zw = "ZW",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

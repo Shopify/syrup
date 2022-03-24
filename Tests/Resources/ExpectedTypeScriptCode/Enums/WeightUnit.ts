@@ -21,9 +21,4 @@ export enum WeightUnit {
    * Imperial system unit of mass.
    */
   Ounces = "OUNCES",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

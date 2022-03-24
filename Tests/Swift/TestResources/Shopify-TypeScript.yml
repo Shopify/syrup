@@ -1,4 +1,4 @@
-location: https://app.shopify.com/services/graphql/introspection/admin?api_client_api_key=55c57a22d1f71e7aefa627803d712d69
+location: Tests/Swift/TestResources/Shopify-Schema.json
 customScalars:
 - graphType: Money
   nativeType: number

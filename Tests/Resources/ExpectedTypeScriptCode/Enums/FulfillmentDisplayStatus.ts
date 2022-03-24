@@ -76,9 +76,4 @@ export enum FulfillmentDisplayStatus {
    * Displayed as **Submitted**.
    */
   Submitted = "SUBMITTED",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

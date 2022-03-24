@@ -51,9 +51,4 @@ export enum CollectionRuleRelation {
    * The attribute starts with the condition.
    */
   StartsWith = "STARTS_WITH",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

@@ -51,9 +51,4 @@ export enum CollectionRuleColumn {
    * The `variant_title` attribute.
    */
   VariantTitle = "VARIANT_TITLE",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

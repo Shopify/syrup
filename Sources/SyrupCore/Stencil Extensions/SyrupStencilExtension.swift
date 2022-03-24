@@ -45,6 +45,7 @@ final class SyrupStencilExtension: Extension {
 		registerFilter("lowercasedFirstLetter", filter: SyrupStencilExtension.lowercasedFirstLetter)
 		registerFilter("replace", filter: SyrupStencilExtension.replace)
 		registerFilter("replaceQuotes", filter: SyrupStencilExtension.replaceQuotes)
+		registerFilter("replaceTypeScriptQuotes", filter: SyrupStencilExtension.replaceTypeScriptQuotes)
 		registerFilter("capitalizeFirstLetter", filter: SyrupStencilExtension.capitalizeFirstLetter)
 		registerFilter("pascalCase", filter: SyrupStencilExtension.pascalCase)
 		registerFilter("encryptData", filter: SyrupStencilExtension.encryptData)
@@ -90,6 +91,11 @@ final class SyrupStencilExtension: Extension {
 	static func replaceQuotes(_ value: Any?) throws -> Any? {
 		guard let value = value as? String else { return nil }
 		return value.replacingOccurrences(of: "\"", with: "\\\\\\\"")
+	}
+	
+	static func replaceTypeScriptQuotes(_ value: Any?) throws -> Any? {
+		guard let value = value as? String else { return nil }
+		return value.replacingOccurrences(of: "\"", with: "\\\"")
 	}
 	
 	static func capitalizeFirstLetter(_ value: Any?) throws -> Any? {

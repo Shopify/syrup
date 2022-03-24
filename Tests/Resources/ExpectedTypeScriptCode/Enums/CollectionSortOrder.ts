@@ -41,9 +41,4 @@ export enum CollectionSortOrder {
    * By price, in descending order (highest - lowest).
    */
   PriceDesc = "PRICE_DESC",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }

@@ -36,9 +36,4 @@ export enum OrderDisplayFulfillmentStatus {
    * Displayed as **In progress**.
    */
   InProgress = "IN_PROGRESS",
-
-  /**
-   * Unknown Syrup enum.
-   */
-  UnknownSyrupEnum = "UNKNOWN_SYRUP_ENUM"
 }
