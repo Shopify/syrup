@@ -28,12 +28,40 @@ import Files
 enum FileParser {
 	enum FileParserError: LocalizedError {
 		case duplicateFile(String)
+		case invalidPathExtension(path: String)
+		case invalidEncoding(path: String)
 		
 		var errorDescription: String? {
 			switch self {
 			case .duplicateFile(let name):
 				return "Found duplicate file named \(name)"
+			case let .invalidPathExtension(path):
+				return #"Invalid path extension given (\#(path)).  All path extensions must end in "graphql""#
+			case let .invalidEncoding(path):
+				return "Invalid file encoding for \(path).  Files must use UTF-8 encoding"
 			}
+		}
+	}
+	
+	static func parseFiles(
+		at paths: [String]
+	) throws -> [String: String] {
+		try paths.reduce(into: [:]) { accumulator, path in
+			let file = try File(path: path)
+			
+			guard file.extension == "graphql" else {
+				throw FileParserError.invalidPathExtension(path: path)
+			}
+			
+			guard let string = String(data: try file.read(), encoding: .utf8) else {
+				throw FileParserError.invalidEncoding(path: path)
+			}
+			
+			guard !accumulator.keys.contains(file.name) else {
+				throw FileParserError.duplicateFile(file.name)
+			}
+			
+			accumulator[file.name] = string
 		}
 	}
 	

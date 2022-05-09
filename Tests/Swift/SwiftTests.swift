@@ -25,9 +25,14 @@ class SwiftTests: XCTestCase {
 		return baseURL.appendingPathComponent("../Resources", isDirectory: true)
 	}
 	
-	func assertGeneratedCode(language: String, recordMode: Bool = SwiftTests.recordMode, file: StaticString = #file, line: UInt = #line) throws {
-		let queries = resourcesURL.appendingPathComponent("TestOperations/\(language)").path
-		let expectedDestinationURL = resourcesURL.appendingPathComponent("Expected\(language)Code")
+	func assertGeneratedCode(
+		language: TemplateSpec.Specification.Language,
+		recordMode: Bool = SwiftTests.recordMode,
+		file: StaticString = #file,
+		line: UInt = #line
+	) throws {
+		let queries = resourcesURL.appendingPathComponent("TestOperations/\(language.testFolderTemplateString)/GenerateMultipleFiles").path
+		let expectedDestinationURL = resourcesURL.appendingPathComponent("Expected\(language.testFolderTemplateString)Code/GenerateMultipleFiles")
 		let destinationURL: URL
 		if recordMode {
 			destinationURL = expectedDestinationURL
@@ -37,18 +42,19 @@ class SwiftTests: XCTestCase {
 		let destination = destinationURL.path
 		let supportFilesDestination = destination
 		
-		let projectUrl = testResourcesURL.appendingPathComponent("Shopify-\(language).yml")
+		let projectUrl = testResourcesURL.appendingPathComponent("Shopify-\(language.testFolderTemplateString).yml")
 		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
-		let schemaUrl = testResourcesURL.appendingPathComponent("Shopify-\(language).yml")
+		let schemaUrl = testResourcesURL.appendingPathComponent("Shopify-\(language.testFolderTemplateString).yml")
 		var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
 		schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
 		
-		let templateURL = baseURL.appendingPathComponent("../../Templates/\(language)", isDirectory: true)
+		let templateURL = baseURL.appendingPathComponent("../../Templates/\(language.testFolderTemplateString)", isDirectory: true)
 		let template = try TemplateSpec(location: templateURL.path)
 		
 		let config = SyrupCore.Config(
 			shouldGenerateModels: true,
 			shouldGenerateSupportFiles: true,
+			shouldCleanupFiles: true,
 			queries: queries,
 			destination: destination,
 			supportFilesDestination: supportFilesDestination,
@@ -57,7 +63,8 @@ class SwiftTests: XCTestCase {
 			schema: schema,
 			verbose: false,
 			outputReportFilePath: nil,
-			shouldOverwriteReport: false
+			shouldOverwriteReport: false,
+			filesToUpdate: .folder(path: queries)
 		)
 		let generator = Generator(config: config)
 		try generator.generate()
@@ -73,15 +80,141 @@ class SwiftTests: XCTestCase {
 	}
 	
 	func testSwiftGeneratedFiles() throws {
-		try assertGeneratedCode(language: "Swift")
+		try assertGeneratedCode(language: .swift)
 	}
 	
 	func testKotlinGeneratedFiles() throws {
-		try assertGeneratedCode(language: "Kotlin")
+		try assertGeneratedCode(language: .kotlin)
 	}
 	
 	func testTypeScriptGeneratedFiles() throws {
-		try assertGeneratedCode(language: "TypeScript")
+		try assertGeneratedCode(language: .typescript)
+	}
+	
+	func singleFileGeneratedCode(
+		language: TemplateSpec.Specification.Language,
+		recordMode: Bool = SwiftTests.recordMode,
+		file: StaticString = #file,
+		line: UInt = #line
+	) throws {
+		let queries = resourcesURL.appendingPathComponent("TestOperations/\(language.testFolderTemplateString)/GenerateSingleFile").path
+		let filePathToUpdate = resourcesURL.appendingPathComponent("TestOperations/\(language.testFolderTemplateString)/GenerateSingleFile/ShopDetails.graphql").path
+		let expectedDestinationURL = resourcesURL.appendingPathComponent("Expected\(language.testFolderTemplateString)Code/GenerateSingleFile")
+		let destinationURL: URL
+		if SwiftTests.recordMode {
+			destinationURL = expectedDestinationURL
+		} else {
+			destinationURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString, isDirectory: true)
+		}
+		let destination = destinationURL.path
+		let supportFilesDestination = destination
+		
+		let projectUrl = testResourcesURL.appendingPathComponent("Shopify-\(language.testFolderTemplateString).yml")
+		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
+		let schemaUrl = testResourcesURL.appendingPathComponent("Shopify-\(language.testFolderTemplateString).yml")
+		var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
+		schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
+		
+		let templateURL = baseURL.appendingPathComponent("../../Templates/\(language.testFolderTemplateString)", isDirectory: true)
+		let template = try TemplateSpec(location: templateURL.path)
+		
+		let config = SyrupCore.Config(
+			shouldGenerateModels: true,
+			shouldGenerateSupportFiles: true,
+			shouldCleanupFiles: false,
+			queries: queries,
+			destination: destination,
+			supportFilesDestination: supportFilesDestination,
+			template: template,
+			project: project,
+			schema: schema,
+			verbose: false,
+			outputReportFilePath: nil,
+			shouldOverwriteReport: false,
+			filesToUpdate: .files(paths: [filePathToUpdate])
+		)
+		let generator = Generator(config: config)
+		try generator.generate()
+		
+		if SwiftTests.recordMode {
+			XCTFail("Running in record mode")
+		} else {
+			let expectedFilesFolder = try Folder(path: expectedDestinationURL.path)
+			let generatedFilesFolder = try Folder(path: destinationURL.path)
+			XCTAssertNoThrow(try Folder.compareContents(expected: expectedFilesFolder, actual: generatedFilesFolder), file: file, line: line)
+			try generatedFilesFolder.delete()
+		}
+	}
+	
+	func testSwiftSingleFile() throws {
+		try singleFileGeneratedCode(language: .swift)
+	}
+	
+	func testKotlinSingleFile() throws {
+		try singleFileGeneratedCode(language: .kotlin)
+	}
+	
+	func testTypeScriptSingleFile() throws {
+		try singleFileGeneratedCode(language: .typescript)
+	}
+	
+	func twoFilesGeneratedCode(
+		language: TemplateSpec.Specification.Language,
+		recordMode: Bool = SwiftTests.recordMode,
+		file: StaticString = #file,
+		line: UInt = #line
+	) throws {
+		let queries = resourcesURL.appendingPathComponent("TestOperations/\(language.testFolderTemplateString)/GenerateTwoFiles").path
+		let filePathToUpdate = resourcesURL.appendingPathComponent("TestOperations/\(language.testFolderTemplateString)/GenerateTwoFiles/CustomerEvents.graphql").path
+		let expectedDestinationURL = resourcesURL.appendingPathComponent("Expected\(language.testFolderTemplateString)Code/GenerateTwoFiles")
+		let destinationURL: URL
+		if SwiftTests.recordMode {
+			destinationURL = expectedDestinationURL
+		} else {
+			destinationURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString, isDirectory: true)
+		}
+		let destination = destinationURL.path
+		let supportFilesDestination = destination
+		
+		let projectUrl = testResourcesURL.appendingPathComponent("Shopify-\(language.testFolderTemplateString).yml")
+		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
+		let schemaUrl = testResourcesURL.appendingPathComponent("Shopify-\(language.testFolderTemplateString).yml")
+		var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
+		schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
+		
+		let templateURL = baseURL.appendingPathComponent("../../Templates/\(language.testFolderTemplateString)", isDirectory: true)
+		let template = try TemplateSpec(location: templateURL.path)
+		
+		let config = SyrupCore.Config(
+			shouldGenerateModels: true,
+			shouldGenerateSupportFiles: true,
+			shouldCleanupFiles: false,
+			queries: queries,
+			destination: destination,
+			supportFilesDestination: supportFilesDestination,
+			template: template,
+			project: project,
+			schema: schema,
+			verbose: false,
+			outputReportFilePath: nil,
+			shouldOverwriteReport: false,
+			filesToUpdate: .files(paths: [filePathToUpdate])
+		)
+		let generator = Generator(config: config)
+		try generator.generate()
+		
+		if SwiftTests.recordMode {
+			XCTFail("Running in record mode")
+		} else {
+			let expectedFilesFolder = try Folder(path: expectedDestinationURL.path)
+			let generatedFilesFolder = try Folder(path: destinationURL.path)
+			XCTAssertNoThrow(try Folder.compareContents(expected: expectedFilesFolder, actual: generatedFilesFolder), file: file, line: line)
+			try generatedFilesFolder.delete()
+		}
+	}
+	
+	func testSwiftTwoFiles() throws {
+		try twoFilesGeneratedCode(language: .swift)
 	}
 }
 
@@ -147,5 +280,18 @@ extension Sequence where Element: Location {
 		return self.sorted(by: { (lhs, rhs) -> Bool in
 			return lhs.name < rhs.name
 		})
+	}
+}
+
+extension TemplateSpec.Specification.Language {
+	var testFolderTemplateString: String {
+		switch self {
+		case .swift:
+			return "Swift"
+		case .kotlin:
+			return "Kotlin"
+		case .typescript:
+			return "TypeScript"
+		}
 	}
 }

@@ -41,10 +41,10 @@ public final class Reporter {
 	}
 
 	public func generateReport() throws {
+		guard case let .folder(path) = config.filesToUpdate else { return }
+		
+		let queryFolder = try Folder(path: path)
 		let schema = try loadSchema(location: config.schema.location)
-
-		let queryFolder = try Folder(path: config.queries)
-
 		let graphQLFiles = try queryFolder.fetchGraphQLFiles()
 		let graphQLString = graphQLFiles.reduce("", { (result, element) -> String in result + "\n" + element.value })
 		let document = try SwiftGraphQLParser.parse(graphQLString)

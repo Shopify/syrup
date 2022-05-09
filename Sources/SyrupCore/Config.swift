@@ -26,8 +26,14 @@ import TSCBasic
 import Foundation
 
 public struct Config {
+	public enum FilesToUpdate {
+		case folder(path: String)
+		case files(paths: [String])
+	}
+	
 	var shouldGenerateModels: Bool
 	var shouldGenerateSupportFiles: Bool
+	var shouldCleanupFiles: Bool
 	var queries: String
 	var destination: String
 	var supportFilesDestination: String
@@ -37,10 +43,12 @@ public struct Config {
 	var verbose: Bool
 	var deprecationReport: AbsolutePath? = nil
 	var shouldOverwriteReport: Bool = false
+	var filesToUpdate: FilesToUpdate
 
-	public init(shouldGenerateModels: Bool, shouldGenerateSupportFiles: Bool, queries: String, destination: String, supportFilesDestination: String, template: TemplateSpec, project: ProjectSpec, schema: SchemaSpec, verbose: Bool, outputReportFilePath: AbsolutePath?, shouldOverwriteReport: Bool) {
+	public init(shouldGenerateModels: Bool, shouldGenerateSupportFiles: Bool, shouldCleanupFiles: Bool, queries: String, destination: String, supportFilesDestination: String, template: TemplateSpec, project: ProjectSpec, schema: SchemaSpec, verbose: Bool, outputReportFilePath: AbsolutePath?, shouldOverwriteReport: Bool, filesToUpdate: FilesToUpdate) {
 		self.shouldGenerateModels = shouldGenerateModels
 		self.shouldGenerateSupportFiles = shouldGenerateSupportFiles
+		self.shouldCleanupFiles = shouldCleanupFiles
 		self.queries = queries
 		self.destination = destination
 		self.supportFilesDestination = supportFilesDestination
@@ -50,5 +58,6 @@ public struct Config {
 		self.verbose = verbose
 		self.deprecationReport = outputReportFilePath
 		self.shouldOverwriteReport = shouldOverwriteReport
+		self.filesToUpdate = filesToUpdate
 	}
 }

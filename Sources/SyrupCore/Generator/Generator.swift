@@ -33,20 +33,40 @@ public final class Generator {
 		self.config = config
 	}
 	
+	private func operations(
+		given rawOperations: [String: String],
+		fallback operations: (queries: [String : String], mutations: [String : String], subscriptions: [String : String], fragments: [String : String])? = nil
+	) throws -> (
+		queries: [String : String],
+		mutations: [String : String],
+		subscriptions: [String : String],
+		fragments: [String : String]
+	) {
+		try validateOperations(operations: rawOperations)
+		
+		let graphQLString = rawOperations.reduce(into: "") { accumulator, file in
+			accumulator.append(contentsOf: "\n\(file.value)")
+		}
+		return try Generator.parseOperations(graphQLString: graphQLString)
+	}
+	
 	public func generate() throws {
 		let schema = try loadSchema(location: config.schema.location)
 		if config.shouldGenerateModels {
 			print("Generating models")
 			try Folder.root.createSubfolderIfNeeded(at: config.destination)
-			let rawOperations = try FileParser.parseFiles(at: config.queries)
-			try validateOperations(operations: rawOperations)
-			let graphQLString = rawOperations.reduce("") { (result, file) -> String in
-				let operation = file.value
-				return "\(result)\n\(operation)"
-			}
-			let operations = try Generator.parseOperations(graphQLString: graphQLString)
-			let selectionSets = try generateSelectionSets(schema: schema, queries: operations.queries, mutations: operations.mutations, subscriptions: operations.subscriptions, fragments: operations.fragments)
-			let ir = try generateIntermediateRepresentation(schema: schema, customScalars: config.schema.customScalars, queries: operations.queries, mutations: operations.mutations, subscriptions: operations.subscriptions, fragments: operations.fragments)
+			let rawOperations: [String: String] = try {
+				switch config.filesToUpdate {
+				case let .folder(path):
+					return try FileParser.parseFiles(at: path)
+				case let .files(paths):
+					return try FileParser.parseFiles(at: paths)
+				}
+			}()
+			let filesToBeUpdatedOperations = try operations(given: rawOperations)
+			let fullOperations = try operations(given: try FileParser.parseFiles(at: config.queries))
+			let selectionSets = try generateSelectionSets(schema: schema, queries: filesToBeUpdatedOperations.queries, mutations: filesToBeUpdatedOperations.mutations, subscriptions: filesToBeUpdatedOperations.subscriptions, fragments: filesToBeUpdatedOperations.fragments)
+			let ir = try generateIntermediateRepresentation(schema: schema, customScalars: config.schema.customScalars, queries: filesToBeUpdatedOperations.queries, mutations: filesToBeUpdatedOperations.mutations, subscriptions: filesToBeUpdatedOperations.subscriptions, fragments: fullOperations.fragments)
 			let generatedFiles: [File]
 			switch config.template.specification.language {
 			case .swift:
@@ -62,7 +82,10 @@ public final class Generator {
 			}
 			
 			print("Successfully wrote generated models to \(config.destination)")
-			try cleanup(folder: try Folder(path: config.destination), generated: Set(generatedFiles))
+			
+			if config.shouldCleanupFiles {
+				try cleanup(folder: try Folder(path: config.destination), generated: Set(generatedFiles))
+			}
 		}
 		
 		if config.shouldGenerateSupportFiles {
@@ -174,6 +197,19 @@ public final class Generator {
 		let traverser = GraphQLTraverser(document: document, with: visitor)
 		try traverser.traverse()
 		return visitor.results
+	}
+	
+	func generateSelectionSets(
+		schema: Schema,
+		operations: (queries: [String: String], mutations: [String: String], subscriptions: [String: String], fragments: [String: String]),
+		fallbackOperations: (queries: [String: String], mutations: [String: String], subscriptions: [String: String], fragments: [String: String])
+	) throws -> SelectionSetVisitor.Results {
+		fatalError()
+//		let visitor = SelectionSetVisitor(schema: schema)
+//		let document = try parse(queries: queries.map { $0.value }, mutations: mutations.map { $0.value }, subscriptions: subscriptions.map { $0.value }, fragments: fragments.map { $0.value })
+//		let traverser = GraphQLTraverser(document: document, with: visitor)
+//		try traverser.traverse()
+//		return visitor.results
 	}
 	
 	private func render<T: NamedItem>(intermediateRepresentation: IntermediateRepresentation, namesClosure: (IntermediateRepresentation) -> [T], fileType: FileType, renderer: (IntermediateRepresentation) throws -> [String]) throws -> [File] {

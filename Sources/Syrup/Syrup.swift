@@ -59,6 +59,9 @@ class Syrup {
 
 		/// If the current version of the tool should be printed
 		var shouldPrintVersion: Bool = false
+		
+		/// The optional file paths used in the `generate-based-on-files` command
+		var filePaths: [String]?
 
 		var verbose: Bool = false
 
@@ -81,6 +84,7 @@ class Syrup {
 
 	enum Command: String {
 		case generate
+		case generateBasedOnFiles = "generate-based-on-files"
 		case generateModels = "generate-models"
 		case generateSupportFiles = "generate-support-files"
 		case report = "report"
@@ -88,7 +92,9 @@ class Syrup {
 		var overview: String {
 			switch self {
 			case .generate:
-				return "Runs the generator. Expected positional arguments in the ordering of <Operations Location> <Models Destination> <Support Files Destination> <Template>\n"
+				return "Runs the generator. Expected positional arguments in the ordering of <Operations Location -- a folder containing GraphQL files> <Models Destination> <Support Files Destination> <Template>\n"
+			case .generateBasedOnFiles:
+				return "Runs the generator. Expected positional arguments in the ordering of <Operations Location -- a single GraphQL file> <Models Destination> <Support Files Destination> <Template>\n"
 			case .generateModels:
 				return "Runs the generator and only outputs generated models. Expected positional arguments in the ordering of <Operations Location> <Models Destination> <Template>\n"
 			case .generateSupportFiles:
@@ -122,6 +128,9 @@ class Syrup {
 			case .generate:
 				options.shouldGenerateModels = true
 				options.shouldGenerateSupportFiles = true
+			case .generateBasedOnFiles:
+				options.shouldGenerateModels = true
+				options.shouldGenerateSupportFiles = true
 			case .generateModels:
 				options.shouldGenerateModels = true
 				options.shouldGenerateSupportFiles = false
@@ -146,6 +155,17 @@ class Syrup {
 		let schemaArg = addSchemaArgument(to: generateParser)
 		let schemaOverrideArg = addOverrideSchemaArgument(to: generateParser)
 		let deprecationReportArg = addDeprecationReportArgument(to: generateParser)
+		
+		let generateBasedOnFilesParser = Command.generateBasedOnFiles.addAsSubparser(to: parser)
+		addQueriesArgument(to: generateBasedOnFilesParser)
+		addDestinationArgument(to: generateBasedOnFilesParser)
+		addSupportFilesArgument(to: generateBasedOnFilesParser)
+		addTemplateArgument(to: generateBasedOnFilesParser)
+		addProjectArgument(to: generateBasedOnFilesParser)
+		addSchemaArgument(to: generateBasedOnFilesParser)
+		addOverrideSchemaArgument(to: generateBasedOnFilesParser)
+		addDeprecationReportArgument(to: generateBasedOnFilesParser)
+		let filesArgument = addFilesArgument(to: generateBasedOnFilesParser)
 
 		let generateModelsParser = Command.generateModels.addAsSubparser(to: parser)
 		addQueriesArgument(to: generateModelsParser)
@@ -230,6 +250,10 @@ class Syrup {
 		binder.bind(option: verboseArg) { (options, isVerbose) in
 			options.verbose = isVerbose
 		}
+		
+		binder.bind(option: filesArgument) { options, paths in
+			options.filePaths = paths
+		}
 	}
 
 	private func showError(_ error: Error) {
@@ -257,6 +281,17 @@ class Syrup {
 				print("\(Syrup.version)", to: &stdoutStream)
 				stdoutStream.flush()
 			} else {
+				let (queriesPath, shouldCleanupFiles): (Config.FilesToUpdate, Bool) = {
+					switch syrupArgs.command {
+					case .generate, .generateModels, .generateSupportFiles, .report:
+						return (.folder(path: syrupArgs.queries.pathString), true)
+					case .generateBasedOnFiles:
+						guard let filePaths = syrupArgs.filePaths,
+							  !filePaths.isEmpty
+						else { fatalError("--files argument must be non-empty") }
+						return (.files(paths: filePaths), false)
+					}
+				}()
 				let projectUrl = URL(fileURLWithPath: syrupArgs.project.pathString)
 				let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
 				let schemaUrl = URL(fileURLWithPath: syrupArgs.schema.pathString)
@@ -268,6 +303,7 @@ class Syrup {
 				let config = SyrupCore.Config(
 					shouldGenerateModels: syrupArgs.shouldGenerateModels,
 					shouldGenerateSupportFiles: syrupArgs.shouldGenerateSupportFiles,
+					shouldCleanupFiles: shouldCleanupFiles,
 					queries: syrupArgs.queries.pathString,
 					destination: syrupArgs.destination.pathString,
 					supportFilesDestination: syrupArgs.supportFilesDestination.pathString,
@@ -276,7 +312,8 @@ class Syrup {
 					schema: schema,
 					verbose: syrupArgs.verbose,
 					outputReportFilePath: syrupArgs.deprecationReport,
-					shouldOverwriteReport: syrupArgs.shouldOverwriteReport
+					shouldOverwriteReport: syrupArgs.shouldOverwriteReport,
+					filesToUpdate: queriesPath
 				)
 
 				switch syrupArgs.command {
@@ -342,5 +379,9 @@ class Syrup {
 	private func addVerboseArgument(to parser: ArgumentParser) -> OptionArgument<Bool> {
 		parser.add(option: "--verbose", shortName: "-vb", kind: Bool.self, usage: "Verbose output, reports on duplicates, etc.")
 	}
-
+	
+	@discardableResult
+	private func addFilesArgument(to parser: ArgumentParser) -> OptionArgument<[String]> {
+		parser.add(option: "--files", kind: [String].self, usage: "A comma separated list of files containing the GraphQL types we want to generate")
+	}
 }

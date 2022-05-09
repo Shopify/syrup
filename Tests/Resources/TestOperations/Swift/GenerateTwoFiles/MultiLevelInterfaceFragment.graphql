@@ -1,0 +1,8 @@
+fragment MultiLevelInterfaceFragment on EventConnection {
+  edges {
+    node {
+      __typename
+      id
+    }
+  }
+}
