@@ -769,13 +769,42 @@
           "possibleTypes": null
         },
         {
+          "kind": "ENUM",
+          "name": "TrilogyType",
+          "description": "Which trilogy it is",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": [
+            {
+              "name": "THE_OLD_ONE",
+              "description": "Episodes 4 to 6",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "THE_OK_ONE",
+              "description": "Episodes 1 to 3",
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "THE_BAD_ONE",
+              "description": "Episodes 7 to 9",
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "possibleTypes": null
+        },
+        {
           "kind": "OBJECT",
           "name": "Film",
           "description": "A single film.",
           "fields": [
             {
               "name": "title",
-              "description": "The title of this film.",
+              "description": "The title of this movie.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
@@ -822,12 +851,36 @@
               "deprecationReason": "Use assistant name instead"
             },
             {
-              "name": "assistant_director",
+              "name": "assistantDirector",
               "description": "The name of the assistant director of this film.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
                 "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "mainCharacter",
+              "description": "The name of the main character of this film.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "trilogyType",
+              "description": "The type of the trilogy",
+              "args": [],
+              "type": {
+                "kind": "ENUM",
+                "name": "TrilogyType",
                 "ofType": null
               },
               "isDeprecated": false,

@@ -793,6 +793,12 @@
               "description": "Episodes 7 to 9",
               "isDeprecated": false,
               "deprecationReason": null
+            },
+            {
+              "name": "THE_NEXT_ONE",
+              "description": "Episodes 10 to 12",
+              "isDeprecated": false,
+              "deprecationReason": null
             }
           ],
           "possibleTypes": null
@@ -804,7 +810,7 @@
           "fields": [
             {
               "name": "title",
-              "description": "The title of this film.",
+              "description": "The title of this movie.",
               "args": [],
               "type": {
                 "kind": "SCALAR",
