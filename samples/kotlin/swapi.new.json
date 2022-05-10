@@ -584,7 +584,7 @@
         {
           "kind": "OBJECT",
           "name": "FilmsConnection",
-          "description": "A connection to a list of items.",
+          "description": "A connection to a list of films.",
           "fields": [
             {
               "name": "pageInfo",

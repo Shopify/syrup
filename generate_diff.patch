@@ -1,0 +1,43 @@
+diff --git a/samples/kotlin/src/main/java/com/shopify/syrup/Enums/TrilogyType.kt b/samples/kotlin/src/main/java/com/shopify/syrup/Enums/TrilogyType.kt
+index 61082eb..003f2f5 100644
+--- a/samples/kotlin/src/main/java/com/shopify/syrup/Enums/TrilogyType.kt
++++ b/samples/kotlin/src/main/java/com/shopify/syrup/Enums/TrilogyType.kt
+@@ -28,6 +28,12 @@ enum class TrilogyType(val value: String) {
+     @SerializedName("THE_BAD_ONE")
+     THE_BAD_ONE("THE_BAD_ONE"),
+ 
++    /**
++     * Episodes 10 to 12
++     */
++    @SerializedName("THE_NEXT_ONE")
++    THE_NEXT_ONE("THE_NEXT_ONE"),
++
+     UNKNOWN_SYRUP_ENUM("UNKNOWN_SYRUP_ENUM");
+ 
+     companion object {
+diff --git a/samples/kotlin/src/main/java/com/shopify/syrup/fragments/MovieFragment.kt b/samples/kotlin/src/main/java/com/shopify/syrup/fragments/MovieFragment.kt
+index 5827532..8246327 100644
+--- a/samples/kotlin/src/main/java/com/shopify/syrup/fragments/MovieFragment.kt
++++ b/samples/kotlin/src/main/java/com/shopify/syrup/fragments/MovieFragment.kt
+@@ -13,7 +13,7 @@ import javax.annotation.Generated
+ data class MovieFragment(
+ 
+     /**
+-     * The title of this film.
++     * The title of this movie.
+      */
+     val title: String?,
+ 
+diff --git a/samples/kotlin/swapi.new.json b/samples/kotlin/swapi.new.json
+index a119cc7..449d98e 100644
+--- a/samples/kotlin/swapi.new.json
++++ b/samples/kotlin/swapi.new.json
+@@ -584,7 +584,7 @@
+         {
+           "kind": "OBJECT",
+           "name": "FilmsConnection",
+-          "description": "A connection to a list of items.",
++          "description": "A connection to a list of films.",
+           "fields": [
+             {
+               "name": "pageInfo",

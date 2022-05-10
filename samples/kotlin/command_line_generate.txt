@@ -1,0 +1,8 @@
+- Generate locate models :
+.build/debug/Syrup generate './samples/kotlin/graphql' './samples/kotlin/src/main/java/com/shopify/syrup/' './samples/kotlin/src/main/java/com/shopify/syrup/support' './Templates/Kotlin' --project './samples/kotlin/syrup.yml' --schema './samples/kotlin/syrup.schema.yml' --override-schema './samples/kotlin/swapi.json'
+
+- Generate report :
+.build/debug/Syrup report './samples/kotlin/src/main/java/com/shopify/syrup/' './Templates/Kotlin' --project './samples/kotlin/syrup.yml' --schema './samples/kotlin/syrup.schema.yml' --override-schema './samples/kotlin/swapi.json' --reports './samples/kotlin/src/main/java/com/shopify/syrup' -vb
+
+- Generate patch
+git diff --output=generate_diff.patch
