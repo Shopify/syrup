@@ -12,4 +12,6 @@ fragment MovieFragment on Film {
     title
     director
     openingCrawl
+    mainCharacter
+    trilogyType
 }

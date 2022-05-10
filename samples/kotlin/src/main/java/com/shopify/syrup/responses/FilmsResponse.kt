@@ -3,6 +3,7 @@ package com.shopify.syrup.responses
 
 // Syrup auto-generated file
 import com.shopify.syrup.support.*
+import com.shopify.syrup.enums.*
 import com.shopify.syrup.fragments.*
 import java.math.BigDecimal
 import org.joda.time.DateTime

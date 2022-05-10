@@ -6,6 +6,7 @@ import com.shopify.syrup.support.*
 import com.google.gson.*
 import java.math.BigDecimal
 import org.joda.time.DateTime
+import com.shopify.syrup.enums.*
 import com.shopify.syrup.fragments.*
 import com.shopify.syrup.responses.*
 import javax.annotation.Generated
@@ -13,7 +14,7 @@ import javax.annotation.Generated
 @Generated("com.shopify.syrup")
 class FilmsQuery(): Query<FilmsResponse> {
 
-    override val rawQueryString = "fragment MovieFragment on Film { __typename title director openingCrawl } query Films { __typename allFilms { __typename edges { __typename node { __typename ... MovieFragment } } } }"
+    override val rawQueryString = "fragment MovieFragment on Film { __typename title director openingCrawl mainCharacter trilogyType } query Films { __typename allFilms { __typename edges { __typename node { __typename ... MovieFragment } } } }"
 
     override fun decodeResponse(jsonObject: JsonObject): FilmsResponse {
         return FilmsResponse(jsonObject)
