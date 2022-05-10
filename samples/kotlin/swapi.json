@@ -818,6 +818,18 @@
                 "name": "String",
                 "ofType": null
               },
+              "isDeprecated": true,
+              "deprecationReason": "Use assistant name instead"
+            },
+            {
+              "name": "assistant_director",
+              "description": "The name of the assistant director of this film.",
+              "args": [],
+              "type": {
+                "kind": "SCALAR",
+                "name": "String",
+                "ofType": null
+              },
               "isDeprecated": false,
               "deprecationReason": null
             },
