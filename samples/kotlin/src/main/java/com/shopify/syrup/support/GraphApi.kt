@@ -20,14 +20,28 @@ import java.lang.reflect.Type
 const val DEFINED_NULL_FLAG = "__DEFINED_NULL"
 
 interface SyrupOperation<T : Response> {
-    fun getQueryString(): String
-    fun decodeResponse(jsonObject: JsonObject): T
+    val rawQueryString: String
+    val operationVariables: Map<String, String>
     val selections: List<Selection>
+
+    fun getQueryString(): String {
+        if (operationVariables.isNotEmpty()) {
+            val gson = OperationGsonBuilder.gson
+            var variables = gson.toJson(this)
+            variables = setDefinedNulls(variables)
+            return "{ \"query\": \"$rawQueryString\", \"variables\": $variables}"
+        }
+        return "{ \"query\": \"$rawQueryString\" }"
+    }
+
+    fun decodeResponse(jsonObject: JsonObject): T
 }
 
 interface Query<T : Response> : SyrupOperation<T>
 
 interface Mutation<T : Response> : SyrupOperation<T>
+
+interface Subscription<T : Response> : SyrupOperation<T>
 
 interface Response
 
@@ -54,7 +68,6 @@ data class Selection(
     val name: String,
     val type: String,
     val passedGID: String? = null,
-    val backingGIDReference: String? = null,
     val typeCondition: String? = null,
     val shouldSkipBasedOnConditionalDirective: Boolean = false,
     val selections: List<Selection> = listOf()
@@ -90,11 +103,11 @@ object InputWrapperExclusionStrategy : ExclusionStrategy {
 
 class InputWrapperSerializer : JsonSerializer<InputWrapper<Any?>> {
     override fun serialize(src: InputWrapper<Any?>, typeOfSrc: Type?, context: JsonSerializationContext?): JsonElement? {
-        return if (src.isDefined()) {
-            if (src.value() == null) {
+        return if (src.isDefined) {
+            if (src.value == null) {
                 JsonPrimitive(DEFINED_NULL_FLAG)
             } else {
-                OperationGsonBuilder.gson.toJsonTree(src.value())
+                OperationGsonBuilder.gson.toJsonTree(src.value)
             }
         } else {
             null

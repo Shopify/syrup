@@ -2,8 +2,10 @@
 package com.shopify.syrup.fragments
 
 // Syrup auto-generated file
-import com.google.gson.JsonObject
 import com.shopify.syrup.support.*
+import java.math.BigDecimal
+import org.joda.time.DateTime
+import com.google.gson.JsonObject
 import javax.annotation.Generated
 
 @Generated("com.shopify.syrup")
@@ -17,6 +19,7 @@ data class MovieFragment(
     /**
      * The name of the director of this film.
      */
+    @Deprecated("""Use assistant name instead""")
     val director: String?,
 
     /**
@@ -31,41 +34,33 @@ data class MovieFragment(
     )
 
     companion object {
-        const val typeName = "Film"
-
         fun getSelections(operationVariables: Map<String, String>): List<Selection> {
             return listOf<Selection>(
-                Selection(
-                    name = "title",
-                    type = "String",
-                    cacheKey = "title",
-                    passedGID = null,
-                    backingGIDReference = null,
-                    typeCondition = "Film",
-                    shouldSkipBasedOnConditionalDirective = false,
-                    selections = listOf<Selection>()
-                ),
-                Selection(
-                    name = "director",
-                    type = "String",
-                    cacheKey = "director",
-                    passedGID = null,
-                    backingGIDReference = null,
-                    typeCondition = "Film",
-                    shouldSkipBasedOnConditionalDirective = false,
-                    selections = listOf<Selection>()
-                ),
-                Selection(
-                    name = "openingCrawl",
-                    type = "String",
-                    cacheKey = "openingCrawl",
-                    passedGID = null,
-                    backingGIDReference = null,
-                    typeCondition = "Film",
-                    shouldSkipBasedOnConditionalDirective = false,
-                    selections = listOf<Selection>()
-                )
-            )
+Selection(
+name = "title",
+type = "String",
+cacheKey = "title",
+passedGID = null,
+typeCondition = "Film",
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
+name = "director",
+type = "String",
+cacheKey = "director",
+passedGID = null,
+typeCondition = "Film",
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()), 
+Selection(
+name = "openingCrawl",
+type = "String",
+cacheKey = "openingCrawl",
+passedGID = null,
+typeCondition = "Film",
+shouldSkipBasedOnConditionalDirective = false,
+selections = listOf<Selection>()))
         }
     }
+
 }
