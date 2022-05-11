@@ -369,7 +369,7 @@ class SelectionSetExtension: Extension {
 					render.append("\n\(spacing)    directive: \(renderedDirective),")
 				}
 				
-				let nextSpacingAmount = spacingAmount+4
+				let nextSpacingAmount = spacingAmount + 4
 				let arguments: [Any?]
 				
 				if shouldPassTypeCondition(field.type) {
@@ -403,8 +403,8 @@ class SelectionSetExtension: Extension {
 			addFragmentSpreadRenders += ".concat(\(fragmentSpread.lowercasedFirstLetter)Selections)" + renderPassedTypeCondition
 		}
 		
-		if (fieldRenders.isEmpty) {
-			if (addFragmentSpreadRenders.isEmpty) {
+		if fieldRenders.isEmpty {
+			if addFragmentSpreadRenders.isEmpty {
 				return nil
 			} else {
 				return "([] as GraphSelection[])" + addFragmentSpreadRenders

@@ -225,10 +225,9 @@ public final class Reporter {
 
 }
 
-let expiryDuration: Int = 14
-let alertDuration: Int = 7
-
 extension String {
+	static let expiryDuration: Int = 14
+	static let alertDuration: Int = 7
 
 	func ansi(_ code: String) -> String {
 		"\u{001B}[\(code)m\(self)\u{001B}[0m"
@@ -247,8 +246,8 @@ extension String {
 	}
 
 	func mdExpiryFlag(_ value: Date) -> String {
-		let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: expiryDuration, to: value)!
-		let warnDate = Calendar.current.date(byAdding: Calendar.Component.day, value: alertDuration, to: value)!
+		let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: Self.expiryDuration, to: value)!
+		let warnDate = Calendar.current.date(byAdding: Calendar.Component.day, value: Self.alertDuration, to: value)!
 		let now = Date()
 		if  expiryDate <= now {
 			return self.mdAlert().mdTodo()
@@ -276,8 +275,8 @@ extension String {
 	}
 
 	func ansiExpiryFlag(_ value: Date) -> String {
-		let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: expiryDuration, to: value)!
-		let warnDate = Calendar.current.date(byAdding: Calendar.Component.day, value: alertDuration, to: value)!
+		let expiryDate = Calendar.current.date(byAdding: Calendar.Component.day, value: Self.expiryDuration, to: value)!
+		let warnDate = Calendar.current.date(byAdding: Calendar.Component.day, value: Self.alertDuration, to: value)!
 		let now = Date()
 		if  expiryDate <= now {
 			return self.ansiAlert()

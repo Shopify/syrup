@@ -41,7 +41,7 @@ enum TypeScriptVariableTypeRenderer: VariableTypeRenderer {
 			let rendered: String = render(variableType: wrappedType, parentType: variableType)
 			
 			switch wrappedType {
-			case .nonNull(_):
+			case .nonNull:
 				return "\(rendered)[]"
 			default:
 				return "(\(rendered))[]"
@@ -57,7 +57,7 @@ enum TypeScriptVariableTypeRenderer: VariableTypeRenderer {
 	
 	private static func buildVariableType(rendered: String, variableType: IntermediateRepresentation.Variable.VariableType?) -> String {
 		switch variableType {
-		case .nonNull(_):
+		case .nonNull:
 			return rendered
 		default:
 			return "\(rendered) | null"

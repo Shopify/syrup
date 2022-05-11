@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.5
 
 import PackageDescription
 
@@ -38,24 +38,42 @@ let package = Package(
 			url: "https://github.com/Shopify/SwiftGraphQLParser",
 			from: "0.1.8"
 		),
-        .package(
-            url: "https://github.com/apple/swift-crypto.git",
-            .exact("1.1.6")
-        )
+		.package(
+			url: "https://github.com/apple/swift-crypto.git",
+			.exact("1.1.6")
+		),
+		.package(
+			url: "https://github.com/apple/swift-argument-parser.git",
+			from: "1.0.0"
+		),
 	],
 	targets: [
-		.target(
+		.executableTarget(
 			name: "Syrup",
-			dependencies: ["SyrupCore", "SwiftToolsSupport-auto"]
+			dependencies: [
+				"SyrupCore",
+				.product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core"),
+				.product(name: "ArgumentParser", package: "swift-argument-parser"),
+			]
 		),
 		.target(
 			name: "SyrupCore",
-			dependencies: ["Stencil", "Files", "Yams", "SwiftToolsSupport-auto", "SwiftGraphQLParser", "Crypto"]
+			dependencies: [
+				"Stencil",
+				.product(name: "Files", package: "files"),
+				"Yams",
+				.product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core"),
+				"SwiftGraphQLParser",
+				.product(name: "Crypto", package: "swift-crypto"),
+			]
 		),
 		.testTarget(
 			name: "SyrupTests",
 			dependencies: ["Syrup"],
-			path: "Tests/Swift"
+			path: "Tests/Swift",
+			resources: [
+				.copy("TestResources")
+			]
 		)
 	],
 	swiftLanguageVersions: [.version("5")]
