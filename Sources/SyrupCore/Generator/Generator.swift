@@ -417,6 +417,14 @@ public final class Generator {
 		concurrentPerform {
 			let renderer = TypeScriptRenderer(config: self.config)
 			
+			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.subscriptions }, fileType: .subscription, renderer: { (ir) -> [String] in
+				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.subscriptions)
+			})
+		}
+		
+		concurrentPerform {
+			let renderer = TypeScriptRenderer(config: self.config)
+			
 			return try self.render(intermediateRepresentation: intermediateRepresentation, namesClosure: { $0.operations.mutations }, fileType: .mutation, renderer: { (ir) -> [String] in
 				try renderer.renderOperations(intermediateRepresentation: ir, selectionSets: selectionSets, operations: ir.operations.mutations)
 			})
