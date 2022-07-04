@@ -277,42 +277,64 @@ final class TypeScriptRenderer: Renderer {
 		groupedFragmentSpreads: [String: [IntermediateRepresentation.SelectionPath.PathComponent.Fragment]],
 		extras: [String: Any]
 	) throws -> [String: Any] {
-		let fragmentSpreads = groupedFragmentSpreads[typeName] ?? []
-		let filteredCollectedFields = collectedFields.filter {
-			return $0.parentFragment?.name == parentFragment
-		}
-		let groupedFields = filteredCollectedFields.groupedFields(fromUnionType: typeName)
-		let concreteTypeNames = (groupedFields.map {
-			$0.key
-		}).unique.sorted()
-		
-		let fragmentUnionGroupedFields = collectedFields.filter { field in
-			return fragmentSpreads.contains { element in
-				return field.parentFragment?.name == element.name
-			}
+		let groupedFields = collectedFields.filter { field in
+			return field.parentFragment?.name == parentFragment
 		}.groupedFields(fromUnionType: typeName)
 		
-		let fragmentUnionTypes = fragmentUnionGroupedFields.map { key, value in
-			return (fragmentName: value[0].parentFragment!.name, fieldName: key)
-		}.sorted(by: { first, second in
-			return first.fragmentName + first.fieldName < second.fragmentName + second.fieldName
-		}).map { (fragmentName, fieldName) in
-			return [
-				// All values will have the same parent fragment so we can grab the name from the first value
-				"fragmentName": fragmentName,
-				"fieldName": fieldName
-			]
+		let concreteTypeNames = groupedFields.map { key, _ in
+			return key
+		}.unique.sorted()
+		
+		let internalFragments = collectedFields.filter { field in
+			return field.parentFragment?.name != parentFragment && typeName != field.parentType && !concreteTypeNames.contains { concreteTypeName in
+				return concreteTypeName == field.parentType
+			}
 		}
+		
+		
+		let unionFragmants = internalFragments.filter { fragment in
+			if let parentFragment = fragment.parentFragment {
+				switch parentFragment.typeCondition {
+				case .union, .interface:
+					return true
+				default:
+					return false
+				}
+			} else {
+				return false
+			}
+		}.map { fragment in
+			return [
+				"fragmentName": fragment.parentFragment!.name,
+				"fieldName": fragment.parentType
+			]
+		}.unique
+		
+		let objectFragments = internalFragments.filter { fragment in
+			if let parentFragment = fragment.parentFragment {
+				switch parentFragment.typeCondition {
+				case .object:
+					return true
+				default:
+					return false
+				}
+			} else {
+				return false
+			}
+		}.map { fragment in
+			return fragment.parentFragment!.name
+		}.unique.sorted()
 		
 		var context: [String: Any] = [
 			"name": name,
 			"typeName": typeName,
 			"commonFields": commonFields.isEmpty ? [] : commonFields.baseFields(fromInterfaceType: typeName),
-			"fragmentSpreads": fragmentSpreads,
+			"fragmentSpreads": groupedFragmentSpreads[typeName] ?? [],
 			"collectedFields": collectedFields,
 			"concreteTypeNames": concreteTypeNames,
 			"groupedFragmentSpreads": groupedFragmentSpreads,
-			"fragmentUnionTypes": fragmentUnionTypes
+			"fragmentUnionTypes": unionFragmants,
+			"fragmentObjectTypes": objectFragments
 		]
 		
 		if let fragment = parentFragment {
