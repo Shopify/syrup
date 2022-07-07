@@ -1,0 +1,7 @@
+mutation TestMutation1($input: ProductInput!) {
+  productUpdate(input: $input){
+    product {
+      id
+    }
+  }
+}
