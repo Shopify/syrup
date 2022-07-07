@@ -129,8 +129,8 @@ final class TypeScriptRenderer: Renderer {
 			
 			let context: [String: Any] = [
 				"inputType": inputType,
-				"inputImports": inputImports,
-				"enumImports": enumImports
+				"inputImports": inputImports.unique,
+				"enumImports": enumImports.unique
 			]
 			rendered.append(try render(template: "InputType", asFile: true, context: context))
 		}
