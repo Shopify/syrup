@@ -3,6 +3,6 @@
 
 {% call renderUnionFields name typeName commonFields collectedFields groupedFragmentSpreads concreteTypeNames fragmentSpreads parentFragment %}
 
-  export type {{ name }} = {{ name }}_BaseFields_ & ({% for fragment in fragmentUnionTypes %}{{ fragment.fragmentName }}FragmentData.{{ fragment.fieldName }} | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}{{ concreteTypeName }} | {% endfor %}{{ name }}Other)
+  export type {{ name }} = {{ name }}_BaseFields_ & ({% for fragment in fragmentUnionTypes %}{{ fragment.fragmentName }}FragmentData.{{ fragment.fieldName }} | {% endfor %}{% for fragment in fragmentObjectTypes %}{{ fragment }}FragmentData | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}{{ concreteTypeName }} | {% endfor %}{{ name }}Other)
 
 {% endblock %}

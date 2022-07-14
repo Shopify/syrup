@@ -121,7 +121,13 @@ final class TypeScriptInternalRendererExtension: Extension {
 					name: "\(parentName)\(concreteType)",
 					typeName: concreteType,
 					fields: fields,
-					fragmentSpreads: protocolConformances
+					/**
+					 * In `Kotlin` & `Swift`, the parent fragments are included as part of the resolution. Since we are just assuming structure
+					 * with `TypeScript`, we don't require the parent fragment types.
+					 */
+					fragmentSpreads: protocolConformances.filter { spread in
+						spread.typeCondition.name == concreteType
+					}
 				)
 			}
 			return rendered

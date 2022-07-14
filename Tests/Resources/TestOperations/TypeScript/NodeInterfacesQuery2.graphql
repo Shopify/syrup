@@ -1,0 +1,16 @@
+query NodeInterfacesTwo($nodeId : ID!) {
+  node (id: $nodeId) {
+    __typename
+    ...NodeIdTwo
+    ... on Product{
+        ... ProductNodeTitleTwo
+    }
+  }
+}
+fragment ProductNodeTitleTwo on Product {
+  title
+  vendor
+}
+fragment NodeIdTwo on Node{
+  id
+}

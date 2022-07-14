@@ -5,7 +5,7 @@ export namespace {{ name }}FragmentData {
 {% call renderUnionFields "" typeName commonFields collectedFields groupedFragmentSpreads concreteTypeNames fragmentSpreads parentFragment %}
 }
 
-export type {{ name }}FragmentData = {% for fragment in fragmentUnionTypes %}{{ fragment.fragmentName }}FragmentData.{{ fragment.fieldName }} | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}FragmentData.{{ concreteTypeName }} | {% endfor %}{{ name }}FragmentData.Other
+export type {{ name }}FragmentData = {% for fragment in fragmentUnionTypes %}{{ fragment.fragmentName }}FragmentData.{{ fragment.fieldName }} | {% endfor %}{% for fragment in fragmentObjectTypes %}{{ fragment }}FragmentData | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}FragmentData.{{ concreteTypeName }} | {% endfor %}{{ name }}FragmentData.Other
 
 export const {{ name|lowercasedFirstLetter }}Selections: GraphSelection[] = {{ selections|renderTypeScriptSelections:null,0 }}
 

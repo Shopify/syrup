@@ -4,8 +4,15 @@ query NodeInterfaces($nodeId : ID!) {
     ...NodeId
     ... on Product{
         ... ProductNodeTitle
+        description
+    }
+    ... on Product{
+        ... ProductNodeVendor
     }
   }
+}
+fragment ProductNodeVendor on Product {
+  vendor
 }
 fragment ProductNodeTitle on Product {
   title
