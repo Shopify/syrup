@@ -21,7 +21,7 @@ export namespace EventPreviewInfoFragmentData {
   }
 }
 
-export type EventPreviewInfoFragmentData = EventPreviewInfoFragmentData.Other
+export type EventPreviewInfoFragmentData = EventPreviewInfoFragmentData._BaseFields_ & (EventPreviewInfoFragmentData.Other)
 
 export const eventPreviewInfoSelections: GraphSelection[] = ([
   {

@@ -12,7 +12,7 @@
   export interface {{ name }}_BaseFields_{% if fragmentSpreads.count > 0 %} extends {% for fragment in fragmentSpreads %}{{ fragment.name }}FragmentData._BaseFields_{% if not forloop.last %}, {% endif %}{% endfor %}{% endif %} {
 {% for field in commonFields %}
 {% with field.attributes as attributes %}{% with "  " as spacing %}{% include "Helpers/Attributes.stencil" %}{% endwith %}{% endwith %}
-    {{ field|renderPropertyDeclaration:name,"_BaseFields_" }};
+    {{ field|renderPropertyDeclaration:name }};
 {% endfor %}
   }
 {% endmacro %}{% block content %}{% endblock %}

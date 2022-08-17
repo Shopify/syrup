@@ -16,7 +16,7 @@ export namespace EventAlertFragmentData {
   }
 }
 
-export type EventAlertFragmentData = EventAlertFragmentData.Other
+export type EventAlertFragmentData = EventAlertFragmentData._BaseFields_ & (EventAlertFragmentData.Other)
 
 export const eventAlertSelections: GraphSelection[] = ([
   {
