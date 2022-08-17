@@ -437,7 +437,7 @@ final class TypeScriptRenderer: Renderer {
 			
 			let prefix = args.first as? String ?? ""
 			let seperator = args.dropFirst().first as? String ?? ""
-			let combined = "\(prefix)\(seperator)"
+			let combined = prefix.isEmpty && seperator.isEmpty ? nil : "\(prefix)\(seperator)"
 			
 			if let field = value as? IntermediateRepresentation.CollectedObjectField {
 				return "\(produceFieldName(field: field)): \(TypeScriptTypeAnnotationRenderer.render(objectField: field, prefix: combined))"
