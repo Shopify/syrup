@@ -21,7 +21,7 @@ export namespace EventAttributeFieldsFragmentData {
   }
 }
 
-export type EventAttributeFieldsFragmentData = EventAttributeFieldsFragmentData.Other
+export type EventAttributeFieldsFragmentData = EventAttributeFieldsFragmentData._BaseFields_ & (EventAttributeFieldsFragmentData.Other)
 
 export const eventAttributeFieldsSelections: GraphSelection[] = ([
   {

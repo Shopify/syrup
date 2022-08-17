@@ -16,7 +16,7 @@ export namespace NodeIdFragmentData {
   }
 }
 
-export type NodeIdFragmentData = NodeIdFragmentData.Other
+export type NodeIdFragmentData = NodeIdFragmentData._BaseFields_ & (NodeIdFragmentData.Other)
 
 export const nodeIdSelections: GraphSelection[] = ([
   {

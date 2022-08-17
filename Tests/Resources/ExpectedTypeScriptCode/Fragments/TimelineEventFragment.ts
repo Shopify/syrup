@@ -97,7 +97,7 @@ export namespace TimelineEventFragmentFragmentData {
   }
 }
 
-export type TimelineEventFragmentFragmentData = TimelineEventFragmentFragmentData.CommentEvent | TimelineEventFragmentFragmentData.Other
+export type TimelineEventFragmentFragmentData = TimelineEventFragmentFragmentData._BaseFields_ & (TimelineEventFragmentFragmentData.CommentEvent | TimelineEventFragmentFragmentData.Other)
 
 export const timelineEventFragmentSelections: GraphSelection[] = ([
   {
