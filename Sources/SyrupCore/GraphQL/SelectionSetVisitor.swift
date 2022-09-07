@@ -247,6 +247,8 @@ class SelectionSetVisitor: GraphQLBaseVisitor {
 			currentDirectiveValues.push(ConditionalDirective.skip(value))
 		case "include":
 			currentDirectiveValues.push(ConditionalDirective.include(value))
+		case "split":
+			currentDirectiveValues.push(ConditionalDirective.split(value))
 		default:
 			fatalError("Encountered unexpected directive \(directive.name)")
 		}
@@ -430,6 +432,7 @@ extension SelectionSetVisitor {
 	struct ConditionalDirective {
 		let skip: ArgumentValueType?
 		let include: ArgumentValueType?
+		let split: ArgumentValueType?
 
 		static func skip(_ value: ArgumentValueType) -> ConditionalDirective {
 			ConditionalDirective(skip: value)
@@ -438,10 +441,15 @@ extension SelectionSetVisitor {
 		static func include(_ value: ArgumentValueType) -> ConditionalDirective {
 			ConditionalDirective(include: value)
 		}
+		
+		static func split(_ value: ArgumentValueType) -> ConditionalDirective {
+			ConditionalDirective(split: value)
+		}
 
-		private init(skip: ArgumentValueType? = nil, include: ArgumentValueType? = nil) {
+		private init(skip: ArgumentValueType? = nil, include: ArgumentValueType? = nil, split: ArgumentValueType? = nil) {
 			self.skip = skip
 			self.include = include
+			self.split = split
 		}
 	}
 

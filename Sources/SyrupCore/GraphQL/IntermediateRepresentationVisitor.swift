@@ -276,7 +276,7 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 	
 	override func visitDirective(directive: SwiftGraphQLParser.Directive) throws {
 		let name = directive.name
-		if name == "skip" || name == "include" {
+		if name == "skip" || name == "include" || name == "split" {
 			_ = selectionContainsConditionalDirective.pop()
 			selectionContainsConditionalDirective.push(true)
 		}

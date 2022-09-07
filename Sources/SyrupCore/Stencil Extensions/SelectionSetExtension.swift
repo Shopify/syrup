@@ -236,6 +236,8 @@ class SelectionSetExtension: Extension {
 			return "{ directiveType: \"skip\", value: \(renderTypeScriptArgumentValue(argumentValueType: skip)) }"
 		} else if let include = field.conditionalDirective?.include {
 			return "{ directiveType: \"include\", value: \(renderTypeScriptArgumentValue(argumentValueType: include)) }"
+		} else if let split = field.conditionalDirective?.split {
+			return "{ directiveType: \"split\", value: \(renderTypeScriptArgumentValue(argumentValueType: split)) }"
 		}
 		
 		return nil
@@ -246,7 +248,10 @@ class SelectionSetExtension: Extension {
 			return "\"${operationVariables[\"\(skip.name)\"]}\".toBoolean()"
 		} else if let include = field.conditionalDirective?.include as? SelectionSetVisitor.Variable {
 			return "!\"${operationVariables[\"\(include.name)\"]}\".toBoolean()"
+		} else if let split = field.conditionalDirective?.split as? SelectionSetVisitor.Variable {
+			return "!\"${operationVariables[\"\(split.name)\"]}\".toBoolean()"
 		}
+		
 		return "false"
 	}
 	
