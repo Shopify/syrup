@@ -19,16 +19,29 @@ export namespace TimelineBasicEventFragmentFragmentData {
     attributeToApp: boolean;
   }
 
-  export interface _BaseFields_ {
-  }
 }
 
-export type TimelineBasicEventFragmentFragmentData = TimelineBasicEventFragmentFragmentData._BaseFields_ & (TimelineBasicEventFragmentFragmentData.BasicEvent | TimelineBasicEventFragmentFragmentData.Other)
+export type TimelineBasicEventFragmentCommonFragmentData = {
+
+  /**
+   * Human readable text that describes the event.
+   */
+  message: string;
+}
+
+export type TimelineBasicEventFragmentUnionFragmentData = TimelineBasicEventFragmentFragmentData.BasicEvent | TimelineBasicEventFragmentFragmentData.Other
+
+export type TimelineBasicEventFragmentFragmentData = TimelineBasicEventFragmentCommonFragmentData & TimelineBasicEventFragmentUnionFragmentData
 
 export const timelineBasicEventFragmentSelections: GraphSelection[] = ([
   {
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
+    typeCondition: { name: "Event", definedType: "Interface" },
+  }, 
+  {
+    name: "message",
+    type: { name: "FormattedString", definedType: "Scalar" },
     typeCondition: { name: "Event", definedType: "Interface" },
   }, 
   {

@@ -2,15 +2,18 @@
 
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 import {
-  EventPreviewInfoFragmentData,
+  EventPreviewInfoCommonFragmentData,
+  EventPreviewInfoUnionFragmentData,
   eventPreviewInfoSelections,
 } from "./EventPreviewInfo"
 import {
-  EventAttributeFieldsFragmentData,
+  EventAttributeFieldsCommonFragmentData,
+  EventAttributeFieldsUnionFragmentData,
   eventAttributeFieldsSelections,
 } from "./EventAttributeFields"
 import {
-  EventAlertFragmentData,
+  EventAlertCommonFragmentData,
+  EventAlertUnionFragmentData,
   eventAlertSelections,
 } from "./EventAlert"
 
@@ -80,13 +83,12 @@ export namespace TimelineFragmentFragmentData {
      */
     attachments: EdgesNodeCommentEventAttachments[];
   }
-  export interface EdgesNode_BaseFields_ extends EventPreviewInfoFragmentData._BaseFields_, EventAttributeFieldsFragmentData._BaseFields_, EventAlertFragmentData._BaseFields_ {
+  export type EdgesNode = {
     /**
      * Globally unique identifier.
      */
     id: ID;
-  }
-  export type EdgesNode = EdgesNode_BaseFields_ & (EdgesNodeCommentEvent | EdgesNodeOther)
+  } & EventAlertCommonFragmentData & EventAttributeFieldsCommonFragmentData & EventPreviewInfoCommonFragmentData & (EventAlertUnionFragmentData | EventAttributeFieldsUnionFragmentData | EventPreviewInfoUnionFragmentData | EdgesNodeCommentEvent | EdgesNodeOther)
   export interface Edges {
     __typename: 'EventEdge';
     /**

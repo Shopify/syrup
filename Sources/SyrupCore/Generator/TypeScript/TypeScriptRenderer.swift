@@ -76,7 +76,7 @@ final class TypeScriptRenderer: Renderer {
 		typeName: String,
 		fields: [CollectedField],
 		fragmentSpreads: [IntermediateRepresentation.SelectionPath.PathComponent.Fragment],
-		referencedImports: (fragments: [String], enums: [String])
+		referencedImports: (fragments: [[String: AnyHashable]], enums: [String])
 	) throws -> String {
 		try render(template: "ObjectFragment", asFile: true, context: buildObjectContext(
 			name: fragment.name,
@@ -98,7 +98,7 @@ final class TypeScriptRenderer: Renderer {
 		commonFields: [CollectedField],
 		collectedFields: [CollectedField],
 		groupedFragmentSpreads: [String: [IntermediateRepresentation.SelectionPath.PathComponent.Fragment]],
-		referencedImports: (fragments: [String], enums: [String])
+		referencedImports: (fragments: [[String: AnyHashable]], enums: [String])
 	) throws -> String {
 		try render(template: "UnionFragment", asFile: false, context: buildUnionContext(
 			name: fragment.name,
@@ -245,7 +245,16 @@ final class TypeScriptRenderer: Renderer {
 	}
 	
 	func renderFragmentEntryPoint(intermediateRepresentation: IntermediateRepresentation) throws -> String {
-		let context: [String: Any] = ["fragmentNames": intermediateRepresentation.fragmentDefinitions.map { $0.name }.sorted()]
+		let sortedFragments = intermediateRepresentation.fragmentDefinitions.sorted { first, second in
+			return first.name < second.name
+		}.map { fragment in
+			return [
+			   "name": fragment.name,
+			   "union": isUnion(typeCondition: fragment.typeCondition)
+		   ]
+		}
+		
+		let context: [String: Any] = ["fragments": sortedFragments]
 		return try render(template: "FragmentBarrel", asFile: true, context: context)
 	}
 	
@@ -256,11 +265,26 @@ final class TypeScriptRenderer: Renderer {
 		fragmentSpreads: [IntermediateRepresentation.SelectionPath.PathComponent.Fragment],
 		extras: [String: Any]
 	) -> [String: Any] {
+		let fragmentDefinitions: [[String: Any]] = fragmentSpreads.map { fragment in
+			switch fragment.typeCondition {
+			case .union, .interface:
+				return [
+					"name": fragment.name,
+					"union": true
+				]
+			default:
+				return [
+					"name": fragment.name,
+					"union": false
+				]
+			}
+		}
+		
 		var context: [String: Any] = [
 			"name": name,
 			"typeName": typeName,
 			"fields": fields,
-			"fragmentSpreads": fragmentSpreads
+			"fragmentSpreads": fragmentDefinitions
 		]
 		
 		context.merge(extras) { (current, _) in current }
@@ -281,48 +305,36 @@ final class TypeScriptRenderer: Renderer {
 			return field.parentFragment?.name == parentFragment
 		}.groupedFields(fromUnionType: typeName)
 		
-		let concreteTypeNames = groupedFields.map { key, _ in
+		let concreteTypeNames = groupedFields.map { key, value in
 			return key
 		}.unique.sorted()
 		
-		let internalFragments = collectedFields.filter { field in
-			return field.parentFragment?.name != parentFragment && typeName != field.parentType && !concreteTypeNames.contains { concreteTypeName in
-				return concreteTypeName == field.parentType
-			}
+		let internalFragments = groupedFragmentSpreads.filter { key, _ in
+			!concreteTypeNames.contains(key)
+		}.flatMap { _, value in
+			return value
 		}
 		
-		
 		let unionFragmants = internalFragments.filter { fragment in
-			if let parentFragment = fragment.parentFragment {
-				switch parentFragment.typeCondition {
-				case .union, .interface:
-					return true
-				default:
-					return false
-				}
-			} else {
+			switch fragment.typeCondition {
+			case .union, .interface:
+				return true
+			default:
 				return false
 			}
 		}.map { fragment in
-			return [
-				"fragmentName": fragment.parentFragment!.name,
-				"fieldName": fragment.parentType
-			]
-		}.unique
+			return fragment.name
+		}.unique.sorted()
 		
 		let objectFragments = internalFragments.filter { fragment in
-			if let parentFragment = fragment.parentFragment {
-				switch parentFragment.typeCondition {
-				case .object:
-					return true
-				default:
-					return false
-				}
-			} else {
+			switch fragment.typeCondition {
+			case .object:
+				return true
+			default:
 				return false
 			}
 		}.map { fragment in
-			return fragment.parentFragment!.name
+			return fragment.name
 		}.unique.sorted()
 		
 		var context: [String: Any] = [
@@ -351,11 +363,11 @@ final class TypeScriptRenderer: Renderer {
 		intermediateRepresentation: IntermediateRepresentation,
 		variables: [IntermediateRepresentation.Variable] = []
 	) -> (
-		fragments: [String],
+		fragments: [[String: AnyHashable]],
 		enums: [String],
 		inputs: [String]
 	) {
-		func readFieldType(fieldType: IntermediateRepresentation.FieldType, _ fragmentImports: inout [String], _ enumImports: inout [String]) {
+		func readFieldType(fieldType: IntermediateRepresentation.FieldType, _ fragmentImports: inout [[String: AnyHashable]], _ enumImports: inout [String]) {
 			switch fieldType {
 			case .nonNull(let fieldType):
 				readFieldType(fieldType: fieldType, &fragmentImports, &enumImports)
@@ -380,7 +392,7 @@ final class TypeScriptRenderer: Renderer {
 			}
 		}
 		
-		var fragments: [String] = []
+		var fragments: [[String: AnyHashable]] = []
 		var enums: [String] = []
 		var inputs: [String] = []
 		
@@ -393,7 +405,7 @@ final class TypeScriptRenderer: Renderer {
 			case .field(let field):
 				readFieldType(fieldType: field.type, &fragments, &enums)
 			case .fragmentSpread(let fragment):
-				fragments.append(fragment.name)
+				fragments.append(["name": fragment.name, "union": isUnion(typeCondition: fragment.typeCondition)])
 			case .inlineFragment(let inlineFragment):
 				let imports = referencedImports(selections: inlineFragment.selectionSet, intermediateRepresentation: intermediateRepresentation)
 				fragments.append(contentsOf: imports.fragments)
@@ -406,6 +418,15 @@ final class TypeScriptRenderer: Renderer {
 			enums: enums.unique,
 			inputs: inputs.unique
 		)
+	}
+	
+	private func isUnion(typeCondition: IntermediateRepresentation.TypeCondition) -> Bool {
+		switch typeCondition {
+		case .union, .interface:
+			return true
+		default:
+			return false
+		}
 	}
 	
 	private func addEnumAndInputImportIfFound(variableType: IntermediateRepresentation.Variable.VariableType, _ inputImports: inout [String], _ enumImports: inout [String]) {

@@ -2,7 +2,8 @@
 
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 import {
-  NodeIdTwoFragmentData,
+  NodeIdTwoCommonFragmentData,
+  NodeIdTwoUnionFragmentData,
   nodeIdTwoSelections,
   ProductNodeTitleTwoFragmentData,
   productNodeTitleTwoSelections,
@@ -15,9 +16,7 @@ export namespace NodeInterfacesTwoQueryData {
   export interface NodeOther {
     __typename: '';
   }
-  export interface Node_BaseFields_ extends NodeIdTwoFragmentData._BaseFields_ {
-  }
-  export type Node = Node_BaseFields_ & (ProductNodeTitleTwoFragmentData | NodeOther)
+  export type Node = NodeIdTwoCommonFragmentData & (NodeIdTwoUnionFragmentData | ProductNodeTitleTwoFragmentData | NodeOther)
 }
 
 export interface NodeInterfacesTwoQueryData {

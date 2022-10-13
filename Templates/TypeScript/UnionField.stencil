@@ -3,6 +3,9 @@
 
 {% call renderUnionFields name typeName commonFields collectedFields groupedFragmentSpreads concreteTypeNames fragmentSpreads parentFragment %}
 
-  export type {{ name }} = {{ name }}_BaseFields_ & ({% for fragment in fragmentUnionTypes %}{{ fragment.fragmentName }}FragmentData.{{ fragment.fieldName }} | {% endfor %}{% for fragment in fragmentObjectTypes %}{{ fragment }}FragmentData | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}{{ concreteTypeName }} | {% endfor %}{{ name }}Other)
+  export type {{ name }} = {% if commonFields.count > 0 %}{ {% for field in commonFields %}
+    {% with field.attributes as attributes %}{% with "  " as spacing %}{% include "Helpers/Attributes.stencil" %}{% endwith %}{% endwith %}
+    {{ field|renderPropertyDeclaration:name }};{% endfor %}
+  } & {% endif %}{% for fragment in fragmentUnionTypes %}{{ fragment }}CommonFragmentData & {% endfor %}({% for fragment in fragmentUnionTypes %}{{ fragment }}UnionFragmentData | {% endfor %}{% for fragment in fragmentObjectTypes %}{{ fragment }}FragmentData | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}{{ concreteTypeName }} | {% endfor %}{{ name }}Other)
 
 {% endblock %}

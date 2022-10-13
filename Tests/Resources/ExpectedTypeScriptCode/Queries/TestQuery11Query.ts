@@ -52,9 +52,7 @@ export namespace TestQuery11QueryData {
      */
     id: ID;
   }
-  export interface Node_BaseFields_ {
-  }
-  export type Node = Node_BaseFields_ & (NodeProduct | NodeProductOption | NodeOther)
+  export type Node = (NodeProduct | NodeProductOption | NodeOther)
 }
 
 export interface TestQuery11QueryData {

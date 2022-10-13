@@ -7,7 +7,6 @@ query CustomerTimeline(
         node {
           id
           createdAt
-          message
           ...TimelineBasicEventFragment
           ...TimelineCommentEventFragment
         }
@@ -21,6 +20,7 @@ query CustomerTimeline(
 }
 
 fragment TimelineBasicEventFragment on Event {
+  message
   ... on BasicEvent {
     attributeToUser
     attributeToApp

@@ -1,30 +1,74 @@
 // Syrup auto-generated file
 
-export type { BasicFragmentFragmentData } from "./BasicFragment"
+export type {
+  BasicFragmentFragmentData
+} from "./BasicFragment"
 export { basicFragmentSelections } from "./BasicFragment"
-export type { EventAlertFragmentData } from "./EventAlert"
+export type {
+  EventAlertCommonFragmentData,
+  EventAlertUnionFragmentData,
+  EventAlertFragmentData
+} from "./EventAlert"
 export { eventAlertSelections } from "./EventAlert"
-export type { EventAttributeFieldsFragmentData } from "./EventAttributeFields"
+export type {
+  EventAttributeFieldsCommonFragmentData,
+  EventAttributeFieldsUnionFragmentData,
+  EventAttributeFieldsFragmentData
+} from "./EventAttributeFields"
 export { eventAttributeFieldsSelections } from "./EventAttributeFields"
-export type { EventPreviewInfoFragmentData } from "./EventPreviewInfo"
+export type {
+  EventPreviewInfoCommonFragmentData,
+  EventPreviewInfoUnionFragmentData,
+  EventPreviewInfoFragmentData
+} from "./EventPreviewInfo"
 export { eventPreviewInfoSelections } from "./EventPreviewInfo"
-export type { NodeIdFragmentData } from "./NodeId"
+export type {
+  NodeIdCommonFragmentData,
+  NodeIdUnionFragmentData,
+  NodeIdFragmentData
+} from "./NodeId"
 export { nodeIdSelections } from "./NodeId"
-export type { NodeIdTwoFragmentData } from "./NodeIdTwo"
+export type {
+  NodeIdTwoCommonFragmentData,
+  NodeIdTwoUnionFragmentData,
+  NodeIdTwoFragmentData
+} from "./NodeIdTwo"
 export { nodeIdTwoSelections } from "./NodeIdTwo"
-export type { ProductNodeTitleFragmentData } from "./ProductNodeTitle"
+export type {
+  ProductNodeTitleFragmentData
+} from "./ProductNodeTitle"
 export { productNodeTitleSelections } from "./ProductNodeTitle"
-export type { ProductNodeTitleTwoFragmentData } from "./ProductNodeTitleTwo"
+export type {
+  ProductNodeTitleTwoFragmentData
+} from "./ProductNodeTitleTwo"
 export { productNodeTitleTwoSelections } from "./ProductNodeTitleTwo"
-export type { ProductNodeVendorFragmentData } from "./ProductNodeVendor"
+export type {
+  ProductNodeVendorFragmentData
+} from "./ProductNodeVendor"
 export { productNodeVendorSelections } from "./ProductNodeVendor"
-export type { ShopFragmentData } from "./Shop"
+export type {
+  ShopFragmentData
+} from "./Shop"
 export { shopSelections } from "./Shop"
-export type { TimelineBasicEventFragmentFragmentData } from "./TimelineBasicEventFragment"
+export type {
+  TimelineBasicEventFragmentCommonFragmentData,
+  TimelineBasicEventFragmentUnionFragmentData,
+  TimelineBasicEventFragmentFragmentData
+} from "./TimelineBasicEventFragment"
 export { timelineBasicEventFragmentSelections } from "./TimelineBasicEventFragment"
-export type { TimelineCommentEventFragmentFragmentData } from "./TimelineCommentEventFragment"
+export type {
+  TimelineCommentEventFragmentCommonFragmentData,
+  TimelineCommentEventFragmentUnionFragmentData,
+  TimelineCommentEventFragmentFragmentData
+} from "./TimelineCommentEventFragment"
 export { timelineCommentEventFragmentSelections } from "./TimelineCommentEventFragment"
-export type { TimelineEventFragmentFragmentData } from "./TimelineEventFragment"
+export type {
+  TimelineEventFragmentCommonFragmentData,
+  TimelineEventFragmentUnionFragmentData,
+  TimelineEventFragmentFragmentData
+} from "./TimelineEventFragment"
 export { timelineEventFragmentSelections } from "./TimelineEventFragment"
-export type { TimelineFragmentFragmentData } from "./TimelineFragment"
+export type {
+  TimelineFragmentFragmentData
+} from "./TimelineFragment"
 export { timelineFragmentSelections } from "./TimelineFragment"
