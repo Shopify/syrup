@@ -32,7 +32,7 @@ let package = Package(
 		),
 		.package(
 			url: "https://github.com/apple/swift-tools-support-core.git",
-			.exact("0.2.3")
+			.exact("0.2.7")
 		),
 		.package(
 			url: "https://github.com/Shopify/SwiftGraphQLParser",
