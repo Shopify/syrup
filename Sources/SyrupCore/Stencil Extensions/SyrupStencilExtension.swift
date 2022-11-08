@@ -105,7 +105,7 @@ final class SyrupStencilExtension: Extension {
 	
 	static func renderPackage(_ value: Any?) throws -> Any? {
 		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
-		switch(value.type) {
+		switch value.type {
 		case .query:
 			return "queries"
 		case .mutation:
@@ -117,7 +117,7 @@ final class SyrupStencilExtension: Extension {
 	
 	static func renderClassName(_ value: Any?) throws -> Any? {
 		guard let value = value as? IntermediateRepresentation.OperationDefinition else { return nil }
-		switch(value.type) {
+		switch value.type {
 		case .query:
 			return "\(value.name)Query"
 		case .mutation:
