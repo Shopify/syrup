@@ -7,16 +7,19 @@ export namespace EventAlertFragmentData {
     __typename: '';
   }
 
-  export interface _BaseFields_ {
-
-    /**
-     * Whether the event is critical.
-     */
-    criticalAlert: boolean;
-  }
 }
 
-export type EventAlertFragmentData = EventAlertFragmentData._BaseFields_ & (EventAlertFragmentData.Other)
+export type EventAlertCommonFragmentData = {
+
+  /**
+   * Whether the event is critical.
+   */
+  criticalAlert: boolean;
+}
+
+export type EventAlertUnionFragmentData = EventAlertFragmentData.Other
+
+export type EventAlertFragmentData = EventAlertCommonFragmentData & EventAlertUnionFragmentData
 
 export const eventAlertSelections: GraphSelection[] = ([
   {

@@ -7,16 +7,19 @@ export namespace NodeIdFragmentData {
     __typename: '';
   }
 
-  export interface _BaseFields_ {
-
-    /**
-     * Globally unique identifier.
-     */
-    id: ID;
-  }
 }
 
-export type NodeIdFragmentData = NodeIdFragmentData._BaseFields_ & (NodeIdFragmentData.Other)
+export type NodeIdCommonFragmentData = {
+
+  /**
+   * Globally unique identifier.
+   */
+  id: ID;
+}
+
+export type NodeIdUnionFragmentData = NodeIdFragmentData.Other
+
+export type NodeIdFragmentData = NodeIdCommonFragmentData & NodeIdUnionFragmentData
 
 export const nodeIdSelections: GraphSelection[] = ([
   {

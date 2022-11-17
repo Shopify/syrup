@@ -15,11 +15,13 @@ export namespace TimelineCommentEventFragmentFragmentData {
     edited: boolean;
   }
 
-  export interface _BaseFields_ {
-  }
 }
 
-export type TimelineCommentEventFragmentFragmentData = TimelineCommentEventFragmentFragmentData._BaseFields_ & (TimelineCommentEventFragmentFragmentData.CommentEvent | TimelineCommentEventFragmentFragmentData.Other)
+export type TimelineCommentEventFragmentCommonFragmentData = {}
+
+export type TimelineCommentEventFragmentUnionFragmentData = TimelineCommentEventFragmentFragmentData.CommentEvent | TimelineCommentEventFragmentFragmentData.Other
+
+export type TimelineCommentEventFragmentFragmentData = TimelineCommentEventFragmentCommonFragmentData & TimelineCommentEventFragmentUnionFragmentData
 
 export const timelineCommentEventFragmentSelections: GraphSelection[] = ([
   {

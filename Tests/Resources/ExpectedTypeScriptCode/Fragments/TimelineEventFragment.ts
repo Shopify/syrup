@@ -63,41 +63,44 @@ export namespace TimelineEventFragmentFragmentData {
     attachments: CommentEventAttachments[];
   }
 
-  export interface _BaseFields_ {
-
-    /**
-     * Globally unique identifier.
-     */
-    id: ID;
-
-    /**
-     * The date and time when the event was created.
-     */
-    createdAt: string;
-
-    /**
-     * Human readable text that describes the event.
-     */
-    message: string;
-
-    /**
-     * Whether the event was created by an app.
-     */
-    attributeToApp: boolean;
-
-    /**
-     * Whether the event was caused by an admin user.
-     */
-    attributeToUser: boolean;
-
-    /**
-     * Whether the event is critical.
-     */
-    criticalAlert: boolean;
-  }
 }
 
-export type TimelineEventFragmentFragmentData = TimelineEventFragmentFragmentData._BaseFields_ & (TimelineEventFragmentFragmentData.CommentEvent | TimelineEventFragmentFragmentData.Other)
+export type TimelineEventFragmentCommonFragmentData = {
+
+  /**
+   * Globally unique identifier.
+   */
+  id: ID;
+
+  /**
+   * The date and time when the event was created.
+   */
+  createdAt: string;
+
+  /**
+   * Human readable text that describes the event.
+   */
+  message: string;
+
+  /**
+   * Whether the event was created by an app.
+   */
+  attributeToApp: boolean;
+
+  /**
+   * Whether the event was caused by an admin user.
+   */
+  attributeToUser: boolean;
+
+  /**
+   * Whether the event is critical.
+   */
+  criticalAlert: boolean;
+}
+
+export type TimelineEventFragmentUnionFragmentData = TimelineEventFragmentFragmentData.CommentEvent | TimelineEventFragmentFragmentData.Other
+
+export type TimelineEventFragmentFragmentData = TimelineEventFragmentCommonFragmentData & TimelineEventFragmentUnionFragmentData
 
 export const timelineEventFragmentSelections: GraphSelection[] = ([
   {

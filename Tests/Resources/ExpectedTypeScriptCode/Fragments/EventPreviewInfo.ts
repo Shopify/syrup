@@ -7,21 +7,24 @@ export namespace EventPreviewInfoFragmentData {
     __typename: '';
   }
 
-  export interface _BaseFields_ {
-
-    /**
-     * The date and time when the event was created.
-     */
-    createdAt: string;
-
-    /**
-     * Human readable text that describes the event.
-     */
-    message: string;
-  }
 }
 
-export type EventPreviewInfoFragmentData = EventPreviewInfoFragmentData._BaseFields_ & (EventPreviewInfoFragmentData.Other)
+export type EventPreviewInfoCommonFragmentData = {
+
+  /**
+   * The date and time when the event was created.
+   */
+  createdAt: string;
+
+  /**
+   * Human readable text that describes the event.
+   */
+  message: string;
+}
+
+export type EventPreviewInfoUnionFragmentData = EventPreviewInfoFragmentData.Other
+
+export type EventPreviewInfoFragmentData = EventPreviewInfoCommonFragmentData & EventPreviewInfoUnionFragmentData
 
 export const eventPreviewInfoSelections: GraphSelection[] = ([
   {

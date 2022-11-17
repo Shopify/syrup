@@ -1,12 +1,16 @@
 {% macro renderFragmentsFromBarrel allReferencedFragments %}import {
-  {% for name in allReferencedFragments %}{{ name }}FragmentData,
-  {{ name|lowercasedFirstLetter }}Selections,
+  {% for fragment in allReferencedFragments %}{% if fragment.union == false %}{{ fragment.name }}FragmentData,{% else %}{{ fragment.name }}CommonFragmentData,
+  {{ fragment.name }}UnionFragmentData,
+  {% endif %}
+  {{ fragment.name|lowercasedFirstLetter }}Selections,
   {% endfor %}
 } from "../Fragments"
 {% endmacro %}
-{% macro renderFragmentsLocally allReferencedFragments %}{% for name in allReferencedFragments %}import {
-  {{ name }}FragmentData,
-  {{ name|lowercasedFirstLetter }}Selections,
-} from "./{{ name }}"
+{% macro renderFragmentsLocally allReferencedFragments %}{% for fragment in allReferencedFragments %}import {
+  {% if fragment.union == false %}{{ fragment.name }}FragmentData,{% else %}{{ fragment.name }}CommonFragmentData,
+  {{ fragment.name }}UnionFragmentData,
+  {% endif %}
+  {{ fragment.name|lowercasedFirstLetter }}Selections,
+} from "./{{ fragment.name }}"
 {% endfor %}{% endmacro %}
 {% if isFragment %}{% call renderFragmentsLocally allReferencedFragments %}{% else %}{% call renderFragmentsFromBarrel allReferencedFragments %}{% endif %}

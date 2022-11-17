@@ -6,13 +6,12 @@ export namespace TestQuery0QueryData {
   export interface NodesOther {
     __typename: '';
   }
-  export interface Nodes_BaseFields_ {
+  export type Nodes = {
     /**
      * Globally unique identifier.
      */
     id: ID;
-  }
-  export type Nodes = Nodes_BaseFields_ & (NodesOther)
+  } & (NodesOther)
 }
 
 export interface TestQuery0QueryData {

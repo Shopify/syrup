@@ -23,9 +23,7 @@ export namespace TestQuery10QueryData {
      */
     percentage: number;
   }
-  export interface PriceRuleValue_BaseFields_ {
-  }
-  export type PriceRuleValue = PriceRuleValue_BaseFields_ & (PriceRuleValuePriceRuleFixedAmountValue | PriceRuleValuePriceRulePercentValue | PriceRuleValueOther)
+  export type PriceRuleValue = (PriceRuleValuePriceRuleFixedAmountValue | PriceRuleValuePriceRulePercentValue | PriceRuleValueOther)
   export interface PriceRuleValueV2Other {
     __typename: '';
   }
@@ -43,9 +41,7 @@ export namespace TestQuery10QueryData {
      */
     percentage: number;
   }
-  export interface PriceRuleValueV2_BaseFields_ {
-  }
-  export type PriceRuleValueV2 = PriceRuleValueV2_BaseFields_ & (PriceRuleValueV2MoneyV2 | PriceRuleValueV2PricingPercentageValue | PriceRuleValueV2Other)
+  export type PriceRuleValueV2 = (PriceRuleValueV2MoneyV2 | PriceRuleValueV2PricingPercentageValue | PriceRuleValueV2Other)
   export interface PriceRule {
     __typename: 'PriceRule';
     /**

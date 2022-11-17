@@ -2,9 +2,11 @@
 
 import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../GraphApi"
 import {
-  TimelineBasicEventFragmentFragmentData,
+  TimelineBasicEventFragmentCommonFragmentData,
+  TimelineBasicEventFragmentUnionFragmentData,
   timelineBasicEventFragmentSelections,
-  TimelineCommentEventFragmentFragmentData,
+  TimelineCommentEventFragmentCommonFragmentData,
+  TimelineCommentEventFragmentUnionFragmentData,
   timelineCommentEventFragmentSelections,
 } from "../Fragments"
 
@@ -15,7 +17,7 @@ export namespace CustomerTimelineQueryData {
   export interface CustomerEventsEdgesNodeOther {
     __typename: '';
   }
-  export interface CustomerEventsEdgesNode_BaseFields_ extends TimelineBasicEventFragmentFragmentData._BaseFields_, TimelineCommentEventFragmentFragmentData._BaseFields_ {
+  export type CustomerEventsEdgesNode = {
     /**
      * Globally unique identifier.
      */
@@ -24,12 +26,7 @@ export namespace CustomerTimelineQueryData {
      * The date and time when the event was created.
      */
     createdAt: string;
-    /**
-     * Human readable text that describes the event.
-     */
-    message: string;
-  }
-  export type CustomerEventsEdgesNode = CustomerEventsEdgesNode_BaseFields_ & (TimelineBasicEventFragmentFragmentData.BasicEvent | TimelineCommentEventFragmentFragmentData.CommentEvent | CustomerEventsEdgesNodeOther)
+  } & TimelineBasicEventFragmentCommonFragmentData & TimelineCommentEventFragmentCommonFragmentData & (TimelineBasicEventFragmentUnionFragmentData | TimelineCommentEventFragmentUnionFragmentData | CustomerEventsEdgesNodeOther)
   export interface CustomerEventsEdges {
     __typename: 'EventEdge';
     /**
@@ -77,9 +74,9 @@ export interface CustomerTimelineQueryData {
 }
 
 const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryData.Variables> = {
-  id: "f5148ada6684f72c02b7bd7e0d652980d90bad72f6365ebda93134f9abf1b5b8",
+  id: "88e33bc25ccfe7d991a8d9d747c34461724b9e67978a62641822ab64e1c0adfc",
   name: "CustomerTimeline",
-  source: "fragment TimelineBasicEventFragment on Event { __typename ... on BasicEvent { __typename attributeToUser attributeToApp } } fragment TimelineCommentEventFragment on Event { __typename ... on CommentEvent { __typename edited } } query CustomerTimeline(\$customerId: ID!) { __typename customer(id: \$customerId) { __typename events { __typename edges { __typename node { __typename id createdAt message ... TimelineBasicEventFragment ... TimelineCommentEventFragment } cursor } pageInfo { __typename hasNextPage } } } }",
+  source: "fragment TimelineBasicEventFragment on Event { __typename message ... on BasicEvent { __typename attributeToUser attributeToApp } } fragment TimelineCommentEventFragment on Event { __typename ... on CommentEvent { __typename edited } } query CustomerTimeline(\$customerId: ID!) { __typename customer(id: \$customerId) { __typename events { __typename edges { __typename node { __typename id createdAt ... TimelineBasicEventFragment ... TimelineCommentEventFragment } cursor } pageInfo { __typename hasNextPage } } } }",
   operationType: 'query',
   selections: ([
     {
@@ -137,11 +134,6 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
                     {
                       name: "createdAt",
                       type: { name: "DateTime", definedType: "Scalar" },
-                      typeCondition: { name: "Event", definedType: "Interface" },
-                    }, 
-                    {
-                      name: "message",
-                      type: { name: "FormattedString", definedType: "Scalar" },
                       typeCondition: { name: "Event", definedType: "Interface" },
                     }
                   ] as GraphSelection[]).concat(timelineBasicEventFragmentSelections).concat(timelineCommentEventFragmentSelections)

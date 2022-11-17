@@ -1,6 +1,10 @@
 {% include "Helpers/Header.stencil" %}
-{% if fragmentNames.count > 0 %}{% for name in fragmentNames %}export type { {{ name }}FragmentData } from "./{{ name }}"
-export { {{ name|lowercasedFirstLetter }}Selections } from "./{{ name }}"
+{% if fragments.count > 0 %}{% for fragment in fragments %}export type {
+{% if fragment.union == true %}  {{ fragment.name }}CommonFragmentData,
+  {{ fragment.name }}UnionFragmentData,{% endif %}
+  {{ fragment.name }}FragmentData
+} from "./{{ fragment.name }}"
+export { {{ fragment.name|lowercasedFirstLetter }}Selections } from "./{{ fragment.name }}"
 {% endfor %}
 {% else %}export {}
 {% endif %}
