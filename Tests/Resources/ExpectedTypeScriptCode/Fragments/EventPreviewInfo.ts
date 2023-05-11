@@ -23,18 +23,23 @@ export namespace EventPreviewInfoFragmentData {
 
 export type EventPreviewInfoFragmentData = EventPreviewInfoFragmentData._BaseFields_ & (EventPreviewInfoFragmentData.Other)
 
+export const eventPreviewInfoTypeCondition = { name: "Event", definedType: "Interface" }
+
 export const eventPreviewInfoSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Event", definedType: "Interface" },
   }, 
   {
+    selectionType: "field",
     name: "createdAt",
     type: { name: "DateTime", definedType: "Scalar" },
     typeCondition: { name: "Event", definedType: "Interface" },
   }, 
   {
+    selectionType: "field",
     name: "message",
     type: { name: "FormattedString", definedType: "Scalar" },
     typeCondition: { name: "Event", definedType: "Interface" },

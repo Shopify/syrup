@@ -53,32 +53,38 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "customer",
       type: { name: "Customer", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       arguments: { id: { type: "StringValue", value: "" } },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Customer", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "addresses",
           type: { name: "MailingAddress", definedType: "Object" },
           typeCondition: { name: "Customer", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "country",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
@@ -86,26 +92,31 @@ const document: SyrupOperation<TestQuery3QueryData, {}> = {
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "defaultAddress",
           type: { name: "MailingAddress", definedType: "Object" },
           typeCondition: { name: "Customer", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "city",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "longitude",
               type: { name: "Float", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "latitude",
               type: { name: "Float", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },

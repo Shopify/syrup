@@ -15,4 +15,6 @@ export interface {{ name }}FragmentData{% if fragmentSpreads.count > 0 %} extend
 {% endfor %}
 }
 
-export const {{ name|lowercasedFirstLetter }}Selections: GraphSelection[] = {{ selections|renderTypeScriptSelections:null,0 }}
+export const {{ name|lowercasedFirstLetter }}TypeCondition = {{ typeCondition|renderTypeScriptTypeCondition }}
+
+export const {{ name|lowercasedFirstLetter }}Selections: GraphSelection[] = {{ selections|renderTypeScriptSelections:0 }}

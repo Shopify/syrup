@@ -7,6 +7,8 @@ export namespace {{ name }}FragmentData {
 
 export type {{ name }}FragmentData = {{ name }}FragmentData._BaseFields_ & ({% for fragment in fragmentUnionTypes %}{{ fragment.fragmentName }}FragmentData.{{ fragment.fieldName }} | {% endfor %}{% for fragment in fragmentObjectTypes %}{{ fragment }}FragmentData | {% endfor %}{% for concreteTypeName in concreteTypeNames %}{{ name }}FragmentData.{{ concreteTypeName }} | {% endfor %}{{ name }}FragmentData.Other)
 
-export const {{ name|lowercasedFirstLetter }}Selections: GraphSelection[] = {{ selections|renderTypeScriptSelections:null,0 }}
+export const {{ name|lowercasedFirstLetter }}TypeCondition = {{ typeCondition|renderTypeScriptTypeCondition }}
+
+export const {{ name|lowercasedFirstLetter }}Selections: GraphSelection[] = {{ selections|renderTypeScriptSelections:0 }}
 
 {% endblock %}

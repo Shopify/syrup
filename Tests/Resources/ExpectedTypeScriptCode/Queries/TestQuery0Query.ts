@@ -30,22 +30,26 @@ const document: SyrupOperation<TestQuery0QueryData, {}> = {
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "nodes",
       type: { name: "Node", definedType: "Interface" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       arguments: { ids: { type: "ListValue", value: [{ type: "StringValue", value: "gid://shopify/Customer/350635977" }] } },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Node", definedType: "Interface" },
         }, 
         {
+          selectionType: "field",
           name: "id",
           type: { name: "ID", definedType: "Scalar" },
           typeCondition: { name: "Node", definedType: "Interface" },

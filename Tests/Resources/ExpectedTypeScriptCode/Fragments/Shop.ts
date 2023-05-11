@@ -42,54 +42,66 @@ export interface ShopFragmentData {
   shop: ShopFragmentData.Shop;
 }
 
+export const shopTypeCondition = { name: "QueryRoot", definedType: "Object" }
+
 export const shopSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "QueryRoot", definedType: "Object" },
   }, 
   {
+    selectionType: "field",
     name: "shop",
     type: { name: "Shop", definedType: "Object" },
     typeCondition: { name: "QueryRoot", definedType: "Object" },
     selections: ([
       {
+        selectionType: "field",
         name: "__typename",
         type: { name: "String", definedType: "Scalar" },
         typeCondition: { name: "Shop", definedType: "Object" },
       }, 
       {
+        selectionType: "field",
         name: "availableChannelApps",
         type: { name: "AppConnection", definedType: "Object" },
         typeCondition: { name: "Shop", definedType: "Object" },
         arguments: { first: { type: "OperationVariableKey", value: "first" } },
         selections: ([
           {
+            selectionType: "field",
             name: "__typename",
             type: { name: "String", definedType: "Scalar" },
             typeCondition: { name: "AppConnection", definedType: "Object" },
           }, 
           {
+            selectionType: "field",
             name: "edges",
             type: { name: "AppEdge", definedType: "Object" },
             typeCondition: { name: "AppConnection", definedType: "Object" },
             selections: ([
               {
+                selectionType: "field",
                 name: "__typename",
                 type: { name: "String", definedType: "Scalar" },
                 typeCondition: { name: "AppEdge", definedType: "Object" },
               }, 
               {
+                selectionType: "field",
                 name: "node",
                 type: { name: "App", definedType: "Object" },
                 typeCondition: { name: "AppEdge", definedType: "Object" },
                 selections: ([
                   {
+                    selectionType: "field",
                     name: "__typename",
                     type: { name: "String", definedType: "Scalar" },
                     typeCondition: { name: "App", definedType: "Object" },
                   }, 
                   {
+                    selectionType: "field",
                     name: "id",
                     type: { name: "ID", definedType: "Scalar" },
                     typeCondition: { name: "App", definedType: "Object" },

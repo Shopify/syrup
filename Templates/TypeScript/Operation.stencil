@@ -26,6 +26,6 @@ const document: SyrupOperation<{{ name }}, {% if operation.variables.count > 0 %
   name: "{{ operation.name }}",
   source: "{{ queryString|replace:"$","\$"|replaceTypeScriptQuotes }}",
   operationType: '{{ operation|renderOperationTypeName|lowercase } }}',
-  selections: {{ selections|renderTypeScriptSelections:null,2 }}
+  selections: {{ selections|renderTypeScriptSelections:2 }}
 }
 export default document

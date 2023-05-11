@@ -40,32 +40,38 @@ const document: SyrupOperation<TestMutation1MutationData, TestMutation1MutationD
   operationType: 'mutation',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "Mutation", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "productUpdate",
       type: { name: "ProductUpdatePayload", definedType: "Object" },
       typeCondition: { name: "Mutation", definedType: "Object" },
       arguments: { input: { type: "OperationVariableKey", value: "input" } },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "ProductUpdatePayload", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "product",
           type: { name: "Product", definedType: "Object" },
           typeCondition: { name: "ProductUpdatePayload", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "Product", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "id",
               type: { name: "ID", definedType: "Scalar" },
               typeCondition: { name: "Product", definedType: "Object" },

@@ -100,67 +100,80 @@ const document: SyrupOperation<TestDeprecatedFieldsQueryData, TestDeprecatedFiel
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "channels",
       type: { name: "ChannelConnection", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       arguments: { first: { type: "OperationVariableKey", value: "first" } },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "ChannelConnection", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "edges",
           type: { name: "ChannelEdge", definedType: "Object" },
           typeCondition: { name: "ChannelConnection", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ChannelEdge", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "node",
               type: { name: "Channel", definedType: "Object" },
               typeCondition: { name: "ChannelEdge", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "Channel", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "app",
                   type: { name: "App", definedType: "Object" },
                   typeCondition: { name: "Channel", definedType: "Object" },
                   selections: ([
                     {
+                      selectionType: "field",
                       name: "__typename",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "App", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "id",
                       type: { name: "ID", definedType: "Scalar" },
                       typeCondition: { name: "App", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "icon",
                       type: { name: "Image", definedType: "Object" },
                       typeCondition: { name: "App", definedType: "Object" },
                       selections: ([
                         {
+                          selectionType: "field",
                           name: "__typename",
                           type: { name: "String", definedType: "Scalar" },
                           typeCondition: { name: "Image", definedType: "Object" },
                         }, 
                         {
+                          selectionType: "field",
                           name: "src",
                           type: { name: "URL", definedType: "Scalar" },
                           typeCondition: { name: "Image", definedType: "Object" },

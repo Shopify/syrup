@@ -70,37 +70,44 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
   operationType: 'mutation',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "Mutation", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "collectionCreate",
       type: { name: "CollectionCreatePayload", definedType: "Object" },
       typeCondition: { name: "Mutation", definedType: "Object" },
       arguments: { input: { type: "OperationVariableKey", value: "input" } },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "CollectionCreatePayload", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "userErrors",
           type: { name: "UserError", definedType: "Object" },
           typeCondition: { name: "CollectionCreatePayload", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "UserError", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "field",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "UserError", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "message",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "UserError", definedType: "Object" },
@@ -108,36 +115,43 @@ const document: SyrupOperation<CreateCollectionMutationData, CreateCollectionMut
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "collection",
           type: { name: "Collection", definedType: "Object" },
           typeCondition: { name: "CollectionCreatePayload", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "Collection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "title",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "Collection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "id",
               type: { name: "ID", definedType: "Scalar" },
               typeCondition: { name: "Collection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "feedback",
               type: { name: "ResourceFeedback", definedType: "Object" },
               typeCondition: { name: "Collection", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ResourceFeedback", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "summary",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ResourceFeedback", definedType: "Object" },

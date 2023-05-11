@@ -72,11 +72,13 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "node",
       type: { name: "Node", definedType: "Interface" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
@@ -84,60 +86,77 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
       passedGID: "productId",
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Node", definedType: "Interface" },
         }, 
         {
-          name: "__typename",
-          type: { name: "String", definedType: "Scalar" },
+          selectionType: "inlineFragment",
           typeCondition: { name: "Product", definedType: "Object" },
-        }, 
-        {
-          name: "id",
-          type: { name: "ID", definedType: "Scalar" },
-          typeCondition: { name: "Product", definedType: "Object" },
-        }, 
-        {
-          name: "collections",
-          type: { name: "CollectionConnection", definedType: "Object" },
-          typeCondition: { name: "Product", definedType: "Object" },
-          arguments: { first: { type: "IntValue", value: 100 } },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
-              typeCondition: { name: "CollectionConnection", definedType: "Object" },
+              typeCondition: { name: "Product", definedType: "Object" },
             }, 
             {
-              name: "edges",
-              type: { name: "CollectionEdge", definedType: "Object" },
-              typeCondition: { name: "CollectionConnection", definedType: "Object" },
+              selectionType: "field",
+              name: "id",
+              type: { name: "ID", definedType: "Scalar" },
+              typeCondition: { name: "Product", definedType: "Object" },
+            }, 
+            {
+              selectionType: "field",
+              name: "collections",
+              type: { name: "CollectionConnection", definedType: "Object" },
+              typeCondition: { name: "Product", definedType: "Object" },
+              arguments: { first: { type: "IntValue", value: 100 } },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
-                  typeCondition: { name: "CollectionEdge", definedType: "Object" },
+                  typeCondition: { name: "CollectionConnection", definedType: "Object" },
                 }, 
                 {
-                  name: "node",
-                  type: { name: "Collection", definedType: "Object" },
-                  typeCondition: { name: "CollectionEdge", definedType: "Object" },
+                  selectionType: "field",
+                  name: "edges",
+                  type: { name: "CollectionEdge", definedType: "Object" },
+                  typeCondition: { name: "CollectionConnection", definedType: "Object" },
                   selections: ([
                     {
+                      selectionType: "field",
                       name: "__typename",
                       type: { name: "String", definedType: "Scalar" },
-                      typeCondition: { name: "Collection", definedType: "Object" },
+                      typeCondition: { name: "CollectionEdge", definedType: "Object" },
                     }, 
                     {
-                      name: "id",
-                      type: { name: "ID", definedType: "Scalar" },
-                      typeCondition: { name: "Collection", definedType: "Object" },
-                    }, 
-                    {
-                      name: "title",
-                      type: { name: "String", definedType: "Scalar" },
-                      typeCondition: { name: "Collection", definedType: "Object" },
+                      selectionType: "field",
+                      name: "node",
+                      type: { name: "Collection", definedType: "Object" },
+                      typeCondition: { name: "CollectionEdge", definedType: "Object" },
+                      selections: ([
+                        {
+                          selectionType: "field",
+                          name: "__typename",
+                          type: { name: "String", definedType: "Scalar" },
+                          typeCondition: { name: "Collection", definedType: "Object" },
+                        }, 
+                        {
+                          selectionType: "field",
+                          name: "id",
+                          type: { name: "ID", definedType: "Scalar" },
+                          typeCondition: { name: "Collection", definedType: "Object" },
+                        }, 
+                        {
+                          selectionType: "field",
+                          name: "title",
+                          type: { name: "String", definedType: "Scalar" },
+                          typeCondition: { name: "Collection", definedType: "Object" },
+                        }
+                      ] as GraphSelection[])
                     }
                   ] as GraphSelection[])
                 }
@@ -146,14 +165,22 @@ const document: SyrupOperation<TestQuery11QueryData, TestQuery11QueryData.Variab
           ] as GraphSelection[])
         }, 
         {
-          name: "__typename",
-          type: { name: "String", definedType: "Scalar" },
+          selectionType: "inlineFragment",
           typeCondition: { name: "ProductOption", definedType: "Object" },
-        }, 
-        {
-          name: "id",
-          type: { name: "ID", definedType: "Scalar" },
-          typeCondition: { name: "ProductOption", definedType: "Object" },
+          selections: ([
+            {
+              selectionType: "field",
+              name: "__typename",
+              type: { name: "String", definedType: "Scalar" },
+              typeCondition: { name: "ProductOption", definedType: "Object" },
+            }, 
+            {
+              selectionType: "field",
+              name: "id",
+              type: { name: "ID", definedType: "Scalar" },
+              typeCondition: { name: "ProductOption", definedType: "Object" },
+            }
+          ] as GraphSelection[])
         }
       ] as GraphSelection[])
     }

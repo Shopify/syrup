@@ -94,66 +94,79 @@ const document: SyrupOperation<ShopDetailsQueryData, {}> = {
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "shop",
       type: { name: "Shop", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "id",
           type: { name: "ID", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "name",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "currencyCode",
           type: { name: "CurrencyCode", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "weightUnit",
           type: { name: "WeightUnit", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "billingAddress",
           type: { name: "MailingAddress", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "city",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "company",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "latitude",
               type: { name: "Float", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "longitude",
               type: { name: "Float", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
@@ -161,16 +174,19 @@ const document: SyrupOperation<ShopDetailsQueryData, {}> = {
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "alerts",
           type: { name: "ShopAlert", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ShopAlert", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "description",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ShopAlert", definedType: "Object" },
@@ -178,21 +194,25 @@ const document: SyrupOperation<ShopDetailsQueryData, {}> = {
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "shipsToCountries",
           type: { name: "CountryCode", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "paymentSettings",
           type: { name: "PaymentSettings", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "PaymentSettings", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "supportedDigitalWallets",
               type: { name: "DigitalWallet", definedType: "Scalar" },
               typeCondition: { name: "PaymentSettings", definedType: "Object" },

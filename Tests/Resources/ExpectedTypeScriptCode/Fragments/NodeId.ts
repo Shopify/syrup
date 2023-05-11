@@ -18,13 +18,17 @@ export namespace NodeIdFragmentData {
 
 export type NodeIdFragmentData = NodeIdFragmentData._BaseFields_ & (NodeIdFragmentData.Other)
 
+export const nodeIdTypeCondition = { name: "Node", definedType: "Interface" }
+
 export const nodeIdSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Node", definedType: "Interface" },
   }, 
   {
+    selectionType: "field",
     name: "id",
     type: { name: "ID", definedType: "Scalar" },
     typeCondition: { name: "Node", definedType: "Interface" },

@@ -1,6 +1,7 @@
 {% include "Helpers/Header.stencil" %}
 {% if fragmentNames.count > 0 %}{% for name in fragmentNames %}export type { {{ name }}FragmentData } from "./{{ name }}"
 export { {{ name|lowercasedFirstLetter }}Selections } from "./{{ name }}"
+export { {{ name|lowercasedFirstLetter }}TypeCondition } from "./{{ name }}"
 {% endfor %}
 {% else %}export {}
 {% endif %}

@@ -4,6 +4,7 @@ import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../Gr
 import {
   BasicFragmentFragmentData,
   basicFragmentSelections,
+  basicFragmentTypeCondition,
 } from "../Fragments"
 
 export namespace TestQuery9QueryData {
@@ -54,57 +55,73 @@ const document: SyrupOperation<TestQuery9QueryData, {}> = {
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "shop",
       type: { name: "Shop", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "customers",
           type: { name: "CustomerConnection", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           arguments: { first: { type: "IntValue", value: 1 } },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "CustomerConnection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "edges",
               type: { name: "CustomerEdge", definedType: "Object" },
               typeCondition: { name: "CustomerConnection", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "CustomerEdge", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "node",
                   type: { name: "Customer", definedType: "Object" },
                   typeCondition: { name: "CustomerEdge", definedType: "Object" },
                   selections: ([
                     {
+                      selectionType: "field",
                       name: "__typename",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Customer", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "id",
                       type: { name: "ID", definedType: "Scalar" },
                       typeCondition: { name: "Customer", definedType: "Object" },
+                    }, 
+                    {
+                      selectionType: "fragmentSpread",
+                      name: "BasicFragment",
+                      typeCondition: basicFragmentTypeCondition,
+                      selections: basicFragmentSelections
                     }
-                  ] as GraphSelection[]).concat(basicFragmentSelections).map(x => copyWithTypeCondition(x, { name: "Customer", definedType: "Object" }))
+                  ] as GraphSelection[])
                 }
               ] as GraphSelection[])
             }

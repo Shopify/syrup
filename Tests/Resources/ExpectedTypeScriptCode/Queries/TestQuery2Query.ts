@@ -62,61 +62,73 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "shop",
       type: { name: "Shop", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "name",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "id",
           type: { name: "ID", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "email",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "alerts",
           type: { name: "ShopAlert", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ShopAlert", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "action",
               type: { name: "ShopAlertAction", definedType: "Object" },
               typeCondition: { name: "ShopAlert", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ShopAlertAction", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "title",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ShopAlertAction", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "url",
                   type: { name: "URL", definedType: "Scalar" },
                   typeCondition: { name: "ShopAlertAction", definedType: "Object" },
@@ -124,6 +136,7 @@ const document: SyrupOperation<TestQuery2QueryData, {}> = {
               ] as GraphSelection[])
             }, 
             {
+              selectionType: "field",
               name: "description",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ShopAlert", definedType: "Object" },

@@ -14,13 +14,17 @@ export interface ProductNodeTitleFragmentData {
   title: string;
 }
 
+export const productNodeTitleTypeCondition = { name: "Product", definedType: "Object" }
+
 export const productNodeTitleSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Product", definedType: "Object" },
   }, 
   {
+    selectionType: "field",
     name: "title",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Product", definedType: "Object" },
