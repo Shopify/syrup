@@ -80,11 +80,13 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "priceRule",
       type: { name: "PriceRule", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
@@ -92,76 +94,114 @@ const document: SyrupOperation<TestQuery10QueryData, TestQuery10QueryData.Variab
       passedGID: "priceRuleId",
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "PriceRule", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "id",
           type: { name: "ID", definedType: "Scalar" },
           typeCondition: { name: "PriceRule", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "value",
           type: { name: "PriceRuleValue", definedType: "Union" },
           typeCondition: { name: "PriceRule", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "PriceRuleValue", definedType: "Union" },
             }, 
             {
-              name: "__typename",
-              type: { name: "String", definedType: "Scalar" },
+              selectionType: "inlineFragment",
               typeCondition: { name: "PriceRulePercentValue", definedType: "Object" },
+              selections: ([
+                {
+                  selectionType: "field",
+                  name: "__typename",
+                  type: { name: "String", definedType: "Scalar" },
+                  typeCondition: { name: "PriceRulePercentValue", definedType: "Object" },
+                }, 
+                {
+                  selectionType: "field",
+                  name: "percentage",
+                  type: { name: "Float", definedType: "Scalar" },
+                  typeCondition: { name: "PriceRulePercentValue", definedType: "Object" },
+                }
+              ] as GraphSelection[])
             }, 
             {
-              name: "percentage",
-              type: { name: "Float", definedType: "Scalar" },
-              typeCondition: { name: "PriceRulePercentValue", definedType: "Object" },
-            }, 
-            {
-              name: "__typename",
-              type: { name: "String", definedType: "Scalar" },
+              selectionType: "inlineFragment",
               typeCondition: { name: "PriceRuleFixedAmountValue", definedType: "Object" },
-            }, 
-            {
-              name: "amount",
-              type: { name: "Money", definedType: "Scalar" },
-              typeCondition: { name: "PriceRuleFixedAmountValue", definedType: "Object" },
+              selections: ([
+                {
+                  selectionType: "field",
+                  name: "__typename",
+                  type: { name: "String", definedType: "Scalar" },
+                  typeCondition: { name: "PriceRuleFixedAmountValue", definedType: "Object" },
+                }, 
+                {
+                  selectionType: "field",
+                  name: "amount",
+                  type: { name: "Money", definedType: "Scalar" },
+                  typeCondition: { name: "PriceRuleFixedAmountValue", definedType: "Object" },
+                }
+              ] as GraphSelection[])
             }
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "valueV2",
           type: { name: "PricingValue", definedType: "Union" },
           typeCondition: { name: "PriceRule", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "PricingValue", definedType: "Union" },
             }, 
             {
-              name: "__typename",
-              type: { name: "String", definedType: "Scalar" },
+              selectionType: "inlineFragment",
               typeCondition: { name: "MoneyV2", definedType: "Object" },
+              selections: ([
+                {
+                  selectionType: "field",
+                  name: "__typename",
+                  type: { name: "String", definedType: "Scalar" },
+                  typeCondition: { name: "MoneyV2", definedType: "Object" },
+                }, 
+                {
+                  selectionType: "field",
+                  name: "amount",
+                  type: { name: "Decimal", definedType: "Scalar" },
+                  typeCondition: { name: "MoneyV2", definedType: "Object" },
+                }
+              ] as GraphSelection[])
             }, 
             {
-              name: "amount",
-              type: { name: "Decimal", definedType: "Scalar" },
-              typeCondition: { name: "MoneyV2", definedType: "Object" },
-            }, 
-            {
-              name: "__typename",
-              type: { name: "String", definedType: "Scalar" },
+              selectionType: "inlineFragment",
               typeCondition: { name: "PricingPercentageValue", definedType: "Object" },
-            }, 
-            {
-              name: "percentage",
-              type: { name: "Float", definedType: "Scalar" },
-              typeCondition: { name: "PricingPercentageValue", definedType: "Object" },
+              selections: ([
+                {
+                  selectionType: "field",
+                  name: "__typename",
+                  type: { name: "String", definedType: "Scalar" },
+                  typeCondition: { name: "PricingPercentageValue", definedType: "Object" },
+                }, 
+                {
+                  selectionType: "field",
+                  name: "percentage",
+                  type: { name: "Float", definedType: "Scalar" },
+                  typeCondition: { name: "PricingPercentageValue", definedType: "Object" },
+                }
+              ] as GraphSelection[])
             }
           ] as GraphSelection[])
         }

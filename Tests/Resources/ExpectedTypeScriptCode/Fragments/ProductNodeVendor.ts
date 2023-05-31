@@ -14,13 +14,17 @@ export interface ProductNodeVendorFragmentData {
   vendor: string;
 }
 
+export const productNodeVendorTypeCondition = { name: "Product", definedType: "Object" }
+
 export const productNodeVendorSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Product", definedType: "Object" },
   }, 
   {
+    selectionType: "field",
     name: "vendor",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Product", definedType: "Object" },

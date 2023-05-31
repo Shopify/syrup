@@ -4,10 +4,13 @@ import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../Gr
 import {
   NodeIdFragmentData,
   nodeIdSelections,
+  nodeIdTypeCondition,
   ProductNodeTitleFragmentData,
   productNodeTitleSelections,
+  productNodeTitleTypeCondition,
   ProductNodeVendorFragmentData,
   productNodeVendorSelections,
+  productNodeVendorTypeCondition,
 } from "../Fragments"
 
 export namespace NodeInterfacesQueryData {
@@ -44,11 +47,13 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "node",
       type: { name: "Node", definedType: "Interface" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
@@ -56,26 +61,60 @@ const document: SyrupOperation<NodeInterfacesQueryData, NodeInterfacesQueryData.
       passedGID: "nodeId",
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Node", definedType: "Interface" },
         }, 
         {
-          name: "__typename",
-          type: { name: "String", definedType: "Scalar" },
-          typeCondition: { name: "Product", definedType: "Object" },
+          selectionType: "fragmentSpread",
+          name: "NodeId",
+          typeCondition: nodeIdTypeCondition,
+          selections: nodeIdSelections
         }, 
         {
-          name: "description",
-          type: { name: "String", definedType: "Scalar" },
+          selectionType: "inlineFragment",
           typeCondition: { name: "Product", definedType: "Object" },
+          selections: ([
+            {
+              selectionType: "field",
+              name: "__typename",
+              type: { name: "String", definedType: "Scalar" },
+              typeCondition: { name: "Product", definedType: "Object" },
+            }, 
+            {
+              selectionType: "fragmentSpread",
+              name: "ProductNodeTitle",
+              typeCondition: productNodeTitleTypeCondition,
+              selections: productNodeTitleSelections
+            }, 
+            {
+              selectionType: "field",
+              name: "description",
+              type: { name: "String", definedType: "Scalar" },
+              typeCondition: { name: "Product", definedType: "Object" },
+            }
+          ] as GraphSelection[])
         }, 
         {
-          name: "__typename",
-          type: { name: "String", definedType: "Scalar" },
+          selectionType: "inlineFragment",
           typeCondition: { name: "Product", definedType: "Object" },
+          selections: ([
+            {
+              selectionType: "field",
+              name: "__typename",
+              type: { name: "String", definedType: "Scalar" },
+              typeCondition: { name: "Product", definedType: "Object" },
+            }, 
+            {
+              selectionType: "fragmentSpread",
+              name: "ProductNodeVendor",
+              typeCondition: productNodeVendorTypeCondition,
+              selections: productNodeVendorSelections
+            }
+          ] as GraphSelection[])
         }
-      ] as GraphSelection[]).concat(nodeIdSelections).concat(productNodeTitleSelections).concat(productNodeVendorSelections)
+      ] as GraphSelection[])
     }
   ] as GraphSelection[])
 }

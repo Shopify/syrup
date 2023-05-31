@@ -89,26 +89,31 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "shop",
       type: { name: "Shop", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "id",
           type: { name: "ID", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "products",
           type: { name: "ProductConnection", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
@@ -116,36 +121,43 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           arguments: { first: { type: "IntValue", value: 1 } },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ProductConnection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "edges",
               type: { name: "ProductEdge", definedType: "Object" },
               typeCondition: { name: "ProductConnection", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "cursor",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "node",
                   type: { name: "Product", definedType: "Object" },
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
                   selections: ([
                     {
+                      selectionType: "field",
                       name: "__typename",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Product", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "title",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Product", definedType: "Object" },
@@ -157,6 +169,7 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "products",
           type: { name: "ProductConnection", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
@@ -164,36 +177,43 @@ const document: SyrupOperation<TestQuery8QueryData, {}> = {
           arguments: { first: { type: "IntValue", value: 1 }, reverse: { type: "BooleanValue", value: true } },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ProductConnection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "edges",
               type: { name: "ProductEdge", definedType: "Object" },
               typeCondition: { name: "ProductConnection", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "cursor",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "node",
                   type: { name: "Product", definedType: "Object" },
                   typeCondition: { name: "ProductEdge", definedType: "Object" },
                   selections: ([
                     {
+                      selectionType: "field",
                       name: "__typename",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Product", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "title",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Product", definedType: "Object" },

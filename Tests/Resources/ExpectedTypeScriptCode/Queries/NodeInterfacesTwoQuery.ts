@@ -4,8 +4,10 @@ import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../Gr
 import {
   NodeIdTwoFragmentData,
   nodeIdTwoSelections,
+  nodeIdTwoTypeCondition,
   ProductNodeTitleTwoFragmentData,
   productNodeTitleTwoSelections,
+  productNodeTitleTwoTypeCondition,
 } from "../Fragments"
 
 export namespace NodeInterfacesTwoQueryData {
@@ -35,11 +37,13 @@ const document: SyrupOperation<NodeInterfacesTwoQueryData, NodeInterfacesTwoQuer
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "node",
       type: { name: "Node", definedType: "Interface" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
@@ -47,16 +51,36 @@ const document: SyrupOperation<NodeInterfacesTwoQueryData, NodeInterfacesTwoQuer
       passedGID: "nodeId",
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Node", definedType: "Interface" },
         }, 
         {
-          name: "__typename",
-          type: { name: "String", definedType: "Scalar" },
+          selectionType: "fragmentSpread",
+          name: "NodeIdTwo",
+          typeCondition: nodeIdTwoTypeCondition,
+          selections: nodeIdTwoSelections
+        }, 
+        {
+          selectionType: "inlineFragment",
           typeCondition: { name: "Product", definedType: "Object" },
+          selections: ([
+            {
+              selectionType: "field",
+              name: "__typename",
+              type: { name: "String", definedType: "Scalar" },
+              typeCondition: { name: "Product", definedType: "Object" },
+            }, 
+            {
+              selectionType: "fragmentSpread",
+              name: "ProductNodeTitleTwo",
+              typeCondition: productNodeTitleTwoTypeCondition,
+              selections: productNodeTitleTwoSelections
+            }
+          ] as GraphSelection[])
         }
-      ] as GraphSelection[]).concat(nodeIdTwoSelections).concat(productNodeTitleTwoSelections)
+      ] as GraphSelection[])
     }
   ] as GraphSelection[])
 }

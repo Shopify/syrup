@@ -4,14 +4,17 @@ import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../Gr
 import {
   EventPreviewInfoFragmentData,
   eventPreviewInfoSelections,
+  eventPreviewInfoTypeCondition,
 } from "./EventPreviewInfo"
 import {
   EventAttributeFieldsFragmentData,
   eventAttributeFieldsSelections,
+  eventAttributeFieldsTypeCondition,
 } from "./EventAttributeFields"
 import {
   EventAlertFragmentData,
   eventAlertSelections,
+  eventAlertTypeCondition,
 } from "./EventAlert"
 
 export namespace TimelineFragmentFragmentData {
@@ -114,23 +117,29 @@ export interface TimelineFragmentFragmentData {
   edges: TimelineFragmentFragmentData.Edges[];
 }
 
+export const timelineFragmentTypeCondition = { name: "EventConnection", definedType: "Object" }
+
 export const timelineFragmentSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "EventConnection", definedType: "Object" },
   }, 
   {
+    selectionType: "field",
     name: "pageInfo",
     type: { name: "PageInfo", definedType: "Object" },
     typeCondition: { name: "EventConnection", definedType: "Object" },
     selections: ([
       {
+        selectionType: "field",
         name: "__typename",
         type: { name: "String", definedType: "Scalar" },
         typeCondition: { name: "PageInfo", definedType: "Object" },
       }, 
       {
+        selectionType: "field",
         name: "hasNextPage",
         type: { name: "Boolean", definedType: "Scalar" },
         typeCondition: { name: "PageInfo", definedType: "Object" },
@@ -138,110 +147,154 @@ export const timelineFragmentSelections: GraphSelection[] = ([
     ] as GraphSelection[])
   }, 
   {
+    selectionType: "field",
     name: "edges",
     type: { name: "EventEdge", definedType: "Object" },
     typeCondition: { name: "EventConnection", definedType: "Object" },
     selections: ([
       {
+        selectionType: "field",
         name: "__typename",
         type: { name: "String", definedType: "Scalar" },
         typeCondition: { name: "EventEdge", definedType: "Object" },
       }, 
       {
+        selectionType: "field",
         name: "cursor",
         type: { name: "String", definedType: "Scalar" },
         typeCondition: { name: "EventEdge", definedType: "Object" },
       }, 
       {
+        selectionType: "field",
         name: "node",
         type: { name: "Event", definedType: "Interface" },
         typeCondition: { name: "EventEdge", definedType: "Object" },
         selections: ([
           {
+            selectionType: "field",
             name: "__typename",
             type: { name: "String", definedType: "Scalar" },
             typeCondition: { name: "Event", definedType: "Interface" },
           }, 
           {
+            selectionType: "field",
             name: "id",
             type: { name: "ID", definedType: "Scalar" },
             typeCondition: { name: "Event", definedType: "Interface" },
           }, 
           {
-            name: "__typename",
-            type: { name: "String", definedType: "Scalar" },
-            typeCondition: { name: "CommentEvent", definedType: "Object" },
+            selectionType: "fragmentSpread",
+            name: "EventPreviewInfo",
+            typeCondition: eventPreviewInfoTypeCondition,
+            selections: eventPreviewInfoSelections
           }, 
           {
-            name: "edited",
-            type: { name: "Boolean", definedType: "Scalar" },
-            typeCondition: { name: "CommentEvent", definedType: "Object" },
+            selectionType: "fragmentSpread",
+            name: "EventAttributeFields",
+            typeCondition: eventAttributeFieldsTypeCondition,
+            selections: eventAttributeFieldsSelections
           }, 
           {
-            name: "canEdit",
-            type: { name: "Boolean", definedType: "Scalar" },
-            typeCondition: { name: "CommentEvent", definedType: "Object" },
+            selectionType: "fragmentSpread",
+            name: "EventAlert",
+            typeCondition: eventAlertTypeCondition,
+            selections: eventAlertSelections
           }, 
           {
-            name: "canDelete",
-            type: { name: "Boolean", definedType: "Scalar" },
-            typeCondition: { name: "CommentEvent", definedType: "Object" },
-          }, 
-          {
-            name: "attachments",
-            type: { name: "CommentEventAttachment", definedType: "Object" },
+            selectionType: "inlineFragment",
             typeCondition: { name: "CommentEvent", definedType: "Object" },
             selections: ([
               {
+                selectionType: "field",
                 name: "__typename",
                 type: { name: "String", definedType: "Scalar" },
-                typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                typeCondition: { name: "CommentEvent", definedType: "Object" },
               }, 
               {
-                name: "id",
-                type: { name: "ID", definedType: "Scalar" },
-                typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                selectionType: "field",
+                name: "edited",
+                type: { name: "Boolean", definedType: "Scalar" },
+                typeCondition: { name: "CommentEvent", definedType: "Object" },
               }, 
               {
-                name: "name",
-                type: { name: "String", definedType: "Scalar" },
-                typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                selectionType: "field",
+                name: "canEdit",
+                type: { name: "Boolean", definedType: "Scalar" },
+                typeCondition: { name: "CommentEvent", definedType: "Object" },
               }, 
               {
-                name: "size",
-                type: { name: "Int", definedType: "Scalar" },
-                typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                selectionType: "field",
+                name: "canDelete",
+                type: { name: "Boolean", definedType: "Scalar" },
+                typeCondition: { name: "CommentEvent", definedType: "Object" },
               }, 
               {
-                name: "fileExtension",
-                type: { name: "String", definedType: "Scalar" },
-                typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
-              }, 
-              {
-                name: "url",
-                type: { name: "URL", definedType: "Scalar" },
-                typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
-              }, 
-              {
-                name: "image",
-                type: { name: "Image", definedType: "Object" },
-                typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                selectionType: "field",
+                name: "attachments",
+                type: { name: "CommentEventAttachment", definedType: "Object" },
+                typeCondition: { name: "CommentEvent", definedType: "Object" },
                 selections: ([
                   {
+                    selectionType: "field",
                     name: "__typename",
                     type: { name: "String", definedType: "Scalar" },
-                    typeCondition: { name: "Image", definedType: "Object" },
+                    typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
                   }, 
                   {
-                    name: "transformedSrc",
+                    selectionType: "field",
+                    name: "id",
+                    type: { name: "ID", definedType: "Scalar" },
+                    typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                  }, 
+                  {
+                    selectionType: "field",
+                    name: "name",
+                    type: { name: "String", definedType: "Scalar" },
+                    typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                  }, 
+                  {
+                    selectionType: "field",
+                    name: "size",
+                    type: { name: "Int", definedType: "Scalar" },
+                    typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                  }, 
+                  {
+                    selectionType: "field",
+                    name: "fileExtension",
+                    type: { name: "String", definedType: "Scalar" },
+                    typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                  }, 
+                  {
+                    selectionType: "field",
+                    name: "url",
                     type: { name: "URL", definedType: "Scalar" },
-                    typeCondition: { name: "Image", definedType: "Object" },
+                    typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                  }, 
+                  {
+                    selectionType: "field",
+                    name: "image",
+                    type: { name: "Image", definedType: "Object" },
+                    typeCondition: { name: "CommentEventAttachment", definedType: "Object" },
+                    selections: ([
+                      {
+                        selectionType: "field",
+                        name: "__typename",
+                        type: { name: "String", definedType: "Scalar" },
+                        typeCondition: { name: "Image", definedType: "Object" },
+                      }, 
+                      {
+                        selectionType: "field",
+                        name: "transformedSrc",
+                        type: { name: "URL", definedType: "Scalar" },
+                        typeCondition: { name: "Image", definedType: "Object" },
+                      }
+                    ] as GraphSelection[])
                   }
                 ] as GraphSelection[])
               }
             ] as GraphSelection[])
           }
-        ] as GraphSelection[]).concat(eventPreviewInfoSelections).concat(eventAttributeFieldsSelections).concat(eventAlertSelections)
+        ] as GraphSelection[])
       }
     ] as GraphSelection[])
   }

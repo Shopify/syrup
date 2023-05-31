@@ -78,52 +78,62 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
   operationType: 'mutation',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "Mutation", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "productVariantUpdate",
       type: { name: "ProductVariantUpdatePayload", definedType: "Object" },
       typeCondition: { name: "Mutation", definedType: "Object" },
       arguments: { input: { type: "OperationVariableKey", value: "variantInput" } },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "ProductVariantUpdatePayload", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "productVariant",
           type: { name: "ProductVariant", definedType: "Object" },
           typeCondition: { name: "ProductVariantUpdatePayload", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ProductVariant", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "id",
               type: { name: "ID", definedType: "Scalar" },
               typeCondition: { name: "ProductVariant", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "weight",
               type: { name: "Float", definedType: "Scalar" },
               typeCondition: { name: "ProductVariant", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "weightUnit",
               type: { name: "WeightUnit", definedType: "Scalar" },
               typeCondition: { name: "ProductVariant", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "requiresShipping",
               type: { name: "Boolean", definedType: "Scalar" },
               typeCondition: { name: "ProductVariant", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "harmonizedSystemCode",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ProductVariant", definedType: "Object" },
@@ -131,21 +141,25 @@ const document: SyrupOperation<ProductVariantShippingMutationData, ProductVarian
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "userErrors",
           type: { name: "UserError", definedType: "Object" },
           typeCondition: { name: "ProductVariantUpdatePayload", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "UserError", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "message",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "UserError", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "field",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "UserError", definedType: "Object" },

@@ -18,13 +18,17 @@ export namespace EventAlertFragmentData {
 
 export type EventAlertFragmentData = EventAlertFragmentData._BaseFields_ & (EventAlertFragmentData.Other)
 
+export const eventAlertTypeCondition = { name: "Event", definedType: "Interface" }
+
 export const eventAlertSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Event", definedType: "Interface" },
   }, 
   {
+    selectionType: "field",
     name: "criticalAlert",
     type: { name: "Boolean", definedType: "Scalar" },
     typeCondition: { name: "Event", definedType: "Interface" },

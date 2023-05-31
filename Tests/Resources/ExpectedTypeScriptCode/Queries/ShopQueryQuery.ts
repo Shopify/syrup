@@ -4,6 +4,7 @@ import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../Gr
 import {
   ShopFragmentData,
   shopSelections,
+  shopTypeCondition,
 } from "../Fragments"
 
 export namespace ShopQueryQueryData {
@@ -23,10 +24,17 @@ const document: SyrupOperation<ShopQueryQueryData, ShopQueryQueryData.Variables>
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
+    }, 
+    {
+      selectionType: "fragmentSpread",
+      name: "Shop",
+      typeCondition: shopTypeCondition,
+      selections: shopSelections
     }
-  ] as GraphSelection[]).concat(shopSelections)
+  ] as GraphSelection[])
 }
 export default document

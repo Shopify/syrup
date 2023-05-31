@@ -4,8 +4,10 @@ import { ID, GraphSelection, SyrupOperation, copyWithTypeCondition } from "../Gr
 import {
   TimelineBasicEventFragmentFragmentData,
   timelineBasicEventFragmentSelections,
+  timelineBasicEventFragmentTypeCondition,
   TimelineCommentEventFragmentFragmentData,
   timelineCommentEventFragmentSelections,
+  timelineCommentEventFragmentTypeCondition,
 } from "../Fragments"
 
 export namespace CustomerTimelineQueryData {
@@ -83,11 +85,13 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "customer",
       type: { name: "Customer", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
@@ -95,58 +99,81 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
       passedGID: "customerId",
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Customer", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "events",
           type: { name: "EventConnection", definedType: "Object" },
           typeCondition: { name: "Customer", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "EventConnection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "edges",
               type: { name: "EventEdge", definedType: "Object" },
               typeCondition: { name: "EventConnection", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "EventEdge", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "node",
                   type: { name: "Event", definedType: "Interface" },
                   typeCondition: { name: "EventEdge", definedType: "Object" },
                   selections: ([
                     {
+                      selectionType: "field",
                       name: "__typename",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Event", definedType: "Interface" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "id",
                       type: { name: "ID", definedType: "Scalar" },
                       typeCondition: { name: "Event", definedType: "Interface" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "createdAt",
                       type: { name: "DateTime", definedType: "Scalar" },
                       typeCondition: { name: "Event", definedType: "Interface" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "message",
                       type: { name: "FormattedString", definedType: "Scalar" },
                       typeCondition: { name: "Event", definedType: "Interface" },
+                    }, 
+                    {
+                      selectionType: "fragmentSpread",
+                      name: "TimelineBasicEventFragment",
+                      typeCondition: timelineBasicEventFragmentTypeCondition,
+                      selections: timelineBasicEventFragmentSelections
+                    }, 
+                    {
+                      selectionType: "fragmentSpread",
+                      name: "TimelineCommentEventFragment",
+                      typeCondition: timelineCommentEventFragmentTypeCondition,
+                      selections: timelineCommentEventFragmentSelections
                     }
-                  ] as GraphSelection[]).concat(timelineBasicEventFragmentSelections).concat(timelineCommentEventFragmentSelections)
+                  ] as GraphSelection[])
                 }, 
                 {
+                  selectionType: "field",
                   name: "cursor",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "EventEdge", definedType: "Object" },
@@ -154,16 +181,19 @@ const document: SyrupOperation<CustomerTimelineQueryData, CustomerTimelineQueryD
               ] as GraphSelection[])
             }, 
             {
+              selectionType: "field",
               name: "pageInfo",
               type: { name: "PageInfo", definedType: "Object" },
               typeCondition: { name: "EventConnection", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "PageInfo", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "hasNextPage",
                   type: { name: "Boolean", definedType: "Scalar" },
                   typeCondition: { name: "PageInfo", definedType: "Object" },

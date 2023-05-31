@@ -58,52 +58,62 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "products",
       type: { name: "ProductConnection", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       arguments: { first: { type: "OperationVariableKey", value: "first" }, reverse: { type: "BooleanValue", value: true }, before: { type: "OperationVariableKey", value: "before" }, after: { type: "OperationVariableKey", value: "after" }, sortKey: { type: "EnumValue", value: "CREATED_AT" } },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "ProductConnection", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "edges",
           type: { name: "ProductEdge", definedType: "Object" },
           typeCondition: { name: "ProductConnection", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ProductEdge", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "node",
               type: { name: "Product", definedType: "Object" },
               typeCondition: { name: "ProductEdge", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "Product", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "id",
                   type: { name: "ID", definedType: "Scalar" },
                   typeCondition: { name: "Product", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "title",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "Product", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "description",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "Product", definedType: "Object" },
@@ -111,6 +121,7 @@ const document: SyrupOperation<ProductsListQueryData, ProductsListQueryData.Vari
               ] as GraphSelection[])
             }, 
             {
+              selectionType: "field",
               name: "cursor",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "ProductEdge", definedType: "Object" },

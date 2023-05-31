@@ -21,21 +21,32 @@ export namespace TimelineCommentEventFragmentFragmentData {
 
 export type TimelineCommentEventFragmentFragmentData = TimelineCommentEventFragmentFragmentData._BaseFields_ & (TimelineCommentEventFragmentFragmentData.CommentEvent | TimelineCommentEventFragmentFragmentData.Other)
 
+export const timelineCommentEventFragmentTypeCondition = { name: "Event", definedType: "Interface" }
+
 export const timelineCommentEventFragmentSelections: GraphSelection[] = ([
   {
+    selectionType: "field",
     name: "__typename",
     type: { name: "String", definedType: "Scalar" },
     typeCondition: { name: "Event", definedType: "Interface" },
   }, 
   {
-    name: "__typename",
-    type: { name: "String", definedType: "Scalar" },
+    selectionType: "inlineFragment",
     typeCondition: { name: "CommentEvent", definedType: "Object" },
-  }, 
-  {
-    name: "edited",
-    type: { name: "Boolean", definedType: "Scalar" },
-    typeCondition: { name: "CommentEvent", definedType: "Object" },
+    selections: ([
+      {
+        selectionType: "field",
+        name: "__typename",
+        type: { name: "String", definedType: "Scalar" },
+        typeCondition: { name: "CommentEvent", definedType: "Object" },
+      }, 
+      {
+        selectionType: "field",
+        name: "edited",
+        type: { name: "Boolean", definedType: "Scalar" },
+        typeCondition: { name: "CommentEvent", definedType: "Object" },
+      }
+    ] as GraphSelection[])
   }
 ] as GraphSelection[])
 

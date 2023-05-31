@@ -87,7 +87,8 @@ final class TypeScriptRenderer: Renderer {
 				"isFragment": true,
 				"allReferencedFragments": referencedImports.fragments,
 				"allReferencedEnums": referencedImports.enums,
-				"selections": fragment.selectionSet
+				"selections": fragment.selectionSet,
+				"typeCondition": fragment.typeCondition,
 			]
 		))
 	}
@@ -111,7 +112,8 @@ final class TypeScriptRenderer: Renderer {
 				"isFragment": true,
 				"allReferencedFragments": referencedImports.fragments,
 				"allReferencedEnums": referencedImports.enums,
-				"selections": fragment.selectionSet
+				"selections": fragment.selectionSet,
+				"typeCondition": fragment.typeCondition,
 			]
 		))
 	}

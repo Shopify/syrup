@@ -17,6 +17,7 @@ const document: SyrupOperation<Subscription1SubscriptionData, {}> = {
   operationType: 'subscription',
   selections: ([
     {
+      selectionType: "field",
       name: "presenceChanged",
       type: { name: "Boolean", definedType: "Scalar" },
       typeCondition: { name: "Subscription", definedType: "Object" },

@@ -169,61 +169,73 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
   operationType: 'query',
   selections: ([
     {
+      selectionType: "field",
       name: "__typename",
       type: { name: "String", definedType: "Scalar" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
     }, 
     {
+      selectionType: "field",
       name: "shop",
       type: { name: "Shop", definedType: "Object" },
       typeCondition: { name: "QueryRoot", definedType: "Object" },
       selections: ([
         {
+          selectionType: "field",
           name: "__typename",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "name",
           type: { name: "String", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "currencyCode",
           type: { name: "CurrencyCode", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "weightUnit",
           type: { name: "WeightUnit", definedType: "Scalar" },
           typeCondition: { name: "Shop", definedType: "Object" },
         }, 
         {
+          selectionType: "field",
           name: "billingAddress",
           type: { name: "MailingAddress", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "city",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "company",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "latitude",
               type: { name: "Float", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "longitude",
               type: { name: "Float", definedType: "Scalar" },
               typeCondition: { name: "MailingAddress", definedType: "Object" },
@@ -231,22 +243,26 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "fulfillmentServices",
           type: { name: "FulfillmentService", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           alias: "services",
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "FulfillmentService", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "serviceName",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "FulfillmentService", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "handle",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "FulfillmentService", definedType: "Object" },
@@ -254,113 +270,135 @@ const document: SyrupOperation<TestQuery7QueryData, TestQuery7QueryData.Variable
           ] as GraphSelection[])
         }, 
         {
+          selectionType: "field",
           name: "orders",
           type: { name: "OrderConnection", definedType: "Object" },
           typeCondition: { name: "Shop", definedType: "Object" },
           arguments: { first: { type: "OperationVariableKey", value: "first" } },
           selections: ([
             {
+              selectionType: "field",
               name: "__typename",
               type: { name: "String", definedType: "Scalar" },
               typeCondition: { name: "OrderConnection", definedType: "Object" },
             }, 
             {
+              selectionType: "field",
               name: "edges",
               type: { name: "OrderEdge", definedType: "Object" },
               typeCondition: { name: "OrderConnection", definedType: "Object" },
               selections: ([
                 {
+                  selectionType: "field",
                   name: "__typename",
                   type: { name: "String", definedType: "Scalar" },
                   typeCondition: { name: "OrderEdge", definedType: "Object" },
                 }, 
                 {
+                  selectionType: "field",
                   name: "node",
                   type: { name: "Order", definedType: "Object" },
                   typeCondition: { name: "OrderEdge", definedType: "Object" },
                   selections: ([
                     {
+                      selectionType: "field",
                       name: "__typename",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Order", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "name",
                       type: { name: "String", definedType: "Scalar" },
                       typeCondition: { name: "Order", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "displayFulfillmentStatus",
                       type: { name: "OrderDisplayFulfillmentStatus", definedType: "Scalar" },
                       typeCondition: { name: "Order", definedType: "Object" },
                     }, 
                     {
+                      selectionType: "field",
                       name: "fulfillments",
                       type: { name: "Fulfillment", definedType: "Object" },
                       typeCondition: { name: "Order", definedType: "Object" },
                       selections: ([
                         {
+                          selectionType: "field",
                           name: "__typename",
                           type: { name: "String", definedType: "Scalar" },
                           typeCondition: { name: "Fulfillment", definedType: "Object" },
                         }, 
                         {
+                          selectionType: "field",
                           name: "name",
                           type: { name: "String", definedType: "Scalar" },
                           typeCondition: { name: "Fulfillment", definedType: "Object" },
                         }, 
                         {
+                          selectionType: "field",
                           name: "createdAt",
                           type: { name: "DateTime", definedType: "Scalar" },
                           typeCondition: { name: "Fulfillment", definedType: "Object" },
                         }, 
                         {
+                          selectionType: "field",
                           name: "inTransitAt",
                           type: { name: "DateTime", definedType: "Scalar" },
                           typeCondition: { name: "Fulfillment", definedType: "Object" },
                         }, 
                         {
+                          selectionType: "field",
                           name: "deliveredAt",
                           type: { name: "DateTime", definedType: "Scalar" },
                           typeCondition: { name: "Fulfillment", definedType: "Object" },
                         }, 
                         {
+                          selectionType: "field",
                           name: "displayStatus",
                           type: { name: "FulfillmentDisplayStatus", definedType: "Scalar" },
                           typeCondition: { name: "Fulfillment", definedType: "Object" },
                         }, 
                         {
+                          selectionType: "field",
                           name: "events",
                           type: { name: "FulfillmentEventConnection", definedType: "Object" },
                           typeCondition: { name: "Fulfillment", definedType: "Object" },
                           arguments: { first: { type: "IntValue", value: 10 } },
                           selections: ([
                             {
+                              selectionType: "field",
                               name: "__typename",
                               type: { name: "String", definedType: "Scalar" },
                               typeCondition: { name: "FulfillmentEventConnection", definedType: "Object" },
                             }, 
                             {
+                              selectionType: "field",
                               name: "edges",
                               type: { name: "FulfillmentEventEdge", definedType: "Object" },
                               typeCondition: { name: "FulfillmentEventConnection", definedType: "Object" },
                               selections: ([
                                 {
+                                  selectionType: "field",
                                   name: "__typename",
                                   type: { name: "String", definedType: "Scalar" },
                                   typeCondition: { name: "FulfillmentEventEdge", definedType: "Object" },
                                 }, 
                                 {
+                                  selectionType: "field",
                                   name: "node",
                                   type: { name: "FulfillmentEvent", definedType: "Object" },
                                   typeCondition: { name: "FulfillmentEventEdge", definedType: "Object" },
                                   selections: ([
                                     {
+                                      selectionType: "field",
                                       name: "__typename",
                                       type: { name: "String", definedType: "Scalar" },
                                       typeCondition: { name: "FulfillmentEvent", definedType: "Object" },
                                     }, 
                                     {
+                                      selectionType: "field",
                                       name: "status",
                                       type: { name: "FulfillmentEventStatus", definedType: "Scalar" },
                                       typeCondition: { name: "FulfillmentEvent", definedType: "Object" },
