@@ -1,0 +1,12 @@
+#!/bin/bash
+ROOT_DIR="$( dirname "${BASH_SOURCE[0]}" )/.."
+BUILD_DIR=.build/debug
+ORIGINAL_DIRECTORY=$(pwd)
+
+cd $ROOT_DIR
+ln -s $(pwd)/Templates $BUILD_DIR/Templates
+make
+
+cd $ORIGINAL_DIRECTORY
+$ROOT_DIR/$BUILD_DIR/Syrup $@
+rm $ROOT_DIR/$BUILD_DIR/Templates
