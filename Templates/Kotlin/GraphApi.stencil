@@ -31,6 +31,15 @@ interface SyrupOperation<T : Response> {
     }
 
     fun decodeResponse(jsonObject: JsonObject): T
+
+    fun decodeResponse(responseString: String): T {
+        return decodeResponse(
+            OperationGsonBuilder.gson.fromJson(
+                responseString,
+                JsonObject::class.java
+            )
+        )
+    }
 }
 
 interface Query<T : Response> : SyrupOperation<T>
@@ -69,7 +78,6 @@ data class Selection(
     val selections: List<Selection> = listOf()
 ) {
     fun hasSelections() = selections.isNotEmpty()
-    fun hasGID() = backingGIDReference != null
 }
 
 inline fun <reified T : Enum<T>> JsonObject.decodeEnumValue(key: String): String {
