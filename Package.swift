@@ -19,8 +19,8 @@ let package = Package(
 	],
 	dependencies: [
 		.package(
-			url: "https://github.com/jaredh/Stencil",
-			.branch("master")
+			url: "https://github.com/stencilproject/Stencil.git", 
+			from: "0.15.1"
 		),
 		.package(
 			url: "https://github.com/JohnSundell/files",
@@ -28,7 +28,7 @@ let package = Package(
 		),
 		.package(
 			url: "https://github.com/jpsim/Yams.git",
-			from: "4.0.6"
+			from: "5.0.6"
 		),
 		.package(
 			url: "https://github.com/apple/swift-tools-support-core.git",
@@ -38,10 +38,10 @@ let package = Package(
 			url: "https://github.com/Shopify/SwiftGraphQLParser",
 			from: "0.1.8"
 		),
-        .package(
-            url: "https://github.com/apple/swift-crypto.git",
-            .exact("1.1.6")
-        )
+		.package(
+				url: "https://github.com/apple/swift-crypto.git",
+				.exact("1.1.6")
+		)
 	],
 	targets: [
 		.target(

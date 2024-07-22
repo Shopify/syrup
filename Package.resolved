@@ -30,11 +30,11 @@
       },
       {
         "package": "Stencil",
-        "repositoryURL": "https://github.com/jaredh/Stencil",
+        "repositoryURL": "https://github.com/stencilproject/Stencil.git",
         "state": {
-          "branch": "master",
-          "revision": "cd3c6293a824882daa96f24c6e6c46dc633ecab4",
-          "version": null
+          "branch": null,
+          "revision": "4f222ac85d673f35df29962fc4c36ccfdaf9da5b",
+          "version": "0.15.1"
         }
       },
       {
