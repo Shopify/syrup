@@ -61,7 +61,7 @@ open class Renderer {
 			print("Skipping missing template \(templateName)")
 			return ""
 		} catch let error as TemplateSyntaxError {
-			print("Syntax error in template \(template): \(error)")
+			print("Syntax error in template `\(template)`: \(error)")
 			throw error
 		} catch let error {
 			throw error
