@@ -133,6 +133,9 @@ class Syrup {
 				options.shouldGenerateModels = false
 			}
 		}
+		
+		// Copy templates to the build directory to support SPM
+		copyTemplatesToFileSystem()
 
 		// SUB PARSER CONFIGURATIONS
 		// NOTE: Since we use positional arguments, order is important.
@@ -291,6 +294,34 @@ class Syrup {
 		} catch let error {
 			showError(error)
 		}
+	}
+
+	private func copyTemplatesToFileSystem() {
+		guard let resourcePath = Bundle.main.resourcePath else {
+			print("Could not find resource path.")
+			return
+		}
+
+		guard let templatesURL = Bundle.module.url(forResource: "Templates", withExtension: nil) else {
+			print("Templates directory not found.")
+			return
+		}
+		
+		let fileManager = FileManager.default
+		let destinationFolderURL = URL(fileURLWithPath: resourcePath).appendingPathComponent("Templates")
+
+		do {
+			guard !fileManager.fileExists(atPath: destinationFolderURL.absoluteString) else { return }
+
+			try fileManager.createDirectory(at: destinationFolderURL, withIntermediateDirectories: true, attributes: nil)
+			let resourceFiles = try fileManager.contentsOfDirectory(at: templatesURL, includingPropertiesForKeys: nil)
+
+			for fileURL in resourceFiles {
+				let destinationURL = destinationFolderURL.appendingPathComponent(fileURL.lastPathComponent)
+				try fileManager.copyItem(at: fileURL, to: destinationURL)
+			}
+			print("Syrup: Copied default templates to \(destinationFolderURL.path)")
+		} catch {}
 	}
 
 	@discardableResult
