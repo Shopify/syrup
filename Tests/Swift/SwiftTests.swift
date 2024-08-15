@@ -43,7 +43,7 @@ class SwiftTests: XCTestCase {
 		var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
 		schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
 		
-		let templateURL = baseURL.appendingPathComponent("../../Templates/\(language)", isDirectory: true)
+		let templateURL = baseURL.appendingPathComponent("../../Sources/Syrup/Resources/Templates/\(language)", isDirectory: true)
 		let template = try TemplateSpec(location: templateURL.path)
 		
 		let config = SyrupCore.Config(

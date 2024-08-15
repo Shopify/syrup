@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.3
 
 import PackageDescription
 
@@ -46,11 +46,24 @@ let package = Package(
 	targets: [
 		.target(
 			name: "Syrup",
-			dependencies: ["SyrupCore", "SwiftToolsSupport-auto"]
+			dependencies: [
+				"SyrupCore", 
+				.product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core")
+			],
+			resources: [
+				.copy("Resources/Templates")
+			]
 		),
 		.target(
 			name: "SyrupCore",
-			dependencies: ["Stencil", "Files", "Yams", "SwiftToolsSupport-auto", "SwiftGraphQLParser", "Crypto"]
+			dependencies: [
+				"Stencil", 
+				.product(name: "Files", package: "files"), 
+				"Yams", 
+				.product(name: "SwiftToolsSupport-auto", package: "swift-tools-support-core"), 
+				"SwiftGraphQLParser", 
+				.product(name: "Crypto", package: "swift-crypto")
+			]
 		),
 		.testTarget(
 			name: "SyrupTests",
