@@ -374,16 +374,16 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		self.variableType = .nonNull(variableType)
 	}
 	
-	private func parseInputFields(inputType: Schema.SchemaType) throws -> [IntermediateRepresentation.Variable] {
-		func parse(inputFieldType: Schema.SchemaType) throws -> IntermediateRepresentation.Variable.VariableType {
+	private func parseInputFields(inputType: Schema.SchemaType, currentlyProcessing: Set<String> = []) throws -> [IntermediateRepresentation.Variable] {
+		func parse(inputFieldType: Schema.SchemaType, currentlyProcessing: Set<String>) throws -> IntermediateRepresentation.Variable.VariableType {
 			switch inputFieldType.kind {
 			case .list:
 				let ofType = inputFieldType.ofType
-				let nestedType = try parse(inputFieldType: ofType)
+				let nestedType = try parse(inputFieldType: ofType, currentlyProcessing: currentlyProcessing)
 				return IntermediateRepresentation.Variable.VariableType.list(nestedType)
 			case .nonNull:
 				let ofType = inputFieldType.ofType
-				let nestedType = try parse(inputFieldType: ofType)
+				let nestedType = try parse(inputFieldType: ofType, currentlyProcessing: currentlyProcessing)
 				return IntermediateRepresentation.Variable.VariableType.nonNull(nestedType)
 			case .scalar:
 				let name = inputFieldType.name
@@ -394,8 +394,16 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 				}
 			case .inputObject:
 				let name = inputFieldType.name
+				
+				// Skip processing the fields if a cycle is detected (e.g. a recursive input field).
+				if currentlyProcessing.contains(name) {
+					return IntermediateRepresentation.Variable.VariableType.input(name)
+				}
+				
 				let topLevelType = schema.type(named: name)
-				let inputFields = try self.parseInputFields(inputType: topLevelType)
+				var updatedProcessing = currentlyProcessing
+				updatedProcessing.insert(name)
+				let inputFields = try self.parseInputFields(inputType: topLevelType, currentlyProcessing: updatedProcessing)
 				let nestedInputType = IntermediateRepresentation.InputType(
 					name: name,
 					inputFields: inputFields,
@@ -412,7 +420,7 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		}
 		var inputFields: [IntermediateRepresentation.Variable] = []
 		for field in inputType.inputFields {
-			let inputFieldType = try parse(inputFieldType: field.type)
+			let inputFieldType = try parse(inputFieldType: field.type, currentlyProcessing: currentlyProcessing)
 			inputFields.append(IntermediateRepresentation.Variable(name: field.name, type: inputFieldType))
 		}
 		return inputFields
