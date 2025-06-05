@@ -56744,7 +56744,17 @@
 						"ofType": null
 					},
 					"defaultValue": null
-				}],
+				},
+				{
+					"name": "parent",
+					"description": "Used for testing recursive input fields.",
+					"type": {
+						"kind": "INPUT_OBJECT",
+						"name": "ProductVariantInput",
+						"ofType": null
+					}
+				}
+			],
 				"interfaces": null,
 				"enumValues": null,
 				"possibleTypes": null

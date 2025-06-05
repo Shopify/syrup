@@ -129,9 +129,12 @@ final class TypeScriptRenderer: Renderer {
 				addEnumAndInputImportIfFound(variableType: inputField.type, &inputImports, &enumImports)
 			}
 			
+			// Filter out self-references to prevent importing the same type being defined
+			let filteredInputImports = inputImports.filter { $0 != inputType.name }
+			
 			let context: [String: Any] = [
 				"inputType": inputType,
-				"inputImports": inputImports.unique,
+				"inputImports": filteredInputImports.unique,
 				"enumImports": enumImports.unique
 			]
 			rendered.append(try render(template: "InputType", asFile: true, context: context))

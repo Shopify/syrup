@@ -36,4 +36,5 @@ export interface ProductVariantInput {
   taxCode?: string | null;
   weight?: number | null;
   weightUnit?: WeightUnit | null;
+  parent?: ProductVariantInput | null;
 }
