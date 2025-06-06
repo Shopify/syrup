@@ -8,7 +8,7 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@50fbc622fc4ef5163becd7fab6573eac35f8462e # v1.2.0
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: Build
       run: swift build -v
     - name: Run tests
@@ -20,7 +20,7 @@ jobs:
     container: swift:5.5.0
 
     steps:
-    - uses: actions/checkout@50fbc622fc4ef5163becd7fab6573eac35f8462e # v1.2.0
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
     - name: Install packages
       shell: bash
       run: |
