@@ -80,6 +80,7 @@ supportFilesHeader: |
         // Syrup auto-generated support file
 accessLevelOverride: "internal" # optional field
 generateSelections: true # optional field
+commentRendering: "only-deprecations" # optional field
 ```
 
 **moduleName**: This is the namespace under which all generated models will be defined. For example, a module name of `GraphQLApi` will result in all models being defined as `GraphQLApi.ShopNameQuery`, `GraphQLApi.ShopNameResponse` etc.
@@ -91,6 +92,11 @@ generateSelections: true # optional field
 **acccessLevelOverride**: This is an optional field which allows you to change the access level of the generated code from the default of public. The only other valid option for Swift is "internal".
 
 **generateSelections:**: This is an optional field which generates a data structure representing the selections of every operation. The default value of this is "false".
+
+**commentRendering**: This is an optional field which controls how comments from the GraphQL schema are rendered in the generated code. Valid options are:
+  - `comments` (default): Include all comments from the GraphQL schema
+  - `no-comments`: Exclude all comments from the generated code
+  - `only-deprecations`: Only include comments that contain @deprecated warnings
 
 ### Schema File Format
 The schema file provides schema specific information. This includes the location of the schema and custom scalar mappings.

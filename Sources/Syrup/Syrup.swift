@@ -133,7 +133,7 @@ class Syrup {
 				options.shouldGenerateModels = false
 			}
 		}
-		
+
 		// Copy templates to the build directory to support SPM
 		copyTemplatesToFileSystem()
 
@@ -202,7 +202,7 @@ class Syrup {
 				} else {
 					absoluteTemplatePath = AbsolutePath(templatePath, relativeTo: options.template)
 				}
-				
+
 				guard Arguments.isValidTemplate(absoluteTemplatePath) else {
 					fatalError("Cannot read template file at path \(absoluteTemplatePath.pathString)")
 				}
@@ -247,7 +247,7 @@ class Syrup {
 		print("\n\n")
 		exit(1)
 	}
-	
+
 	func run() {
 		var syrupArgs = Arguments()
 		do {
@@ -255,7 +255,7 @@ class Syrup {
 			let arguments = Array(commandLineArguments.dropFirst())
 			let parsedArguments = try parser.parse(arguments)
 			try binder.fill(parseResult: parsedArguments, into: &syrupArgs)
-			
+
 			if syrupArgs.shouldPrintVersion {
 				print("\(Syrup.version)", to: &stdoutStream)
 				stdoutStream.flush()
@@ -306,7 +306,7 @@ class Syrup {
 			print("Templates directory not found.")
 			return
 		}
-		
+
 		let fileManager = FileManager.default
 		let destinationFolderURL = URL(fileURLWithPath: resourcePath).appendingPathComponent("Templates")
 
@@ -328,22 +328,22 @@ class Syrup {
 	private func addQueriesArgument(to parser: ArgumentParser) -> PositionalArgument<PathArgument> {
 		parser.add(positional: "queries", kind: PathArgument.self, usage: "This provides the path to the folder containing all of your graphql operation definitions. These files are expected to have the .graphql suffix and should be valid graphql operations.")
 	}
-	
+
 	@discardableResult
 	private func addDestinationArgument(to parser: ArgumentParser) -> PositionalArgument<PathArgument> {
 		parser.add(positional: "destination", kind: PathArgument.self, usage: "This provides the path to the folder where the generated code should be written to.")
 	}
-	
+
 	@discardableResult
 	private func addSupportFilesArgument(to parser: ArgumentParser) -> PositionalArgument<PathArgument> {
 		parser.add(positional: "supportFilesDestination", kind: PathArgument.self, usage: "This provides the path to the folder where the necessary support files should be written to.")
 	}
-	
+
 	@discardableResult
 	private func addTemplateArgument(to parser: ArgumentParser) -> PositionalArgument<String> {
 		parser.add(positional: "template", kind: String.self, usage: "This provides the path to the Templates folder that are included in the Syrup repository.", completion: .filename)
 	}
-	
+
 	@discardableResult
 	private func addProjectArgument(to parser: ArgumentParser) -> OptionArgument<PathArgument> {
 		parser.add(option: "--project", kind: PathArgument.self, usage: "YAML project configuration file")
