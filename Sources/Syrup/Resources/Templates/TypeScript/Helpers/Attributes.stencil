@@ -28,8 +28,17 @@
 {{ spacing }}   */
 {% endmacro %}
 
+{% if commentRendering == "no-comments" %}
+{# No comments rendered #}
+{% elif commentRendering == "only-deprecations" %}
+{% if attributes.isDeprecated %}
+{% call deprecationString attributes.deprecationReason spacing %}
+{% endif %}
+{% else %}
+{# Default: render all comments #}
 {% if attributes.description %}
 {% call commentString attributes.description attributes.isDeprecated attributes.deprecationReason spacing %}
 {% elif attributes.isDeprecated %}
 {% call deprecationString attributes.deprecationReason spacing %}
+{% endif %}
 {% endif %}

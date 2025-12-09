@@ -32,7 +32,7 @@ open class Renderer {
 	}
 	let config: Config
 	let environment: Environment
-	
+
 	public required init(config: Config) {
 		self.config = config
 		var extensions: [Extension] = [SyrupStencilExtension(), IntermediateRepresentationExtension()]
@@ -43,14 +43,15 @@ open class Renderer {
 			templateClass: SyrupTemplate.self
 		)
 	}
-	
+
 	func render(template: String, asFile: Bool = false, context: [String: Any]) throws -> String {
 		let globalContext: [String: Any] = [
 			"header": config.project.header ?? "",
 			"supportFilesHeader": config.project.supportFilesHeader ?? "",
 			"accessLevel": config.project.accessLevel,
 			"asFile": asFile,
-			"moduleName": config.project.moduleName
+			"moduleName": config.project.moduleName,
+			"commentRendering": config.project.commentRendering.rawValue
 		]
 		let mergedContext = context.merging(globalContext, uniquingKeysWith: { value, _ in value })
 		let templateName = "\(template).stencil"
@@ -67,7 +68,7 @@ open class Renderer {
 			throw error
 		}
 	}
-	
+
 	func renderOperations(intermediateRepresentation: IntermediateRepresentation, selectionSets: SelectionSetVisitor.Results, operations: [IntermediateRepresentation.OperationDefinition]) throws -> [String] {
 		var rendered: [String] = []
 		for operation in operations {
@@ -75,7 +76,7 @@ open class Renderer {
 		}
 		return rendered
 	}
-	
+
 	func renderOperation(operation: IntermediateRepresentation.OperationDefinition, intermediateRepresentation: IntermediateRepresentation, operationSelections: SelectionSetVisitor.Operation) throws -> String {
 		let queryString = intermediateRepresentation.fullQueryString(for: operation).removingLeadingSpaces.removingNewLines
 		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false
@@ -106,7 +107,7 @@ open class Renderer {
 		}
 		return rendered
 	}
-	
+
 	func renderInputTypes(intermediateRepresentation: IntermediateRepresentation) throws -> [String] {
 		var rendered: [String] = []
 		let importEnums = intermediateRepresentation.referencedEnums.isEmpty == false

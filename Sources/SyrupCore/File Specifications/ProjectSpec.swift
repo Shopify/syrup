@@ -24,16 +24,27 @@
 
 import Foundation
 
+public enum CommentRendering: String, Codable {
+	/// Include all comments from the GraphQL schema (default)
+	case comments = "comments"
+	/// Don't include any comments
+	case noComments = "no-comments"
+	/// Only include comments that contain @deprecated warnings
+	case onlyDeprecations = "only-deprecations"
+}
+
 public struct ProjectSpec: Codable {
-	var moduleName: String
-	var filenameSuffix: String?
-	var header: String?
-	var supportFilesHeader: String?
-	var accessLevel: String
-	var generateSelections: Bool
-	
+	public var moduleName: String
+	public var filenameSuffix: String?
+	public var header: String?
+	public var supportFilesHeader: String?
+	public var accessLevel: String
+	public var generateSelections: Bool
+	public var commentRendering: CommentRendering
+
 	private static let defaultAccessLevel = "public"
-	
+	private static let defaultCommentRendering = CommentRendering.comments
+
 	enum CodingKeys: CodingKey {
 		case moduleName
 		case filenameSuffix
@@ -41,8 +52,9 @@ public struct ProjectSpec: Codable {
 		case supportFilesHeader
 		case accessLevelOverride
 		case generateSelections
+		case commentRendering
 	}
-	
+
 	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		self.moduleName = try container.decode(String.self, forKey: .moduleName)
@@ -51,8 +63,9 @@ public struct ProjectSpec: Codable {
 		self.accessLevel = try container.decodeIfPresent(String.self, forKey: .accessLevelOverride) ?? ProjectSpec.defaultAccessLevel
 		self.generateSelections = try container.decodeIfPresent(Bool.self, forKey: .generateSelections) ?? false
 		self.supportFilesHeader = try container.decodeIfPresent(String.self, forKey: .supportFilesHeader) ?? self.header
+		self.commentRendering = try container.decodeIfPresent(CommentRendering.self, forKey: .commentRendering) ?? ProjectSpec.defaultCommentRendering
 	}
-	
+
 	public func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
 		try container.encode(moduleName, forKey: .moduleName)
@@ -61,5 +74,6 @@ public struct ProjectSpec: Codable {
 		try container.encodeIfPresent(supportFilesHeader, forKey: .supportFilesHeader)
 		try container.encodeIfPresent(accessLevel, forKey: .accessLevelOverride)
 		try container.encodeIfPresent(generateSelections, forKey: .generateSelections)
+		try container.encodeIfPresent(commentRendering, forKey: .commentRendering)
 	}
 }
