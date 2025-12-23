@@ -109,7 +109,7 @@ open class BaseCustomScalarResolver {
 		return accumulator
 	}
 
-	public func decode<T, R: Decodable, K>(_ type: Optional<T>.Type, rawValueType: R.Type, forKey key: K, container: inout KeyedDecodingContainer<K>, resolver: (R) throws -> T) throws -> Optional<T> {
+	public func decode<T, R: Decodable, K>(_ type: Optional<T>.Type, rawValueType: R.Type, forKey key: K, container: KeyedDecodingContainer<K>, resolver: (R) throws -> T) throws -> Optional<T> {
 		guard let value = try container.decodeIfPresent(R.self, forKey: key) else {
 			return nil
 		}
@@ -151,9 +151,10 @@ public enum GraphSelections {
 	public enum OperationType: Equatable {
 		case mutation(String)
 		case query(String)
+		case subscription(String)
 		public var name: String {
 			switch self {
-			case .mutation(let name), .query(let name):
+			case .mutation(let name), .query(let name), .subscription(let name):
 				return name
 			}
 		}
