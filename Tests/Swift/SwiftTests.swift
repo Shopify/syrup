@@ -87,7 +87,7 @@ class SwiftTests: XCTestCase {
 	// MARK: - Argument Validation Tests
 
 	func testUnknownArgumentThrowsError() throws {
-		let queries = resourcesURL.appendingPathComponent("TestOperations/InvalidArguments").path
+		let queries = resourcesURL.appendingPathComponent("TestOperations/InvalidArguments/UnknownArgument").path
 		let destinationURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString, isDirectory: true)
 		let destination = destinationURL.path
 
@@ -123,6 +123,47 @@ class SwiftTests: XCTestCase {
 			XCTAssertTrue(
 				error.localizedDescription.contains("bogusArg"),
 				"Expected error to contain 'bogusArg', got: \(error.localizedDescription)"
+			)
+		}
+	}
+
+	func testArgumentTypeMismatchThrowsError() throws {
+		let queries = resourcesURL.appendingPathComponent("TestOperations/InvalidArguments/TypeMismatch").path
+		let destinationURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString, isDirectory: true)
+		let destination = destinationURL.path
+
+		let projectUrl = testResourcesURL.appendingPathComponent("Shopify-TypeScript.yml")
+		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
+
+		let schemaUrl = testResourcesURL.appendingPathComponent("Shopify-TypeScript.yml")
+		var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
+		schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
+
+		let templateURL = baseURL.appendingPathComponent("../../Sources/Syrup/Resources/Templates/TypeScript", isDirectory: true)
+		let template = try TemplateSpec(location: templateURL.path)
+
+		let config = SyrupCore.Config(
+			shouldGenerateModels: true,
+			shouldGenerateSupportFiles: false,
+			queries: queries,
+			destination: destination,
+			supportFilesDestination: destination,
+			template: template,
+			project: project,
+			schema: schema,
+			verbose: false,
+			outputReportFilePath: nil,
+			shouldOverwriteReport: false
+		)
+		let generator = Generator(config: config)
+		XCTAssertThrowsError(try generator.generate()) { error in
+			XCTAssertTrue(
+				error.localizedDescription.contains("Type mismatch"),
+				"Expected error to contain 'Type mismatch', got: \(error.localizedDescription)"
+			)
+			XCTAssertTrue(
+				error.localizedDescription.contains("input"),
+				"Expected error to mention argument 'input', got: \(error.localizedDescription)"
 			)
 		}
 	}
