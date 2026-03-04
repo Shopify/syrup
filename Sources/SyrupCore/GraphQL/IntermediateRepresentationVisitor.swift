@@ -163,6 +163,11 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		}
 		let fieldName = field.alias ?? field.name
 		let schemaField = parentType.peek().field(named: field.name)
+		for argument in field.arguments {
+			guard schemaField.args.contains(where: { $0.name == argument.name }) else {
+				throw Error(description: "Unknown argument '\(argument.name)' on field '\(field.name)' of type '\(parentType.peek().name)'. Valid arguments are: \(schemaField.args.map { $0.name }.joined(separator: ", "))")
+			}
+		}
 		let schemaType = schemaField.type
 		let type = try parseType(schemaType: schemaType, fieldName: fieldName)
 		let hasConditionalDirective = selectionContainsConditionalDirective.pop()
