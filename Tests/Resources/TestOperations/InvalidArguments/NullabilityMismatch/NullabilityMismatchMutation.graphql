@@ -1,0 +1,7 @@
+mutation NullabilityMismatchMutation($input: CustomerInput) {
+  customerUpdate(input: $input) {
+    customer {
+      id
+    }
+  }
+}
