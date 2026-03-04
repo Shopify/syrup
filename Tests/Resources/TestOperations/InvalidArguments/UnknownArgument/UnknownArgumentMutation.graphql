@@ -1,0 +1,7 @@
+mutation UnknownArgumentMutation($input: CustomerInput!) {
+  customerUpdate(input: $input, bogusArg: "invalid") {
+    customer {
+      id
+    }
+  }
+}

@@ -163,6 +163,13 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		}
 		let fieldName = field.alias ?? field.name
 		let schemaField = parentType.peek().field(named: field.name)
+		let parentTypeName = parentType.peek().name
+		for argument in field.arguments {
+			guard let schemaArg = schemaField.args.first(where: { $0.name == argument.name }) else {
+				throw Error(description: "Unknown argument '\(argument.name)' on field '\(field.name)' of type '\(parentTypeName)'. Valid arguments are: \(schemaField.args.map { $0.name }.joined(separator: ", "))")
+			}
+			try checkArgumentType(value: argument.value, schemaArgType: schemaArg.type, argName: argument.name, fieldName: field.name, parentTypeName: parentTypeName)
+		}
 		let schemaType = schemaField.type
 		let type = try parseType(schemaType: schemaType, fieldName: fieldName)
 		let hasConditionalDirective = selectionContainsConditionalDirective.pop()
@@ -374,6 +381,70 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		self.variableType = .nonNull(variableType)
 	}
 	
+	private func unwrapBaseType(_ schemaType: Schema.SchemaType) -> Schema.SchemaType {
+		switch schemaType.kind {
+		case .nonNull, .list: return unwrapBaseType(schemaType.ofType)
+		default: return schemaType
+		}
+	}
+
+	private func baseTypeName(of variableType: IntermediateRepresentation.Variable.VariableType) -> String? {
+		switch variableType {
+		case .scalar(let scalar): return scalar.graphType
+		case .enum(let name): return name
+		case .input(let name): return name
+		case .list(let inner), .nonNull(let inner): return baseTypeName(of: inner)
+		}
+	}
+
+	private func checkArgumentType(value: Value, schemaArgType: Schema.SchemaType, argName: String, fieldName: String, parentTypeName: String) throws {
+		func mismatch(_ expected: String, _ got: String) -> Error {
+			Error(description: "Type mismatch for argument '\(argName)' on field '\(fieldName)' of type '\(parentTypeName)': expected '\(expected)', got \(got)")
+		}
+		let base = unwrapBaseType(schemaArgType)
+		switch value {
+		case .variable(let variable):
+			guard let parsedVar = parsedVariables.first(where: { $0.name == variable.name }),
+				  let varBaseName = baseTypeName(of: parsedVar.type) else { return }
+			guard varBaseName == base.name else {
+				throw Error(description: "Type mismatch for argument '\(argName)' on field '\(fieldName)' of type '\(parentTypeName)': variable '$\(variable.name)' has type '\(varBaseName)' but argument expects '\(base.name)'")
+			}
+		case .nullValue:
+			guard schemaArgType.kind != .nonNull else {
+				throw Error(description: "Argument '\(argName)' on field '\(fieldName)' of type '\(parentTypeName)' is non-null and cannot be null")
+			}
+		case .intValue:
+			guard base.kind == .scalar && (base.name == "Int" || base.name == "Float") else {
+				throw mismatch(base.name, "integer literal")
+			}
+		case .floatValue:
+			guard base.kind == .scalar && base.name == "Float" else {
+				throw mismatch(base.name, "float literal")
+			}
+		case .booleanValue:
+			guard base.kind == .scalar && base.name == "Boolean" else {
+				throw mismatch(base.name, "boolean literal")
+			}
+		case .enumValue:
+			guard base.kind == .enum else {
+				throw mismatch(base.name, "enum literal")
+			}
+		case .listValue:
+			let nonNullStripped = schemaArgType.kind == .nonNull ? schemaArgType.ofType : schemaArgType
+			guard nonNullStripped.kind == .list else {
+				throw mismatch(base.name, "list literal")
+			}
+		case .objectValue:
+			guard base.kind == .inputObject else {
+				throw mismatch(base.name, "object literal")
+			}
+		case .stringValue:
+			guard base.kind == .scalar else {
+				throw mismatch(base.name, "string literal")
+			}
+		}
+	}
+
 	private func parseInputFields(inputType: Schema.SchemaType, currentlyProcessing: Set<String> = []) throws -> [IntermediateRepresentation.Variable] {
 		func parse(inputFieldType: Schema.SchemaType, currentlyProcessing: Set<String>) throws -> IntermediateRepresentation.Variable.VariableType {
 			switch inputFieldType.kind {

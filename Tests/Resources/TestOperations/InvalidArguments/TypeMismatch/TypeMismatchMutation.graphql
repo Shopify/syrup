@@ -1,0 +1,7 @@
+mutation TypeMismatchMutation {
+  customerUpdate(input: "this_should_be_an_object") {
+    customer {
+      id
+    }
+  }
+}
