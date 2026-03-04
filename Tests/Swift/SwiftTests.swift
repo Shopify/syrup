@@ -168,6 +168,49 @@ class SwiftTests: XCTestCase {
 		}
 	}
 
+	func testNullableVariableForNonNullArgumentThrowsError() throws {
+		let queries = resourcesURL.appendingPathComponent("TestOperations/InvalidArguments/NullabilityMismatch").path
+		let destinationURL = URL(fileURLWithPath: NSTemporaryDirectory(), isDirectory: true).appendingPathComponent(UUID().uuidString, isDirectory: true)
+		let destination = destinationURL.path
+
+		let projectUrl = testResourcesURL.appendingPathComponent("Shopify-TypeScript.yml")
+		let project = try YAMLDecoder().decode(ProjectSpec.self, from: projectUrl, userInfo: [:])
+
+		let schemaUrl = testResourcesURL.appendingPathComponent("Shopify-TypeScript.yml")
+		var schema = try YAMLDecoder().decode(SchemaSpec.self, from: schemaUrl, userInfo: [:])
+		schema.location = testResourcesURL.appendingPathComponent("Shopify-Schema.json").path
+
+		let templateURL = baseURL.appendingPathComponent("../../Sources/Syrup/Resources/Templates/TypeScript", isDirectory: true)
+		let template = try TemplateSpec(location: templateURL.path)
+
+		let config = SyrupCore.Config(
+			shouldGenerateModels: true,
+			shouldGenerateSupportFiles: false,
+			queries: queries,
+			destination: destination,
+			supportFilesDestination: destination,
+			template: template,
+			project: project,
+			schema: schema,
+			verbose: false,
+			outputReportFilePath: nil,
+			shouldOverwriteReport: false
+		)
+		let generator = Generator(config: config)
+		XCTAssertThrowsError(try generator.generate()) { error in
+			let description = error.localizedDescription
+			XCTAssertTrue(
+				description.contains("Type mismatch"),
+				"Expected 'Type mismatch', got: \(description)"
+			)
+			// Nullable variable type (CustomerInput) vs NonNull schema arg (CustomerInput!)
+			XCTAssertTrue(
+				description.contains("CustomerInput") && description.contains("CustomerInput!"),
+				"Expected error to show both types, got: \(description)"
+			)
+		}
+	}
+
 	// MARK: - Comment Rendering Tests
 
 	func testTypeScriptCommentRenderingDefault() throws {

@@ -388,12 +388,49 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		}
 	}
 
-	private func baseTypeName(of variableType: IntermediateRepresentation.Variable.VariableType) -> String? {
+	private func typeString(of variableType: IntermediateRepresentation.Variable.VariableType) -> String {
 		switch variableType {
 		case .scalar(let scalar): return scalar.graphType
 		case .enum(let name): return name
 		case .input(let name): return name
-		case .list(let inner), .nonNull(let inner): return baseTypeName(of: inner)
+		case .list(let inner): return "[\(typeString(of: inner))]"
+		case .nonNull(let inner): return "\(typeString(of: inner))!"
+		}
+	}
+
+	private func typeString(of schemaType: Schema.SchemaType) -> String {
+		switch schemaType.kind {
+		case .nonNull: return "\(typeString(of: schemaType.ofType))!"
+		case .list: return "[\(typeString(of: schemaType.ofType))]"
+		default: return schemaType.name
+		}
+	}
+
+	/// Returns true if `varType` is assignable to `schemaType`.
+	/// A nullable variable is NOT compatible with a NonNull schema argument.
+	private func isVariableTypeCompatible(_ varType: IntermediateRepresentation.Variable.VariableType, with schemaType: Schema.SchemaType) -> Bool {
+		switch schemaType.kind {
+		case .nonNull:
+			guard case .nonNull(let innerVarType) = varType else { return false }
+			return isVariableTypeCompatible(innerVarType, with: schemaType.ofType)
+		case .list:
+			// Peel NonNull wrapper from variable if present (nullable→nullable is fine at the list level)
+			let innerVarType: IntermediateRepresentation.Variable.VariableType
+			switch varType {
+			case .nonNull(let inner): innerVarType = inner
+			default: innerVarType = varType
+			}
+			guard case .list(let listElementType) = innerVarType else { return false }
+			return isVariableTypeCompatible(listElementType, with: schemaType.ofType)
+		default:
+			// Named type: base names must match (nullability already handled above)
+			switch varType {
+			case .scalar(let scalar): return scalar.graphType == schemaType.name
+			case .enum(let name): return name == schemaType.name
+			case .input(let name): return name == schemaType.name
+			case .nonNull(let inner): return isVariableTypeCompatible(inner, with: schemaType)
+			case .list: return false
+			}
 		}
 	}
 
@@ -404,10 +441,9 @@ class IntermediateRepresentationVisitor: GraphQLBaseVisitor {
 		let base = unwrapBaseType(schemaArgType)
 		switch value {
 		case .variable(let variable):
-			guard let parsedVar = parsedVariables.first(where: { $0.name == variable.name }),
-				  let varBaseName = baseTypeName(of: parsedVar.type) else { return }
-			guard varBaseName == base.name else {
-				throw Error(description: "Type mismatch for argument '\(argName)' on field '\(fieldName)' of type '\(parentTypeName)': variable '$\(variable.name)' has type '\(varBaseName)' but argument expects '\(base.name)'")
+			guard let parsedVar = parsedVariables.first(where: { $0.name == variable.name }) else { return }
+			guard isVariableTypeCompatible(parsedVar.type, with: schemaArgType) else {
+				throw Error(description: "Type mismatch for argument '\(argName)' on field '\(fieldName)' of type '\(parentTypeName)': variable '$\(variable.name)' has type '\(typeString(of: parsedVar.type))' but argument expects '\(typeString(of: schemaArgType))'")
 			}
 		case .nullValue:
 			guard schemaArgType.kind != .nonNull else {
