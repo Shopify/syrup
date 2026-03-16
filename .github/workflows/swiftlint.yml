@@ -13,6 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@50fbc622fc4ef5163becd7fab6573eac35f8462e # v1.2.0
       - name: GitHub Action for SwiftLint (Only files changed in the PR)
-        uses: norio-nomura/action-swiftlint@b8c1d88b7699981a6831cba5e3fc306f3a381fa6 # 3.2.0
+        uses: norio-nomura/action-swiftlint@c5cb516b32920e934b459952b671de2da5e04379 # 3.2.0
         env:
           DIFF_BASE: ${{ github.base_ref }}
