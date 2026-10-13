@@ -44,7 +44,7 @@ data class TestQuery7Response(
         /**
          * List of orders placed on the shop.
          */
-        @Deprecated("""Use `QueryRoot.orders` instead.""")
+        @Deprecated("Use `QueryRoot.orders` instead.")
         val orders: Orders
     ) : Response {
         constructor(jsonObject: JsonObject) : this(

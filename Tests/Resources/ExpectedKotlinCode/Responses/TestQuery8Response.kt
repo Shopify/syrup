@@ -28,12 +28,12 @@ data class TestQuery8Response(
         /**
          * List of the shop's products.
          */
-        @Deprecated("""Use `QueryRoot.products`.""")
+        @Deprecated("Use `QueryRoot.products`.")
         val firstProduct: FirstProduct,
         /**
          * List of the shop's products.
          */
-        @Deprecated("""Use `QueryRoot.products`.""")
+        @Deprecated("Use `QueryRoot.products`.")
         val lastProduct: LastProduct
     ) : Response {
         constructor(jsonObject: JsonObject) : this(

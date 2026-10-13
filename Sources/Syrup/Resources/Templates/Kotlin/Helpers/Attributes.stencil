@@ -2,12 +2,12 @@
     
     /**
     {% for line in string|splitNewlines where line %}
-     * {{ line }}
+     * {{ line|escapeKotlinComment }}
     {% endfor %}
      */
 {% endmacro %}
 
 {% if attributes.description %}{% call commentString attributes.description %}{% endif %}
 {% if attributes.isDeprecated %}
-    @Deprecated("""{{ attributes.deprecationReason }}""")
+    @Deprecated("{{ attributes.deprecationReason|escapeKotlinString }}")
 {% endif %}

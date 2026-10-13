@@ -28,7 +28,7 @@ data class TestQuery10Response(
         /**
          * The value of the price rule.
          */
-        @Deprecated("""Use `valueV2` instead""")
+        @Deprecated("Use `valueV2` instead")
         val value: Value,
         /**
          * The value of the price rule.

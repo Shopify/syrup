@@ -57,12 +57,12 @@ data class ProductVariantShippingResponse(
             /**
              * Whether a customer needs to provide a shipping address when placing an order for the product variant.
              */
-            @Deprecated("""Use `InventoryItem.requiresShipping` instead.""")
+            @Deprecated("Use `InventoryItem.requiresShipping` instead.")
             val requiresShipping: Boolean,
             /**
              * The Harmonized System Code (or HS Tariff Code) for the variant.
              */
-            @Deprecated("""Use `InventoryItem.harmonizedSystemCode` instead.""")
+            @Deprecated("Use `InventoryItem.harmonizedSystemCode` instead.")
             val harmonizedSystemCode: String?
         ) : Response {
             constructor(jsonObject: JsonObject) : this(

@@ -126,7 +126,7 @@ enum class CurrencyCode(val value: String) {
     /**
      * Belarusian Ruble (BYR).
      */
-    @Deprecated("""`BYR` is deprecated. Use `BYN` available from version `2019-10` onwards instead.""")
+    @Deprecated("`BYR` is deprecated. Use `BYN` available from version `2019-10` onwards instead.")
     @SerializedName("BYR")
     BYR("BYR"),
 

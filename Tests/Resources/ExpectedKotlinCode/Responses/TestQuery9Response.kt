@@ -25,7 +25,7 @@ data class TestQuery9Response(
         /**
          * Customer accounts associated to the shop.
          */
-        @Deprecated("""Use `QueryRoot.customers` instead.""")
+        @Deprecated("Use `QueryRoot.customers` instead.")
         val customers: Customers
     ) : Response {
         constructor(jsonObject: JsonObject) : this(

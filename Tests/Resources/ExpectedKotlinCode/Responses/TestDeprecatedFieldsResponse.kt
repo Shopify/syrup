@@ -14,7 +14,7 @@ data class TestDeprecatedFieldsResponse(
     /**
      * List of the active sales channels.
      */
-    @Deprecated("""Use `publications` instead""")
+    @Deprecated("Use `publications` instead")
     val channels: Channels
 ) : Response {
     constructor(jsonObject: JsonObject) : this(
@@ -73,42 +73,7 @@ data class TestDeprecatedFieldsResponse(
                         /**
                          * The location of the image as a URL.
                          */
-                        @Deprecated("""Previously an image had a single `src` field. This could either return the original image
-                    location or a URL that contained transformations such as sizing or scale.
-                    These transformations were specified by arguments on the parent field.
-                    Now an image has two distinct URL fields: `originalSrc` and `transformedSrc`.
-                    * `originalSrc` - the original unmodified image URL
-                    * `transformedSrc` - the image URL with the specified transformations included
-                    To migrate to the new fields, image transformations should be moved from the parent field to `transformedSrc`.
-                    Before:
-                    ```graphql
-                    {
-                      shop {
-                        productImages(maxWidth: 200, scale: 2) {
-                          edges {
-                            node {
-                              src
-                            }
-                          }
-                        }
-                      }
-                    }
-                    ```
-                    After:
-                    ```graphql
-                    {
-                      shop {
-                        productImages {
-                          edges {
-                            node {
-                              transformedSrc(maxWidth: 200, scale: 2)
-                            }
-                          }
-                        }
-                      }
-                    }
-                    ```
-                    """)
+                        @Deprecated("Previously an image had a single `src` field. This could either return the original image\nlocation or a URL that contained transformations such as sizing or scale.\n\nThese transformations were specified by arguments on the parent field.\n\nNow an image has two distinct URL fields: `originalSrc` and `transformedSrc`.\n\n* `originalSrc` - the original unmodified image URL\n* `transformedSrc` - the image URL with the specified transformations included\n\nTo migrate to the new fields, image transformations should be moved from the parent field to `transformedSrc`.\n\nBefore:\n```graphql\n{\n  shop {\n    productImages(maxWidth: 200, scale: 2) {\n      edges {\n        node {\n          src\n        }\n      }\n    }\n  }\n}\n```\n\nAfter:\n```graphql\n{\n  shop {\n    productImages {\n      edges {\n        node {\n          transformedSrc(maxWidth: 200, scale: 2)\n        }\n      }\n    }\n  }\n}\n```\n")
                         val src: String
                     ) : Response {
                         constructor(jsonObject: JsonObject) : this(

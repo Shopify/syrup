@@ -1,4 +1,5 @@
 import Files
+import Stencil
 import XCTest
 import Yams
 @testable import SyrupCore
@@ -209,6 +210,42 @@ class SwiftTests: XCTestCase {
 				"Expected error to show both types, got: \(description)"
 			)
 		}
+	}
+
+	// MARK: - Kotlin Metadata Escaping Tests
+
+	func testKotlinCommentEscapingNeutralizesBlockCommentDelimiters() throws {
+		let value = "*/ val injected = true /*"
+		let escaped = try SyrupStencilExtension.escapeKotlinComment(value) as? String
+
+		XCTAssertEqual(escaped, "* / val injected = true / *")
+	}
+
+	func testKotlinStringEscapingNeutralizesSourceSyntax() throws {
+		let value = "\"\"\" ${danger} \\ \r\nsecond line"
+		let escaped = try SyrupStencilExtension.escapeKotlinString(value) as? String
+
+		XCTAssertEqual(escaped, "\\\"\\\"\\\" \\${danger} \\\\ \\nsecond line")
+	}
+
+	func testKotlinAttributesTemplateKeepsMetadataInsideItsLexicalContext() throws {
+		let templateURL = baseURL.appendingPathComponent("../../Sources/Syrup/Resources/Templates/Kotlin/Helpers/Attributes.stencil")
+		let templateString = try String(contentsOf: templateURL)
+		let environment = Environment(extensions: [SyrupStencilExtension()])
+		let template = SyrupTemplate(templateString: templateString, environment: environment)
+		let attributes = IntermediateRepresentation.Attributes(
+			description: "*/ val pwn = 1; /* /*",
+			isDeprecated: true,
+			deprecationReason: "\"\"\")\nval pwn = 1\n@Deprecated(\"\"\""
+		)
+
+		let rendered = try template.render(["attributes": attributes])
+
+		XCTAssertTrue(rendered.contains("* / val pwn = 1; / * / *"))
+		XCTAssertFalse(rendered.contains("*/ val pwn"))
+		XCTAssertTrue(rendered.contains(#"\nval pwn = 1\n"#))
+		XCTAssertFalse(rendered.contains("\nval pwn = 1\n"))
+		XCTAssertFalse(rendered.contains("@Deprecated(\"\"\""))
 	}
 
 	// MARK: - Comment Rendering Tests

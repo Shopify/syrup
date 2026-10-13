@@ -41,6 +41,8 @@ final class SyrupStencilExtension: Extension {
 	
 	private func registerDefaultFilters() {
 		registerFilter("splitNewlines", filter: SyrupStencilExtension.splitNewlines)
+		registerFilter("escapeKotlinComment", filter: SyrupStencilExtension.escapeKotlinComment)
+		registerFilter("escapeKotlinString", filter: SyrupStencilExtension.escapeKotlinString)
 		registerFilter("camelCased", filter: SyrupStencilExtension.camelCased)
 		registerFilter("lowercasedFirstLetter", filter: SyrupStencilExtension.lowercasedFirstLetter)
 		registerFilter("replace", filter: SyrupStencilExtension.replace)
@@ -59,6 +61,24 @@ final class SyrupStencilExtension: Extension {
 	private static func splitNewlines(_ value: Any?) throws -> Any? {
 		guard let value = value as? String else { return nil }
 		return value.components(separatedBy: .newlines)
+	}
+
+	static func escapeKotlinComment(_ value: Any?) throws -> Any? {
+		guard let value = value as? String else { return nil }
+		return value
+			.replacingOccurrences(of: "/*", with: "/ *")
+			.replacingOccurrences(of: "*/", with: "* /")
+	}
+
+	static func escapeKotlinString(_ value: Any?) throws -> Any? {
+		guard let value = value as? String else { return nil }
+		return value
+			.replacingOccurrences(of: "\\", with: "\\\\")
+			.replacingOccurrences(of: "\"", with: "\\\"")
+			.replacingOccurrences(of: "$", with: "\\$")
+			.replacingOccurrences(of: "\r\n", with: "\\n")
+			.replacingOccurrences(of: "\r", with: "\\n")
+			.replacingOccurrences(of: "\n", with: "\\n")
 	}
 	
 	/// Converts snake_case to camelCase, stripping prefix underscores if needed
